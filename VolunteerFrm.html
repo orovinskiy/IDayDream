@@ -1,4 +1,234 @@
-<form method="post" action="https://idaydream.org/">
-    <label for="fName"></label>
-    <input id="fName" type="text">
-</form>
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>I Day Dream</title>
+
+</head>
+<body>
+<h1>Volunteer Form</h1>
+<div class="container">
+    <form>
+        <!-- if no selected the form is not submitted -->
+        <fieldset>
+            <legend>Background Check</legend>
+            <p>You must have a background check to volunteer</p>
+
+            <input type="radio" id="yes" name="yes" value="agreed">
+            <label for="yes">yes</label>
+
+            <input type="radio" id="no" name="no" value="disagreed">
+            <label for="no">no</label>
+        </fieldset>
+        <!-- Personal Information output -->
+        <fieldset class="form-group">
+            <legend>Personal Information</legend>
+
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName">
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName">
+
+            <label for="pNumber">Phone Number</label>
+            <input type="tel" id="pNumber" name="pNumber">
+
+            <label for="eMail">Email</label>
+            <input type="email" id="eMail" name="eMail">
+
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company">
+
+            <label for="jobTittle">Job Title</label>
+            <input type="text" id="jobTittle" name="jobTittle">
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender">
+                <option value="none">Select One</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+
+            <label for="shirtSize">T-Shirt size</label>
+            <select id="shirtSize" name="shirtSize">
+                <option value="none">Select a Size</option>
+                <option value="extra_small">Extra Small</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+                <option value="extra_large">Extra Large</option>
+            </select>
+        </fieldset>
+
+        <!-- Volunteers address information -->
+
+        <fieldset>
+            <legend>Address</legend>
+
+            <label for="street">Street</label>
+            <input type="text" id="street" name="street">
+
+            <label for="city">City</label>
+            <input type="text" id="city" name="city">
+
+            <label for="state">State</label>
+            <select id="state" name="state">
+                <option value="none"></option>
+                <option value="wa">WA</option>
+                <option value="ca">CA</option>
+                <option value="al">AL</option>
+                <option value="ak">AK</option>
+                <option value="az">AZ</option>
+                <option value="ar">AR</option>
+                <option value="co">CO</option>
+                <option value="ct">CT</option>
+                <option value="de">DE</option>
+                <option value="fl">FL</option>
+                <option value="ga">GA</option>
+                <option value="hi">HI</option>
+                <option value="id">ID</option>
+                <option value="il">IL</option>
+                <option value="in">IN</option>
+                <option value="ia">IA</option>
+                <option value="ks">KS</option>
+                <option value="ky">KY</option>
+                <option value="la">LA</option>
+                <option value="me">ME</option>
+                <option value="md">MD</option>
+                <option value="ma">MA</option>
+                <option value="mi">MI</option>
+                <option value="mn">MN</option>
+                <option value="MS">MS</option>
+                <option value="mo">MO</option>
+                <option value="mt">MT</option>
+                <option value="ne">NE</option>
+                <option value="nv">NV</option>
+                <option value="nh">NH</option>
+                <option value="nj">NJ</option>
+                <option value="nm">NM</option>
+                <option value="ny">NY</option>
+                <option value="nc">NC</option>
+                <option value="nd">ND</option>
+                <option value="oh">OH</option>
+                <option value="ok">OK</option>
+                <option value="or">OR</option>
+                <option value="pa">PA</option>
+                <option value="ri">RI</option>
+                <option value="sc">SC</option>
+                <option value="sd">SD</option>
+                <option value="tn">TN</option>
+                <option value="tx">TX</option>
+                <option value="ut">UT</option>
+                <option value="vt">VT</option>
+                <option value="va">VA</option>
+                <option value="wv">WV</option>
+                <option value="wi">WI</option>
+                <option value="wy">WY</option>
+            </select>
+
+            <label for="zip">Zip</label>
+            <input type="text" id="zip" name="zip">
+        </fieldset>
+
+        <fieldset>
+            <legend>Availability</legend>
+            <ul>
+                <li><button>S</button></li>
+                <li><button>M</button></li>
+                <li><button>T</button></li>
+                <li><button>W</button></li>
+                <li><button>T</button></li>
+                <li><button>F</button></li>
+                <li><button>S</button></li>
+
+                <div id="sunday">
+                    <p>Sunday</p>
+
+                    <label for="startTime">From</label>
+                    <input type="time" id="startTime" name="startTime">
+
+                    <label for="endTime">To</label>
+                    <input type="time" id="endTime" name="endTime">
+                </div>
+
+                <div id="monday">
+                    <p>Monday</p>
+
+                    <label for="startTime2">From</label>
+                    <input type="time" id="startTime2" name="startTime2">
+
+                    <label for="endTime2">To</label>
+                    <input type="time" id="endTime2" name="endTime2">
+                </div>
+
+                <div id="tuesday">
+                    <p>Tuesday</p>
+
+                    <label for="startTime3">From</label>
+                    <input type="time" id="startTime3" name="startTime3">
+
+                    <label for="endTime3">To</label>
+                    <input type="time" id="endTime3" name="endTime3">
+                </div>
+
+                <div id="wednesday">
+                    <p>Wednesday</p>
+
+                    <label for="startTime4">From</label>
+                    <input type="time" id="startTime4" name="startTime4">
+
+                    <label for="endTime4">To</label>
+                    <input type="time" id="endTime4" name="endTime4">
+                </div>
+
+                <div id="thursday">
+                    <p>Thursday</p>
+
+                    <label for="startTime5">From</label>
+                    <input type="time" id="startTime5" name="startTime5">
+
+                    <label for="endTime5">To</label>
+                    <input type="time" id="endTime5" name="endTime5">
+                </div>
+
+                <div id="friday">
+                    <p>Friday</p>
+
+                    <label for="startTime6">From</label>
+                    <input type="time" id="startTime6" name="startTime6">
+
+                    <label for="endTime6">To</label>
+                    <input type="time" id="endTime6" name="endTime6">
+                </div>
+
+                <div id="saturday">
+                    <p>Saturday</p>
+
+                    <label for="startTime7">From</label>
+                    <input type="time" id="startTime7" name="startTime7">
+
+                    <label for="endTime7">To</label>
+                    <input type="time" id="endTime7" name="endTime7">
+                </div>
+
+
+            </ul>
+        </fieldset>
+    </form>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
