@@ -7,149 +7,174 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link href="formStyle.css" rel="stylesheet">
     <title>I Day ream</title>
 
 </head>
 <body>
-<h1>Volunteer Form</h1>
-<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4 ">Volunteer Form</h1>
+    </div>
+        <div class="container">
     <form>
         <!-- if no selected the form is not submitted -->
-        <fieldset>
+        <fieldset class="form-group">
             <legend>Background Check</legend>
-            <p>You must have a background check to volunteer</p>
+            <p class=" back-check h5 font-weight-light">You must have a background check to volunteer. Do you agree to one?</p>
 
-            <input type="radio" id="yes" name="question" value="agreed">
-            <label for="yes">yes</label>
+            <div class="form-check radio">
+                <input class="form-check-input" type="radio" id="yes" name="question" value="agreed">
+                <label class="form-check-label" for="yes">yes</label>
+            </div>
 
-            <input type="radio" id="no" name="question" value="disagreed">
-            <label for="no">no</label>
+            <div class="form-check radio">
+                <input class="form-check-input" type="radio" id="no" name="question" value="disagreed">
+                <label class="form-check-label" for="no">no</label>
+            </div>
         </fieldset>
         <!-- Personal Information output -->
         <fieldset class="form-group">
             <legend>Personal Information</legend>
 
-            <label for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName">
+            <div class="form-group">
+                <label class="h5 font-weight-light" for="firstName">First Name</label>
+                <input class="form-control inputs" type="text" id="firstName" name="firstName">
+            </div>
 
-            <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName">
+            <div class="form-group">
+                <label class="h5 font-weight-light" for="lastName">Last Name</label>
+                <input class="form-control inputs" type="text" id="lastName" name="lastName">
+            </div>
 
-            <label for="pNumber">Phone Number</label>
-            <input type="tel" id="pNumber" name="pNumber">
+            <div class="form-group">
+                <label class="h5 font-weight-light" for="pNumber">Phone Number</label>
+                <input class="form-control inputs" type="tel" id="pNumber" name="pNumber">
+            </div>
 
-            <label for="eMail">Email</label>
-            <input type="email" id="eMail" name="eMail">
+            <div class="form-group">
+                <label class="h5 font-weight-light" for="eMail">Email</label>
+                <input class="form-control inputs" type="email" id="eMail" name="eMail">
+            </div>
 
-            <label for="company">Company</label>
-            <input type="text" id="company" name="company">
+            <div class="form-group">
+                <label class="h5 font-weight-light" for="company">Company</label>
+                <input class="form-control inputs" type="text" id="company" name="company">
+            </div>
 
-            <label for="jobTittle">Job Title</label>
-            <input type="text" id="jobTittle" name="jobTittle">
+            <div class="form-group">
+                <label class="h5 font-weight-light" for="jobTittle">Job Title</label>
+                <input class="form-control inputs" type="text" id="jobTittle" name="jobTittle">
+            </div>
 
-            <label for="gender">Gender</label>
-            <select id="gender" name="gender">
-                <option value="none">Select One</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-            </select>
+            <div class="form-inline">
+                    <label class="h5 font-weight-light ml-md-5 mr-md-2 mr-sm-1" for="gender">Gender </label>
+                    <select class="form-control input-style mr-md-5 px-lg-5 mr-sm-3 mb-xs-3" id="gender" name="gender">
+                        <option value="none">Select One</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
 
+                    <label class="h5 font-weight-light ml-md-5 mr-md-2 mr-sm-1" for="shirtSize">T-Shirt size </label>
+                    <select class="form-control px-lg-5" id="shirtSize" name="shirtSize">
+                        <option value="none">Select a Size</option>
+                        <option value="extra_small">Extra Small</option>
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                        <option value="extra_large">Extra Large</option>
+                    </select>
 
-            <label for="shirtSize">T-Shirt size</label>
-            <select id="shirtSize" name="shirtSize">
-                <option value="none">Select a Size</option>
-                <option value="extra_small">Extra Small</option>
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-                <option value="extra_large">Extra Large</option>
-            </select>
+            </div>
         </fieldset>
 
         <!-- Volunteers address information -->
 
-        <fieldset>
+        <fieldset class="form-group">
             <legend>Address</legend>
 
-            <label for="street">Street</label>
-            <input type="text" id="street" name="street">
+            <div class="form-group">
+                <label class="h5 font-weight-light mr-sm-1" for="street">Street</label>
+                <input class="inputs form-control mr-sm-4" type="text" id="street" name="street">
 
-            <label for="city">City</label>
-            <input type="text" id="city" name="city">
+                <label class="h5 font-weight-light mr-sm-1" for="city">City</label>
+                <input class="inputs form-control " type="text" id="city" name="city">
+            </div>
 
-            <label for="state">State</label>
-            <select id="state" name="state">
-                <option value="none"></option>
-                <option value="wa">WA</option>
-                <option value="ca">CA</option>
-                <option value="al">AL</option>
-                <option value="ak">AK</option>
-                <option value="az">AZ</option>
-                <option value="ar">AR</option>
-                <option value="co">CO</option>
-                <option value="ct">CT</option>
-                <option value="de">DE</option>
-                <option value="fl">FL</option>
-                <option value="ga">GA</option>
-                <option value="hi">HI</option>
-                <option value="id">ID</option>
-                <option value="il">IL</option>
-                <option value="in">IN</option>
-                <option value="ia">IA</option>
-                <option value="ks">KS</option>
-                <option value="ky">KY</option>
-                <option value="la">LA</option>
-                <option value="me">ME</option>
-                <option value="md">MD</option>
-                <option value="ma">MA</option>
-                <option value="mi">MI</option>
-                <option value="mn">MN</option>
-                <option value="MS">MS</option>
-                <option value="mo">MO</option>
-                <option value="mt">MT</option>
-                <option value="ne">NE</option>
-                <option value="nv">NV</option>
-                <option value="nh">NH</option>
-                <option value="nj">NJ</option>
-                <option value="nm">NM</option>
-                <option value="ny">NY</option>
-                <option value="nc">NC</option>
-                <option value="nd">ND</option>
-                <option value="oh">OH</option>
-                <option value="ok">OK</option>
-                <option value="or">OR</option>
-                <option value="pa">PA</option>
-                <option value="ri">RI</option>
-                <option value="sc">SC</option>
-                <option value="sd">SD</option>
-                <option value="tn">TN</option>
-                <option value="tx">TX</option>
-                <option value="ut">UT</option>
-                <option value="vt">VT</option>
-                <option value="va">VA</option>
-                <option value="wv">WV</option>
-                <option value="wi">WI</option>
-                <option value="wy">WY</option>
-            </select>
+            <div class="form-inline">
+                <label class="h5 font-weight-light ml-md-5 mr-sm-1" for="state">State</label>
+                <select class="form-control input-style px-lg-5 mr-sm-4 mr-md-5" id="state" name="state">
+                    <option value="none">Choose One</option>
+                    <option value="wa">WA</option>
+                    <option value="ca">CA</option>
+                    <option value="al">AL</option>
+                    <option value="ak">AK</option>
+                    <option value="az">AZ</option>
+                    <option value="ar">AR</option>
+                    <option value="co">CO</option>
+                    <option value="ct">CT</option>
+                    <option value="de">DE</option>
+                    <option value="fl">FL</option>
+                    <option value="ga">GA</option>
+                    <option value="hi">HI</option>
+                    <option value="id">ID</option>
+                    <option value="il">IL</option>
+                    <option value="in">IN</option>
+                    <option value="ia">IA</option>
+                    <option value="ks">KS</option>
+                    <option value="ky">KY</option>
+                    <option value="la">LA</option>
+                    <option value="me">ME</option>
+                    <option value="md">MD</option>
+                    <option value="ma">MA</option>
+                    <option value="mi">MI</option>
+                    <option value="mn">MN</option>
+                    <option value="MS">MS</option>
+                    <option value="mo">MO</option>
+                    <option value="mt">MT</option>
+                    <option value="ne">NE</option>
+                    <option value="nv">NV</option>
+                    <option value="nh">NH</option>
+                    <option value="nj">NJ</option>
+                    <option value="nm">NM</option>
+                    <option value="ny">NY</option>
+                    <option value="nc">NC</option>
+                    <option value="nd">ND</option>
+                    <option value="oh">OH</option>
+                    <option value="ok">OK</option>
+                    <option value="or">OR</option>
+                    <option value="pa">PA</option>
+                    <option value="ri">RI</option>
+                    <option value="sc">SC</option>
+                    <option value="sd">SD</option>
+                    <option value="tn">TN</option>
+                    <option value="tx">TX</option>
+                    <option value="ut">UT</option>
+                    <option value="vt">VT</option>
+                    <option value="va">VA</option>
+                    <option value="wv">WV</option>
+                    <option value="wi">WI</option>
+                    <option value="wy">WY</option>
+                </select>
 
-            <label for="zip">Zip</label>
-            <input type="text" id="zip" name="zip">
+                <label class="h5 font-weight-light mr-sm-1 ml-md-5" for="zip">Zip</label>
+                <input class="form-control input-style" type="text" id="zip" name="zip">
+            </div>
+
         </fieldset>
 
-        <fieldset>
+        <fieldset class="form-group">
             <legend>Availability</legend>
-            <ul>
-                <li><button>S</button></li>
-                <li><button>M</button></li>
-                <li><button>T</button></li>
-                <li><button>W</button></li>
-                <li><button>T</button></li>
-                <li><button>F</button></li>
-                <li><button>S</button></li>
-
-                <div id="sunday">
+            <ul class="day-buttons">
+                    <li><button class="btn btn-primary">Sun</button></li>
+                    <li><button class="btn btn-primary">Mon</button></li>
+                    <li><button class="btn btn-primary">Tue</button></li>
+                    <li><button class="btn btn-primary">Wed</button></li>
+                    <li><button class="btn btn-primary">Thu</button></li>
+                    <li><button class="btn btn-primary">Fri</button></li>
+                    <li><button class=" btn btn-primary">Sat</button></li>
+            </ul>
+                <div id="0" class="hidden">
                     <p>Sunday</p>
 
                     <label for="startTime">From</label>
@@ -159,7 +184,7 @@
                     <input type="time" id="endTime" name="endTime">
                 </div>
 
-                <div id="monday">
+                <div id="1" class="hidden">
                     <p>Monday</p>
 
                     <label for="startTime2">From</label>
@@ -169,7 +194,7 @@
                     <input type="time" id="endTime2" name="endTime2">
                 </div>
 
-                <div id="tuesday">
+                <div id="2" class="hidden">
                     <p>Tuesday</p>
 
                     <label for="startTime3">From</label>
@@ -179,7 +204,7 @@
                     <input type="time" id="endTime3" name="endTime3">
                 </div>
 
-                <div id="wednesday">
+                <div id="3" class="hidden">
                     <p>Wednesday</p>
 
                     <label for="startTime4">From</label>
@@ -189,7 +214,7 @@
                     <input type="time" id="endTime4" name="endTime4">
                 </div>
 
-                <div id="thursday">
+                <div id="4" class="hidden">
                     <p>Thursday</p>
 
                     <label for="startTime5">From</label>
@@ -199,7 +224,7 @@
                     <input type="time" id="endTime5" name="endTime5">
                 </div>
 
-                <div id="friday">
+                <div id="5" class="hidden">
                     <p>Friday</p>
 
                     <label for="startTime6">From</label>
@@ -209,7 +234,7 @@
                     <input type="time" id="endTime6" name="endTime6">
                 </div>
 
-                <div id="saturday">
+                <div id="6" class="hidden">
                     <p>Saturday</p>
 
                     <label for="startTime7">From</label>
@@ -218,9 +243,6 @@
                     <label for="endTime7">To</label>
                     <input type="time" id="endTime7" name="endTime7">
                 </div>
-
-
-            </ul>
         </fieldset>
     </form>
 </div>

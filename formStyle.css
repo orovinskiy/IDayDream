@@ -1,0 +1,110 @@
+.back-check{
+    padding-bottom: 1em;
+}
+
+.day-buttons li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 4.5%;
+
+}
+
+.day-buttons li button{
+    width: 5em;
+}
+
+fieldset{
+    border: 2px solid grey;
+    padding: 1.5em;
+}
+
+.hidden{
+    display:none;
+}
+
+h1{
+    text-align: center;
+}
+
+.inputs{
+    margin-bottom: 1.8em;
+}
+
+legend{
+    width:30%;
+    text-align: center;
+}
+
+.p-info-select{
+    margin: 0 2.3em;
+}
+
+.radio{
+    display: inline-block;
+    margin-right: 10%;
+}
+
+@media screen and (max-width: 574px) {
+    .input-style {
+        margin-bottom: 1.8em;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .day-buttons li{
+        list-style: none;
+        display: inline-block;
+        margin-left: 3.3%;
+
+    }
+
+    .day-buttons li button{
+        width: 5em;
+    }
+}
+
+@media screen and (max-width: 993px) {
+    .day-buttons li{
+        list-style: none;
+        display: inline-block;
+        margin-left: 3%;
+
+    }
+
+    .day-buttons li button{
+        width: 3.5em;
+    }
+}
+
+@media screen and (max-width: 765px) {
+    .day-buttons li{
+        list-style: none;
+        display: inline-block;
+        margin-left: -.8%;
+
+    }
+
+    .day-buttons li button{
+        width: 3.5em;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .day-buttons li{
+        list-style: none;
+        display: inline-block;
+        margin-bottom: 1%;
+    }
+
+    .day-buttons li button{
+        width: 4em;
+    }
+
+    legend{
+        width:50%;
+        text-align: center;
+    }
+}
+
+
+
