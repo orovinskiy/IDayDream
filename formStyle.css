@@ -15,7 +15,7 @@
 
 .day {
     /*display: none;*/
-    width: 330px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 15px;
@@ -32,13 +32,24 @@
     width: 5em;
 }
 
+.day div.form-inline {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .day hr {
     margin-top: 0;
     margin-bottom: 12px;
 }
 
 .day input.form-control {
-    width: 110px;
+    width: 130px;
+}
+
+.day label {
+    width: 44px;
+    text-align: right;
 }
 
 .day p {
