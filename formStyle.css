@@ -129,10 +129,6 @@ legend{
     .day-buttons li button{
         width: 5em;
     }
-
-    #interests ul {
-        column-count: 3;
-    }
 }
 
 @media screen and (max-width: 993px) {
