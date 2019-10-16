@@ -32,6 +32,11 @@
     width: 5em;
 }
 
+.day hr {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
 .day input.form-control {
     width: 110px;
 }
@@ -39,6 +44,7 @@
 .day p {
     text-align: center;
     font-size: 1.4rem;
+    margin-bottom: 0;
 }
 
 fieldset{
