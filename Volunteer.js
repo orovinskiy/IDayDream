@@ -14,6 +14,10 @@ function buttonType(week){
 
 document.getElementById("other-interest").addEventListener("change", toggleDisplay);
 
+
+/**
+ * Shows the hidden Other text box and label when the user clicks the other checkbox
+ */
 function toggleDisplay() {
     var otherSection = document.getElementById("other-section");
     if (this.checked) {

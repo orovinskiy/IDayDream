@@ -17,7 +17,7 @@
 </div>
 <div class="container">
     <form>
-        <!-- if no selected the form is not submitted -->
+        <!-- Background check consent (required) -->
         <fieldset class="form-group">
             <legend>Background Check</legend>
             <p class=" back-check h5 font-weight-light">You must have a background check to volunteer. Do you agree to one?</p>
@@ -34,7 +34,8 @@
                 </div>
             </div>
         </fieldset>
-        <!-- Personal Information output -->
+
+        <!-- Personal Information  -->
         <fieldset class="form-group">
             <legend>Personal Information</legend>
 
@@ -90,8 +91,7 @@
             </div>
         </fieldset>
 
-        <!-- Volunteers address information -->
-
+        <!-- Contact information -->
         <fieldset class="form-group">
             <legend>Address</legend>
 
@@ -164,6 +164,7 @@
             </div>
         </fieldset>
 
+        <!-- Availability -->
         <fieldset class="form-group">
             <legend>Availability</legend>
             <ul class="day-buttons">
@@ -175,7 +176,7 @@
                 <li><button class="btn btn-primary">Fri</button></li>
                 <li><button class="btn btn-primary">Sat</button></li>
             </ul>
-            <div id="0" class="day">
+            <div id="day-0" class="day">
                 <p class="h5 font-weight-light">Sunday</p>
                 <hr>
 
@@ -188,7 +189,8 @@
                     <input type="time" id="endTime" name="endTime" class="mr-3 mb-2 form-control">
                 </div>
             </div>
-            <div id="1" class="day">
+
+            <div id="day-1" class="day">
                 <p class="h5 font-weight-light">Monday</p>
                 <hr>
 
@@ -201,7 +203,8 @@
                     <input type="time" id="endTime2" name="endTime2" class="mr-3 mb-2 form-control">
                 </div>
             </div>
-            <div id="2" class="day">
+
+            <div id="day-2" class="day">
                 <p class="h5 font-weight-light">Tuesday</p>
                 <hr>
 
@@ -215,7 +218,7 @@
                 </div>
             </div>
 
-            <div id="3" class="day">
+            <div id="day-3" class="day">
                 <p class="h5 font-weight-light">Wednesday</p>
                 <hr>
 
@@ -229,7 +232,7 @@
                 </div>
             </div>
 
-            <div id="4" class="day">
+            <div id="day-4" class="day">
                 <p class="h5 font-weight-light">Thursday</p>
                 <hr>
 
@@ -243,7 +246,7 @@
                 </div>
             </div>
 
-            <div id="5" class="day">
+            <div id="day-5" class="day">
                 <p class="h5 font-weight-light">Friday</p>
                 <hr>
 
@@ -257,7 +260,7 @@
                 </div>
             </div>
 
-            <div id="6" class="day">
+            <div id="day-6" class="day">
                 <p class="h5 font-weight-light">Saturday</p>
                 <hr>
 
@@ -271,7 +274,10 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset id="interests" class="form-group"><legend>Interests</legend>
+
+        <!-- Interests -->
+        <fieldset id="interests" class="form-group">
+            <legend>Interests</legend>
             <ul>
                 <li class="form-check">
                     <input id="events" class="" type="checkbox" name="interests[0]" value="events">
@@ -304,63 +310,75 @@
             </div>
         </fieldset>
 
-        <fieldset class="form-group"><legend>Skills</legend>
+        <!-- Skills -->
+        <fieldset class="form-group">
+            <legend>Skills</legend>
             <div class="form-group">
                 <label for="skills" class="h5 font-weight-light mr-sm-1">Enter one skill at a time</label>
                 <input id="skills" type="text" class="form-control" >
             </div>
-        <div id="tag-container">
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-                writing
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+
+            <!-- Holds all the tags as user enters skills -->
+            <div id="tag-container">
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    writing
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    fundraising
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    management
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    hr
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </div>
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-                fundraising
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-                management
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-                hr
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
         </fieldset>
 
+        <!-- Previous Experience -->
         <fieldset class="form-group"><legend>Previous Experience</legend>
             <label for="experience" class="h5 font-weight-light mr-sm-1">Please specify</label>
             <textarea id="experience" name="experience" class="form-control"></textarea>
         </fieldset>
 
+        <!-- References -->
         <fieldset class="form-group">
             <legend>References</legend>
             <div class="form-group">
                 <label for="refFullName" class="h5 font-weight-light mr-sm-1">Full Name</label>
                 <input type="text" class="form-control" id="refFullName" name="refFullName" placeholder="John Doe">
             </div>
+
             <div class="form-group">
                 <label for="refPhone" class="h5 font-weight-light mr-sm-1">Phone Number</label>
                 <input type="tel" class="form-control" id="refPhone" name="refPhone" placeholder="253-123-4567">
             </div>
+
             <div class="form-group">
                 <label for="refEmail" class="h5 font-weight-light mr-sm-1">Email</label>
                 <input type="email" class="form-control" id="refEmail" name="refEmail" placeholder="JohnDoe@mail.com">
             </div>
+
             <div class="form-group text-center">
                 <button type="button" class="btn btn-primary display-1"><span class="h5">+</span></button>
             </div>
         </fieldset>
 
+        <!-- Anything else -->
         <fieldset class="form-group">
             <legend>Anything else you would like to let us know?</legend>
             <div class="form-group">
@@ -368,36 +386,46 @@
             </div>
         </fieldset>
 
+        <!-- Agreement -->
         <fieldset class="form-group">
             <legend>Agreement</legend>
+
             <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in</p>
+
             <div class="form-group">
                 <label for="fullNameAgreement" class="h5 font-weight-light mr-sm-1">Full Name</label>
                 <input type="text" id="fullNameAgreement" class="form-control" name="fullNameAgreement" placeholder="John Doe" required>
             </div>
+
             <div class="form-group">
                 <label for="eSign" class="h5 font-weight-light mr-sm-1">E-Sign</label>
                 <input type="text" id="eSign" class="form-control" name="eSignAgreement" placeholder="John Doe" required>
             </div>
+
             <div class="form-group">
                 <label for="date" class="h5 font-weight-light mr-sm-1">Date</label>
                 <input type="date" id="date" class="form-control" name="dateAgreement" required>
             </div>
         </fieldset>
 
+        <!-- Policy -->
         <fieldset class="form-group">
             <legend>Our Policy</legend>
             <div class="form-group">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in</p>
+                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                </p>
+
                 <input type="checkbox" id="policyCheckbox" name="policyCheckBox" required>
                 <label for="policyCheckbox" class="h5 font-weight-light">Agree</label>
             </div>
         </fieldset>
 
+        <!-- Submit -->
         <div class="row">
             <div class="col text-center">
                 <input type="button" id="submitButton" class="btn btn-primary p-2" name="submitButton" value="Submit">
