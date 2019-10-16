@@ -144,7 +144,7 @@ legend{
     }
 
     #interests ul {
-        column-count: 3;
+        column-count: 2;
     }
 }
 
@@ -172,8 +172,18 @@ legend{
         width: 4em;
     }
 
+    #interests {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #interests li {
+        padding-left: 10px;
+    }
+
     #interests ul {
         column-count: 2;
+        padding-left: 10px;
     }
 
     legend{
