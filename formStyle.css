@@ -30,9 +30,18 @@ h1{
     margin-bottom: 1.8em;
 }
 
+#interests ul {
+    list-style: none;
+    column-count: 6;
+}
+
 legend{
     width:30%;
     text-align: center;
+}
+
+#other-section {
+    display: none;
 }
 
 .p-info-select{
@@ -74,6 +83,10 @@ legend{
     .day-buttons li button{
         width: 3.5em;
     }
+
+    #interests ul {
+        column-count: 3;
+    }
 }
 
 @media screen and (max-width: 765px) {
@@ -98,6 +111,10 @@ legend{
 
     .day-buttons li button{
         width: 4em;
+    }
+
+    #interests ul {
+        column-count: 2;
     }
 
     legend{
