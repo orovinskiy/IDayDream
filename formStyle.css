@@ -1,3 +1,4 @@
+/* alert class is for the skill tags*/
 .alert {
     padding: 6px 30px 6px 8px;
     margin: 5px 10px 5px 0;
@@ -7,20 +8,23 @@
     padding-bottom: 1em;
 }
 
+/*center radio buttons */
 #back-check-agree {
     width: 140px;
     margin-left: auto;
     margin-right: auto;
 }
 
+/* Each availability day starts hidden and centered in fieldset */
 .day {
-    /*display: none;*/
+    /*display: none; removed for presentation*/
     width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 15px;
 }
 
+/* Day of the week buttons are horizontally placed
 .day-buttons li{
     list-style: none;
     display: inline-block;
@@ -32,12 +36,14 @@
     width: 5em;
 }
 
+/* center day inputs */
 .day div.form-inline {
     width: 200px;
     margin-left: auto;
     margin-right: auto;
 }
 
+/* Make hr fit closer below day of text and closer to inputs below */
 .day hr {
     margin-top: 0;
     margin-bottom: 12px;
@@ -47,6 +53,7 @@
     width: 130px;
 }
 
+/* Labels have the same width so text inputs are vertically aligned */
 .day label {
     width: 44px;
     text-align: right;
@@ -55,7 +62,7 @@
 .day p {
     text-align: center;
     font-size: 1.4rem;
-    margin-bottom: 0;
+    margin-bottom: 0; /* makes hr below closer */
 }
 
 fieldset{
@@ -80,17 +87,14 @@ h1{
     column-count: 6;
 }
 
-legend{
+legend {
     width:30%;
     text-align: center;
 }
 
+/* Hide other section unless other interests are selected */
 #other-section {
     display: none;
-}
-
-.p-info-select{
-    margin: 0 2.3em;
 }
 
 .radio{
@@ -112,6 +116,8 @@ legend{
     padding: 4px 6px 4px 10px;
 }
 
+/* Adjust Interests as page shrinks */
+
 @media screen and (max-width: 574px) {
     .input-style {
         margin-bottom: 1.8em;
@@ -119,11 +125,11 @@ legend{
 }
 
 @media screen and (max-width: 1200px) {
+    /* Make buttons fit into screen */
     .day-buttons li{
         list-style: none;
         display: inline-block;
         margin-left: 3.3%;
-
     }
 
     .day-buttons li button{
@@ -152,7 +158,7 @@ legend{
     }
 
     #interests li {
-        margin-left:0;
+        margin-left: 0;
     }
 }
 
@@ -161,7 +167,6 @@ legend{
         list-style: none;
         display: inline-block;
         margin-left: -.8%;
-
     }
 
     .day-buttons li button{
