@@ -11,3 +11,15 @@ function buttonType(week){
     this.className= "hidden";
     console.log("i went through");
 }*/
+
+document.getElementById("other-interest").addEventListener("change", toggleDisplay);
+
+function toggleDisplay() {
+    var otherSection = document.getElementById("other-section");
+    if (this.checked) {
+        otherSection.style.display = "initial";
+    }
+    else {
+        otherSection.style.display = "none";
+    }
+}

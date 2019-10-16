@@ -1,5 +1,24 @@
+.alert {
+    padding: 6px 30px 6px 8px;
+    margin: 5px 10px 5px 0;
+}
+
 .back-check{
     padding-bottom: 1em;
+}
+
+#back-check-agree {
+    width: 140px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.day {
+    /*display: none;*/
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
 }
 
 .day-buttons li{
@@ -11,6 +30,32 @@
 
 .day-buttons li button{
     width: 5em;
+}
+
+.day div.form-inline {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.day hr {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.day input.form-control {
+    width: 130px;
+}
+
+.day label {
+    width: 44px;
+    text-align: right;
+}
+
+.day p {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 0;
 }
 
 fieldset{
@@ -30,9 +75,18 @@ h1{
     margin-bottom: 1.8em;
 }
 
+#interests ul {
+    list-style: none;
+    column-count: 6;
+}
+
 legend{
     width:30%;
     text-align: center;
+}
+
+#other-section {
+    display: none;
 }
 
 .p-info-select{
@@ -42,6 +96,20 @@ legend{
 .radio{
     display: inline-block;
     margin-right: 10%;
+}
+
+#submitButton {
+    margin: 20px 20px 30px 20px;
+}
+
+#tag-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#tag-container button {
+    padding: 4px 6px 4px 10px;
 }
 
 @media screen and (max-width: 574px) {
@@ -74,6 +142,10 @@ legend{
     .day-buttons li button{
         width: 3.5em;
     }
+
+    #interests ul {
+        column-count: 2;
+    }
 }
 
 @media screen and (max-width: 765px) {
@@ -98,6 +170,20 @@ legend{
 
     .day-buttons li button{
         width: 4em;
+    }
+
+    #interests {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #interests li {
+        padding-left: 10px;
+    }
+
+    #interests ul {
+        column-count: 2;
+        padding-left: 10px;
     }
 
     legend{
