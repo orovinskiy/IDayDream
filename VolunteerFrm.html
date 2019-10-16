@@ -8,28 +8,30 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="formStyle.css" rel="stylesheet">
-    <title>I Day ream</title>
+    <title>I Day Dream | Volunteer Form</title>
 
 </head>
 <body>
-    <div class="jumbotron">
-        <h1 class="display-4 ">Volunteer Form</h1>
-    </div>
-        <div class="container">
+<div class="jumbotron">
+    <h1 class="display-4 ">Volunteer Form</h1>
+</div>
+<div class="container">
     <form>
         <!-- if no selected the form is not submitted -->
         <fieldset class="form-group">
             <legend>Background Check</legend>
             <p class=" back-check h5 font-weight-light">You must have a background check to volunteer. Do you agree to one?</p>
 
-            <div class="form-check radio">
-                <input class="form-check-input" type="radio" id="yes" name="question" value="agreed">
-                <label class="form-check-label" for="yes">yes</label>
-            </div>
+            <div id="back-check-agree">
+                <div class="form-check radio">
+                    <input class="form-check-input" type="radio" id="yes" name="question" value="agreed">
+                    <label class="form-check-label h5 font-weight-light" for="yes">Yes</label>
+                </div>
 
-            <div class="form-check radio">
-                <input class="form-check-input" type="radio" id="no" name="question" value="disagreed">
-                <label class="form-check-label" for="no">no</label>
+                <div class="form-check radio">
+                    <input class="form-check-input" type="radio" id="no" name="question" value="disagreed">
+                    <label class="form-check-label h5 font-weight-light" for="no">No</label>
+                </div>
             </div>
         </fieldset>
         <!-- Personal Information output -->
@@ -67,23 +69,23 @@
             </div>
 
             <div class="form-inline">
-                    <label class="h5 font-weight-light ml-md-5 mr-md-2 mr-sm-1" for="gender">Gender </label>
-                    <select class="form-control input-style mr-md-5 px-lg-5 mr-sm-3 mb-xs-3" id="gender" name="gender">
-                        <option value="none">Select One</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
+                <label class="h5 font-weight-light ml-md-5 mr-md-2 mr-sm-1" for="gender">Gender </label>
+                <select class="form-control input-style mr-md-5 px-lg-5 mr-sm-3 mb-xs-3" id="gender" name="gender">
+                    <option value="none">Select One</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
 
-                    <label class="h5 font-weight-light ml-md-5 mr-md-2 mr-sm-1" for="shirtSize">T-Shirt size </label>
-                    <select class="form-control px-lg-5" id="shirtSize" name="shirtSize">
-                        <option value="none">Select a Size</option>
-                        <option value="extra_small">Extra Small</option>
-                        <option value="small">Small</option>
-                        <option value="medium">Medium</option>
-                        <option value="large">Large</option>
-                        <option value="extra_large">Extra Large</option>
-                    </select>
+                <label class="h5 font-weight-light ml-md-5 mr-md-2 mr-sm-1" for="shirtSize">T-Shirt size </label>
+                <select class="form-control px-lg-5" id="shirtSize" name="shirtSize">
+                    <option value="none">Select a Size</option>
+                    <option value="extra_small">Extra Small</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                    <option value="extra_large">Extra Large</option>
+                </select>
 
             </div>
         </fieldset>
@@ -160,98 +162,247 @@
                 <label class="h5 font-weight-light mr-sm-1 ml-md-5" for="zip">Zip</label>
                 <input class="form-control input-style" type="text" id="zip" name="zip">
             </div>
-
         </fieldset>
 
         <fieldset class="form-group">
             <legend>Availability</legend>
             <ul class="day-buttons">
-                    <li><button class="btn btn-primary">Sun</button></li>
-                    <li><button class="btn btn-primary">Mon</button></li>
-                    <li><button class="btn btn-primary">Tue</button></li>
-                    <li><button class="btn btn-primary">Wed</button></li>
-                    <li><button class="btn btn-primary">Thu</button></li>
-                    <li><button class="btn btn-primary">Fri</button></li>
-                    <li><button class=" btn btn-primary">Sat</button></li>
+                <li><button class="btn btn-primary">Sun</button></li>
+                <li><button class="btn btn-primary">Mon</button></li>
+                <li><button class="btn btn-primary">Tue</button></li>
+                <li><button class="btn btn-primary">Wed</button></li>
+                <li><button class="btn btn-primary">Thu</button></li>
+                <li><button class="btn btn-primary">Fri</button></li>
+                <li><button class="btn btn-primary">Sat</button></li>
             </ul>
-                <div id="0" class="hidden">
-                    <p>Sunday</p>
+            <div id="0" class="day">
+                <p class="h5 font-weight-light">Sunday</p>
+                <hr>
 
-                    <label for="startTime">From</label>
-                    <input type="time" id="startTime" name="startTime">
+                <div class="form-inline">
+                    <label for="startTime" class="h5 font-weight-light mr-2">From</label>
+                    <input type="time" id="startTime" name="startTime" class="mr-3 mb-2 form-control">
 
-                    <label for="endTime">To</label>
-                    <input type="time" id="endTime" name="endTime">
+                    <label for="endTime" class="h5 font-weight-light mr-2">To</label>
+                    <input type="time" id="endTime" name="endTime" class="mr-3 mb-2 form-control">
                 </div>
+            </div>
+            <div id="1" class="day">
+                <p class="h5 font-weight-light">Monday</p>
+                <hr>
 
-                <div id="1" class="hidden">
-                    <p>Monday</p>
+                <div class="form-inline">
+                    <label for="startTime2" class="h5 font-weight-light mr-2">From</label>
+                    <input type="time" id="startTime2" name="startTime2" class="mr-3 mb-2 form-control">
 
-                    <label for="startTime2">From</label>
-                    <input type="time" id="startTime2" name="startTime2">
-
-                    <label for="endTime2">To</label>
-                    <input type="time" id="endTime2" name="endTime2">
+                    <label for="endTime2" class="h5 font-weight-light mr-2">To</label>
+                    <input type="time" id="endTime2" name="endTime2" class="mr-3 mb-2 form-control">
                 </div>
+            </div>
+            <div id="2" class="day">
+                <p class="h5 font-weight-light">Tuesday</p>
+                <hr>
 
-                <div id="2" class="hidden">
-                    <p>Tuesday</p>
+                <div class="form-inline">
+                    <label for="startTime3" class="h5 font-weight-light mr-2">From</label>
+                    <input type="time" id="startTime3" name="startTime3" class="mr-3 mb-2 form-control">
 
-                    <label for="startTime3">From</label>
-                    <input type="time" id="startTime3" name="startTime3">
-
-                    <label for="endTime3">To</label>
-                    <input type="time" id="endTime3" name="endTime3">
+                    <label for="endTime3" class="h5 font-weight-light mr-2">To</label>
+                    <input type="time" id="endTime3" name="endTime3" class="mr-3 mb-2 form-control">
                 </div>
+            </div>
 
-                <div id="3" class="hidden">
-                    <p>Wednesday</p>
+            <div id="3" class="day">
+                <p class="h5 font-weight-light">Wednesday</p>
+                <hr>
 
-                    <label for="startTime4">From</label>
-                    <input type="time" id="startTime4" name="startTime4">
+                <div class="form-inline">
+                    <label for="startTime4" class="h5 font-weight-light mr-2">From</label>
+                    <input type="time" id="startTime4" name="startTime4" class="mr-3 mb-2 form-control">
 
-                    <label for="endTime4">To</label>
-                    <input type="time" id="endTime4" name="endTime4">
+                    <label for="endTime4" class="h5 font-weight-light mr-2">To</label>
+                    <input type="time" id="endTime4" name="endTime4" class="mr-3 mb-2 form-control">
                 </div>
+            </div>
 
-                <div id="4" class="hidden">
-                    <p>Thursday</p>
+            <div id="4" class="day">
+                <p class="h5 font-weight-light">Thursday</p>
+                <hr>
 
-                    <label for="startTime5">From</label>
-                    <input type="time" id="startTime5" name="startTime5">
+                <div class="form-inline">
+                    <label for="startTime5" class="h5 font-weight-light mr-2">From</label>
+                    <input type="time" id="startTime5" name="startTime5" class="mr-3 mb-2 form-control">
 
-                    <label for="endTime5">To</label>
-                    <input type="time" id="endTime5" name="endTime5">
+                    <label for="endTime5" class="h5 font-weight-light mr-2">To</label>
+                    <input type="time" id="endTime5" name="endTime5" class="mr-3 mb-2 form-control">
                 </div>
+            </div>
 
-                <div id="5" class="hidden">
-                    <p>Friday</p>
+            <div id="5" class="day">
+                <p class="h5 font-weight-light">Friday</p>
+                <hr>
 
-                    <label for="startTime6">From</label>
-                    <input type="time" id="startTime6" name="startTime6">
+                <div class="form-inline">
+                    <label for="startTime6" class="h5 font-weight-light mr-2">From</label>
+                    <input type="time" id="startTime6" name="startTime6" class="mr-3 mb-2 form-control">
 
-                    <label for="endTime6">To</label>
-                    <input type="time" id="endTime6" name="endTime6">
+                    <label for="endTime6" class="h5 font-weight-light mr-2">To</label>
+                    <input type="time" id="endTime6" name="endTime6" class="mr-3 mb-2 form-control">
                 </div>
+            </div>
 
-                <div id="6" class="hidden">
-                    <p>Saturday</p>
+            <div id="6" class="day">
+                <p class="h5 font-weight-light">Saturday</p>
+                <hr>
 
-                    <label for="startTime7">From</label>
-                    <input type="time" id="startTime7" name="startTime7">
+                <div class="form-inline">
+                    <label for="startTime7" class="h5 font-weight-light mr-2">From</label>
+                    <input type="time" id="startTime7" name="startTime7" class="mr-3 mb-2 form-control">
 
-                    <label for="endTime7">To</label>
-                    <input type="time" id="endTime7" name="endTime7">
+                    <label for="endTime7" class="h5 font-weight-light mr-2">To</label>
+                    <input type="time" id="endTime7" name="endTime7" class="mr-3 mb-2 form-control">
                 </div>
+            </div>
         </fieldset>
+        <fieldset id="interests" class="form-group"><legend>Interests</legend>
+            <ul>
+                <li>
+                    <input id="events" class="" type="checkbox" name="interests[0]" value="events">
+                    <label class="form-check-label h5 font-weight-light" for="events" >Events</label>
+                </li>
+                <li>
+                    <input id="fundraising" class="" type="checkbox" name="interests[]" value="fundraising">
+                    <label class="form-check-label h5 font-weight-light" for="fundraising" >Fundraising</label>
+                </li>
+                <li>
+                    <input id="newsletter" class="" type="checkbox" name="interests[]" value="newsletter">
+                    <label class="form-check-label h5 font-weight-light" for="newsletter" >Newsletter</label>
+                </li>
+                <li>
+                    <input  id="coordination" class="" type="checkbox" name="interests[]" value="coordination">
+                    <label class="form-check-label h5 font-weight-light" for="coordination" >Coordination</label>
+                </li>
+                <li>
+                    <input id="mentoring" class="" type="checkbox" name="interests[]" value="mentoring">
+                    <label class="form-check-label h5 font-weight-light" for="mentoring" >Mentoring</label>
+                </li>
+                <li>
+                    <input id="other-interest" class="" type="checkbox">
+                    <label class="form-check-label h5 font-weight-light" for="mentoring">Other</label>
+                </li>
+            </ul>
+            <div id="other-section">
+                <label for="other" class="h5 font-weight-light mr-sm-1">Other (please specify)</label>
+                <input type="text" class="form-control" id="other" name="interests[]">
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group"><legend>Skills</legend>
+            <div class="form-group">
+                <label for="skills" class="h5 font-weight-light mr-sm-1">Enter one skill at a time</label>
+                <input id="skills" type="text" class="form-control" >
+            </div>
+        <div id="tag-container">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                writing
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                fundraising
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                management
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                hr
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        </fieldset>
+
+        <fieldset class="form-group"><legend>Previous Experience</legend>
+            <label for="experience" class="h5 font-weight-light mr-sm-1">Please specify</label>
+            <textarea id="experience" name="experience" class="form-control"></textarea>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <legend>References</legend>
+            <div class="form-group">
+                <label for="refFullName" class="h5 font-weight-light mr-sm-1">Full Name</label>
+                <input type="text" class="form-control" id="refFullName" name="refFullName" placeholder="John Doe">
+            </div>
+            <div class="form-group">
+                <label for="refPhone" class="h5 font-weight-light mr-sm-1">Phone Number</label>
+                <input type="tel" class="form-control" id="refPhone" name="refPhone" placeholder="253-123-4567">
+            </div>
+            <div class="form-group">
+                <label for="refEmail" class="h5 font-weight-light mr-sm-1">Email</label>
+                <input type="email" class="form-control" id="refEmail" name="refEmail" placeholder="JohnDoe@mail.com">
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <legend>Anything else you would like to let us know?</legend>
+            <div class="form-group">
+                <textarea id="anythingElse" class="form-control" name="anythingElse" rows="3"></textarea>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <legend>Agreement</legend>
+            <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in</p>
+            <div class="form-group">
+                <label for="fullNameAgreement" class="h5 font-weight-light mr-sm-1">Full Name</label>
+                <input type="text" id="fullNameAgreement" class="form-control" name="fullNameAgreement" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label for="eSign" class="h5 font-weight-light mr-sm-1">E-Sign</label>
+                <input type="text" id="eSign" class="form-control" name="eSignAgreement" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label for="date" class="h5 font-weight-light mr-sm-1">Date</label>
+                <input type="date" id="date" class="form-control" name="dateAgreement" required>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <legend>Our Policy</legend>
+            <div class="form-group">
+                <p>Agreement stuff here blah blah Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in</p>
+                <input type="checkbox" id="policyCheckbox" name="policyCheckBox" required>
+                <label for="policyCheckbox" class="h5 font-weight-light">Agree</label>
+            </div>
+        </fieldset>
+
+        <div class="row">
+            <div class="col text-center">
+                <input type="button" id="submitButton" class="btn btn-primary p-2" name="submitButton" value="Submit">
+            </div>
+        </div>
     </form>
 </div>
 
-<!-- JavaScript -->
-<script src="Volunteer.js"></script>
+
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!-- JavaScript -->
+<script src="Volunteer.js"></script>
 </body>
 </html>
