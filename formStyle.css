@@ -129,6 +129,10 @@ legend{
     .day-buttons li button{
         width: 5em;
     }
+
+    #interests li {
+        margin-left: -40px;
+    }
 }
 
 @media screen and (max-width: 993px) {
@@ -145,6 +149,10 @@ legend{
 
     #interests ul {
         column-count: 2;
+    }
+
+    #interests li {
+        margin-left:0;
     }
 }
 
@@ -189,6 +197,27 @@ legend{
     legend{
         width:50%;
         text-align: center;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .day-buttons{
+        margin-left: -17px
+    }
+
+    #interests {
+        padding-left: 0;
+
+    }
+
+    #interests li {
+        padding-left: 1px;
+        margin-right: -9px
+    }
+
+    #interests ul {
+        column-count: 2;
+        padding-left: 10px;
     }
 }
 
