@@ -58,25 +58,7 @@
                 <input class="form-control inputs" type="email" id="eMail" name="eMail">
             </div>
 
-            <div class="form-group">
-                <label class="h5 font-weight-light" for="company">Company</label>
-                <input class="form-control inputs" type="text" id="company" name="company">
-            </div>
-
-            <div class="form-group">
-                <label class="h5 font-weight-light" for="jobTittle">Job Title</label>
-                <input class="form-control inputs" type="text" id="jobTittle" name="jobTittle">
-            </div>
-
             <div class="form-inline">
-                <label class="h5 font-weight-light ml-md-5 mr-md-2 mr-sm-1" for="gender">Gender </label>
-                <select class="form-control input-style mr-md-5 px-lg-5 mr-sm-3 mb-xs-3" id="gender" name="gender">
-                    <option value="none">Select One</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                </select>
-
                 <label class="h5 font-weight-light ml-md-5 mr-md-2 mr-sm-1" for="shirtSize">T-Shirt size </label>
                 <select class="form-control px-lg-5" id="shirtSize" name="shirtSize">
                     <option value="none">Select a Size</option>
@@ -86,7 +68,6 @@
                     <option value="large">Large</option>
                     <option value="extra_large">Extra Large</option>
                 </select>
-
             </div>
         </fieldset>
 
@@ -337,9 +318,16 @@
         </div>
         </fieldset>
 
-        <fieldset class="form-group"><legend>Previous Experience</legend>
-            <label for="experience" class="h5 font-weight-light mr-sm-1">Please specify</label>
-            <textarea id="experience" name="experience" class="form-control"></textarea>
+        <fieldset class="form-group"><legend>About You</legend>
+            <div class="form-group">
+                <label for="getToKnow" class="h5 font-weight-light mr-sm-1">What makes you motivated to work with us?</label>
+                <textarea id="getToKnow" name="getToKnow" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="volExperience" class="h5 font-weight-light mr-sm-1">Have you had any volunteer experience? If so explain.</label>
+                <textarea id="volExperience" name="volExperience" class="form-control"></textarea>
+            </div>
         </fieldset>
 
         <fieldset class="form-group">
@@ -362,39 +350,20 @@
         </fieldset>
 
         <fieldset class="form-group">
-            <legend>Anything else you would like to let us know?</legend>
-            <div class="form-group">
-                <textarea id="anythingElse" class="form-control" name="anythingElse" rows="3"></textarea>
-            </div>
-        </fieldset>
-
-        <fieldset class="form-group">
             <legend>Agreement</legend>
-            <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in</p>
+            <p class="pb-3">By submitting this application, I affirm that the facts set forth in it are true and complete.
+                I understand that if I am accepted as a volunteer, any false statements, omissions, or other misrepresentations
+                made by me on this application may result in my immediate dismissal.</p>
             <div class="form-group">
-                <label for="fullNameAgreement" class="h5 font-weight-light mr-sm-1">Full Name</label>
-                <input type="text" id="fullNameAgreement" class="form-control" name="fullNameAgreement" placeholder="John Doe" required>
-            </div>
-            <div class="form-group">
-                <label for="eSign" class="h5 font-weight-light mr-sm-1">E-Sign</label>
-                <input type="text" id="eSign" class="form-control" name="eSignAgreement" placeholder="John Doe" required>
-            </div>
-            <div class="form-group">
-                <label for="date" class="h5 font-weight-light mr-sm-1">Date</label>
-                <input type="date" id="date" class="form-control" name="dateAgreement" required>
+                <input type="checkbox" id="agreeCheckbox" name="policyCheckBox" required>
+                <label for="agreeCheckbox" class="h5 font-weight-light">Agree</label>
             </div>
         </fieldset>
 
         <fieldset class="form-group">
             <legend>Our Policy</legend>
             <div class="form-group">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in</p>
-                <input type="checkbox" id="policyCheckbox" name="policyCheckBox" required>
-                <label for="policyCheckbox" class="h5 font-weight-light">Agree</label>
+                <p>Policy will go here</p>
             </div>
         </fieldset>
 
