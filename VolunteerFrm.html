@@ -17,7 +17,7 @@
 </div>
 <div class="container">
     <form>
-        <!-- if no selected the form is not submitted -->
+        <!-- Background check consent (required) -->
         <fieldset class="form-group">
             <legend>Background Check</legend>
             <p class=" back-check h5 font-weight-light">You must have a background check to volunteer. Do you agree to one?</p>
@@ -34,7 +34,8 @@
                 </div>
             </div>
         </fieldset>
-        <!-- Personal Information output -->
+
+        <!-- Personal Information  -->
         <fieldset class="form-group">
             <legend>Personal Information</legend>
 
@@ -71,8 +72,7 @@
             </div>
         </fieldset>
 
-        <!-- Volunteers address information -->
-
+        <!-- Contact information -->
         <fieldset class="form-group">
             <legend>Address</legend>
 
@@ -144,6 +144,7 @@
             </div>
         </fieldset>
 
+        <!-- Availability -->
         <fieldset class="form-group">
             <legend>Availability</legend>
             <ul class="day-buttons">
@@ -155,7 +156,7 @@
                 <li><button class="btn btn-primary">Fri</button></li>
                 <li><button class="btn btn-primary">Sat</button></li>
             </ul>
-            <div id="0" class="day">
+            <div id="day-0" class="day">
                 <p class="h5 font-weight-light">Sunday</p>
                 <hr>
 
@@ -168,7 +169,8 @@
                     <input type="time" id="endTime" name="endTime" class="mr-3 mb-2 form-control">
                 </div>
             </div>
-            <div id="1" class="day">
+
+            <div id="day-1" class="day">
                 <p class="h5 font-weight-light">Monday</p>
                 <hr>
 
@@ -181,7 +183,8 @@
                     <input type="time" id="endTime2" name="endTime2" class="mr-3 mb-2 form-control">
                 </div>
             </div>
-            <div id="2" class="day">
+
+            <div id="day-2" class="day">
                 <p class="h5 font-weight-light">Tuesday</p>
                 <hr>
 
@@ -195,7 +198,7 @@
                 </div>
             </div>
 
-            <div id="3" class="day">
+            <div id="day-3" class="day">
                 <p class="h5 font-weight-light">Wednesday</p>
                 <hr>
 
@@ -209,7 +212,7 @@
                 </div>
             </div>
 
-            <div id="4" class="day">
+            <div id="day-4" class="day">
                 <p class="h5 font-weight-light">Thursday</p>
                 <hr>
 
@@ -223,7 +226,7 @@
                 </div>
             </div>
 
-            <div id="5" class="day">
+            <div id="day-5" class="day">
                 <p class="h5 font-weight-light">Friday</p>
                 <hr>
 
@@ -237,7 +240,7 @@
                 </div>
             </div>
 
-            <div id="6" class="day">
+            <div id="day-6" class="day">
                 <p class="h5 font-weight-light">Saturday</p>
                 <hr>
 
@@ -303,16 +306,19 @@
 
         </fieldset>
 
+        <!-- References -->
         <fieldset class="form-group">
             <legend>Character References</legend>
             <div class="form-group">
                 <label for="refFullName" class="h5 font-weight-light mr-sm-1">Full Name</label>
                 <input type="text" class="form-control" id="refFullName" name="refFullName" placeholder="John Doe">
             </div>
+
             <div class="form-group">
                 <label for="refPhone" class="h5 font-weight-light mr-sm-1">Phone Number</label>
                 <input type="tel" class="form-control" id="refPhone" name="refPhone" placeholder="253-123-4567">
             </div>
+
             <div class="form-group">
                 <label for="refEmail" class="h5 font-weight-light mr-sm-1">Email</label>
                 <input type="email" class="form-control" id="refEmail" name="refEmail" placeholder="JohnDoe@mail.com">
@@ -322,6 +328,7 @@
             </div>
         </fieldset>
 
+        <!-- Agreement -->
         <fieldset class="form-group">
             <legend>Agreement</legend>
             <p class="pb-3">By submitting this application, I affirm that the facts set forth in it are true and complete.
@@ -333,6 +340,7 @@
             </div>
         </fieldset>
 
+        <!-- Policy -->
         <fieldset class="form-group">
             <legend>Our Policy</legend>
             <div class="form-group">
@@ -341,6 +349,7 @@
             </div>
         </fieldset>
 
+        <!-- Submit -->
         <div class="row">
             <div class="col text-center">
                 <input type="button" id="submitButton" class="btn btn-primary p-2" name="submitButton" value="Submit">
