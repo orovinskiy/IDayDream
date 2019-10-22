@@ -255,9 +255,8 @@
             </div>
         </fieldset>
 
-        <!-- Interests -->
-        <fieldset id="interests" class="form-group">
-            <legend>Interests</legend>
+        <fieldset id="interests" class="form-group"><legend>Interests</legend>
+            <p class="form-text h5 font-weight-light">Tell us in which areas you are interested in volunteering<br><br></p>
             <ul>
                 <li class="form-check">
                     <input id="events" class="" type="checkbox" name="interests[0]" value="events">
@@ -281,51 +280,12 @@
                 </li>
                 <li class="form-check">
                     <input id="other-interest" class="" type="checkbox">
-                    <label class="form-check-label h5 font-weight-light" for="mentoring">Other</label>
+                    <label class="form-check-label h5 font-weight-light" for="other-interest">Other</label>
                 </li>
             </ul>
             <div id="other-section">
                 <label for="other" class="h5 font-weight-light mr-sm-1">Other (please specify)</label>
                 <input type="text" class="form-control" id="other" name="interests[]">
-            </div>
-        </fieldset>
-
-        <!-- Skills -->
-        <fieldset class="form-group">
-            <legend>Skills</legend>
-            <div class="form-group">
-                <label for="skills" class="h5 font-weight-light mr-sm-1">Enter one skill at a time</label>
-                <input id="skills" type="text" class="form-control" >
-            </div>
-
-            <!-- Holds all the tags as user enters skills -->
-            <div id="tag-container">
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                    writing
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                    fundraising
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                    management
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                    hr
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
             </div>
         </fieldset>
 
@@ -339,11 +299,17 @@
                 <label for="volExperience" class="h5 font-weight-light mr-sm-1">Have you had any volunteer experience? If so explain.</label>
                 <textarea id="volExperience" name="volExperience" class="form-control"></textarea>
             </div>
+
+            <div class="form-group">
+                <label for="skills" class="h5 font-weight-light mr-sm-1">Any skills that you may have?</label>
+                <textarea id="skills" name="skills" class="form-control"></textarea>
+            </div>
+
         </fieldset>
 
         <!-- References -->
         <fieldset class="form-group">
-            <legend>References</legend>
+            <legend>Character References</legend>
             <div class="form-group">
                 <label for="refFullName" class="h5 font-weight-light mr-sm-1">Full Name</label>
                 <input type="text" class="form-control" id="refFullName" name="refFullName" placeholder="John Doe">
@@ -379,7 +345,8 @@
         <fieldset class="form-group">
             <legend>Our Policy</legend>
             <div class="form-group">
-                <p>Policy will go here</p>
+                <p>It is the policy of this organization to provide equal opportunities without regard to race, color, religion, national origin, gender, sexual preference,
+                    age, or disability.<br><br>Thank you for completing this application form and for your interest in volunteering with us.</p>
             </div>
         </fieldset>
 
