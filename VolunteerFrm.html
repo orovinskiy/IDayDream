@@ -303,7 +303,14 @@
             <legend>About You</legend>
             <div class="form-group">
                 <label for="howDidHear" class="h5 font-weight-light mr-sm-1">How did you hear about us?</label>
-                <textarea id="howDidHear" name="howDidHear" class="form-control"></textarea>
+                <select class="form-control" id="howDidHear" name="howDidHear">
+                    <option value="">Please Select</option>
+                    <option value="word">Word of Mouth/Friend/Colleague</option>
+                    <option value="web">Web/Social Media</option>
+                    <option value="print">Print (Flyer/Poster/Brochure)</option>
+                    <option value="corporate">Corporate Sponsor</option>
+                    <option value="other">Other</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -320,7 +327,6 @@
                 <label for="skills" class="h5 font-weight-light mr-sm-1">Any skills that you may have?</label>
                 <textarea id="skills" name="skills" class="form-control"></textarea>
             </div>
-
         </fieldset>
 
         <!-- References -->
