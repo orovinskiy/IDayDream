@@ -59,16 +59,23 @@
                 <input class="form-control inputs" type="email" id="eMail" name="eMail">
             </div>
 
-            <div class="form-inline">
-                <label class="h5 font-weight-light ml-md-5 mr-md-2 mr-sm-1" for="shirtSize">T-Shirt size </label>
-                <select class="form-control px-lg-5" id="shirtSize" name="shirtSize">
-                    <option value="none">Select a Size</option>
-                    <option value="extra_small">Extra Small</option>
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                    <option value="extra_large">Extra Large</option>
-                </select>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <input type="checkbox" id="onMailList" name="onMailList" checked>
+                    <label for="onMailList" class="h5 font-weight-light form-check-label">Add to mailing list</label>
+                </div>
+
+                <div class="form-group form-sm-inline col-sm-6">
+                    <label class="h5 font-weight-light mr-md-2 mr-sm-1 form-label" for="shirtSize">T-Shirt size </label>
+                    <select class="form-control px-lg-5" id="shirtSize" name="shirtSize">
+                        <option value="none">Select a Size</option>
+                        <option value="extra_small">Extra Small</option>
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                        <option value="extra_large">Extra Large</option>
+                    </select>
+                </div>
             </div>
         </fieldset>
 
@@ -300,7 +307,7 @@
             </div>
 
             <div class="form-group">
-                <label for="getToKnow" class="h5 font-weight-light mr-sm-1">What makes you motivated to work with us?</label>
+                <label for="getToKnow" class="h5 font-weight-light mr-sm-1">What motivated you to volunteer with us?</label>
                 <textarea id="getToKnow" name="getToKnow" class="form-control"></textarea>
             </div>
 
@@ -322,6 +329,11 @@
             <div class="form-group">
                 <label for="refFullName" class="h5 font-weight-light mr-sm-1">Full Name</label>
                 <input type="text" class="form-control" id="refFullName" name="refFullName" placeholder="John Doe">
+            </div>
+
+            <div class="form-group">
+                <label for="refRelationship" class="h5 font-weight-light mr-sm-1">Relationship</label>
+                <input type="text" class="form-control" id="refRelationship" name="refRelationship">
             </div>
 
             <div class="form-group">
