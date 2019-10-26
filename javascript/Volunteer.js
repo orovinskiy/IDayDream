@@ -4,6 +4,11 @@ document.getElementById("other-interest").addEventListener("change", toggleDispl
 
 let validate = true;
 
+//prevents user from going back. Gotten from a user at stackoverflow.
+function preventBack(){window.history.forward();}
+setTimeout("preventBack()", 0);
+window.onunload=function(){null};
+
 /**
  * Shows the hidden Other text box and label when the user clicks the other checkbox
  */
@@ -161,3 +166,8 @@ function validBackGround(){
         $("#backGround").removeClass("hidden");
     }
 }
+
+// redirects to a new page if background is not accepted
+$("#no").on("click",function(){
+    document.location = "bye.html";
+});
