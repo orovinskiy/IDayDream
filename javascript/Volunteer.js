@@ -103,7 +103,7 @@ function validNumber(label,input,error){
 
     text = text.replace("(","");
     text = text.replace(")","");
-    text = text.replace("-","");
+    text = text.replace(/-/g,"");
 
 
     if(isNaN(text) || text.trim() === "" ){
