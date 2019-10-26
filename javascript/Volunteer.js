@@ -32,22 +32,22 @@ function toggleDisplay() {
 function validateForm(){
     validate = true;
     //validates Personal Information
-    validText("firstNameLabel","firstName");
-    validText("lastNameLabel","lastName");
-    validNumber("phoneNumLabel", "pNumber");
-    validMail("mailLabel", "eMail");
-    validSelect("labelShirt","shirtSize");
+    validText("firstNameLabel","firstName","fName-error");
+    validText("lastNameLabel","lastName","lName-error");
+    validNumber("phoneNumLabel", "pNumber","num-error");
+    validMail("mailLabel", "eMail","email-error");
+    validSelect("labelShirt","shirtSize","tShirt-error");
 
     //Validates Address fields
-    validText("labelStreet","street");
-    validText("labelCity","city");
-    validNumber("labelZip","zip");
+    validText("labelStreet","street","street-error");
+    validText("labelCity","city","city-error");
+    validNumber("labelZip","zip","zip-error");
 
     //Validates How did you hear
     //validSelect("labelHowDidHear","howDidHear")
 
     //Validates Why Motivated you textarea
-    validText("labelGetToKnow","getToKnow");
+    validText("labelGetToKnow","getToKnow","getToKnow-error");
 
     //Validates all three references
     validReferences();
@@ -67,29 +67,48 @@ function removeClass($input, $label){
     $label.removeClass("text-danger");
 }
 
+function spanErrorDisplay(error){
+    $("#"+error).removeClass("hidden");
+}
+
+function spanErrorRemove(error){
+    $("#"+error).addClass("hidden");
+}
+
 //Validates any text fields
-function validText(label,input){
+function validText(label,input,error){
    let $label = $("#"+label);
    let $input = $("#"+input);
 
+   spanErrorRemove(error);
    removeClass($input,$label);
 
    if($input.val().trim() === "" || isNaN($input.val()) === false){
        addClass($input,$label);
+       spanErrorDisplay(error);
        validate = false;
        return false;
    }
 }
 
+
 //Validates only numbers
-function validNumber(label,input){
+function validNumber(label,input,error){
     let $label = $("#"+label);
     let $input = $("#"+input);
+    let text = $input.val();
 
+    spanErrorRemove(error);
     removeClass($input,$label);
 
-    if(isNaN($input.val()) || $input.val().trim() === "" ){
+    text = text.replace("(","");
+    text = text.replace(")","");
+    text = text.replace("-","");
+
+
+    if(isNaN(text) || text.trim() === "" ){
         addClass($input,$label);
+        spanErrorDisplay(error);
         validate = false;
         return false;
     }
@@ -97,15 +116,17 @@ function validNumber(label,input){
 }
 
 //Validates only a email
-function validMail(label,input){
+function validMail(label,input,error){
     let $label = $("#"+label);
     let $input = $("#"+input);
 
+    spanErrorRemove(error);
     removeClass($input,$label);
 
 
     if ($input.val().trim() === ""  || $input.val().indexOf("@") === -1 || $input.val().indexOf(".") === -1) {
         addClass($input,$label);
+        spanErrorDisplay(error);
         validate = false;
         return false;
     }
@@ -114,14 +135,16 @@ function validMail(label,input){
 }
 
 //Validates anything that is a Select Dom
-function validSelect(label,input){
+function validSelect(label,input,error){
     let $label = $("#"+label);
     let $input = $("#"+input);
 
     removeClass($input,$label);
+    spanErrorRemove(error);
 
     if($input.val() === "none"){
         addClass($input,$label);
+        spanErrorDisplay(error);
         validate = false;
     }
 

@@ -115,6 +115,8 @@ legend {
 span.error{
     color: red;
     margin-left: 10px;
+    font-size: 17px;
+    font-weight: normal;
 }
 
 #tag-container button {
