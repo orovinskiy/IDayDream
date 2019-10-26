@@ -112,6 +112,11 @@ legend {
     flex-wrap: wrap;
 }
 
+span.error{
+    color: red;
+    margin-left: 10px;
+}
+
 #tag-container button {
     padding: 4px 6px 4px 10px;
 }
