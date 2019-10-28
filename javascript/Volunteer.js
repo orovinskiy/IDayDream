@@ -5,9 +5,9 @@ document.getElementById("other-interest").addEventListener("change", toggleDispl
 let validate = true;
 
 //prevents user from going back. Gotten from a user at stackoverflow.
-function preventBack(){window.history.forward();}
+/*function preventBack(){window.history.forward();}
 setTimeout("preventBack()", 0);
-window.onunload=function(){null};
+window.onunload=function(){null};*/
 
 /**
  * Shows the hidden Other text box and label when the user clicks the other checkbox
