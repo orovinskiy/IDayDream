@@ -1,6 +1,13 @@
 
 document.getElementById("volunteerForm").onsubmit = validateForm;
-document.getElementById("other-interest").addEventListener("change", toggleDisplay);
+
+document.getElementById("other-interest").addEventListener("change", function() {
+    toggleDisplay(document.getElementById("other-section"), this);
+});
+
+document.getElementById("weekends").addEventListener("change", function() {
+   toggleDisplay(document.getElementById("weekendTimesSection"), this);
+});
 
 let validate = true;
 
@@ -10,15 +17,15 @@ setTimeout("preventBack()", 0);
 window.onunload=function(){null};
 
 /**
- * Shows the hidden Other text box and label when the user clicks the other checkbox
+ * Toggles the display to initial and none for the element parameter belonging to
+ * a checkbox
  */
-function toggleDisplay() {
-    var otherSection = document.getElementById("other-section");
-    if (this.checked) {
-        otherSection.style.display = "initial";
+function toggleDisplay(element, caller) {
+    if (caller.checked) {
+        element.style.display = "initial";
     }
     else {
-        otherSection.style.display = "none";
+        element.style.display = "none";
     }
 }
 
