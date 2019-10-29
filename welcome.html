@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="styles/form.css" rel="stylesheet">
+    <title>Welcome | ID.A.Y.DREAM</title>
+</head>
+<body>
+<div class="jumbotron">
+    <h1 class="display-4 ">Welcome to ID.A.Y.DREAM</h1>
+</div>
+
+<div class="container">
+    <p class="h4 font-weight-light">Thanks for visiting. We want to get to know you. Please tell us about you.</p>
+    <br>
+
+    <form id="welcomeForm" action="#" method="POST">
+        <small class="form-text">* Indicates required fields</small>
+        <fieldset class="form-group">
+            <legend>About You</legend>
+            <div class="form-group">
+                <label class="h5 font-weight-light" id="lblFirstName"  for="firstName">First Name *</label>
+                <span id="fName-error" class="hidden error">Required</span>
+                <input class=" form-control" type="text" id="firstName" maxlength="30" name="firstName">
+            </div>
+
+            <div class="form-group">
+                <label class="h5 font-weight-light" id="lblLastName" for="lastName">Last Name *</label>
+                <span id="lName-error" class="hidden error">Required</span>
+                <input class="form-control" type="text" id="lastName" maxlength="50" name="lastName">
+            </div>
+
+            <div class="row">
+                <!-- BirthDate -->
+                <div class="form-group col-sm-6">
+                    <label class="h5 font-weight-light" id="lblBirthdate" for="birthday">Birthdate *</label>
+                    <span id="birthdate-error" class="hidden error">Required</span>
+                    <input class="form-control" type="text" id="birthdate" maxlength="20" name="birthdate">
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group form-sm-inline col-sm-6">
+                    <label class="h5 font-weight-light form-label" id="lblGender" for="gender">Gender *</label>
+                    <span id="gender-error" class="hidden error">Required</span>
+                    <select class="form-control" id="gender" name="gender">
+                        <option value="">Select a Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                        <option value="noAnswer">Prefer not to say</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Ethnicity -->
+            <div class="form-group form-sm-inline">
+                <label class="h5 font-weight-light form-label" id="lblEthnicity" for="ethnicity">Ethnicity *</label>
+                <span id="ethnicity-error" class="hidden error">Required</span>
+                <select class="form-control" id="ethnicity" name="ethnicity">
+                    <option value="">Select an Ethnicity</option>
+                    <option value="nativeAmerican">American Indian or Alaska Native</option>
+                    <option value="asian">Asian or Asian American</option>
+                    <option value="black">Black or African American</option>
+                    <option value="hispanic">Hispanic or Latino/a</option>
+                    <option value="middleEastern">Middle Eastern or MENA</option>
+                    <option value="pacificIslander">Native Hawaiian or Other Pacific Islander</option>
+                    <option value="southeastAsian">Southeast Asian</option>
+                    <option value="white">White non-Hispanic</option>
+                    <option value="multiracial">Bi/Multiracial</option>
+                    <option value="noAnswer">Declined to State</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <!-- Graduating class dropdown -->
+                <div class="form-group form-sm-inline col-sm-6">
+                    <label class="h5 font-weight-light form-label" id="lblGradClass" for="gradClass">Graduating Class *</label>
+                    <span id="gradClass-error" class="hidden error">Required</span>
+                    <select class="form-control" id="gradClass" name="gradClass">
+                        <option value="">Select a Year</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                    </select>
+                </div>
+
+                <!-- Favourite Food -->
+                <div class="form-group col-sm-6">
+                    <label class="h5 font-weight-light" id="lblFood" for="food">Favourite Food/Snacks</label>
+                    <input class="form-control" type="text" id="food" maxlength="100" name="food">
+                </div>
+            </div>
+
+            <!-- College of Interest -->
+            <div class="form-group">
+                <label class="h5 font-weight-light" id="lblCollege" for="college">College of Interest</label>
+                <input class="form-control" type="text" id="college" maxlength="50" name="college">
+            </div>
+
+            <!-- Career Aspirations -->
+            <div class="form-group">
+                <label class="h5 font-weight-light" id="lblJobGoal" for="jobGoal">Career Aspirations</label>
+                <textarea class="form-control" name="jobGoal" id="jobGoal" maxlength="2000"></textarea>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <legend>Contact Info</legend>
+            <div class="form-group">
+                <label class="h5 font-weight-light" id="lblEmail" for="email">Email *</label>
+                <span id="email-error" class="hidden error">Required</span>
+                <input class="form-control" type="text" id="email" maxlength="50" name="email">
+            </div>
+            <div class="form-group">
+                <label class="h5 font-weight-light" id="lblPhone" for="phone">Phone Number *</label>
+                <span id="phone-error" class="hidden error">Required</span>
+                <input class="form-control" type="text" id="phone" maxlength="25" name="phone">
+            </div>
+        </fieldset>
+        <button type="submit" id="submit" class="btn btn-primary p-2">Submit</button>
+    </form>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
