@@ -24,7 +24,7 @@
         <fieldset class="form-group">
             <legend>Background Check</legend>
             <p class=" back-check h5 font-weight-light">You must have a background check to volunteer.
-                Do you agree to one?  *<span id="backGround" class="hidden error">Required</span></p>
+                Do you agree to one?  *<span id="backGround" class="error">Required</span></p>
 
             <div id="back-check-agree">
                 <div class="form-check radio">
@@ -46,25 +46,25 @@
 
             <div class="form-group">
                 <label class=" h5 font-weight-light " id="firstNameLabel"  for="firstName">First Name *
-                    <span id="fName-error" class="hidden error">can't be empty or have numbers</span></label>
-                <input class=" form-control" type="text" id="firstName" maxlength="30" name="firstName">
+                    <span id="fName-error" class="error">can't be empty or have numbers</span></label>
+                <input class="form-control" type="text" id="firstName" maxlength="30" name="firstName">
             </div>
 
             <div class="form-group">
                 <label class="h5 font-weight-light" id="lastNameLabel" for="lastName">Last Name *
-                    <span id="lName-error" class="hidden error">can't be empty or have numbers</span></label>
+                    <span id="lName-error" class="error">can't be empty or have numbers</span></label>
                 <input class="form-control" type="text" id="lastName" maxlength="50" name="lastName">
             </div>
 
             <div class="form-group">
                 <label class="h5 font-weight-light" for="pNumber" id="phoneNumLabel">Phone Number *
-                    <span id="num-error" class="hidden error">can't be empty or have letters</span></label>
+                    <span id="num-error" class="error">can't be empty or have letters</span></label>
                 <input class="form-control" type="text" maxlength="20" id="pNumber" name="pNumber">
             </div>
 
             <div class="form-group">
                 <label class="h5 font-weight-light" id="mailLabel" for="eMail">Email *
-                    <span id="email-error" class="hidden error">must have '@' followed by '.'</span></label>
+                    <span id="email-error" class="error">must have '@' followed by '.'</span></label>
                 <input class="form-control" type="email" id="eMail" name="eMail">
             </div>
 
@@ -76,7 +76,7 @@
 
                 <div class="form-group form-sm-inline col-sm-6">
                     <label class="h5 font-weight-light mr-md-2 mr-sm-1 form-label" id="labelShirt" for="shirtSize">T-Shirt size *
-                        <span id="tShirt-error" class="hidden error">choose a valid option</span></label>
+                        <span id="tShirt-error" class="error">choose a valid option</span></label>
                     <select class="form-control px-lg-5" id="shirtSize" name="shirtSize">
                         <option value="none">Select a Size</option>
                         <option value="extra_small">Extra Small</option>
@@ -95,13 +95,13 @@
 
             <div class="form-group">
                 <label class="h5 font-weight-light mr-sm-1" id="labelStreet" for="street">Street *
-                    <span id="street-error" class="hidden error">required</span></label>
+                    <span id="street-error" class="error">required</span></label>
                 <input class="form-control mr-sm-4" maxlength="60" type="text" id="street" name="street">
             </div>
 
             <div class="form-group">
                 <label class="h5 font-weight-light mr-sm-1" id="labelCity" for="city">City *
-                    <span id="city-error" class="hidden error">required</span></label>
+                    <span id="city-error" class="error">required</span></label>
                 <input class="form-control " maxlength="20" type="text" id="city" name="city">
             </div>
 
@@ -161,7 +161,7 @@
                 </select>
 
                 <label class="h5 font-weight-light mr-sm-1 ml-md-5" id="labelZip" for="zip">Zip *
-                    <span id="zip-error" class="hidden error">required</span></label>
+                    <span id="zip-error" class="error">required</span></label>
                 <input class="form-control input-style" maxlength="5" type="text" id="zip" name="zip">
             </div>
         </fieldset>
@@ -243,7 +243,7 @@
 
             <div class="form-group">
                 <label for="getToKnow" id="labelGetToKnow" class="h5 font-weight-light mr-sm-1">What motivated you to volunteer with us? *
-                    <span id="getToKnow-error" class="hidden error">required</span></label>
+                    <span id="getToKnow-error" class="error">required</span></label>
                 <textarea id="getToKnow" maxlength="2000" class="form-control" name="motivation"></textarea>
             </div>
 
@@ -262,7 +262,7 @@
         <fieldset class="form-group">
             <legend>Character References</legend>
             <div class="form-group">
-                <p class="h4">Reference One *<span id="err-References" class="hidden error h6">*Requires 3 References</span></p>
+                <p class="h4">Reference One *<span id="err-References" class="error h6">*Requires 3 References</span></p>
                 <div class="form-group">
                     <label for="refFullName1" id="labelRefFullName1" class="h5 font-weight-light mr-sm-1">Full Name *</label>
                     <input type="text" class="form-control" id="refFullName1" name="refFullName1" placeholder="John Doe">

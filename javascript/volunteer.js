@@ -75,11 +75,11 @@ function removeClass($input, $label){
 }
 
 function spanErrorDisplay(error){
-    $("#"+error).removeClass("hidden");
+    $("#"+error).show();
 }
 
 function spanErrorRemove(error){
-    $("#"+error).addClass("hidden");
+    $("#"+error).hide();
 }
 
 //Validates any text fields
@@ -170,10 +170,10 @@ function validReferences(){
             count--;
         }
     }
-    $("#err-References").addClass("hidden");
+    $("#err-References").hide();
 
     if(count !== 3){
-        $("#err-References").removeClass("hidden");
+        $("#err-References").show();
         document.getElementById("err-References").innerHTML = "*Requires 3 References: "+count+"/3";
     }
 
@@ -184,7 +184,7 @@ function validBackGround(){
 
     let back = document.getElementsByName("question");
     let agree = "";
-    $("#backGround").addClass("hidden");
+    $("#backGround").hide();
 
     for(let i = 0; i < back.length; i++){
         if(back[i].checked){
@@ -193,7 +193,7 @@ function validBackGround(){
     }
 
     if(agree !== "agreed"){
-        $("#backGround").removeClass("hidden");
+        $("#backGround").show();
     }
 }
 
