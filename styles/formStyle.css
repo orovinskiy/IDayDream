@@ -1,3 +1,7 @@
+body {
+    background-image: linear-gradient(to right bottom, #cee1ff, #b2d7fd, #91cdf9, #66c5f3, #12bceb);
+}
+
 /* alert class is for the skill tags*/
 .alert {
     padding: 6px 30px 6px 8px;
