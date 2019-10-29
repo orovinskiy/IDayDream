@@ -1,0 +1,102 @@
+/* This CSS is specific to the volunteer form */
+
+.back-check{
+    padding-bottom: 1em;
+}
+
+/*center radio buttons */
+#back-check-agree {
+    width: 140px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#interests ul {
+    list-style: none;
+    column-count: 6;
+}
+
+/* Hide other section unless other interests are selected */
+#other-section {
+    display: none;
+}
+
+.radio{
+    display: inline-block;
+    margin-right: 10%;
+}
+
+#submitButton {
+    margin: 20px 20px 30px 20px;
+}
+
+#weekendTimesSection {
+    display: none;
+}
+
+/* Adjust Interests as page shrinks */
+
+@media screen and (max-width: 574px) {
+    .input-style {
+        margin-bottom: 1.8em;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #interests li{
+        margin-left: -20px;
+    }
+}
+
+@media screen and (max-width: 993px) {
+    #interests ul {
+        column-count: 2;
+    }
+
+    #interests li {
+        margin-left: 0;
+    }
+}
+
+/*
+Uncomment and use this breakpoint for small screens if needed.
+
+@media screen and (max-width: 765px) {
+
+}
+ */
+
+@media screen and (max-width: 540px) {
+    #interests {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #interests li {
+        padding-left: 10px;
+    }
+
+    #interests ul {
+        column-count: 2;
+        padding-left: 10px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    #interests {
+        padding-left: 0;
+    }
+
+    #interests li {
+        padding-left: 1px;
+        margin-right: -9px
+    }
+
+    #interests ul {
+        column-count: 2;
+        padding-left: 10px;
+    }
+}
+
+
+
