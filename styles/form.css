@@ -13,7 +13,7 @@ h1 {
     text-align: center;
 }
 
-.hidden{
+.hidden {
     display:none;
 }
 
@@ -27,6 +27,11 @@ span.error{
     margin-left: 10px;
     font-size: 17px;
     font-weight: normal;
+}
+
+#submit {
+    display: block;
+    margin: 30px auto 50px auto;
 }
 
 @media screen and (max-width: 540px) {

@@ -37,11 +37,11 @@
             </div>
 
             <div class="row">
-                <!-- BirthDay -->
+                <!-- BirthDate -->
                 <div class="form-group col-sm-6">
-                    <label class="h5 font-weight-light" id="lblBirthDate" for="birthday">Birthday *</label>
-                    <span id="birthday-error" class="hidden error">Required</span>
-                    <input class="form-control" type="text" id="birthday" maxlength="20" name="birthay">
+                    <label class="h5 font-weight-light" id="lblBirthdate" for="birthday">Birthdate *</label>
+                    <span id="birthdate-error" class="hidden error">Required</span>
+                    <input class="form-control" type="text" id="birthdate" maxlength="20" name="birthdate">
                 </div>
 
                 <!-- Gender -->
@@ -113,6 +113,21 @@
                 <textarea class="form-control" name="jobGoal" id="jobGoal" maxlength="2000"></textarea>
             </div>
         </fieldset>
+
+        <fieldset class="form-group">
+            <legend>Contact Info</legend>
+            <div class="form-group">
+                <label class="h5 font-weight-light" id="lblEmail" for="email">Email *</label>
+                <span id="email-error" class="hidden error">Required</span>
+                <input class="form-control" type="text" id="email" maxlength="50" name="email">
+            </div>
+            <div class="form-group">
+                <label class="h5 font-weight-light" id="lblPhone" for="phone">Phone Number *</label>
+                <span id="phone-error" class="hidden error">Required</span>
+                <input class="form-control" type="text" id="phone" maxlength="25" name="phone">
+            </div>
+        </fieldset>
+        <button type="submit" id="submit" class="btn btn-primary p-2">Submit</button>
     </form>
 </div>
 
