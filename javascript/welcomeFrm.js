@@ -1,7 +1,7 @@
 document.getElementById("welcomeForm").onsubmit = validateForm;
 
 function validateForm() {
-    clearAllErrMsgs();
+    clearAllErrors();
 
     let isValid = true;
 
@@ -44,20 +44,47 @@ function validateRequired(input) {
 
         // Error message id is "err-" + the id of the input it belongs to
         let errMsg = document.getElementById("err-" + input.id);
-        errMsg.style.display = "initial";
+        let label = document.querySelector("label[for=" + input.id + "]");
 
+        showError(errMsg, input, label);
         return false;
     }
     return true;
 }
 
+function showError(errMsg, input, label) {
+    errMsg.style.display = "initial";
+    input.classList.add("border-danger");
+    label.classList.add("text-danger");
+}
+
+function hideError(errMsg, input, label) {
+
+}
+
 /**
  * Hides all the error messages appearing next to input fields
  */
-function clearAllErrMsgs() {
-    let errors = document.getElementsByClassName("error");
+function clearAllErrors() {
+    // Clear all error messages
+    let errMsgs = document.getElementsByClassName("error");
 
-    for (let i = 0; i < errors.length; i++) {
-        errors[i].style.display = "none";
+    for (let i = 0; i < errMsgs.length; i++) {
+        errMsgs[i].style.display = "none";
     }
+
+    // Remove red borders on inputs
+    let redInputs = document.getElementsByClassName("border-danger");
+
+    for (let i = redInputs.length - 1; i >= 0; i--) {
+        redInputs[i].classList.remove("border-danger");
+    }
+
+    // Remove red on all label text
+    let redLabels = document.querySelectorAll("label.text-danger");
+
+    for (let i = redLabels.length - 1; i >= 0; i--) {
+        redLabels[i].classList.remove("text-danger");
+    }
+
 }
