@@ -1,0 +1,36 @@
+/*This CSS is the common theme to all forms*/
+
+fieldset{
+    border: 2px solid grey;
+    padding: 1.5em;
+}
+
+h1 {
+    text-align: center;
+}
+
+.hidden{
+    display:none;
+}
+
+.inputs{
+    margin-bottom: 1.8em;
+}
+
+legend {
+    width:30%;
+    text-align: center;
+}
+
+span.error{
+    color: red;
+    margin-left: 10px;
+    font-size: 17px;
+    font-weight: normal;
+}
+
+@media screen and (max-width: 540px) {
+    legend{
+        width:50%;
+    }
+}
