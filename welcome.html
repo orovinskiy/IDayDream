@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link href="styles/form.css" rel="stylesheet">
-    <title>Welcome</title>
+    <title>Welcome | ID.A.Y.DREAM</title>
 </head>
 <body>
 <div class="jumbotron">
@@ -25,15 +25,73 @@
         <fieldset class="form-group">
             <legend>About You</legend>
             <div class="form-group">
-                <label class="h5 font-weight-light" id="firstNameLabel"  for="firstName">First Name *
-                    <span id="fName-error" class="hidden error">Required</span></label>
+                <label class="h5 font-weight-light" id="lblFirstName"  for="firstName">First Name *</label>
+                <span id="fName-error" class="hidden error">Required</span>
                 <input class=" form-control inputs " type="text" id="firstName" maxlength="30" name="firstName">
             </div>
 
             <div class="form-group">
-                <label class="h5 font-weight-light" id="lastNameLabel" for="lastName">Last Name *
-                    <span id="lName-error" class="hidden error">Required</span></label>
+                <label class="h5 font-weight-light" id="lblLastName" for="lastName">Last Name *</label>
+                <span id="lName-error" class="hidden error">Required</span>
                 <input class="form-control inputs" type="text" id="lastName" maxlength="50" name="lastName">
+            </div>
+
+            <div class="row">
+                <!-- BirthDay -->
+                <div class="form-group col-sm-6">
+                    <label class="h5 font-weight-light" id="lblBirthDate" for="birthday">Birthday *</label>
+                    <span id="birthday-error" class="hidden error">Required</span>
+                    <input class="form-control inputs" type="text" id="birthday" maxlength="20" name="birthay">
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group form-sm-inline col-sm-6">
+                    <label class="h5 font-weight-light form-label" id="lblGender" for="gender">Gender *</label>
+                    <span id="gender-error" class="hidden error">Required</span>
+                    <select class="form-control" id="gender" name="gender">
+                        <option value="">Select a Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                        <option value="noAnswer">Prefer not to say</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Graduating class dropdown -->
+                <div class="form-group form-sm-inline col-sm-6">
+                    <label class="h5 font-weight-light form-label" id="lblGradClass" for="gradClass">Graduating Class *</label>
+                    <span id="gradClass-error" class="hidden error">Required</span>
+                    <select class="form-control" id="gradClass" name="gradClass">
+                        <option value="">Select a Year</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                    </select>
+                </div>
+
+                <!-- Favourite Food -->
+                <div class="form-group col-sm-6">
+                    <label class="h5 font-weight-light" id="lblFood" for="food">Favourite Food/Snacks</label>
+                    <input class="form-control inputs" type="text" id="food" maxlength="100" name="food">
+                </div>
+            </div>
+
+            <!-- College of Interest -->
+            <div class="form-group">
+                <label class="h5 font-weight-light" id="lblCollege" for="college">College of Interest</label>
+                <input class="form-control inputs" type="text" id="college" maxlength="50" name="college">
+            </div>
+
+            <!-- Career Aspirations -->
+            <div class="form-group">
+                <label class="h5 font-weight-light" id="lblJobGoal" for="jobGoal">Career Aspirations</label>
+                <textarea class="form-control" name="jobGoal" id="jobGoal" maxlength="2000"></textarea>
             </div>
         </fieldset>
     </form>
