@@ -47,6 +47,7 @@ $refEmail3 = $_POST["refEmail3"];
 
 //Send to email variables
 $mailInterests = "";
+$mailAvailable = "";
 
 
 ?>
@@ -107,6 +108,24 @@ $mailInterests = "";
                     echo "</ul>";
                 }
 
+                //Availability
+                echo "<h5>Availability</h5>";
+                if(!isset($_POST["Availability"])){
+                    echo "<p>None selected</p>";
+                }
+                else {
+                    foreach($_POST["Availability"] as $available) {
+                        if($available === "oneWeek"){
+                            echo "<p>Available for one week of Summer Camp</p>";
+                            $mailAvailable .= "Available One week for Summer Camp";
+                        }
+                        else if($available === "weekends"){
+                            echo "<p> Available: $available</p>";
+                            $mailAvailable .=  " Available: $available";
+                        }
+                    }
+                }
+
                 //About you
                 echo "<p>How you heard about us: ".$howDidHear."</p>";
                 echo "<p>Your Motivation: $motivation</p>";
@@ -151,7 +170,8 @@ $email_body .= "Interests: $mailInterests \r\n \r\n";
 $email_body .= "How they heard about us: $howDidHear \r\n";
 $email_body .= "Their Motivation: $motivation \r\n";
 $email_body .= "Their Experience: $volExperience \r\n";
-$email_body .= "Their Skills: \".$skills \r\n \r\n";
+$email_body .= "Their Skills: $skills \r\n \r\n";
+$email_body .= "Their Availability: $mailAvailable \r\n \r\n";
 $email_body .= "Reference One--\r\n Name: $fullName1\r\n Relationship: $relationship1 \r\n";
 $email_body .= "E-Mail: $refEmail1\r\n  Phone Number: $refPhoneNumber1 \r\n \r\n";
 $email_body .= "Reference two--\r\n Name: $fullName2\r\n Relationship: $relationship2 \r\n";
