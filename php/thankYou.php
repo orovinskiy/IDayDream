@@ -187,8 +187,8 @@ $headers.= "Reply-to: $email \r\n";
 $success = mail($to, $email_subject, $email_body, $headers);
 
 //Print final confirmation
-$msg = $success ? "Your order was successfully placed."
-    : "We're sorry. There was a problem with your order.";
+$msg = $success ? "Your form was successfully submitted."
+    : "We're sorry. There was a problem with your form.";
 echo "<p>$msg</p>";
 ?>
 </body>
