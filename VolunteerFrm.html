@@ -68,7 +68,7 @@
 
             <div class="row">
                 <div class="form-group col-sm-6">
-                    <input type="checkbox" id="onMailList" name="onMailList" checked>
+                    <input type="checkbox" id="onMailList" name="onMailList" value="checked" checked>
                     <label for="onMailList" class="h5 font-weight-light form-check-label">Add to mailing list</label>
                 </div>
 
@@ -168,13 +168,13 @@
 
             <p class="form-group h5 font-weight-light">Please select all availability options that apply</p>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="availability" id="oneWeek" value="oneWeek">
+                <input class="form-check-input" type="checkbox" name="availability[]" id="oneWeek" value="oneWeek">
                 <label class="form-check-label h5 font-weight-light" for="oneWeek">
                     One Week Summer Camp
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="availability" id="weekends" value="weekends">
+                <input class="form-check-input" type="checkbox" name="availability[]" id="weekends" value="weekends">
                 <label class="form-check-label h5 font-weight-light" for="weekends">
                     Weekends
                 </label>
@@ -212,13 +212,13 @@
                     <label class="form-check-label h5 font-weight-light" for="mentoring" >Mentoring</label>
                 </li>
                 <li class="form-check">
-                    <input id="other-interest" class="" type="checkbox">
+                    <input id="other-interest" value="other" class="" name="interests[]" type="checkbox">
                     <label class="form-check-label h5 font-weight-light" for="other-interest">Other</label>
                 </li>
             </ul>
             <div id="other-section">
                 <label for="other" class="h5 font-weight-light mr-sm-1">Other (please specify)</label>
-                <input type="text" class="form-control" id="other" name="interests[]">
+                <input type="text" class="form-control" id="other" name="interestsText">
             </div>
         </fieldset>
 

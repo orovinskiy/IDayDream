@@ -110,17 +110,17 @@ $mailAvailable = "";
 
                 //Availability
                 echo "<h5>Availability</h5>";
-                if(!isset($_POST["Availability"])){
+                if(!isset($_POST["availability"])){
                     echo "<p>None selected</p>";
                 }
                 else {
-                    foreach($_POST["Availability"] as $available) {
+                    foreach($_POST["availability"] as $available) {
                         if($available === "oneWeek"){
                             echo "<p>Available for one week of Summer Camp</p>";
                             $mailAvailable .= "Available One week for Summer Camp";
                         }
                         else if($available === "weekends"){
-                            echo "<p> Available: $available</p>";
+                            echo "<p> Available: ".$_POST["weekendTimes"]."</p>";
                             $mailAvailable .=  " Available: $available";
                         }
                     }
@@ -180,7 +180,7 @@ $email_body .= "Reference three--\r\n Name: $fullName3\r\n Relationship: $relati
 $email_body .= "E-Mail: $refEmail3\r\n  Phone Number: $refPhoneNumber3 \r\n \r\n";
 
 $email_subject = "New Volunteer Applicant";
-$to = "";
+$to = "olegrovin@gmail.com";
 
 $headers = "from: $email\r\n";
 $headers.= "Reply-to: $email \r\n";
