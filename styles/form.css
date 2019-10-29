@@ -5,16 +5,16 @@ fieldset{
     padding: 1.5em;
 }
 
+.form-group {
+    margin-bottom: 1.8em;
+}
+
 h1 {
     text-align: center;
 }
 
 .hidden{
     display:none;
-}
-
-.inputs{
-    margin-bottom: 1.8em;
 }
 
 legend {
