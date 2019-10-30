@@ -20,35 +20,35 @@
     <p class="h4 font-weight-light">Thanks for visiting. We want to get to know you. Please tell us about you.</p>
     <br>
 
-    <form id="welcomeForm" action="#" method="POST">
+    <form id="welcomeForm" action="php/success.php" method="POST">
         <small class="form-text">* Indicates required fields</small>
         <fieldset class="form-group">
             <legend>About You</legend>
             <div class="form-group">
                 <label class="h5 font-weight-light" id="lblFirstName"  for="firstName">First Name *</label>
-                <span id="fName-error" class="hidden error">Required</span>
-                <input class=" form-control" type="text" id="firstName" maxlength="30" name="firstName">
+                <span id="err-firstName" class="error">Required</span>
+                <input class="form-control required" type="text" id="firstName" maxlength="30" name="firstName">
             </div>
 
             <div class="form-group">
                 <label class="h5 font-weight-light" id="lblLastName" for="lastName">Last Name *</label>
-                <span id="lName-error" class="hidden error">Required</span>
-                <input class="form-control" type="text" id="lastName" maxlength="50" name="lastName">
+                <span id="err-lastName" class="error">Required</span>
+                <input class="form-control required" type="text" id="lastName" maxlength="50" name="lastName">
             </div>
 
             <div class="row">
                 <!-- BirthDate -->
                 <div class="form-group col-sm-6">
-                    <label class="h5 font-weight-light" id="lblBirthdate" for="birthday">Birthdate *</label>
-                    <span id="birthdate-error" class="hidden error">Required</span>
-                    <input class="form-control" type="text" id="birthdate" maxlength="20" name="birthdate">
+                    <label class="h5 font-weight-light" id="lblBirthday" for="birthday">Birthday *</label>
+                    <span id="err-birthday" class="error">Required</span>
+                    <input class="form-control required" type="text" id="birthday" maxlength="20" name="birthday">
                 </div>
 
                 <!-- Gender -->
                 <div class="form-group form-sm-inline col-sm-6">
                     <label class="h5 font-weight-light form-label" id="lblGender" for="gender">Gender *</label>
-                    <span id="gender-error" class="hidden error">Required</span>
-                    <select class="form-control" id="gender" name="gender">
+                    <span id="err-gender" class="error">Required</span>
+                    <select class="form-control required" id="gender" name="gender">
                         <option value="">Select a Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -61,8 +61,8 @@
             <!-- Ethnicity -->
             <div class="form-group form-sm-inline">
                 <label class="h5 font-weight-light form-label" id="lblEthnicity" for="ethnicity">Ethnicity *</label>
-                <span id="ethnicity-error" class="hidden error">Required</span>
-                <select class="form-control" id="ethnicity" name="ethnicity">
+                <span id="err-ethnicity" class="error">Required</span>
+                <select class="form-control required" id="ethnicity" name="ethnicity">
                     <option value="">Select an Ethnicity</option>
                     <option value="nativeAmerican">American Indian or Alaska Native</option>
                     <option value="asian">Asian or Asian American</option>
@@ -81,8 +81,8 @@
                 <!-- Graduating class dropdown -->
                 <div class="form-group form-sm-inline col-sm-6">
                     <label class="h5 font-weight-light form-label" id="lblGradClass" for="gradClass">Graduating Class *</label>
-                    <span id="gradClass-error" class="hidden error">Required</span>
-                    <select class="form-control" id="gradClass" name="gradClass">
+                    <span id="err-gradClass" class="error">Required</span>
+                    <select class="form-control required" id="gradClass" name="gradClass">
                         <option value="">Select a Year</option>
                         <option value="2020">2020</option>
                         <option value="2021">2021</option>
@@ -118,13 +118,15 @@
             <legend>Contact Info</legend>
             <div class="form-group">
                 <label class="h5 font-weight-light" id="lblEmail" for="email">Email *</label>
-                <span id="email-error" class="hidden error">Required</span>
-                <input class="form-control" type="text" id="email" maxlength="50" name="email">
+                <span id="err-email" class="error">Required</span>
+                <span id="err-format-email" class="error">Please enter a valid email format</span>
+                <input class="form-control required" type="text" id="email" maxlength="50" name="email">
             </div>
             <div class="form-group">
                 <label class="h5 font-weight-light" id="lblPhone" for="phone">Phone Number *</label>
-                <span id="phone-error" class="hidden error">Required</span>
-                <input class="form-control" type="text" id="phone" maxlength="25" name="phone">
+                <span id="err-phone" class="error">Required</span>
+                <span id="err-format-phone" class="error">Please enter a valid phone number format</span>
+                <input class="form-control required" type="text" id="phone" maxlength="25" name="phone">
             </div>
         </fieldset>
         <button type="submit" id="submit" class="btn btn-primary p-2">Submit</button>
@@ -137,5 +139,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="javascript/welcomeFrm.js"></script>
 </body>
 </html>
