@@ -1,3 +1,9 @@
+// regex found at https://regexr.com/
+const EMAIL_REGEX = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
+
+// regex found at https://stackoverflow.com/questions/12317049/how-to-split-a-long-regular-expression-into-multiple-lines-in-javascript
+const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+
 document.getElementById("welcomeForm").onsubmit = validateForm;
 
 function validateForm() {
@@ -10,7 +16,54 @@ function validateForm() {
         isValid = false;
     }
 
+    if (!validateAllFormats()) {
+        isValid = false;
+    }
+
+    if (!isValid) {
+        window.scrollTo(0, 0);
+    }
+
     return isValid;
+}
+
+function validateAllFormats() {
+    let isValid = true;
+
+    // Check for a valid email and show any error msgs
+    let emailInput = document.getElementById("email");
+    if (!validateFormat(emailInput, EMAIL_REGEX)) {
+        isValid = false;
+    }
+
+    // Check for valid phone format and show any error msgs
+    let phoneInput = document.getElementById("phone");
+    if (!validateFormat(phoneInput, PHONE_REGEX)) {
+        isValid = false;
+    }
+}
+
+/**
+ * Shows error message if format is not valid.
+ * @param input input containing email value
+ * @param regexp regular expression to test format
+ * @returns {boolean} true if email is valid
+ */
+function validateFormat(input, regexp) {
+    let inputTxt = input.value.trim();
+
+    // only display msg for valid format if characters are typed in
+    if (inputTxt != "" && !regexp.test(inputTxt)) {
+
+        // error message id is "err-format-" + the id of the input it belongs to
+        let errMsg = document.getElementById("err-format-" + input.id);
+        let label = document.querySelector("label[for=" + input.id + "]");
+
+        showError(errMsg, input, label);
+
+        return false;
+    }
+    return true;
 }
 
 /**
@@ -56,10 +109,6 @@ function showError(errMsg, input, label) {
     errMsg.style.display = "initial";
     input.classList.add("border-danger");
     label.classList.add("text-danger");
-}
-
-function hideError(errMsg, input, label) {
-
 }
 
 /**

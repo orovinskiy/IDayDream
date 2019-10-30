@@ -20,7 +20,7 @@
     <p class="h4 font-weight-light">Thanks for visiting. We want to get to know you. Please tell us about you.</p>
     <br>
 
-    <form id="welcomeForm" action="#" method="POST">
+    <form id="welcomeForm" action="thankYou.php" method="POST">
         <small class="form-text">* Indicates required fields</small>
         <fieldset class="form-group">
             <legend>About You</legend>
@@ -119,11 +119,13 @@
             <div class="form-group">
                 <label class="h5 font-weight-light" id="lblEmail" for="email">Email *</label>
                 <span id="err-email" class="error">Required</span>
+                <span id="err-format-email" class="error">Please enter a valid email format</span>
                 <input class="form-control required" type="text" id="email" maxlength="50" name="email">
             </div>
             <div class="form-group">
                 <label class="h5 font-weight-light" id="lblPhone" for="phone">Phone Number *</label>
                 <span id="err-phone" class="error">Required</span>
+                <span id="err-format-phone" class="error">Please enter a valid phone number format</span>
                 <input class="form-control required" type="text" id="phone" maxlength="25" name="phone">
             </div>
         </fieldset>
