@@ -7,6 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Styles -->
     <link href="styles/form.css" rel="stylesheet">
     <link href="styles/volunteerFrm.css" rel="stylesheet">
 
@@ -26,18 +28,23 @@
 
     <form id="volunteerForm" action="php/thankYou.php" method="POST">
         <small class="form-text">* Indicates required fields</small>
+
         <!-- Background check consent (required) -->
         <fieldset class="form-group rounded bg-light">
             <legend>Background Check</legend>
+
             <p class=" back-check h5 font-weight-light text-center">You must have a background check to volunteer.
-                Do you agree to one?  <span >*</span><span id="backGround" class="hidden error">Required</span></p>
+                Do you agree to one?  <span >*</span><span id="backGround" class="error">Required</span></p>
 
             <div id="back-check-agree">
+
+                <!-- Yes -->
                 <div class="form-check radio">
                     <input class="form-check-input" type="radio" id="yes" name="question" value="agreed">
                     <label class="form-check-label h5 font-weight-light" for="yes">Yes</label>
                 </div>
 
+                <!-- No -->
                 <div class="form-check radio" >
                     <input class="form-check-input" type="radio" id="no" name="question" value="disagree">
                     <label class="form-check-label h5 font-weight-light" for="no">No</label>
@@ -50,39 +57,46 @@
         <fieldset class="form-group rounded bg-light bg-light">
             <legend>Personal Information</legend>
 
+            <!-- First Name -->
             <div class="form-group">
                 <label class=" h5 font-weight-light " id="firstNameLabel"  for="firstName">First Name *
                     <span id="fName-error" class="error">can't be empty or have numbers</span></label>
                 <input class="form-control" type="text" id="firstName" maxlength="30" name="firstName">
             </div>
 
+            <!-- Last Name -->
             <div class="form-group">
                 <label class="h5 font-weight-light" id="lastNameLabel" for="lastName">Last Name <span>*</span>
-                    <span id="lName-error" class="hidden error">can't be empty or have numbers</span></label>
+                    <span id="lName-error" class="error">can't be empty or have numbers</span></label>
                 <input class="form-control" type="text" id="lastName" maxlength="50" name="lastName">
             </div>
 
+            <!-- Phone Number -->
             <div class="form-group">
                 <label class="h5 font-weight-light" for="pNumber" id="phoneNumLabel">Phone Number <span>*</span>
-                    <span id="num-error" class="hidden error">can't be empty or have letters</span></label>
+                    <span id="num-error" class="error">can't be empty or have letters</span></label>
                 <input class="form-control" type="text" maxlength="20" id="pNumber" name="pNumber">
             </div>
 
+            <!-- Email -->
             <div class="form-group">
                 <label class="h5 font-weight-light" id="mailLabel" for="eMail">Email <span>*</span>
-                    <span id="email-error" class="hidden error">must have '@' followed by '.'</span></label>
+                    <span id="email-error" class="error">must have '@' followed by '.'</span></label>
                 <input class="form-control" type="email" id="eMail" name="eMail">
             </div>
 
             <div class="row">
+
+                <!-- Add to Mailing List -->
                 <div class="form-group col-sm-6">
                     <input type="checkbox" id="onMailList" name="onMailList" value="checked" checked>
                     <label for="onMailList" class="h5 font-weight-light form-check-label">Add to mailing list</label>
                 </div>
 
+                <!-- T-Shirt Size -->
                 <div class="form-group form-sm-inline col-sm-6">
                     <label class="h5 font-weight-light mr-md-2 mr-sm-1 form-label" id="labelShirt" for="shirtSize">T-Shirt size <span>*</span>
-                        <span id="tShirt-error" class="hidden error">choose a valid option</span></label>
+                        <span id="tShirt-error" class="error">choose a valid option</span></label>
                     <select class="form-control px-lg-5" id="shirtSize" name="shirtSize">
                         <option value="none">Select a Size</option>
                         <option value="extra_small">Extra Small</option>
@@ -99,18 +113,21 @@
         <fieldset class="form-group rounded bg-light bg-light">
             <legend>Address</legend>
 
+            <!-- Street -->
             <div class="form-group">
                 <label class="h5 font-weight-light mr-sm-1" id="labelStreet" for="street">Street <span >*</span>
-                    <span id="street-error" class="hidden error">required</span></label>
+                    <span id="street-error" class="error">required</span></label>
                 <input class="form-control mr-sm-4" maxlength="60" type="text" id="street" name="street">
             </div>
 
+            <!-- City -->
             <div class="form-group">
                 <label class="h5 font-weight-light mr-sm-1" id="labelCity" for="city">City <span >*</span>
-                    <span id="city-error" class="hidden error">required</span></label>
+                    <span id="city-error" class="error">required</span></label>
                 <input class="form-control " maxlength="20" type="text" id="city" name="city">
             </div>
 
+            <!-- State -->
             <div class="form-inline">
                 <label class="h5 font-weight-light ml-md-5 mr-sm-1" for="state">State <span >*</span></label>
                 <select class="form-control input-style px-lg-5 mr-sm-4 mr-md-5" id="state" name="state">
@@ -166,8 +183,9 @@
                     <option value="wy">WY</option>
                 </select>
 
+                <!--  -->
                 <label class="h5 font-weight-light mr-sm-1 ml-md-5" id="labelZip" for="zip">Zip <span >*</span>
-                    <span id="zip-error" class="hidden error">required</span></label>
+                    <span id="zip-error" class="error">required</span></label>
                 <input class="form-control input-style" maxlength="5" type="text" id="zip" name="zip">
             </div>
         </fieldset>
@@ -177,12 +195,16 @@
             <legend>Availability</legend>
 
             <p class="form-group h5 font-weight-light text-center">Please select all availability options that apply</p>
+
+            <!-- Summer Camp -->
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="availability[]" id="oneWeek" value="oneWeek">
                 <label class="form-check-label h5 font-weight-light text-center" for="oneWeek">
                     One Week Summer Camp
                 </label>
             </div>
+
+            <!-- Weekends -->
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="availability[]" id="weekends" value="weekends">
                 <label class="form-check-label h5 font-weight-light text-center" for="weekends">
@@ -190,6 +212,8 @@
                 </label>
             </div>
             <br>
+
+            <!-- Weekend Availability Time -->
             <div id="weekendTimesSection" class="form-group">
                 <label for="weekendTimes" class="h5 font-weight-light mr-2">Please specify your weekend availability time</label>
                 <input type="text" id="weekendTimes" name="weekendTimes" class="mr-3 mb-2 form-control">
@@ -199,33 +223,48 @@
         <!-- Interests -->
         <fieldset id="interests" class="form-group rounded bg-light bg-light">
             <legend>Interests</legend>
+
             <p class="form-text h5 font-weight-light text-center">Tell us in which areas you are interested in volunteering<br><br></p>
             <ul>
+
+                <!-- Events -->
                 <li class="form-check">
-                    <input id="events" class="" type="checkbox" name="interests[]" value="events">
+                    <input id="events" type="checkbox" name="interests[]" value="events">
                     <label class="form-check-label h5 font-weight-light" for="events" >Events</label>
                 </li>
+
+                <!-- Fundraising -->
                 <li class="form-check">
-                    <input id="fundraising" class="" type="checkbox" name="interests[]" value="fundraising">
+                    <input id="fundraising" type="checkbox" name="interests[]" value="fundraising">
                     <label class="form-check-label h5 font-weight-light" for="fundraising" >Fundraising</label>
                 </li>
+
+                <!-- Newsletter -->
                 <li class="form-check">
-                    <input id="newsletter" class="" type="checkbox" name="interests[]" value="newsletter">
+                    <input id="newsletter" type="checkbox" name="interests[]" value="newsletter">
                     <label class="form-check-label h5 font-weight-light" for="newsletter" >Newsletter</label>
                 </li>
+
+                <!-- Coordination -->
                 <li class="form-check">
-                    <input  id="coordination" class="" type="checkbox" name="interests[]" value="coordination">
+                    <input  id="coordination" type="checkbox" name="interests[]" value="coordination">
                     <label class="form-check-label h5 font-weight-light" for="coordination" >Coordination</label>
                 </li>
+
+                <!-- Mentoring -->
                 <li class="form-check">
-                    <input id="mentoring" class="" type="checkbox" name="interests[]" value="mentoring">
+                    <input id="mentoring" type="checkbox" name="interests[]" value="mentoring">
                     <label class="form-check-label h5 font-weight-light" for="mentoring" >Mentoring</label>
                 </li>
+
+                <!-- Other -->
                 <li class="form-check">
                     <input id="other-interest" value="other" class="" name="interests[]" type="checkbox">
                     <label class="form-check-label h5 font-weight-light" for="other-interest">Other</label>
                 </li>
             </ul>
+
+            <!-- Other Interests -->
             <div id="other-section">
                 <label for="other" class="h5 font-weight-light mr-sm-1">Other (please specify)</label>
                 <input type="text" class="form-control" id="other" name="interestsText">
@@ -235,6 +274,8 @@
         <!-- About You -->
         <fieldset class="form-group rounded bg-light bg-light">
             <legend>About You</legend>
+
+            <!-- How Did You Hear About Us -->
             <div class="form-group">
                 <label for="howDidHear" id="labelHowDidHear" class="h5 font-weight-light mr-sm-1">How did you hear about us?</label>
                 <select class="form-control" id="howDidHear" name="howDidHear">
@@ -246,96 +287,118 @@
                     <option value="other">Other</option>
                 </select>
             </div>
+
+            <!-- Other - How Did You About Us -->
             <div id="otherHowDidHearSection" class="form-group">
                 <label for="otherHowDidHear" class="h5 font-weight-light mr-sm-1">Other (please specify)</label>
                 <input type="text" class="form-control" id="otherHowDidHear" name="otherHowDidHear">
             </div>
 
+            <!-- Motivation -->
             <div class="form-group">
                 <label for="getToKnow" id="labelGetToKnow" class="h5 font-weight-light mr-sm-1">What motivated you to volunteer with us? <span >*</span>
-                    <span id="getToKnow-error" class="hidden error">required</span></label>
+                    <span id="getToKnow-error" class="error">required</span></label>
                 <textarea id="getToKnow" maxlength="2000" class="form-control" name="motivation"></textarea>
             </div>
 
+            <!-- Experience -->
             <div class="form-group">
                 <label for="volExperience" class="h5 font-weight-light mr-sm-1">Have you had any volunteer experience? If so explain.</label>
                 <textarea id="volExperience" name="volExperience" maxlength="2000" class="form-control"></textarea>
             </div>
 
+            <!-- Skills -->
             <div class="form-group">
                 <label for="skills" class="h5 font-weight-light mr-sm-1">Any skills that you may have?</label>
                 <textarea id="skills" name="skills" class="form-control"></textarea>
             </div>
         </fieldset>
 
-        <!-- References1 -->
+        <!-- Character References -->
         <fieldset class="form-group rounded bg-light bg-light">
             <legend>Character References</legend>
+
+            <!-- References 1 -->
             <div class="form-group">
-                <p class="h4">Reference One <span >*</span><span id="err-References" class="hidden error h6"><span >*</span>Requires 3 References</span></p>
+                <p class="h4">Reference One <span >*</span><span id="err-References" class="error h6"><span >*</span>Requires 3 References</span></p>
+
+                <!-- Full Name -->
                 <div class="form-group">
                     <label for="refFullName1" id="labelRefFullName1" class="h5 font-weight-light mr-sm-1">Full Name <span >*</span></label>
                     <input type="text" class="form-control" id="refFullName1" name="refFullName1" placeholder="John Doe">
                 </div>
 
+                <!-- Relationship -->
                 <div class="form-group">
                     <label for="refRelationship1" id="labelRefRelationship1" class="h5 font-weight-light mr-sm-1">Relationship <span >*</span></label>
                     <input type="text" class="form-control" id="refRelationship1" name="refRelationship1">
                 </div>
 
+                <!-- Phone -->
                 <div class="form-group">
                     <label for="refPhone1" id="labelRefPhone1" class="h5 font-weight-light mr-sm-1">Phone Number <span >*</span></label>
                     <input type="tel" class="form-control" id="refPhone1" name="refPhone1" placeholder="253-123-4567">
                 </div>
 
+                <!-- Email -->
                 <div class="form-group">
                     <label for="refEmail1" id="labelRefEmail1" class="h5 font-weight-light mr-sm-1">Email <span >*</span></label>
                     <input type="email" class="form-control mb-2" id="refEmail1" name="refEmail1" placeholder="JohnDoe@mail.com">
                 </div>
             </div>
 
-            <!-- References2 -->
+            <!-- References 2 -->
             <div class="form-group">
                 <h4>Reference Two <span >*</span></h4>
+
+                <!-- Full Name -->
                 <div class="form-group">
                     <label for="refFullName2" id="labelRefFullName2" class="h5 font-weight-light mr-sm-1">Full Name <span >*</span></label>
                     <input type="text" class="form-control" id="refFullName2" name="refFullName2" placeholder="John Doe">
                 </div>
 
+                <!-- Relationship -->
                 <div class="form-group">
                     <label for="refRelationship2" id="labelRefRelationship2" class="h5 font-weight-light mr-sm-1">Relationship <span >*</span></label>
                     <input type="text" class="form-control" id="refRelationship2" name="refRelationship2">
                 </div>
 
+                <!-- Phone -->
                 <div class="form-group">
                     <label for="refPhone2" id="labelRefPhone2" class="h5 font-weight-light mr-sm-1">Phone Number <span >*</span></label>
                     <input type="tel" class="form-control" id="refPhone2" name="refPhone2" placeholder="253-123-4567">
                 </div>
 
+                <!-- Email -->
                 <div class="form-group">
                     <label for="refEmail2" id="labelRefEmail2" class="h5 font-weight-light mr-sm-1">Email <span >*</span></label>
                     <input type="email" class="form-control mb-2" id="refEmail2" name="refEmail2" placeholder="JohnDoe@mail.com">
                 </div>
             </div>
 
-            <!-- References3 -->
+            <!-- References 3 -->
             <div class="form-group">
                 <h4>Reference Three <span >*</span></h4>
+
+                <!-- Full Name -->
                 <div class="form-group">
                     <label for="refFullName3" id="labelRefFullName3" class="h5 font-weight-light mr-sm-1">Full Name <span >*</span></label>
                     <input type="text" class="form-control" id="refFullName3" name="refFullName3" placeholder="John Doe">
                 </div>
 
+                <!-- Relationship -->
                 <div class="form-group">
                     <label for="refRelationship3" id="labelRefRelationship3" class="h5 font-weight-light mr-sm-1">Relationship <span >*</span></label>
                     <input type="text" class="form-control" id="refRelationship3" name="refRelationship3">
                 </div>
 
+                <!-- Phone -->
                 <div class="form-group">
                     <label for="refPhone3" id="labelRefPhone3" class="h5 font-weight-light mr-sm-1">Phone Number <span >*</span></label>
                     <input type="tel" class="form-control" id="refPhone3" name="refPhone3" placeholder="253-123-4567">
                 </div>
 
+                <!-- Email -->
                 <div class="form-group">
                     <label for="refEmail3" id="labelRefEmail3" class="h5 font-weight-light mr-sm-1">Email <span >*</span></label>
                     <input type="email" class="form-control mb-2" id="refEmail3" name="refEmail3" placeholder="JohnDoe@mail.com">
@@ -347,15 +410,18 @@
         <!-- Agreement -->
         <fieldset class="form-group rounded bg-light bg-light">
             <legend>Agreement</legend>
+
             <p class="pb-3">By submitting this application, I affirm that the facts set forth in it are true and complete.
                 I understand that if I am accepted as a volunteer, any false statements, omissions, or other misrepresentations
                 made by me on this application may result in my immediate dismissal.</p>
+
+            <!-- Agree -->
             <div class="form-group">
                 <input type="checkbox" id="agreeCheckbox" name="policyCheckBox" required>
                 <label for="agreeCheckbox" class="h5 font-weight-light">Agree <span >*</span></label>
             </div>
 
-        <!-- Policy -->
+            <!-- Policy -->
             <h4 class="text-center">Our Policy</h4>
             <div class="form-group">
                 <p>It is the policy of this organization to provide equal opportunities without regard to race, color, religion, national origin, gender, sexual preference,
