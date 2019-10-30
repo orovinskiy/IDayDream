@@ -65,6 +65,9 @@ function validateForm(){
 
     //Validates they agree to the background
     validBackGround();
+    if(validate === false){
+        window.scrollTo(0,0);
+    }
     return validate;
 }
 
