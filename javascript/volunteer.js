@@ -2,11 +2,15 @@
 document.getElementById("volunteerForm").onsubmit = validateForm;
 
 document.getElementById("other-interest").addEventListener("change", function() {
-    toggleDisplay(document.getElementById("other-section"), this);
+    toggleDisplay(document.getElementById("other-section"), this.checked);
 });
 
 document.getElementById("weekends").addEventListener("change", function() {
-   toggleDisplay(document.getElementById("weekendTimesSection"), this);
+   toggleDisplay(document.getElementById("weekendTimesSection"), this.checked);
+});
+
+document.getElementById("howDidHear").addEventListener("change", function () {
+   toggleDisplay(document.getElementById("otherHowDidHearSection"), this.value === "other");
 });
 
 let validate = true;
@@ -20,9 +24,9 @@ window.onunload=function(){null};*/
  * Toggles the display to initial and none for the element parameter belonging to
  * a checkbox
  */
-function toggleDisplay(element, caller) {
-    if (caller.checked) {
-        element.style.display = "initial";
+function toggleDisplay(element, isSelected) {
+    if (isSelected) {
+        element.style.display = "block";
     }
     else {
         element.style.display = "none";
@@ -61,6 +65,9 @@ function validateForm(){
 
     //Validates they agree to the background
     validBackGround();
+    if(validate === false){
+        window.scrollTo(0,0);
+    }
     return validate;
 }
 
@@ -75,11 +82,11 @@ function removeClass($input, $label){
 }
 
 function spanErrorDisplay(error){
-    $("#"+error).removeClass("hidden");
+    $("#"+error).show();
 }
 
 function spanErrorRemove(error){
-    $("#"+error).addClass("hidden");
+    $("#"+error).hide();
 }
 
 //Validates any text fields
@@ -170,10 +177,10 @@ function validReferences(){
             count--;
         }
     }
-    $("#err-References").addClass("hidden");
+    $("#err-References").hide();
 
     if(count !== 3){
-        $("#err-References").removeClass("hidden");
+        $("#err-References").show();
         document.getElementById("err-References").innerHTML = "*Requires 3 References: "+count+"/3";
     }
 
@@ -184,7 +191,7 @@ function validBackGround(){
 
     let back = document.getElementsByName("question");
     let agree = "";
-    $("#backGround").addClass("hidden");
+    $("#backGround").hide();
 
     for(let i = 0; i < back.length; i++){
         if(back[i].checked){
@@ -193,7 +200,7 @@ function validBackGround(){
     }
 
     if(agree !== "agreed"){
-        $("#backGround").removeClass("hidden");
+        $("#backGround").show();
     }
 }
 

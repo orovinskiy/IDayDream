@@ -52,8 +52,8 @@
 
             <div class="form-group">
                 <label class=" h5 font-weight-light " id="firstNameLabel"  for="firstName">First Name *
-                    <span id="fName-error" class="hidden error">can't be empty or have numbers</span></label>
-                <input class=" form-control" type="text" id="firstName" maxlength="30" name="firstName">
+                    <span id="fName-error" class="error">can't be empty or have numbers</span></label>
+                <input class="form-control" type="text" id="firstName" maxlength="30" name="firstName">
             </div>
 
             <div class="form-group">
@@ -245,6 +245,10 @@
                     <option value="corporate">Corporate Sponsor</option>
                     <option value="other">Other</option>
                 </select>
+            </div>
+            <div id="otherHowDidHearSection" class="form-group">
+                <label for="otherHowDidHear" class="h5 font-weight-light mr-sm-1">Other (please specify)</label>
+                <input type="text" class="form-control" id="otherHowDidHear" name="otherHowDidHear">
             </div>
 
             <div class="form-group">

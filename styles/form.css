@@ -41,17 +41,14 @@ h1 {
     margin-right:auto;
 }
 
-.hidden {
-    display:none;
-}
-
 legend {
     width:30%;
     text-align: center;
 }
 
-span.error{
+span.error {
     color: red;
+    display: none;
     margin-left: 10px;
     font-size: 17px;
     font-weight: normal;
