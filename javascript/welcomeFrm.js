@@ -41,6 +41,8 @@ function validateAllFormats() {
     if (!validateFormat(phoneInput, PHONE_REGEX)) {
         isValid = false;
     }
+
+    return isValid;
 }
 
 /**
@@ -53,7 +55,7 @@ function validateFormat(input, regexp) {
     let inputTxt = input.value.trim();
 
     // only display msg for valid format if characters are typed in
-    if (inputTxt != "" && !regexp.test(inputTxt)) {
+    if (inputTxt !== "" && !regexp.test(inputTxt)) {
 
         // error message id is "err-format-" + the id of the input it belongs to
         let errMsg = document.getElementById("err-format-" + input.id);
@@ -93,7 +95,7 @@ function validateAllRequired() {
 function validateRequired(input) {
     let val = input.value.trim();
 
-    if (val == "") {
+    if (val === "") {
 
         // Error message id is "err-" + the id of the input it belongs to
         let errMsg = document.getElementById("err-" + input.id);
