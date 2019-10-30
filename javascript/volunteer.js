@@ -2,11 +2,15 @@
 document.getElementById("volunteerForm").onsubmit = validateForm;
 
 document.getElementById("other-interest").addEventListener("change", function() {
-    toggleDisplay(document.getElementById("other-section"), this);
+    toggleDisplay(document.getElementById("other-section"), this.checked);
 });
 
 document.getElementById("weekends").addEventListener("change", function() {
-   toggleDisplay(document.getElementById("weekendTimesSection"), this);
+   toggleDisplay(document.getElementById("weekendTimesSection"), this.checked);
+});
+
+document.getElementById("howDidHear").addEventListener("change", function () {
+   toggleDisplay(document.getElementById("otherHowDidHearSection"), this.value === "other");
 });
 
 let validate = true;
@@ -20,9 +24,9 @@ window.onunload=function(){null};*/
  * Toggles the display to initial and none for the element parameter belonging to
  * a checkbox
  */
-function toggleDisplay(element, caller) {
-    if (caller.checked) {
-        element.style.display = "initial";
+function toggleDisplay(element, isSelected) {
+    if (isSelected) {
+        element.style.display = "block";
     }
     else {
         element.style.display = "none";

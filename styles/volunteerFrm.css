@@ -16,7 +16,12 @@
     column-count: 6;
 }
 
-/* Hide other section unless other interests are selected */
+/* Hide other section unless other how did you hear about us is selected */
+#otherHowDidHearSection {
+    display: none;
+}
+
+/* Hide other section unless other interest is selected */
 #other-section {
     display: none;
 }
