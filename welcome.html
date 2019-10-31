@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link href="styles/form.css" rel="stylesheet">
 
@@ -16,6 +17,7 @@
     <title>Welcome | ID.A.Y.DREAM</title>
 </head>
 <body>
+
 <div class="jumbotron banner">
     <h1 class="display-4 text-light font-weight-bold">Welcome to ID.A.Y.DREAM</h1>
 </div>
@@ -26,17 +28,22 @@
 
     <form id="welcomeForm" action="php/success.php" method="POST">
         <small class="form-text">* Indicates required fields</small>
-        <fieldset class="form-group rounded bg-light bg-light">
+
+        <!-- About You -->
+        <fieldset class="form-group rounded bg-light">
             <legend>About You</legend>
+
+            <!-- First Name -->
             <div class="form-group">
                 <label class="h5 font-weight-light" id="lblFirstName"  for="firstName">First Name *</label>
-                <span id="err-firstName" class="error">Required</span>
+                <span id="firstNameErr" class="error">Required</span>
                 <input class="form-control required" type="text" id="firstName" maxlength="30" name="firstName">
             </div>
 
+            <!-- Last Name -->
             <div class="form-group">
                 <label class="h5 font-weight-light" id="lblLastName" for="lastName">Last Name *</label>
-                <span id="err-lastName" class="error">Required</span>
+                <span id="lastNameErr" class="error">Required</span>
                 <input class="form-control required" type="text" id="lastName" maxlength="50" name="lastName">
             </div>
 
@@ -44,14 +51,14 @@
                 <!-- BirthDate -->
                 <div class="form-group col-sm-6">
                     <label class="h5 font-weight-light" id="lblBirthday" for="birthday">Birthday *</label>
-                    <span id="err-birthday" class="error">Required</span>
+                    <span id="birthdayErr" class="error">Required</span>
                     <input class="form-control required" type="text" id="birthday" maxlength="20" name="birthday">
                 </div>
 
                 <!-- Gender -->
                 <div class="form-group form-sm-inline col-sm-6">
                     <label class="h5 font-weight-light form-label" id="lblGender" for="gender">Gender *</label>
-                    <span id="err-gender" class="error">Required</span>
+                    <span id="genderErr" class="error">Required</span>
                     <select class="form-control required" id="gender" name="gender">
                         <option value="">Select a Gender</option>
                         <option value="male">Male</option>
@@ -65,7 +72,7 @@
             <!-- Ethnicity -->
             <div class="form-group form-sm-inline">
                 <label class="h5 font-weight-light form-label" id="lblEthnicity" for="ethnicity">Ethnicity *</label>
-                <span id="err-ethnicity" class="error">Required</span>
+                <span id="ethnicityErr" class="error">Required</span>
                 <select class="form-control required" id="ethnicity" name="ethnicity">
                     <option value="">Select an Ethnicity</option>
                     <option value="nativeAmerican">American Indian or Alaska Native</option>
@@ -85,7 +92,7 @@
                 <!-- Graduating class dropdown -->
                 <div class="form-group form-sm-inline col-sm-6">
                     <label class="h5 font-weight-light form-label" id="lblGradClass" for="gradClass">Graduating Class *</label>
-                    <span id="err-gradClass" class="error">Required</span>
+                    <span id="gradClassErr" class="error">Required</span>
                     <select class="form-control required" id="gradClass" name="gradClass">
                         <option value="">Select a Year</option>
                         <option value="2020">2020</option>
@@ -120,20 +127,24 @@
 
         <fieldset class="form-group rounded bg-light bg-light">
             <legend>Contact Info</legend>
+
+            <!-- Email -->
             <div class="form-group">
                 <label class="h5 font-weight-light" id="lblEmail" for="email">Email *</label>
-                <span id="err-email" class="error">Required</span>
-                <span id="err-format-email" class="error">Please enter a valid email format</span>
+                <span id="emailErr" class="error">Required</span>
+                <span id="emailFormatErr" class="error">Please enter a valid email format</span>
                 <input class="form-control required" type="text" id="email" maxlength="50" name="email">
             </div>
+
+            <!-- Phone -->
             <div class="form-group">
                 <label class="h5 font-weight-light" id="lblPhone" for="phone">Phone Number *</label>
-                <span id="err-phone" class="error">Required</span>
-                <span id="err-format-phone" class="error">Please enter a valid phone number format</span>
+                <span id="phoneErr" class="error">Required</span>
+                <span id="phoneFormatErr" class="error">Please enter a valid phone number format</span>
                 <input class="form-control required" type="text" id="phone" maxlength="25" name="phone">
             </div>
         </fieldset>
-        <button type="submit" id="submit" class="btn btn-dark p-2 btnEdit">Submit</button>
+        <button type="submit" id="submit" class="btn btn-dark p-2">Submit</button>
     </form>
 </div>
 

@@ -1,11 +1,16 @@
-// regex found at https://regexr.com/
+// Regex found at https://regexr.com/
 const EMAIL_REGEX = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
-// regex found at https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript
+// Regex found at https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript
 const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 
 document.getElementById("welcomeForm").onsubmit = validateForm;
 
+/**
+ * Checks required fields for values and if format is correct. Shows error messages
+ * and rejects form submission if the form is not valid.
+ * @returns {boolean} true if form is valid
+ */
 function validateForm() {
     clearAllErrors();
 
@@ -21,12 +26,16 @@ function validateForm() {
     }
 
     if (!isValid) {
-        window.scrollTo(0, 0);
+        scrollTo(0, 0);
     }
 
     return isValid;
 }
 
+/**
+ * Validates all formats including phone number and email
+ * @returns {boolean}
+ */
 function validateAllFormats() {
     let isValid = true;
 
@@ -57,8 +66,8 @@ function validateFormat(input, regexp) {
     // only display msg for valid format if characters are typed in
     if (inputTxt !== "" && !regexp.test(inputTxt)) {
 
-        // error message id is "err-format-" + the id of the input it belongs to
-        let errMsg = document.getElementById("err-format-" + input.id);
+        // error message id is the id of the input it belongs to + "ErrFormat"
+        let errMsg = document.getElementById(input.id + "ErrFormat");
         let label = document.querySelector("label[for=" + input.id + "]");
 
         showError(errMsg, input, label);
@@ -97,8 +106,8 @@ function validateRequired(input) {
 
     if (val === "") {
 
-        // Error message id is "err-" + the id of the input it belongs to
-        let errMsg = document.getElementById("err-" + input.id);
+        // Error message id is the id of the input it belongs to + "Err"
+        let errMsg = document.getElementById(input.id + "Err");
         let label = document.querySelector("label[for=" + input.id + "]");
 
         showError(errMsg, input, label);
@@ -107,6 +116,12 @@ function validateRequired(input) {
     return true;
 }
 
+/**
+ * Displays hidden error message and puts red border around input field changes label text to red
+ * @param errMsg
+ * @param input
+ * @param label
+ */
 function showError(errMsg, input, label) {
     errMsg.style.display = "initial";
     input.classList.add("border-danger");

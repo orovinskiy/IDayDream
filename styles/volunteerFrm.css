@@ -1,11 +1,11 @@
 /* This CSS is specific to the volunteer form */
 
-.back-check{
+.backCheck{
     padding-bottom: 1em;
 }
 
 /*center radio buttons */
-#back-check-agree {
+#backCheckAgree {
     width: 140px;
     margin-left: auto;
     margin-right: auto;
