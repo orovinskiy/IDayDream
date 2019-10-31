@@ -6,6 +6,11 @@ const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/i
 
 document.getElementById("welcomeForm").onsubmit = validateForm;
 
+/**
+ * Checks required fields for values and if format is correct. Shows error messages
+ * and rejects form submission if the form is not valid.
+ * @returns {boolean} true if form is valid
+ */
 function validateForm() {
     clearAllErrors();
 
@@ -27,6 +32,10 @@ function validateForm() {
     return isValid;
 }
 
+/**
+ * Validates all formats including phone number and email
+ * @returns {boolean}
+ */
 function validateAllFormats() {
     let isValid = true;
 
@@ -107,6 +116,12 @@ function validateRequired(input) {
     return true;
 }
 
+/**
+ * Displays hidden error message and puts red border around input field changes label text to red
+ * @param errMsg
+ * @param input
+ * @param label
+ */
 function showError(errMsg, input, label) {
     errMsg.style.display = "initial";
     input.classList.add("border-danger");
