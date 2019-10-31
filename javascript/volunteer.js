@@ -43,22 +43,22 @@ function toggleDisplay(element, isSelected) {
 function validateForm(){
     validate = true;
     //validates Personal Information
-    validText("firstNameLabel","firstName","fName-error");
-    validText("lastNameLabel","lastName","lName-error");
-    validNumber("phoneNumLabel", "pNumber","num-error");
-    validMail("mailLabel", "eMail","email-error");
-    validSelect("labelShirt","shirtSize","tShirt-error");
+    validText("firstNameLabel","firstName","fNameError");
+    validText("lastNameLabel","lastName","lNameError");
+    validNumber("phoneNumLabel", "pNumber","numError");
+    validMail("mailLabel", "eMail","emailError");
+    validSelect("labelShirt","shirtSize","tShirtError");
 
     //Validates Address fields
-    validText("labelStreet","street","street-error");
-    validText("labelCity","city","city-error");
-    validNumber("labelZip","zip","zip-error");
+    validText("labelStreet","street","streetError");
+    validText("labelCity","city","cityError");
+    validNumber("labelZip","zip","zipError");
 
     //Validates How did you hear
     //validSelect("labelHowDidHear","howDidHear")
 
     //Validates Why Motivated you textarea
-    validText("labelGetToKnow","getToKnow","getToKnow-error");
+    validText("labelGetToKnow","getToKnow","getToKnowError");
 
     //Validates all three references
     validReferences();
@@ -177,11 +177,11 @@ function validReferences(){
             count--;
         }
     }
-    $("#err-References").hide();
+    $("#errReferences").hide();
 
     if(count !== 3){
-        $("#err-References").show();
-        document.getElementById("err-References").innerHTML = "*Requires 3 References: "+count+"/3";
+        $("#errReferences").show();
+        document.getElementById("errReferences").innerHTML = "*Requires 3 References: "+count+"/3";
     }
 
 }
