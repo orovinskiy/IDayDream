@@ -44,7 +44,7 @@ $phoneNum = $_POST["phone"]
         <h2>Personal Info</h2>
         <?php
         //Displays Personal Information entered from the form
-        echo "<p>Name: $firstName, $lastName </p>";
+        echo "<p>Name: $firstName $lastName </p>";
         echo "<p>Birthday: $birthday </p>";
         echo "<p>Gender: $gender </p>";
         echo "<p>Ethnicity: $ethnicity </p>";
@@ -68,7 +68,7 @@ $phoneNum = $_POST["phone"]
 $emailSend = "olegrovin@gmail.com";
 
 $email_body = "Welcome Form --\r\n";
-$email_body .= "Name: $firstName, $lastName \r\n";
+$email_body .= "Name: $firstName $lastName \r\n";
 $email_body .= "Birthday: $birthday \r\n";
 $email_body .= "Gender: $gender \r\n";
 $email_body .= "Ethnicity: $ethnicity \r\n";
