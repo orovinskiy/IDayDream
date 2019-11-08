@@ -210,11 +210,12 @@ function validReferences(){
 
     let count = 3;
     for(let i = 1; i < 4; i++){
-        let holder = validText("labelRefFullName"+i, "refFullName"+i);
-        let holder1 = validText("labelRefRelationship"+i,"refRelationship"+i);
-        let holder2 = validatePhoneNum("labelRefPhone"+i,"refPhone"+i);
-        let holder3 = validMail("labelRefEmail"+i,"refEmail"+i);
-        if(holder === false || holder1 === false || holder2 === false || holder3 === false){
+        let holder = validText("labelRefFirstName"+i, "refFirstName"+i);
+        let holder1 = validText("labelRefLastName"+i, "refLastName"+i);
+        let holder2 = validText("labelRefRelationship"+i,"refRelationship"+i);
+        let holder3 = validatePhoneNum("labelRefPhone"+i,"refPhone"+i);
+        let holder4 = validMail("labelRefEmail"+i,"refEmail"+i);
+        if(holder === false || holder1 === false || holder2 === false || holder3 === false || holder4 === false){
             count--;
         }
     }
