@@ -130,7 +130,7 @@ $mailAvailable = "";
 
                 //About you
 
-                $otherHeardAbout = (isset($otherHowDidHear)) ? '('.$otherHowDidHear.')' : '';
+                $otherHeardAbout = (!empty($otherHowDidHear)) ? '('.$otherHowDidHear.')' : '';
                 echo "<p>How you heard about us: $howDidHear $otherHeardAbout </p>";
                 echo "<p>Your Motivation: $motivation</p>";
                 echo "<p>Your Experience: $volExperience</p>";
