@@ -23,6 +23,7 @@ $zip = $_POST["zip"];
 
 //About You
 $howDidHear = $_POST["howDidHear"];
+$otherHowDidHear = $_POST["otherHowDidHear"];
 $motivation = $_POST["motivation"];
 $volExperience = $_POST["volExperience"];
 $skills = $_POST["skills"];
@@ -131,7 +132,9 @@ $mailAvailable = "";
                 }
 
                 //About you
-                echo "<p>How you heard about us: ".$howDidHear."</p>";
+
+                $otherHeardAbout = (!empty($otherHowDidHear)) ? '('.$otherHowDidHear.')' : '';
+                echo "<p>How you heard about us: $howDidHear $otherHeardAbout </p>";
                 echo "<p>Your Motivation: $motivation</p>";
                 echo "<p>Your Experience: $volExperience</p>";
                 echo "<p>Your Skills: ".$skills."</p>";
@@ -171,7 +174,7 @@ $email_body = "Volunteer Information --\r\n";
 $email_body .= "Name: $firstName $lastName \r\n";
 $email_body .= "Address: $street $city". ", "."$state $zip \r\n";
 $email_body .= "Interests: $mailInterests \r\n \r\n";
-$email_body .= "How they heard about us: $howDidHear \r\n";
+$email_body .= "How they heard about us: $howDidHear $otherHeardAbout \r\n";
 $email_body .= "Their Motivation: $motivation \r\n";
 $email_body .= "Their Experience: $volExperience \r\n";
 $email_body .= "Their Skills: $skills \r\n \r\n";
