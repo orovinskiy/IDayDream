@@ -13,10 +13,19 @@ $gradClass = $_POST["gradClass"];
 $favFood = $_POST["food"];
 $collegeIntr = $_POST["college"];
 $jobGoal = $_POST["jobGoal"];
+$otherEthic = $_POST['otherEthic'];
 
 //ContactInfo Fields
 $email = $_POST["email"];
-$phoneNum = $_POST["phone"]
+$phoneNum = $_POST["phone"];
+
+//Validation variables
+$genderArray = array('male','female','other','noAnswer');
+$ethicArray = array('Native American','Asian','Black','Hispanic','Middle Eastern','Pacific Islander','Southeast Asian','White','Multiracial','No Answer','other');
+$isValid = true;
+
+//include other files
+include "functionsIDD.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -43,11 +52,48 @@ $phoneNum = $_POST["phone"]
     <div class="text-center">
         <h2>Personal Info</h2>
         <?php
-        //Displays Personal Information entered from the form
-        echo "<p>Name: $firstName $lastName </p>";
-        echo "<p>Birthday: $birthday </p>";
-        echo "<p>Gender: $gender </p>";
-        echo "<p>Ethnicity: $ethnicity </p>";
+        //Displays Personal Information entered from the form and validates
+        if(validName($firstName) === false|| validName($lastName)===false){
+            $isValid = false;
+            echo "<p>Name: Invalid last and first name must contain only letters</p>";
+        } else{
+            echo "<p>Name: $firstName $lastName </p>";
+        }
+
+        //validates the date in a YYYY-MM-DD format
+        if(validDate($birthday) === false){
+            $isValid = false;
+            echo "<p>Date: Invalid must follow YYYY-MM-DD</p>";
+        }else{
+            echo "<p>Birthday: $birthday </p>";
+        }
+
+        //validates the gender if the correct one was picked
+        if(validGender($genderArray, $gender) === false){
+            $isValid = false;
+            echo "<p>Gender: Invalid, please choose from the options provided</p>";
+        }else{
+            echo "<p>Gender: $gender </p>";
+        }
+
+        //validates the ethnicity and the other box if chosen
+        if(validEthic($ethicArray, $ethnicity) === false){
+            $isValid = false;
+            echo "<p>Ethnicity: Invalid, please choose from the options provided </p>";
+        }
+        else if($ethnicity === "other"){
+            if($otherEthic !== htmlspecialchars($otherEthic) || trim($otherEthic) === ""){
+                $isValid = false;
+                echo "<p>Ethnicity: Please provide a valid answer";
+            }
+            else {
+                echo "<p>Ethnicity: $otherEthic</p>";
+            }
+        }
+        else{
+            echo "<p>Ethnicity: $ethnicity</p>";
+        }
+
         echo "<p>Graduation Year: $gradClass </p>";
         echo "<p>College Interest: $collegeIntr </p>";
         echo "<p>Aspirations: $jobGoal </p>";
@@ -57,8 +103,21 @@ $phoneNum = $_POST["phone"]
         <h2 class="mt-3">Contact Information</h2>
         <?php
         //Displays Contact Information entered from the form
-        echo "<p>E-Mail: $email</p>";
-        echo "<p>Phone Number: $phoneNum</p>";
+        if(validMail($email) === false){
+            $isValid = false;
+            echo "<p>E-Mail: Invalid email format</p>";
+        }
+        else{
+            echo "<p>E-Mail: $email</p>";
+        }
+
+        if(validNumber($phoneNum) === false){
+            $isValid = false;
+            echo "<p>Phone Number: Invalid phone number format</p>";
+        }
+        else{
+            echo "<p>Phone Number: $phoneNum</p>";
+        }
         ?>
     </div>
 </div>

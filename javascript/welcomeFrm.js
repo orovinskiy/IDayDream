@@ -4,7 +4,25 @@ const EMAIL_REGEX = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-
 // Regex found at https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript
 const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 
-document.getElementById("welcomeForm").onsubmit = validateForm;
+//Regex found at https://stackoverflow.com/questions/13194322/php-regex-to-check-date-is-in-yyyy-mm-dd-format
+const BIRTHDAY_REGEX =/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+
+//document.getElementById("welcomeForm").onsubmit = validateForm;
+
+/**
+ * gets ethnicity select and sees if other is selected. if selected then shows
+ * the other input box
+ **/
+let $ethnicity = $("#ethnicity");
+$ethnicity.on("click", function(){
+    if($ethnicity.val() === "other"){
+        $("#otherGroup").removeClass("hidden");
+
+    }
+    else{
+        $("#otherGroup").addClass("hidden");
+    }
+});
 
 /**
  * Checks required fields for values and if format is correct. Shows error messages
@@ -51,6 +69,12 @@ function validateAllFormats() {
         isValid = false;
     }
 
+    //checks for a valid date format
+    let birthdayInput = document.getElementById("birthday");
+    if (!validateFormat(birthdayInput, BIRTHDAY_REGEX)){
+        isValid = false;
+    }
+
     return isValid;
 }
 
@@ -64,7 +88,7 @@ function validateFormat(input, regexp) {
     let inputTxt = input.value.trim();
 
     // only display msg for valid format if characters are typed in
-    if (inputTxt !== "" && !regexp.test(inputTxt)) {
+    if (inputTxt !== "" && !inputTxt.match(regexp)) {
 
         // error message id is the id of the input it belongs to + "ErrFormat"
         let errMsg = document.getElementById(input.id + "ErrFormat");
@@ -154,3 +178,5 @@ function clearAllErrors() {
     }
 
 }
+
+

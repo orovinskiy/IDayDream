@@ -51,8 +51,9 @@
                 <!-- BirthDate -->
                 <div class="form-group col-sm-6">
                     <label class="h5 font-weight-light" id="lblBirthday" for="birthday">Birthday *</label>
-                    <span id="birthdayErr" class="error">Required</span>
-                    <input class="form-control required" type="text" id="birthday" maxlength="20" name="birthday">
+                    <span id="birthdayErrFormat" class="error">Please enter the following date format YYYY-MM-DD</span>
+                    <span id="birthdayErr" class="error">required</span>
+                    <input class="form-control required" placeholder="YYYY-MM-DD" type="text" id="birthday" maxlength="20" name="birthday">
                 </div>
 
                 <!-- Gender -->
@@ -73,7 +74,7 @@
             <div class="form-group form-sm-inline">
                 <label class="h5 font-weight-light form-label" id="lblEthnicity" for="ethnicity">Ethnicity *</label>
                 <span id="ethnicityErr" class="error">Required</span>
-                <select class="form-control required" id="ethnicity" name="ethnicity">
+                <select class="form-control mb-4 required" id="ethnicity" name="ethnicity">
                     <option value="">Select an Ethnicity</option>
                     <option value="Native American">American Indian or Alaska Native</option>
                     <option value="Asian">Asian or Asian American</option>
@@ -84,8 +85,14 @@
                     <option value="Southeast Asian">Southeast Asian</option>
                     <option value="White">White non-Hispanic</option>
                     <option value="Multiracial">Bi/Multiracial</option>
+                    <option value="other">Other</option>
                     <option value="No Answer">Declined to State</option>
                 </select>
+
+                <div class="hidden form-group form-sm-inline" id="otherGroup">
+                    <label for="otherEthic" id="lblOtherEthic" class=" h5 font-weight-light form-label">Other</label>
+                    <input class="mb-2 form-control" type="text" id="otherEthic" name="otherEthic">
+                </div>
             </div>
 
             <div class="row">
@@ -132,7 +139,7 @@
             <div class="form-group">
                 <label class="h5 font-weight-light" id="lblEmail" for="email">Email *</label>
                 <span id="emailErr" class="error">Required</span>
-                <span id="emailFormatErr" class="error">Please enter a valid email format</span>
+                <span id="emailErrFormat" class="error">Please enter a valid email format</span>
                 <input class="form-control required" type="text" id="email" maxlength="50" name="email">
             </div>
 
@@ -140,7 +147,7 @@
             <div class="form-group">
                 <label class="h5 font-weight-light" id="lblPhone" for="phone">Phone Number *</label>
                 <span id="phoneErr" class="error">Required</span>
-                <span id="phoneFormatErr" class="error">Please enter a valid phone number format</span>
+                <span id="phoneErrFormat" class="error">Please enter a valid phone number format</span>
                 <input class="form-control required" type="text" id="phone" maxlength="25" name="phone">
             </div>
         </fieldset>
