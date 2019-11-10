@@ -88,7 +88,7 @@ function validateFormat(input, regexp) {
     let inputTxt = input.value.trim();
 
     // only display msg for valid format if characters are typed in
-    if (inputTxt !== "" && !regexp.match(inputTxt)) {
+    if (inputTxt !== "" && !regexp.test(inputTxt)) {
 
         // error message id is the id of the input it belongs to + "ErrFormat"
         let errMsg = document.getElementById(input.id + "ErrFormat");
