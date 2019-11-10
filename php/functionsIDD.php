@@ -1,7 +1,7 @@
 <?php
 //checks if it is a straight text field
 function validName($name){
-    if($name === "" || $name != htmlspecialchars($name) || !ctype_alpha($name)){
+    if($name === "" || $name != htmlspecialchars($name) || preg_match("/^[^<,\"@/{}()*$%?=>:|;#]*$/i", $name)){
         return false;
     }
     return true;
