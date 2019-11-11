@@ -24,10 +24,10 @@ $gradArray = array('2020','2021','2022','2023','2024','2025','2026');
 $genderArray = array('male','female','other','noAnswer');
 $ethicArray = array('Native American','Asian','Black','Hispanic','Middle Eastern','Pacific Islander','Southeast Asian','White','Multiracial','No Answer','other');
 $textArray = array(
-                    'College Interest:'=> $collegeIntr,
-                    'Aspirations:'=> $jobGoal,
-                    'Favorite Snacks:'=> $favFood
-                  );
+    'College Interest:'=> $collegeIntr,
+    'Aspirations:'=> $jobGoal,
+    'Favorite Snacks:'=> $favFood
+);
 $isValid = true;
 
 //include other files
@@ -64,6 +64,8 @@ include "functionsIDD.php";
             echo "<p>Name: Invalid last and first name must contain only letters</p>";
         } else{
             echo "<p>Name: $firstName $lastName </p>";
+            $firstName = mysqli_real_escape_string($cnxn, $firstName);
+            $lastName = mysqli_real_escape_string($cnxn, $lastName);
         }
 
         //validates the date in a YYYY-MM-DD format
@@ -72,6 +74,7 @@ include "functionsIDD.php";
             echo "<p>Date: Invalid must follow YYYY-MM-DD</p>";
         }else{
             echo "<p>Birthday: $birthday </p>";
+            $birthday = mysqli_real_escape_string($cnxn, $birthday);
         }
 
         //validates the gender if the correct one was picked
@@ -80,6 +83,7 @@ include "functionsIDD.php";
             echo "<p>Gender: Invalid, please choose from the options provided</p>";
         }else{
             echo "<p>Gender: $gender </p>";
+            $gender = mysqli_real_escape_string($cnxn, $gender);
         }
 
         //Validates if the graduation year is correct from select
@@ -88,6 +92,7 @@ include "functionsIDD.php";
             echo "<p>Graduation Year: Invalid, please choose from the options provided</p>";
         }else{
             echo "<p>Graduation year: $gradClass </p>";
+            $gradClass = mysqli_real_escape_string($cnxn, $gradClass);
         }
 
         //validates the ethnicity and the other box if chosen
@@ -102,10 +107,12 @@ include "functionsIDD.php";
             }
             else {
                 echo "<p>Ethnicity: $otherEthic</p>";
+                $otherEthic = mysqli_real_escape_string($cnxn, $otherEthic);
             }
         }
         else{
             echo "<p>Ethnicity: $ethnicity</p>";
+            $ethnicity = mysqli_real_escape_string($cnxn, $ethnicity);
         }
 
         //cycles through all the text fields making sure no spoofing
@@ -119,6 +126,9 @@ include "functionsIDD.php";
                 echo "<p>$text $value</p>";
             }
         }
+        $jobGoal = mysqli_real_escape_string($cnxn, $jobGoal);
+        $collegeIntr = mysqli_real_escape_string($cnxn, $collegeIntr);
+        $favFood = mysqli_real_escape_string($cnxn, $favFood);
         ?>
 
         <h2 class="mt-3">Contact Information</h2>
@@ -131,6 +141,7 @@ include "functionsIDD.php";
         }
         else{
             echo "<p>E-Mail: $email</p>";
+            $email = mysqli_real_escape_string($cnxn, $email);
         }
 
         if(validNumber($phoneNum) === false){
@@ -139,6 +150,7 @@ include "functionsIDD.php";
         }
         else{
             echo "<p>Phone Number: $phoneNum</p>";
+            $phoneNum = mysqli_real_escape_string($cnxn, $phoneNum);
         }
         ?>
     </div>
