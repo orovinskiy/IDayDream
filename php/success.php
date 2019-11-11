@@ -1,7 +1,7 @@
 <?php
 //Error Reporting
-/*ini_set("display_errors",1);
-error_reporting(E_ALL);*/
+ini_set("display_errors",1);
+error_reporting(E_ALL);
 
 //Fields
 $firstName = $_POST["firstName"];
@@ -13,10 +13,25 @@ $gradClass = $_POST["gradClass"];
 $favFood = $_POST["food"];
 $collegeIntr = $_POST["college"];
 $jobGoal = $_POST["jobGoal"];
+$otherEthic = $_POST['otherEthic'];
 
 //ContactInfo Fields
 $email = $_POST["email"];
-$phoneNum = $_POST["phone"]
+$phoneNum = $_POST["phone"];
+
+//Validation variables
+$gradArray = array('2020','2021','2022','2023','2024','2025','2026');
+$genderArray = array('male','female','other','noAnswer');
+$ethicArray = array('Native American','Asian','Black','Hispanic','Middle Eastern','Pacific Islander','Southeast Asian','White','Multiracial','No Answer','other');
+$textArray = array(
+    'College Interest:'=> $collegeIntr,
+    'Aspirations:'=> $jobGoal,
+    'Favorite Snacks:'=> $favFood
+);
+$isValid = true;
+
+//include other files
+include "functionsIDD.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -43,57 +58,141 @@ $phoneNum = $_POST["phone"]
     <div class="text-center">
         <h2>Personal Info</h2>
         <?php
-        //Displays Personal Information entered from the form
-        echo "<p>Name: $firstName $lastName </p>";
-        echo "<p>Birthday: $birthday </p>";
-        echo "<p>Gender: $gender </p>";
-        echo "<p>Ethnicity: $ethnicity </p>";
-        echo "<p>Graduation Year: $gradClass </p>";
-        echo "<p>College Interest: $collegeIntr </p>";
-        echo "<p>Aspirations: $jobGoal </p>";
-        echo "<p>Favorite Snacks: $favFood </p>";
+        //Displays Personal Information entered from the form and validates
+        if(validName($firstName) === false|| validName($lastName)===false){
+            $isValid = false;
+            echo "<p>Name: Invalid last and first name must contain only letters</p>";
+        } else{
+            echo "<p>Name: $firstName $lastName </p>";
+            $firstName = mysqli_real_escape_string($cnxn, $firstName);
+            $lastName = mysqli_real_escape_string($cnxn, $lastName);
+        }
+
+        //validates the date in a YYYY-MM-DD format
+        if(validDate($birthday) === false){
+            $isValid = false;
+            echo "<p>Date: Invalid must follow YYYY-MM-DD</p>";
+        }else{
+            echo "<p>Birthday: $birthday </p>";
+            $birthday = mysqli_real_escape_string($cnxn, $birthday);
+        }
+
+        //validates the gender if the correct one was picked
+        if(validSelect($genderArray, $gender) === false){
+            $isValid = false;
+            echo "<p>Gender: Invalid, please choose from the options provided</p>";
+        }else{
+            echo "<p>Gender: $gender </p>";
+            $gender = mysqli_real_escape_string($cnxn, $gender);
+        }
+
+        //Validates if the graduation year is correct from select
+        if(validSelect($gradArray, $gradClass) === false){
+            $isValid = false;
+            echo "<p>Graduation Year: Invalid, please choose from the options provided</p>";
+        }else{
+            echo "<p>Graduation year: $gradClass </p>";
+            $gradClass = mysqli_real_escape_string($cnxn, $gradClass);
+        }
+
+        //validates the ethnicity and the other box if chosen
+        if(validSelect($ethicArray, $ethnicity) === false){
+            $isValid = false;
+            echo "<p>Ethnicity: Invalid, please choose from the options provided </p>";
+        }
+        else if($ethnicity === "other"){
+            if($otherEthic !== htmlspecialchars($otherEthic) || trim($otherEthic) === ""){
+                $isValid = false;
+                echo "<p>Ethnicity: Please provide a valid answer";
+            }
+            else {
+                echo "<p>Ethnicity: $otherEthic</p>";
+                $otherEthic = mysqli_real_escape_string($cnxn, $otherEthic);
+            }
+        }
+        else{
+            echo "<p>Ethnicity: $ethnicity</p>";
+            $ethnicity = mysqli_real_escape_string($cnxn, $ethnicity);
+        }
+
+        //cycles through all the text fields making sure no spoofing
+        //happened
+        foreach($textArray as $text=>$value){
+            if(!validText($value)){
+                $isValid = false;
+                echo "<p>$text Invalid Input </p>";
+            }
+            else{
+                echo "<p>$text $value</p>";
+            }
+        }
+        $jobGoal = mysqli_real_escape_string($cnxn, $jobGoal);
+        $collegeIntr = mysqli_real_escape_string($cnxn, $collegeIntr);
+        $favFood = mysqli_real_escape_string($cnxn, $favFood);
         ?>
 
         <h2 class="mt-3">Contact Information</h2>
         <?php
         //Displays Contact Information entered from the form
-        echo "<p>E-Mail: $email</p>";
-        echo "<p>Phone Number: $phoneNum</p>";
+        //and validates them before displaying
+        if(validMail($email) === false){
+            $isValid = false;
+            echo "<p>E-Mail: Invalid email format</p>";
+        }
+        else{
+            echo "<p>E-Mail: $email</p>";
+            $email = mysqli_real_escape_string($cnxn, $email);
+        }
+
+        if(validNumber($phoneNum) === false){
+            $isValid = false;
+            echo "<p>Phone Number: Invalid phone number format</p>";
+        }
+        else{
+            echo "<p>Phone Number: $phoneNum</p>";
+            $phoneNum = mysqli_real_escape_string($cnxn, $phoneNum);
+        }
         ?>
     </div>
 </div>
 
 <!-- Code to send a email of the users entered information -->
 <?php
-$emailSend = "olegrovin@gmail.com";
+if($isValid === true){
+    $emailSend = "olegrovin@gmail.com";
 
-$email_body = "Welcome Form --\r\n";
-$email_body .= "Name: $firstName $lastName \r\n";
-$email_body .= "Birthday: $birthday \r\n";
-$email_body .= "Gender: $gender \r\n";
-$email_body .= "Ethnicity: $ethnicity \r\n";
-$email_body .= "Graduation Year: $gradClass \r\n \r\n";
+    $email_body = "Welcome Form --\r\n";
+    $email_body .= "Name: $firstName $lastName \r\n";
+    $email_body .= "Birthday: $birthday \r\n";
+    $email_body .= "Gender: $gender \r\n";
+    $email_body .= "Ethnicity: $ethnicity \r\n";
+    $email_body .= "Graduation Year: $gradClass \r\n \r\n";
 
-$email_body .= "Their College Interests: $collegeIntr \r\n \r\n";
-$email_body .= "Their Aspirations: $jobGoal \r\n \r\n";
-$email_body .= "Their Favorite Snack: $favFood \r\n \r\n";
+    $email_body .= "Their College Interests: $collegeIntr \r\n \r\n";
+    $email_body .= "Their Aspirations: $jobGoal \r\n \r\n";
+    $email_body .= "Their Favorite Snack: $favFood \r\n \r\n";
 
-$email_body .= "Contact Information --\r\n";
-$email_body .= "E-Mail: $email\r\n";
-$email_body .= "Phone Number: $phoneNum\r\n";
+    $email_body .= "Contact Information --\r\n";
+    $email_body .= "E-Mail: $email\r\n";
+    $email_body .= "Phone Number: $phoneNum\r\n";
 
 
-$email_subject = "New Member Applicant";
-$to = "olegrovin@gmail.com";
+    $email_subject = "New Member Applicant";
+    $to = "olegrovin@gmail.com";
 
-$headers = "from: $email\r\n";
-$headers.= "Reply-to: $email \r\n";
-$success = mail($to, $email_subject, $email_body, $headers);
+    $headers = "from: $email\r\n";
+    $headers.= "Reply-to: $email \r\n";
+    $success = mail($to, $email_subject, $email_body, $headers);
 
-//Print final confirmation
-$msg = $success ? "Your form was successfully submitted."
-    : "We're sorry. There was a problem with your form.";
-echo "<p>$msg</p>";
+    //Print final confirmation
+    $msg = $success ? "Your form was successfully submitted."
+        : "We're sorry. There was a problem with your form.";
+    echo "<p>$msg</p>";
+}
+else{
+    echo "<h2>Your form was not submitted</h2>";
+}
+
 ?>
 
 <!-- Optional JavaScript -->
