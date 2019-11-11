@@ -1,7 +1,7 @@
 <?php
 //Error Reporting
-/*ini_set("display_errors",1);
-error_reporting(E_ALL);*/
+ini_set("display_errors",1);
+error_reporting(E_ALL);
 
 //Fields
 $firstName = $_POST["firstName"];
@@ -20,8 +20,14 @@ $email = $_POST["email"];
 $phoneNum = $_POST["phone"];
 
 //Validation variables
+$gradArray = array('2020','2021','2022','2023','2024','2025','2026');
 $genderArray = array('male','female','other','noAnswer');
 $ethicArray = array('Native American','Asian','Black','Hispanic','Middle Eastern','Pacific Islander','Southeast Asian','White','Multiracial','No Answer','other');
+$textArray = array(
+                    'College Interest:'=> $collegeIntr,
+                    'Aspirations:'=> $jobGoal,
+                    'Favorite Snacks:'=> $favFood
+                  );
 $isValid = true;
 
 //include other files
@@ -69,15 +75,23 @@ include "functionsIDD.php";
         }
 
         //validates the gender if the correct one was picked
-        if(validGender($genderArray, $gender) === false){
+        if(validSelect($genderArray, $gender) === false){
             $isValid = false;
             echo "<p>Gender: Invalid, please choose from the options provided</p>";
         }else{
             echo "<p>Gender: $gender </p>";
         }
 
+        //Validates if the graduation year is correct from select
+        if(validSelect($gradArray, $gradClass) === false){
+            $isValid = false;
+            echo "<p>Graduation Year: Invalid, please choose from the options provided</p>";
+        }else{
+            echo "<p>Graduation year: $gradClass </p>";
+        }
+
         //validates the ethnicity and the other box if chosen
-        if(validEthic($ethicArray, $ethnicity) === false){
+        if(validSelect($ethicArray, $ethnicity) === false){
             $isValid = false;
             echo "<p>Ethnicity: Invalid, please choose from the options provided </p>";
         }
@@ -94,15 +108,23 @@ include "functionsIDD.php";
             echo "<p>Ethnicity: $ethnicity</p>";
         }
 
-        echo "<p>Graduation Year: $gradClass </p>";
-        echo "<p>College Interest: $collegeIntr </p>";
-        echo "<p>Aspirations: $jobGoal </p>";
-        echo "<p>Favorite Snacks: $favFood </p>";
+        //cycles through all the text fields making sure no spoofing
+        //happened
+        foreach($textArray as $text=>$value){
+            if(!validText($value)){
+                $isValid = false;
+                echo "<p>$text Invalid Input </p>";
+            }
+            else{
+                echo "<p>$text $value</p>";
+            }
+        }
         ?>
 
         <h2 class="mt-3">Contact Information</h2>
         <?php
         //Displays Contact Information entered from the form
+        //and validates them before displaying
         if(validMail($email) === false){
             $isValid = false;
             echo "<p>E-Mail: Invalid email format</p>";
@@ -124,35 +146,41 @@ include "functionsIDD.php";
 
 <!-- Code to send a email of the users entered information -->
 <?php
-$emailSend = "olegrovin@gmail.com";
+if($isValid === true){
+    $emailSend = "olegrovin@gmail.com";
 
-$email_body = "Welcome Form --\r\n";
-$email_body .= "Name: $firstName $lastName \r\n";
-$email_body .= "Birthday: $birthday \r\n";
-$email_body .= "Gender: $gender \r\n";
-$email_body .= "Ethnicity: $ethnicity \r\n";
-$email_body .= "Graduation Year: $gradClass \r\n \r\n";
+    $email_body = "Welcome Form --\r\n";
+    $email_body .= "Name: $firstName $lastName \r\n";
+    $email_body .= "Birthday: $birthday \r\n";
+    $email_body .= "Gender: $gender \r\n";
+    $email_body .= "Ethnicity: $ethnicity \r\n";
+    $email_body .= "Graduation Year: $gradClass \r\n \r\n";
 
-$email_body .= "Their College Interests: $collegeIntr \r\n \r\n";
-$email_body .= "Their Aspirations: $jobGoal \r\n \r\n";
-$email_body .= "Their Favorite Snack: $favFood \r\n \r\n";
+    $email_body .= "Their College Interests: $collegeIntr \r\n \r\n";
+    $email_body .= "Their Aspirations: $jobGoal \r\n \r\n";
+    $email_body .= "Their Favorite Snack: $favFood \r\n \r\n";
 
-$email_body .= "Contact Information --\r\n";
-$email_body .= "E-Mail: $email\r\n";
-$email_body .= "Phone Number: $phoneNum\r\n";
+    $email_body .= "Contact Information --\r\n";
+    $email_body .= "E-Mail: $email\r\n";
+    $email_body .= "Phone Number: $phoneNum\r\n";
 
 
-$email_subject = "New Member Applicant";
-$to = "olegrovin@gmail.com";
+    $email_subject = "New Member Applicant";
+    $to = "olegrovin@gmail.com";
 
-$headers = "from: $email\r\n";
-$headers.= "Reply-to: $email \r\n";
-$success = mail($to, $email_subject, $email_body, $headers);
+    $headers = "from: $email\r\n";
+    $headers.= "Reply-to: $email \r\n";
+    $success = mail($to, $email_subject, $email_body, $headers);
 
-//Print final confirmation
-$msg = $success ? "Your form was successfully submitted."
-    : "We're sorry. There was a problem with your form.";
-echo "<p>$msg</p>";
+    //Print final confirmation
+    $msg = $success ? "Your form was successfully submitted."
+        : "We're sorry. There was a problem with your form.";
+    echo "<p>$msg</p>";
+}
+else{
+    echo "<h2>Your form was not submitted</h2>";
+}
+
 ?>
 
 <!-- Optional JavaScript -->

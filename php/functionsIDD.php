@@ -1,7 +1,9 @@
 <?php
+
 //checks if it is a straight text field
 function validName($name){
-    if($name === "" || $name != htmlspecialchars($name) || preg_match("/^[^<,\"@/{}()*$%?=>:|;#]*$/i", $name)){
+    $nameArray = array('1','2','3','4','5','6','7','8','9','0','#','@','$','%');
+    if($name === "" || $name != htmlspecialchars($name) || !formatCheck($nameArray,$name) || is_numeric($name)){
         return false;
     }
     return true;
@@ -17,20 +19,13 @@ function validDate($date){
 }
 
 //looks to see if the given value is inside the array
-function validGender($array, $input){
+function validSelect($array, $input){
     if(!in_array($input, $array)){
         return false;
     }
     return true;
 }
 
-//looks to see if the given value is inside the array
-function validEthic($array, $input){
-    if(!in_array($input, $array)){
-        return false;
-    }
-    return true;
-}
 
 function validMail($email){
     if(trim($email) === "" || $email !== htmlspecialchars($email) ||
@@ -48,6 +43,26 @@ function validNumber($number){
 
         return false;
 
+    }
+    return true;
+}
+
+//checks for undesired variables
+function formatCheck($array, $input){
+    $valid = true;
+
+    for($i = 0; $i < count($array); $i++){
+        if(strpos($input,$array[$i]) !== false){
+            $valid = false;
+        }
+    }
+
+    return $valid;
+}
+
+function validText($input){
+    if($input !== htmlspecialchars($input)){
+        return false;
     }
     return true;
 }
