@@ -45,18 +45,24 @@ include "functionsIDD.php";
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <!-- Styles -->
+    <link rel="stylesheet" href="../styles/style.css">
     <link href="../styles/form.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../images/favicon.png" />
 
     <title>Thank you</title>
 </head>
 <body>
-<!--Header for Thank You page-->
-<div class="container">
-    <div class="jumbotron ">
-        <h1 class="display-4">Thank You for Completion!</h1>
-        <p class="lead">Please review the following information you have submitted</p>
-    </div>
 
+<!--Header for Thank You page-->
+<div class="jumbotron ">
+    <h1 class="display-4">Thank You for Completion!</h1>
+    <p class="lead">Please review the following information you have submitted</p>
+</div>
+
+<div class="container">
     <div class="text-center">
         <h2>Personal Info</h2>
         <?php
@@ -160,7 +166,37 @@ include "functionsIDD.php";
 
 <!-- Code to send a email of the users entered information -->
 <?php
-if($isValid === true){
+if($isValid === true) {
+
+    // Insert into database
+    $personInsert = "INSERT INTO person (firstName, lastName, email, phone)
+            VALUES ('$firstName', '$lastName', '$email', '$phoneNum')";
+
+    $personQResult = mysqli_query($cnxn, $personInsert);
+    $dreamerQResult = false;
+
+    if ($personQResult) {
+        $personId = $cnxn->insert_id;
+        $currDate = date("Y-m-d");
+
+        $dreamerInsert =
+            "INSERT INTO participant (personId, birthday, gender, ethnicity, graduatingClass, 
+                                      favoriteFood, collegeOfInterest, careerGoals, joinDate)
+            VALUES ('$personId', '$birthday', '$gender', '$ethnicity', '$gradClass', 
+                    '$favFood', '$collegeIntr', '$jobGoal', '$currDate')";
+
+        $dreamerQResult = mysqli_query($cnxn, $dreamerInsert);
+    }
+
+    if ($personQResult && $dreamerQResult) {
+        echo "<h2>Success!! Your information has been submitted</h2>";
+    }
+    else {
+        echo "<h2>There was an error. Your information was not submitted.</h2>";
+    }
+
+
+    // Create and send email
     $emailSend = "olegrovin@gmail.com";
 
     $email_body = "Welcome Form --\r\n";
@@ -184,6 +220,7 @@ if($isValid === true){
 
     $headers = "from: $email\r\n";
     $headers.= "Reply-to: $email \r\n";
+
     $success = mail($to, $email_subject, $email_body, $headers);
 
     //Print final confirmation
@@ -192,7 +229,7 @@ if($isValid === true){
     echo "<p>$msg</p>";
 }
 else{
-    echo "<h2>Your form was not submitted</h2>";
+    echo "<h2>There was an error. Your information was not submitted.</h2>";
 }
 
 ?>

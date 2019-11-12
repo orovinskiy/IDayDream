@@ -1,24 +1,5 @@
 /*This CSS is the common theme to all forms*/
 
-body {
-    font-family: 'Questrial', sans-serif;
-}
-
-/* Background for header */
-.banner {
-    background: url("../images/background.jpg") no-repeat 50% 40%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-
-    text-shadow: 1px 1px #818181;
-
-    -webkit-box-shadow: 0 0 100px -53px rgba(0,0,0,1);
-    -moz-box-shadow: 0 0 100px -53px rgba(0,0,0,1);
-    box-shadow: 0 0 100px -53px rgba(0,0,0,1);
-}
-
 fieldset {
     border: thin solid grey;
     padding: 1.5em;
@@ -30,10 +11,6 @@ fieldset {
 
 .form-group {
     margin-bottom: 1.8em;
-}
-
-h1 {
-    text-align: center;
 }
 
 legend {
@@ -66,8 +43,4 @@ span.error {
     legend{
         width:50%;
     }
-}
-
-.hidden{
-    display: none;
 }
