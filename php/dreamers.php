@@ -3,6 +3,9 @@
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
+require("functionsIDD.php");
+require('/home/notfound/connect.php');
+
 ?>
 
 <!doctype html>
@@ -32,16 +35,8 @@ error_reporting(E_ALL);
 
 <div class="container">
     <?php
-    require('/home/notfound/connect.php');
 
 
-    $sql = 'SELECT *
-            FROM person 
-            INNER JOIN participant 
-                ON person.personId = participant.personId
-            ORDER BY participantId DESC';
-
-    $result = mysqli_query($cnxn, $sql);
     ?>
 
     <table id="dreamerTable" class="display">
@@ -60,6 +55,7 @@ error_reporting(E_ALL);
         <tbody>
 
         <?php
+        $result = getAllDreamers($cnxn);
 
         while ($row = mysqli_fetch_assoc($result)) {
             $personId = $row['personId'];
@@ -75,29 +71,16 @@ error_reporting(E_ALL);
             $joinDate = $row['joinDate'];
 
             echo "<tr>
-                <td>$fName $lName</td>
-                <td>$email</td>
-                <td>$phone</td>";
-                try {
-                    $formattedBirth = new DateTime($birthday);
-                    echo "<td data-sort='$birthday'>".$formattedBirth->format('m/d/Y').'</td>';
-
-                } catch (Exception $e) {
-                    echo '<td>Error: Can\'t read date</td>';
-                }
-                echo "<td>$birthday</td>
-                <td>$gender</td>
-                <td>$ethnicity</td>
-                <td>$gradClass</td>";
-                try {
-                    $formattedDate = new DateTime($joinDate);
-                    echo "<td data-sort='$joinDate'>".$formattedDate->format('m/d/Y').'</td>';
-
-                } catch (Exception $e) {
-                    echo '<td>Error: Can\'t read date</td>';
-                }
-                echo '</tr>';
-            }
+                    <td>$fName $lName</td>
+                    <td>$email</td>
+                    <td>$phone</td>
+                    <td data-sort='$birthday'>".formatDate($birthday)."</td>
+                    <td>$gender</td>
+                    <td>$ethnicity</td>
+                    <td>$gradClass</td>
+                    <td data-sort='$joinDate'>".formatDate($joinDate)."</td>
+                </tr>";
+        }
         ?>
 
         </tbody>

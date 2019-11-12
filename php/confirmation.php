@@ -3,6 +3,8 @@
 ini_set("display_errors",1);
 error_reporting(E_ALL);
 
+//include other files
+require("functionsIDD.php");
 require('/home/notfound/connect.php');
 
 //Fields
@@ -31,9 +33,6 @@ $textArray = array(
     'Favorite Snacks:'=> $favFood
 );
 $isValid = true;
-
-//include other files
-include "functionsIDD.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -58,8 +57,7 @@ include "functionsIDD.php";
 
 <!--Header for Thank You page-->
 <div class="jumbotron ">
-    <h1 class="display-4">Thank You for Completion!</h1>
-    <p class="lead">Please review the following information you have submitted</p>
+    <h1 class="display-4">Thank You!</h1>
 </div>
 
 <div class="container">
@@ -161,79 +159,65 @@ include "functionsIDD.php";
             $phoneNum = mysqli_real_escape_string($cnxn, $phoneNum);
         }
         ?>
+
+
+        <!-- Code to send a email of the users entered information -->
+        <?php
+        if($isValid === true) {
+
+            $isSaved = saveParticipant($cnxn, $firstName, $lastName, $email, $phoneNum, $birthday, $gender, $ethnicity,
+                $gradClass, $favFood, $collegeIntr, $jobGoal);
+
+            // if all data was saved successfully
+            if ($isSaved) {
+                echo "<h2>Success!! Your information has been submitted.</h2>";
+            }
+            else {
+                echo "<h2>There was an error. Your information was not submitted.</h2>";
+            }
+
+
+            // Create and send email
+            $emailSend = "olegrovin@gmail.com";
+
+            $email_body = "Welcome Form --\r\n";
+            $email_body .= "Name: $firstName $lastName \r\n";
+            $email_body .= "Birthday: $birthday \r\n";
+            $email_body .= "Gender: $gender \r\n";
+            $email_body .= "Ethnicity: $ethnicity \r\n";
+            $email_body .= "Graduation Year: $gradClass \r\n \r\n";
+
+            $email_body .= "Their College Interests: $collegeIntr \r\n \r\n";
+            $email_body .= "Their Aspirations: $jobGoal \r\n \r\n";
+            $email_body .= "Their Favorite Snack: $favFood \r\n \r\n";
+
+            $email_body .= "Contact Information --\r\n";
+            $email_body .= "E-Mail: $email\r\n";
+            $email_body .= "Phone Number: $phoneNum\r\n";
+
+
+            $email_subject = "New Member Applicant";
+            $to = "olegrovin@gmail.com";
+
+            $headers = "from: $email\r\n";
+            $headers.= "Reply-to: $email \r\n";
+
+            $success = mail($to, $email_subject, $email_body, $headers);
+
+            /*
+            //Print final confirmation
+            $msg = $success ? "Your form was successfully submitted."
+                : "We're sorry. There was a problem with your form.";
+            echo "<p>$msg</p>";
+            */
+        }
+        else{
+            echo "<h2>There was an error. Your information was not submitted.</h2>";
+        }
+
+        ?>
     </div>
 </div>
-
-<!-- Code to send a email of the users entered information -->
-<?php
-if($isValid === true) {
-
-    // Insert into database
-    $personInsert = "INSERT INTO person (firstName, lastName, email, phone)
-            VALUES ('$firstName', '$lastName', '$email', '$phoneNum')";
-
-    $personQResult = mysqli_query($cnxn, $personInsert);
-    $dreamerQResult = false;
-
-    if ($personQResult) {
-        $personId = $cnxn->insert_id;
-        $currDate = date("Y-m-d");
-
-        $dreamerInsert =
-            "INSERT INTO participant (personId, birthday, gender, ethnicity, graduatingClass, 
-                                      favoriteFood, collegeOfInterest, careerGoals, joinDate)
-            VALUES ('$personId', '$birthday', '$gender', '$ethnicity', '$gradClass', 
-                    '$favFood', '$collegeIntr', '$jobGoal', '$currDate')";
-
-        $dreamerQResult = mysqli_query($cnxn, $dreamerInsert);
-    }
-
-    if ($personQResult && $dreamerQResult) {
-        echo "<h2>Success!! Your information has been submitted</h2>";
-    }
-    else {
-        echo "<h2>There was an error. Your information was not submitted.</h2>";
-    }
-
-
-    // Create and send email
-    $emailSend = "olegrovin@gmail.com";
-
-    $email_body = "Welcome Form --\r\n";
-    $email_body .= "Name: $firstName $lastName \r\n";
-    $email_body .= "Birthday: $birthday \r\n";
-    $email_body .= "Gender: $gender \r\n";
-    $email_body .= "Ethnicity: $ethnicity \r\n";
-    $email_body .= "Graduation Year: $gradClass \r\n \r\n";
-
-    $email_body .= "Their College Interests: $collegeIntr \r\n \r\n";
-    $email_body .= "Their Aspirations: $jobGoal \r\n \r\n";
-    $email_body .= "Their Favorite Snack: $favFood \r\n \r\n";
-
-    $email_body .= "Contact Information --\r\n";
-    $email_body .= "E-Mail: $email\r\n";
-    $email_body .= "Phone Number: $phoneNum\r\n";
-
-
-    $email_subject = "New Member Applicant";
-    $to = "olegrovin@gmail.com";
-
-    $headers = "from: $email\r\n";
-    $headers.= "Reply-to: $email \r\n";
-
-    $success = mail($to, $email_subject, $email_body, $headers);
-
-    //Print final confirmation
-    $msg = $success ? "Your form was successfully submitted."
-        : "We're sorry. There was a problem with your form.";
-    echo "<p>$msg</p>";
-}
-else{
-    echo "<h2>There was an error. Your information was not submitted.</h2>";
-}
-
-?>
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
