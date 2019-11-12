@@ -3,6 +3,8 @@
 ini_set("display_errors",1);
 error_reporting(E_ALL);
 
+require('/home/notfound/connect.php');
+
 //Fields
 $firstName = $_POST["firstName"];
 $lastName = $_POST["lastName"];
