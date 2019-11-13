@@ -2,6 +2,7 @@
 
 /* Background for header */
 .banner {
+    text-align: center;
     background: url("../images/background.jpg") no-repeat 50% 40%;
     -webkit-background-size: cover;
     -moz-background-size: cover;
