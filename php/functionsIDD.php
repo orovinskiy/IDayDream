@@ -1,5 +1,9 @@
 <?php
 
+// Included files
+include('debugging.php');
+
+
 /**
  * checks if it is a straight text field
  * @param $name the input to make sure it doesnt have

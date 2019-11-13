@@ -1,10 +1,10 @@
 <?php
 
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
-
+// Included files
+include("debugging.php");
 require("functionsIDD.php");
 require('/home/notfound/connect.php');
+
 
 ?>
 
@@ -52,16 +52,14 @@ require('/home/notfound/connect.php');
     </div>
 </nav>
 
+<!-- Header -->
 <div class="jumbotron banner">
     <h1 class="display-4 text-light font-weight-bold">ID.A.Y.DREAM DREAMERS</h1>
 </div>
 
 <div class="container">
-    <?php
 
-
-    ?>
-
+    <!-- Dreamers Table -->
     <table id="dreamerTable" class="display">
         <thead>
         <tr>
@@ -75,21 +73,22 @@ require('/home/notfound/connect.php');
             <th>Join Date</th>
         </tr>
         </thead>
-        <tbody>
 
+        <!-- Dreamers information -->
+        <tbody>
         <?php
         $result = getAllDreamers($cnxn);
 
         while ($row = mysqli_fetch_assoc($result)) {
             $personId = $row['personId'];
             $dreamerId = $row['participantId'];
-            $fName = $row['firstName'];
-            $lName = $row['lastName'];
-            $email = $row['email'];
+            $fName = ucwords(strtolower($row['firstName']));
+            $lName = ucwords(strtolower($row['lastName']));
+            $email = strtolower($row['email']);
             $phone = $row['phone'];
             $birthday = $row['birthday'];
-            $gender = $row['gender'];
-            $ethnicity = $row['ethnicity'];
+            $gender = ucwords(strtolower($row['gender']));
+            $ethnicity = ucwords(strtolower($row['ethnicity']));
             $gradClass = $row['graduatingClass'];
             $joinDate = $row['joinDate'];
 
@@ -101,11 +100,10 @@ require('/home/notfound/connect.php');
                     <td>$gender</td>
                     <td>$ethnicity</td>
                     <td>$gradClass</td>
-                    <td data-sort='$joinDate'>".formatDate($joinDate)."</td>
+                    <td data-sort='$dreamerId'>".formatDate($joinDate)."</td>
                 </tr>";
         }
         ?>
-
         </tbody>
     </table>
 </div>
