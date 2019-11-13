@@ -146,17 +146,13 @@ $isValid = true;
             echo "<p>Ethnicity: Invalid, please choose from the options provided </p>";
         }
         else if($ethnicity === "other"){
-
-            // If not filled in, set to default text of "other"
-            if (empty($otherEthnic)) {
-                $ethnicity = 'other';
-            }
             // If filled in but not valid
-            else if ($otherEthnic !== htmlspecialchars($otherEthnic)) {
+            if ($otherEthnic !== htmlspecialchars($otherEthnic)) {
                 $isValid = false;
                 echo "<p>Ethnicity: Please provide a valid answer";
             }
-            else { // If filled in and valid
+            // If filled in and valid. If not filled in keep "other" text
+            else if (!empty($otherEthnic)) {
                 $ethnicity = mysqli_real_escape_string($cnxn, $otherEthnic);
                 echo "<p>Ethnicity: $ethnicity</p>";
             }
