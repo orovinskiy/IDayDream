@@ -1,13 +1,20 @@
 <?php
-//Error Reporting
+/**
+ * For error reporting
+ */
 ini_set("display_errors",1);
 error_reporting(E_ALL);
 
-//include other files
+/**
+ * Required files for this file to run.
+ * If files not found will terminate program
+ */
 require("functionsIDD.php");
 require('/home/notfound/connect.php');
 
-//Fields
+/**
+ * Fields for summary
+ */
 $firstName = $_POST["firstName"];
 $lastName = $_POST["lastName"];
 $birthday = $_POST["birthday"];
@@ -19,11 +26,15 @@ $collegeIntr = $_POST["college"];
 $jobGoal = $_POST["jobGoal"];
 $otherEthic = $_POST['otherEthic'];
 
-//ContactInfo Fields
+/**
+ * Fields for contact summary
+ */
 $email = $_POST["email"];
 $phoneNum = $_POST["phone"];
 
-//Validation variables
+/**
+ * Fields for validation
+ */
 $gradArray = array('2020','2021','2022','2023','2024','2025','2026');
 $genderArray = array('male','female','other','noAnswer');
 $ethicArray = array('Native American','Asian','Black','Hispanic','Middle Eastern','Pacific Islander','Southeast Asian','White','Multiracial','No Answer','other');
@@ -64,7 +75,9 @@ $isValid = true;
     <div class="text-center">
         <h2>Personal Info</h2>
         <?php
-        //Displays Personal Information entered from the form and validates
+        /**
+         * Displays Personal Information entered from the form and validates it
+         */
         if(validName($firstName) === false|| validName($lastName)===false){
             $isValid = false;
             echo "<p>Name: Invalid last and first name must contain only letters</p>";
@@ -74,7 +87,9 @@ $isValid = true;
             $lastName = mysqli_real_escape_string($cnxn, $lastName);
         }
 
-        //validates the date in a YYYY-MM-DD format
+        /**
+         * Validates the date in a YYYY-MM-DD format
+         */
         if(validDate($birthday) === false){
             $isValid = false;
             echo "<p>Date: Invalid must follow YYYY-MM-DD</p>";
@@ -82,8 +97,9 @@ $isValid = true;
             echo "<p>Birthday: $birthday </p>";
             $birthday = mysqli_real_escape_string($cnxn, $birthday);
         }
-
-        //validates the gender if the correct one was picked
+        /**
+         * Validates the gender if the correct one was picked
+         */
         if(validSelect($genderArray, $gender) === false){
             $isValid = false;
             echo "<p>Gender: Invalid, please choose from the options provided</p>";
@@ -92,7 +108,9 @@ $isValid = true;
             $gender = mysqli_real_escape_string($cnxn, $gender);
         }
 
-        //Validates if the graduation year is correct from select
+        /**
+         * Validates if the graduation year is correct from select
+         */
         if(validSelect($gradArray, $gradClass) === false){
             $isValid = false;
             echo "<p>Graduation Year: Invalid, please choose from the options provided</p>";
@@ -101,7 +119,9 @@ $isValid = true;
             $gradClass = mysqli_real_escape_string($cnxn, $gradClass);
         }
 
-        //validates the ethnicity and the other box if chosen
+        /**
+         * Validates the ethnicity and the other box if chosen
+         */
         if(validSelect($ethicArray, $ethnicity) === false){
             $isValid = false;
             echo "<p>Ethnicity: Invalid, please choose from the options provided </p>";
@@ -121,8 +141,10 @@ $isValid = true;
             $ethnicity = mysqli_real_escape_string($cnxn, $ethnicity);
         }
 
-        //cycles through all the text fields making sure no spoofing
-        //happened
+        /**
+         * Cycles through all the text fields making sure no spoofing
+         * happened
+         */
         foreach($textArray as $text=>$value){
             if(!validText($value)){
                 $isValid = false;
@@ -139,8 +161,11 @@ $isValid = true;
 
         <h2 class="mt-3">Contact Information</h2>
         <?php
-        //Displays Contact Information entered from the form
-        //and validates them before displaying
+
+        /**
+         * Displays Contact Information entered from the form
+         * and validates them before displaying
+         */
         if(validMail($email) === false){
             $isValid = false;
             echo "<p>E-Mail: Invalid email format</p>";
@@ -158,11 +183,10 @@ $isValid = true;
             echo "<p>Phone Number: $phoneNum</p>";
             $phoneNum = mysqli_real_escape_string($cnxn, $phoneNum);
         }
-        ?>
 
-
-        <!-- Code to send a email of the users entered information -->
-        <?php
+        /**
+         * Code to send a email of the users entered information
+         */
         if($isValid === true) {
 
             $isSaved = saveParticipant($cnxn, $firstName, $lastName, $email, $phoneNum, $birthday, $gender, $ethnicity,
