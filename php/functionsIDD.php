@@ -104,7 +104,7 @@ function validText($input){
 
 /**
  * Takes a date in the YYYY-MM-DD  format and converts it to
- * MM/DD/YYYY. Returns false if conversion fails
+ * MM/DD/YYYY. Returns a string with error message if fails
  * @param $date the date to format
  * @return string formatted date as MM/DD/YYYY or error msg
  */
