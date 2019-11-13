@@ -4,6 +4,26 @@
     padding-bottom: 1em;
 }
 
+/* Background for header */
+.banner {
+    text-align: center;
+    background: url("../images/background.jpg") no-repeat 50% 40%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    text-shadow: 1px 1px #818181;
+
+    -webkit-box-shadow: 0 0 100px -53px rgba(0,0,0,1);
+    -moz-box-shadow: 0 0 100px -53px rgba(0,0,0,1);
+    box-shadow: 0 0 100px -53px rgba(0,0,0,1);
+}
+
+body {
+    font-family: 'Questrial', sans-serif;
+}
+
 /*center radio buttons */
 #backCheckAgree {
     width: 140px;
