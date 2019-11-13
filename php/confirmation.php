@@ -1,16 +1,12 @@
 <?php
 /**
- * For error reporting
- */
-ini_set("display_errors",1);
-error_reporting(E_ALL);
-
-/**
  * Required files for this file to run.
  * If files not found will terminate program
  */
+include('debugging.php');
 require("functionsIDD.php");
 require('/home/notfound/connect.php');
+
 
 /**
  * Fields for summary
