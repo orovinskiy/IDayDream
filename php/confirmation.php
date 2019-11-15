@@ -63,7 +63,7 @@ $isValid = true;
 <body>
 
 <nav class="navbar navbar-expand-md sticky-top navbar-dark bg-dark info-color">
-    <a class="navbar-brand font-weight-bold" href="#">Menu |</a>
+    <a class="navbar-brand font-weight-bold" href="dreamers.php">Menu |</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -73,7 +73,7 @@ $isValid = true;
                 <a class="nav-link" href="../volunteerFrm.html">Volunteer</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="php/thankYou.php">Volunteer Confirmation</a>
+                <a class="nav-link" href="thankYou.php">Volunteer Confirmation</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../welcome.html">Welcome</a>
