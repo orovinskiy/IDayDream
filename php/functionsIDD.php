@@ -19,12 +19,12 @@ function validName($name){
 }
 
 /**
- * see if the date is in a YYYY-MM-DD format
+ * see if the date is in a MM/DD/YYYY format
  * @param $date input from the user
  * @return true or false
  */
 function validDate($date){
-    if (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date) ||
+    if (!preg_match("/^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$/",$date) ||
         $date != htmlspecialchars($date)) {
         return false;
     }
@@ -88,6 +88,31 @@ function formatCheck($array, $input){
     }
 
     return $valid;
+}
+
+/**
+ * checks if the variable only contains letters
+ * @param $input input from the user
+ * @return true or false
+ */
+function letterStrict($input){
+    $input = str_replace(' ','', $input);
+    if(trim($input) === "" || ctype_alpha($input) === false || $input !== htmlspecialchars($input)){
+        return false;
+    }
+    return true;
+}
+
+/**
+ * checks if the variable only contains numbers
+ * @param $input input from the user
+ * @return true or false
+ */
+function numberStrict($input){
+    if(trim($input) === "" || ctype_digit($input) === false || $input !== htmlspecialchars($input)){
+        return false;
+    }
+    return true;
 }
 
 /**

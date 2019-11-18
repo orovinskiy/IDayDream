@@ -2,23 +2,99 @@
 
 // Included files
 include("debugging.php");
-
+require("functionsIDD.php");
+require('/home/notfound/connect.php');
 
 /**
- * fields
+ * fields and validation
  */
-//personal Info
-$firstName = $_POST["firstName"];
-$lastName = $_POST["lastName"];
-$phoneNumber = $_POST["pNumber"];
-$email = $_POST["eMail"];
+// validation variables
+$isValid = true;
+$shirtArray = array('extra_small','small','medium','large','extra_large');
+$stateArray = array('al', 'ak', 'as', 'az', 'ar', 'ca', 'co', 'ct', 'de', 'dc', 'fm', 'fl', 'ga', 'gu', 'hi', 'id', 'il', 'in', 'ia', 'ks', 'ky', 'la', 'me', 'mh', 'md', 'ma', 'mi', 'mn', 'ms', 'mo', 'mt', 'ne', 'nv', 'nh', 'nj', 'nm', 'ny', 'nc', 'nd', 'mp', 'oh', 'ok', 'or', 'pw', 'pa', 'pr', 'ri', 'sc', 'sd', 'tn', 'tx', 'ut', 'vt', 'vi', 'va', 'wa', 'wv', 'wi', 'wy');
+
+//personal Info and validation
+/**
+ * Validates first/last name
+ */
+if(validName($_POST["firstName"]) === true){
+    $firstName = mysqli_real_escape_string($cnxn, trim($_POST["firstName"]));
+}
+else{
+    $isValid = false;
+    $firstName = "Invalid, Name can't have numbers or special characters";
+}
+
+if(validName($_POST["lastName"]) === true){
+    $lastName = mysqli_real_escape_string($cnxn, trim($_POST["lastName"]));
+}
+else{
+    $isValid = false;
+    $lastName = "Invalid, Name can't have numbers or special characters";
+}
+
+/**
+ * Validates phone number
+ */
+if(validNumber($_POST["pNumber"]) === true){
+    $phoneNumber = mysqli_real_escape_string($cnxn, trim($_POST["pNumber"]));
+}
+else{
+    $isValid = false;
+    $phoneNumber = "Invalid, Must only contain numbers";
+}
+
+/**
+ * Validates email
+ */
+if(validMail($_POST["eMail"]) === true){
+    $email = mysqli_real_escape_string($cnxn, trim($_POST["eMail"]));
+}
+else{
+    $isValid = false;
+    $email = "Invalid, Must follow the following format: example@mail.com";
+}
+
 $mailList = $_POST["onMailList"];
-$tShirt = $_POST["shirtSize"];
+
+/**
+ * Validates t-shirt sizes
+ */
+if(validSelect($shirtArray, $_POST["shirtSize"]) === true){
+    $tShirt = mysqli_real_escape_string($cnxn, trim($_POST["shirtSize"]));
+}
+else{
+    $isValid = false;
+    $tShirt = "Please select from the options provided";
+}
 
 //address
-$street = $_POST["street"];
-$city = $_POST["city"];
-$state = $_POST["state"];
+/**
+ * Validates address
+ */
+if(validText($_POST["street"]) === true || trim($_POST["street"]) !== ""){
+    $street = mysqli_real_escape_string($cnxn, trim($_POST["street"]));
+}
+else{
+    $isValid = false;
+    $street = "Invalid, provide a valid address";
+}
+
+if(letterStrict($_POST["city"]) === true){
+    $city = mysqli_real_escape_string($cnxn, trim($_POST["city"]));
+}
+else{
+    $isValid = false;
+    $city = "Invalid, can't have special characters or numbers";
+}
+
+if(validSelect($stateArray, $_POST["state"]) === true){
+    $state = mysqli_real_escape_string($cnxn, trim($_POST["state"]));
+}
+else{
+    $isValid = false;
+    $state = "Please select from the given options";
+}
 $zip = $_POST["zip"];
 
 //About You
