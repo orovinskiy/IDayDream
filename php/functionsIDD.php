@@ -44,6 +44,24 @@ function validSelect($array, $input){
 }
 
 /**
+ * looks to see if the given value is inside the array
+ * @param $input input from the user, $array a array of certain strings
+ * @return true or false
+ */
+function validSelectWText($array, $input){
+    if(!isset($input)){
+        return true;
+    }
+    $valid = true;
+    foreach($input as $interest){
+        if(!in_array($interest,$array)){
+            $valid = false;
+        }
+    }
+    return $valid;
+}
+
+/**
  * looks to see if the given value is formatted correct
  * @email $input input from the user
  * @return true or false
