@@ -16,6 +16,7 @@ $interstArray = array('newsletter','events','fundraising','coordination','mentor
 $availableArray = array('oneWeek','weekends');
 $youHeardArray = array('none','word','web','print','corporate','other');
 
+
 //personal Info and validation
 /**
  * Validates first/last name
@@ -267,6 +268,27 @@ $mailAvailable = "";
         <div class="col-6">
                 <pre>
                 <?php
+
+                //Validates agree button and background check
+                /**
+                 * Validates background and agree
+                 */
+                if($_POST['question'] === 'agreed'){
+                    $isValid = true;
+                }
+                else{
+                    $isValid = false;
+                    echo '<h4>ERROR, Must agree to a background check!</h4>';
+                }
+
+                if($_POST['policyCheckBox'] === 'checked'){
+                    $isValid = true;
+                }
+                else{
+                    $isValid = false;
+                    echo '<h4>ERROR, you must agree to our terms and conditions</h4>';
+                }
+
                 //Personal Information
                 echo "<p>First Name: $firstName</p>";
                 echo "<p>Last Name: $lastName</p>";
