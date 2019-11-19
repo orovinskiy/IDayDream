@@ -164,45 +164,45 @@ $relationArray = array();
 $pNumberArray = array();
 $mailArray = array();
 
-for($i = 0; $i < 3; $i++){
+for($i = 1; $i < 4; $i++){
     if(validName($_POST["refFirstName".$i])){
-        $firstArray[] = mysqli_real_escape_string($cnxn, trim($_POST["refFirstName".$i]));
+        $firstArray[$i] = mysqli_real_escape_string($cnxn, trim($_POST["refFirstName".$i]));
     }
     else{
         $isValid = false;
-        $firstArray[] = "Invalid, can't have numbers or special characters";
+        $firstArray[$i] = "Invalid, can't have numbers or special characters";
     }
 
     if(validName($_POST["refLastName".$i])){
-        $lastArray[] = mysqli_real_escape_string($cnxn, trim($_POST["refLastName".$i]));
+        $lastArray[$i] = mysqli_real_escape_string($cnxn, trim($_POST["refLastName".$i]));
     }
     else{
         $isValid = false;
-        $lastArray[] = "Invalid, can't have numbers or special characters";
+        $lastArray[$i] = "Invalid, can't have numbers or special characters";
     }
 
     if(validName($_POST["refRelationship".$i])){
-        $relationArray[] = mysqli_real_escape_string($cnxn, trim($_POST["refRelationship".$i]));
+        $relationArray[$i] = mysqli_real_escape_string($cnxn, trim($_POST["refRelationship".$i]));
     }
     else{
         $isValid = false;
-        $relationArray[] = "Invalid, can't have numbers or special characters";
+        $relationArray[$i] = "Invalid, can't have numbers or special characters";
     }
 
     if(validNumber($_POST["refPhone".$i])){
-        $pNumberArray[] = mysqli_real_escape_string($cnxn, trim($_POST["refPhone".$i]));
+        $pNumberArray[$i] = mysqli_real_escape_string($cnxn, trim($_POST["refPhone".$i]));
     }
     else{
         $isValid = false;
-        $pNumberArray[] = "Invalid, can't have letters or special characters";
+        $pNumberArray[$i] = "Invalid, can't have letters or special characters";
     }
 
     if(validMail($_POST["refEmail".$i])){
-        $mailArray[] = mysqli_real_escape_string($cnxn, trim($_POST["refEmail".$i]));
+        $mailArray[$i] = mysqli_real_escape_string($cnxn, trim($_POST["refEmail".$i]));
     }
     else{
         $isValid = false;
-        $mailArray[] = "Invalid, must follow this format 'example@mail.net'";
+        $mailArray[$i] = "Invalid, must follow this format 'example@mail.net'";
     }
 
 
@@ -356,25 +356,25 @@ $mailAvailable = "";
             <?php
             //All three references
             echo "<h5>Reference One</h5>";
-            echo "<p>First Name: $firstArray[0]</p>";
-            echo "<p>Last Name: $lastArray[0]</p>";
-            echo "<p>Relationship: $relationArray[0]</p>";
-            echo "<p>E-Mail: $mailArray[0]</p>";
-            echo "<p>Phone Number: $pNumberArray[0]</p>";
-
-            echo "<h5>Reference Two</h5>";
             echo "<p>First Name: $firstArray[1]</p>";
             echo "<p>Last Name: $lastArray[1]</p>";
             echo "<p>Relationship: $relationArray[1]</p>";
             echo "<p>E-Mail: $mailArray[1]</p>";
             echo "<p>Phone Number: $pNumberArray[1]</p>";
 
-            echo "<h5>Reference Three</h5>";
+            echo "<h5>Reference Two</h5>";
             echo "<p>First Name: $firstArray[2]</p>";
             echo "<p>Last Name: $lastArray[2]</p>";
             echo "<p>Relationship: $relationArray[2]</p>";
             echo "<p>E-Mail: $mailArray[2]</p>";
             echo "<p>Phone Number: $pNumberArray[2]</p>";
+
+            echo "<h5>Reference Three</h5>";
+            echo "<p>First Name: $firstArray[3]</p>";
+            echo "<p>Last Name: $lastArray[3]</p>";
+            echo "<p>Relationship: $relationArray[3]</p>";
+            echo "<p>E-Mail: $mailArray[3]</p>";
+            echo "<p>Phone Number: $pNumberArray[3]</p>";
             ?>
         </div>
     </div>
@@ -392,12 +392,12 @@ if($isValid) {
     $email_body .= "Their Experience: $volExperience \r\n";
     $email_body .= "Their Skills: $skills \r\n \r\n";
     $email_body .= "Their Availability: $mailAvailable \r\n \r\n";
-    $email_body .= "Reference One--\r\n Name: $firstArray[0] $lastArray[0]\r\n Relationship: $relationArray[0] \r\n";
-    $email_body .= "E-Mail: $mailArray[0]\r\n  Phone Number: $pNumberArray[0] \r\n \r\n";
-    $email_body .= "Reference Two--\r\n Name: $firstArray[1] $lastArray[1]\r\n Relationship: $relationArray[1] \r\n";
+    $email_body .= "Reference One--\r\n Name: $firstArray[1] $lastArray[1]\r\n Relationship: $relationArray[1] \r\n";
     $email_body .= "E-Mail: $mailArray[1]\r\n  Phone Number: $pNumberArray[1] \r\n \r\n";
-    $email_body .= "Reference Three--\r\n Name: $firstArray[2] $lastArray[2]\r\n Relationship: $relationArray[2] \r\n";
+    $email_body .= "Reference Two--\r\n Name: $firstArray[2] $lastArray[2]\r\n Relationship: $relationArray[2] \r\n";
     $email_body .= "E-Mail: $mailArray[2]\r\n  Phone Number: $pNumberArray[2] \r\n \r\n";
+    $email_body .= "Reference Three--\r\n Name: $firstArray[3] $lastArray[3]\r\n Relationship: $relationArray[3] \r\n";
+    $email_body .= "E-Mail: $mailArray[3]\r\n  Phone Number: $pNumberArray[3] \r\n \r\n";
 
     $email_subject = "New Volunteer Applicant";
     $to = "olegrovin@gmail.com";
