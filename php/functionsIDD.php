@@ -24,8 +24,7 @@ function validName($name){
  * @return true or false
  */
 function validDate($date){
-    if (!preg_match("/^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$/",$date) ||
-        $date != htmlspecialchars($date)) {
+    if (preg_match("/^(1[0-2]|0{0,1}[1-9])\/(3[0-1]|[0-2]{0,1}[1-9])\/[0-9]{4,4}$/",$date) !== 1 || $date != htmlspecialchars($date)) {
         return false;
     }
     return true;
@@ -83,7 +82,7 @@ function validMail($email){
  */
 function validNumber($number){
     if(trim($number) === "" || $number !== htmlspecialchars($number) ||
-        !preg_match("/^[0-9\-\(\)\/\+\s]*$/",$number)){
+        preg_match("/^[0-9\-\(\)\/\+\s]*$/",$number) !== 1){
 
         return false;
 
