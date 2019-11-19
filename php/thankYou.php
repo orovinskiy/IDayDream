@@ -264,30 +264,32 @@ $mailAvailable = "";
         <p class="lead">Please review the following information you have submitted</p>
     </div>
 
+    <?php
+
+    //Validates agree button and background check
+    /**
+     * Validates background and agree
+     */
+    if($_POST['question'] === 'agreed'){
+        $isValid = true;
+    }
+    else{
+        $isValid = false;
+        echo '<h4>ERROR, Must agree to a background check!</h4>';
+    }
+
+    if($_POST['policyCheckBox'] === 'checked'){
+        $isValid = true;
+    }
+    else{
+        $isValid = false;
+        echo '<h4>ERROR, you must agree to our terms and conditions</h4>';
+    }
+    ?>
+
     <div class="row">
         <div class="col-6">
-                <pre>
                 <?php
-
-                //Validates agree button and background check
-                /**
-                 * Validates background and agree
-                 */
-                if($_POST['question'] === 'agreed'){
-                    $isValid = true;
-                }
-                else{
-                    $isValid = false;
-                    echo '<h4>ERROR, Must agree to a background check!</h4>';
-                }
-
-                if($_POST['policyCheckBox'] === 'checked'){
-                    $isValid = true;
-                }
-                else{
-                    $isValid = false;
-                    echo '<h4>ERROR, you must agree to our terms and conditions</h4>';
-                }
 
                 //Personal Information
                 echo "<p>First Name: $firstName</p>";
@@ -372,7 +374,6 @@ $mailAvailable = "";
 
 
                 ?>
-                    </pre>
         </div>
         <div class="col-6">
             <?php
