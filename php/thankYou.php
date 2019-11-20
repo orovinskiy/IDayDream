@@ -313,10 +313,14 @@ $mailAvailable = "";
 
                 //interests
                 echo "<h5>Interests</h5>";
-                if(validSelectWText($interstArray,$_POST["interests"])) {
                     if (!isset($_POST["interests"])) {
                         echo "<p>None selected</p>";
-                    } else {
+                    }
+                    else if(!validSelectWText($interstArray,$_POST["interests"])){
+                        echo "<p>Illegal Selection</p>";
+                        $isValid = false;
+                    }
+                    else {
                         echo "<ul>";
                         foreach ($_POST["interests"] as $interests) {
                             if ($interests === "other" && validText($_POST["interestsText"])) {
@@ -335,18 +339,18 @@ $mailAvailable = "";
                         $mailInterests = mysqli_real_escape_string($cnxn,$mailInterests);
                         echo "</ul>";
                     }
-                }
-                else{
-                    echo "<p>Illegal Selection</p>";
-                    $isValid = false;
-                }
 
                 //Availability
-                if(validSelectWText($availableArray, $_POST["availability"])) {
+
                     echo "<h5>Availability</h5>";
                     if (!isset($_POST["availability"])) {
                         echo "<p>None selected</p>";
-                    } else {
+                    }
+                    else if(!validSelectWText($availableArray, $_POST["availability"])){
+                        echo "<p>Illegal Selection</p>";
+                        $isValid = false;
+                    }
+                    else {
                         foreach ($_POST["availability"] as $available) {
                             if ($available === "oneWeek") {
                                 echo "<p>Available for one week of Summer Camp</p>";
@@ -358,11 +362,6 @@ $mailAvailable = "";
                         }
                         $mailAvailable = mysqli_real_escape_string($cnxn,$mailAvailable);
                     }
-                }
-                else{
-                    echo "<p>Illegal Selection</p>";
-                    $isValid = false;
-                }
 
                 //About you
 
@@ -429,11 +428,8 @@ if($isValid) {
     $headers .= "Reply-to: $email \r\n";
     $success = mail($to, $email_subject, $email_body, $headers);
 
-//Print final confirmation
-    /*$msg = $success ? "Your email was successfully submitted."
-        : "We're sorry. There was a problem with the email.";
-    echo "<p>$msg</p>";
-    echo "<h4>Form Was Successfully Submitted!!</h4>";*/
+//Code to the database goes here
+
 }
 else{
     echo "<h4>ERROR: Form Was Not Submitted</h4>";
