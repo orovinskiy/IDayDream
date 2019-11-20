@@ -22,7 +22,7 @@ $youHeardArray = array('none','word','web','print','corporate','other');
  * Validates first/last name
  */
 if(validName($_POST["firstName"])){
-    $firstName = mysqli_real_escape_string($cnxn, trim($_POST["firstName"]));
+    $firstName = trim($_POST["firstName"]);
 }
 else{
     $isValid = false;
@@ -30,7 +30,7 @@ else{
 }
 
 if(validName($_POST["lastName"])){
-    $lastName = mysqli_real_escape_string($cnxn, trim($_POST["lastName"]));
+    $lastName = trim($_POST["lastName"]);
 }
 else{
     $isValid = false;
@@ -41,7 +41,7 @@ else{
  * Validates phone number
  */
 if(validNumber($_POST["pNumber"])){
-    $phoneNumber = mysqli_real_escape_string($cnxn, trim($_POST["pNumber"]));
+    $phoneNumber = trim($_POST["pNumber"]);
 }
 else{
     $isValid = false;
@@ -52,7 +52,7 @@ else{
  * Validates email
  */
 if(validMail($_POST["eMail"])){
-    $email = mysqli_real_escape_string($cnxn, trim($_POST["eMail"]));
+    $email = trim($_POST["eMail"]);
 }
 else{
     $isValid = false;
@@ -65,7 +65,7 @@ $mailList = $_POST["onMailList"];
  * Validates t-shirt sizes
  */
 if(validSelect($shirtArray, $_POST["shirtSize"])){
-    $tShirt = mysqli_real_escape_string($cnxn, trim($_POST["shirtSize"]));
+    $tShirt = trim($_POST["shirtSize"]);
 }
 else{
     $isValid = false;
@@ -77,7 +77,7 @@ else{
  * Validates address
  */
 if(validText($_POST["street"]) && trim($_POST["street"]) !== ""){
-    $street = mysqli_real_escape_string($cnxn, trim($_POST["street"]));
+    $street = trim($_POST["street"]);
 }
 else{
     $isValid = false;
@@ -85,7 +85,7 @@ else{
 }
 
 if(letterStrict($_POST["city"])){
-    $city = mysqli_real_escape_string($cnxn, trim($_POST["city"]));
+    $city = trim($_POST["city"]);
 }
 else{
     $isValid = false;
@@ -93,7 +93,7 @@ else{
 }
 
 if(validSelect($stateArray, $_POST["state"])){
-    $state = mysqli_real_escape_string($cnxn, trim($_POST["state"]));
+    $state = trim($_POST["state"]);
 }
 else{
     $isValid = false;
@@ -101,7 +101,7 @@ else{
 }
 
 if(numberStrict($_POST["zip"])){
-    $zip = mysqli_real_escape_string($cnxn, trim($_POST["zip"]));
+    $zip = trim($_POST["zip"]);
 }
 else{
     $isValid = false;
@@ -114,7 +114,7 @@ else{
  * Validate text boxes
  */
 if(validSelect($youHeardArray,$_POST["howDidHear"])){
-    $howDidHear = mysqli_real_escape_string($cnxn, trim($_POST["howDidHear"]));
+    $howDidHear = trim($_POST["howDidHear"]);
 }
 else{
     $isValid = false;
@@ -122,7 +122,7 @@ else{
 }
 
 if(validText($_POST["otherHowDidHear"])){
-    $otherHowDidHear = mysqli_real_escape_string($cnxn, trim($_POST["otherHowDidHear"]));
+    $otherHowDidHear = trim($_POST["otherHowDidHear"]);
 }
 else{
     $isValid = false;
@@ -130,7 +130,7 @@ else{
 }
 
 if(validText($_POST["motivation"]) && trim($_POST["motivation"]) !== ""){
-    $motivation = mysqli_real_escape_string($cnxn, trim($_POST["motivation"]));
+    $motivation = trim($_POST["motivation"]);
 }
 else{
     $isValid = false;
@@ -138,7 +138,7 @@ else{
 }
 
 if(validText($_POST["volExperience"])){
-    $volExperience = mysqli_real_escape_string($cnxn, trim($_POST["volExperience"]));
+    $volExperience = trim($_POST["volExperience"]);
 }
 else{
     $isValid = false;
@@ -146,7 +146,7 @@ else{
 }
 
 if(validText($_POST["skills"])){
-    $skills = mysqli_real_escape_string($cnxn, trim($_POST["skills"]));
+    $skills = trim($_POST["skills"]);
 }
 else{
     $isValid = false;
@@ -167,7 +167,7 @@ $mailArray = array();
 
 for($i = 1; $i < 4; $i++){
     if(validName($_POST["refFirstName".$i])){
-        $firstArray[$i] = mysqli_real_escape_string($cnxn, trim($_POST["refFirstName".$i]));
+        $firstArray[$i] = trim($_POST["refFirstName".$i]);
     }
     else{
         $isValid = false;
@@ -175,7 +175,7 @@ for($i = 1; $i < 4; $i++){
     }
 
     if(validName($_POST["refLastName".$i])){
-        $lastArray[$i] = mysqli_real_escape_string($cnxn, trim($_POST["refLastName".$i]));
+        $lastArray[$i] = trim($_POST["refLastName".$i]);
     }
     else{
         $isValid = false;
@@ -183,7 +183,7 @@ for($i = 1; $i < 4; $i++){
     }
 
     if(validName($_POST["refRelationship".$i])){
-        $relationArray[$i] = mysqli_real_escape_string($cnxn, trim($_POST["refRelationship".$i]));
+        $relationArray[$i] = trim($_POST["refRelationship".$i]);
     }
     else{
         $isValid = false;
@@ -191,7 +191,7 @@ for($i = 1; $i < 4; $i++){
     }
 
     if(validNumber($_POST["refPhone".$i])){
-        $pNumberArray[$i] = mysqli_real_escape_string($cnxn, trim($_POST["refPhone".$i]));
+        $pNumberArray[$i] = trim($_POST["refPhone".$i]);
     }
     else{
         $isValid = false;
@@ -199,7 +199,7 @@ for($i = 1; $i < 4; $i++){
     }
 
     if(validMail($_POST["refEmail".$i])){
-        $mailArray[$i] = mysqli_real_escape_string($cnxn, trim($_POST["refEmail".$i]));
+        $mailArray[$i] = trim($_POST["refEmail".$i]);
     }
     else{
         $isValid = false;
@@ -336,7 +336,6 @@ $mailAvailable = "";
                                 $mailInterests .= ", $interests";
                             }
                         }
-                        $mailInterests = mysqli_real_escape_string($cnxn,$mailInterests);
                         echo "</ul>";
                     }
 
@@ -360,7 +359,6 @@ $mailAvailable = "";
                                 $mailAvailable .= " Available: $available";
                             }
                         }
-                        $mailAvailable = mysqli_real_escape_string($cnxn,$mailAvailable);
                     }
 
                 //About you
@@ -377,26 +375,14 @@ $mailAvailable = "";
         <div class="col-6">
             <?php
             //All three references
-            echo "<h5>Reference One</h5>";
-            echo "<p>First Name: $firstArray[1]</p>";
-            echo "<p>Last Name: $lastArray[1]</p>";
-            echo "<p>Relationship: $relationArray[1]</p>";
-            echo "<p>E-Mail: $mailArray[1]</p>";
-            echo "<p>Phone Number: $pNumberArray[1]</p>";
-
-            echo "<h5>Reference Two</h5>";
-            echo "<p>First Name: $firstArray[2]</p>";
-            echo "<p>Last Name: $lastArray[2]</p>";
-            echo "<p>Relationship: $relationArray[2]</p>";
-            echo "<p>E-Mail: $mailArray[2]</p>";
-            echo "<p>Phone Number: $pNumberArray[2]</p>";
-
-            echo "<h5>Reference Three</h5>";
-            echo "<p>First Name: $firstArray[3]</p>";
-            echo "<p>Last Name: $lastArray[3]</p>";
-            echo "<p>Relationship: $relationArray[3]</p>";
-            echo "<p>E-Mail: $mailArray[3]</p>";
-            echo "<p>Phone Number: $pNumberArray[3]</p>";
+            for($i = 1; $i < 4; $i++){
+                echo "<h5>Reference $i</h5>";
+                echo "<p>First Name: $firstArray[$i]</p>";
+                echo "<p>Last Name: $lastArray[$i]</p>";
+                echo "<p>Relationship: $relationArray[$i]</p>";
+                echo "<p>E-Mail: $mailArray[$i]</p>";
+                echo "<p>Phone Number: $pNumberArray[$i]</p><br>";
+            }
             ?>
         </div>
     </div>
@@ -429,7 +415,29 @@ if($isValid) {
     $success = mail($to, $email_subject, $email_body, $headers);
 
 //Code to the database goes here
+    $firstName = mysqli_real_escape_string($cnxn, $_POST["firstName"]);
+    $lastName = mysqli_real_escape_string($cnxn, $_POST["lastName"]);
+    $phoneNumber = mysqli_real_escape_string($cnxn, $_POST["pNumber"]);
+    $email = mysqli_real_escape_string($cnxn, $_POST["eMail"]);
+    $tShirt = mysqli_real_escape_string($cnxn, $_POST["shirtSize"]);
+    $street = mysqli_real_escape_string($cnxn, $_POST["street"]);
+    $city = mysqli_real_escape_string($cnxn, $_POST["city"]);
+    $state = mysqli_real_escape_string($cnxn, $_POST["state"]);
+    $zip = mysqli_real_escape_string($cnxn, $_POST["zip"]);
+    $howDidHear = mysqli_real_escape_string($cnxn, $_POST["howDidHear"]);
+    $otherHowDidHear = mysqli_real_escape_string($cnxn, $_POST["otherHowDidHear"]);
+    $motivation = mysqli_real_escape_string($cnxn, $_POST["motivation"]);
+    $volExperience = mysqli_real_escape_string($cnxn, $_POST["volExperience"]);
+    $skills = mysqli_real_escape_string($cnxn, $_POST["skills"]);
 
+    for($i = 1; $i<4; $i++){
+        $firstArray[$i] = mysqli_real_escape_string($cnxn, $_POST["refFirstName".$i]);
+        $lastArray[$i] = mysqli_real_escape_string($cnxn, $_POST["refLastName".$i]);
+        $relationArray[$i] = mysqli_real_escape_string($cnxn, $_POST["refRelationship".$i]);
+        $pNumberArray[$i] = mysqli_real_escape_string($cnxn, $_POST["refPhone".$i]);
+        $mailArray[$i] = mysqli_real_escape_string($cnxn, $_POST["refEmail".$i]);
+
+    }
 }
 else{
     echo "<h4>ERROR: Form Was Not Submitted</h4>";
