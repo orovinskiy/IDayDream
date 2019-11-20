@@ -270,7 +270,7 @@ $mailAvailable = "";
     /**
      * Validates background and agree
      */
-    if($_POST['question'] === 'agreed'){
+    if(isset($_POST['question']) && $_POST['question'] === 'agreed'){
         $isValid = true;
     }
     else{
@@ -278,7 +278,7 @@ $mailAvailable = "";
         echo '<h4>ERROR, Must agree to a background check!</h4>';
     }
 
-    if($_POST['policyCheckBox'] === 'checked'){
+    if(isset($_POST['policyCheckBox']) || $_POST['policyCheckBox'] === 'checked'){
         $isValid = true;
     }
     else{
@@ -320,10 +320,10 @@ $mailAvailable = "";
                         echo "<ul>";
                         foreach ($_POST["interests"] as $interests) {
                             if ($interests === "other" && validText($_POST["interestsText"])) {
-                                echo "<li>Other Skills: " . $_POST["interestsText"] . "</li>";
+                                echo "<li>Other Interest: " . $_POST["interestsText"] . "</li>";
                                 $mailInterests .= ", {$_POST["interestsText"]}";
                             }
-                            if ($interests === "other" && validText($_POST["interestsText"]) && trim($_POST["interestsText"]) === "" ) {
+                            else if ($interests === "other" && validText($_POST["interestsText"]) && trim($_POST["interestsText"]) === "" ) {
                                 echo "<li>Other</li>";
                                 $mailInterests .= ", {$_POST["interestsText"]}";
                             }
@@ -430,10 +430,10 @@ if($isValid) {
     $success = mail($to, $email_subject, $email_body, $headers);
 
 //Print final confirmation
-    $msg = $success ? "Your email was successfully submitted."
+    /*$msg = $success ? "Your email was successfully submitted."
         : "We're sorry. There was a problem with the email.";
     echo "<p>$msg</p>";
-    echo "<h4>Form Was Successfully Submitted!!</h4>";
+    echo "<h4>Form Was Successfully Submitted!!</h4>";*/
 }
 else{
     echo "<h4>ERROR: Form Was Not Submitted</h4>";
