@@ -16,6 +16,10 @@ $interstArray = array('newsletter','events','fundraising','coordination','mentor
 $availableArray = array('oneWeek','weekends');
 $youHeardArray = array('none','word','web','print','corporate','other');
 
+//database variables
+$oneWeek = 0;
+$weekend = '';
+$interestArray = array();
 
 //personal Info and validation
 /**
@@ -298,9 +302,11 @@ $mailAvailable = "";
                 echo "<p>E-Mail: $email</p>";
                 if($mailList === "checked"){
                     echo "<p>Mailing List: agreed to receive mail</p>";
+                    $mailList = 1;
                 }
                 else{
                     echo "<p>Mailing List: didn't agree to receive mail</p>";
+                    $mailList = 0;
                 }
                 echo "<p>T-shirt Size: $tShirt</p>";
 
@@ -325,14 +331,17 @@ $mailAvailable = "";
                         foreach ($_POST["interests"] as $interests) {
                             if ($interests === "other" && validText($_POST["interestsText"]) && trim($_POST["interestsText"]) === "" ) {
                                 echo "<li>Other</li>";
+                                $interestArray[] = 'Other';
                                 $mailInterests .= ", $interests";
                             }
                             else if ($interests === "other" && validText($_POST["interestsText"])) {
                                 echo "<li>Other Interest: " . $_POST["interestsText"] . "</li>";
+                                $interestArray[] = $_POST["interestsText"];
                                 $mailInterests .= ", {$_POST["interestsText"]}";
                             }
                             else {
                                 echo "<li>" . $interests . "</li>";
+                                $interestArray[] = $interests;
                                 $mailInterests .= ", $interests";
                             }
                         }
@@ -353,9 +362,11 @@ $mailAvailable = "";
                         foreach ($_POST["availability"] as $available) {
                             if ($available === "oneWeek") {
                                 echo "<p>Available for one week of Summer Camp</p>";
+                                $oneWeek = 1;
                                 $mailAvailable .= "Available One week for Summer Camp";
                             } else if ($available === "weekends" && validText($_POST["weekendTimes"])) {
                                 echo "<p> Available: " . $_POST["weekendTimes"] . "</p>";
+                                $weekend = trim($_POST["weekendTimes"]);
                                 $mailAvailable .= " Available: $available";
                             }
                         }
@@ -363,8 +374,8 @@ $mailAvailable = "";
 
                 //About you
 
-                $otherHeardAbout = (!empty($otherHowDidHear)) ? '('.$otherHowDidHear.')' : '';
-                echo "<p>How you heard about us: $howDidHear $otherHeardAbout </p>";
+                $otherHeardAbout = (!empty($otherHowDidHear)) ? $howDidHear = $otherHowDidHear : '';
+                echo "<p>How you heard about us: $howDidHear</p>";
                 echo "<p>Your Motivation: $motivation</p>";
                 echo "<p>Your Experience: $volExperience</p>";
                 echo "<p>Your Skills: ".$skills."</p>";
@@ -425,7 +436,6 @@ if($isValid) {
     $state = mysqli_real_escape_string($cnxn, $_POST["state"]);
     $zip = mysqli_real_escape_string($cnxn, $_POST["zip"]);
     $howDidHear = mysqli_real_escape_string($cnxn, $_POST["howDidHear"]);
-    $otherHowDidHear = mysqli_real_escape_string($cnxn, $_POST["otherHowDidHear"]);
     $motivation = mysqli_real_escape_string($cnxn, $_POST["motivation"]);
     $volExperience = mysqli_real_escape_string($cnxn, $_POST["volExperience"]);
     $skills = mysqli_real_escape_string($cnxn, $_POST["skills"]);
@@ -437,6 +447,17 @@ if($isValid) {
         $pNumberArray[$i] = mysqli_real_escape_string($cnxn, $_POST["refPhone".$i]);
         $mailArray[$i] = mysqli_real_escape_string($cnxn, $_POST["refEmail".$i]);
 
+    }
+
+    $submited = saveVolunteer($cnxn, $firstName, $lastName, $email, $phoneNumber, $mailList, $tShirt, $street,
+                              $city, $state, $zip, $howDidHear, $motivation, $volExperience, $skills, $firstArray, $lastArray, $pNumberArray, $mailArray,
+                               $relationArray, $oneWeek, $weekend, $interestArray);
+
+    if($submited){
+        echo "<h4>Your Form was Successfully Submitted</h4>";
+    }
+    else{
+        echo "<h4>ERROR: Form Was Not Submitted</h4>";
     }
 }
 else{
