@@ -323,12 +323,12 @@ $mailAvailable = "";
                     else {
                         echo "<ul>";
                         foreach ($_POST["interests"] as $interests) {
-                            if ($interests === "other" && validText($_POST["interestsText"])) {
-                                echo "<li>Other Interest: " . $_POST["interestsText"] . "</li>";
-                                $mailInterests .= ", {$_POST["interestsText"]}";
-                            }
-                            else if ($interests === "other" && validText($_POST["interestsText"]) && trim($_POST["interestsText"]) === "" ) {
+                            if ($interests === "other" && validText($_POST["interestsText"]) && trim($_POST["interestsText"]) === "" ) {
                                 echo "<li>Other</li>";
+                                $mailInterests .= ", $interests";
+                            }
+                            else if ($interests === "other" && validText($_POST["interestsText"])) {
+                                echo "<li>Other Interest: " . $_POST["interestsText"] . "</li>";
                                 $mailInterests .= ", {$_POST["interestsText"]}";
                             }
                             else {
