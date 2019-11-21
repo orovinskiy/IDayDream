@@ -14,7 +14,7 @@ const BIRTHDAY_REGEX =/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
  * the other input box
  **/
 let $ethnicity = $("#ethnicity");
-$ethnicity.on("click", function(){
+$ethnicity.on("change", function(){
     if($ethnicity.val() === "other"){
         $("#otherGroup").removeClass("hidden");
 

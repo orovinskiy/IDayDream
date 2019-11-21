@@ -111,9 +111,10 @@ $isValid = true;
          */
         if(validDate($birthday) === false){
             $isValid = false;
-            echo "<p>Date: Invalid must follow YYYY-MM-DD</p>";
+            echo "<p>Date: Invalid must follow MM/DD/YYYY</p>";
         }else{
             echo "<p>Birthday: $birthday </p>";
+            $birthday = date('Y-m-d', strtotime($birthday));
             $birthday = mysqli_real_escape_string($cnxn, $birthday);
         }
         /**

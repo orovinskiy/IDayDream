@@ -19,13 +19,12 @@ function validName($name){
 }
 
 /**
- * see if the date is in a YYYY-MM-DD format
+ * see if the date is in a MM/DD/YYYY format
  * @param $date input from the user
  * @return true or false
  */
 function validDate($date){
-    if (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date) ||
-        $date != htmlspecialchars($date)) {
+    if (preg_match("/^(1[0-2]|0{0,1}[1-9])\/(3[0-1]|[0-2]{0,1}[1-9])\/[0-9]{4,4}$/",$date) !== 1 || $date != htmlspecialchars($date)) {
         return false;
     }
     return true;
@@ -41,6 +40,24 @@ function validSelect($array, $input){
         return false;
     }
     return true;
+}
+
+/**
+ * looks to see if the given value is inside the array
+ * @param $input input from the user, $array a array of certain strings
+ * @return true or false
+ */
+function validSelectWText($array, $input){
+    if(!isset($input)){
+        return true;
+    }
+    $valid = true;
+    foreach($input as $interest){
+        if(!in_array($interest,$array)){
+            $valid = false;
+        }
+    }
+    return $valid;
 }
 
 /**
@@ -65,7 +82,7 @@ function validMail($email){
  */
 function validNumber($number){
     if(trim($number) === "" || $number !== htmlspecialchars($number) ||
-        !preg_match("/^[0-9\-\(\)\/\+\s]*$/",$number)){
+        preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i",$number) !== 1){
 
         return false;
 
@@ -88,6 +105,31 @@ function formatCheck($array, $input){
     }
 
     return $valid;
+}
+
+/**
+ * checks if the variable only contains letters
+ * @param $input input from the user
+ * @return true or false
+ */
+function letterStrict($input){
+    $input = str_replace(' ','', $input);
+    if(trim($input) === "" || ctype_alpha($input) === false || $input !== htmlspecialchars($input)){
+        return false;
+    }
+    return true;
+}
+
+/**
+ * checks if the variable only contains numbers
+ * @param $input input from the user
+ * @return true or false
+ */
+function numberStrict($input){
+    if(trim($input) === "" || ctype_digit($input) === false || $input !== htmlspecialchars($input)){
+        return false;
+    }
+    return true;
 }
 
 /**
