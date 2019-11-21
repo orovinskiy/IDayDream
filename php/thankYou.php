@@ -1,6 +1,6 @@
 <?php
 
-// Included files
+// Inclded files
 include("debugging.php");
 require("functionsIDD.php");
 require('/home/notfound/connect.php');
