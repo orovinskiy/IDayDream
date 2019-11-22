@@ -263,16 +263,66 @@ function saveVolunteer($cnxn, $firstName, $lastName, $email, $phone
 
             if($availableResult){
                 for($i = 0; $i < count($interestArray); $i++){
-                    $interestResult = insertInterests($cnxn, $interestArray[$i]);
-                    if($interestResult === false){
-                        return false;
-                    }
 
-                    $interestID = $cnxn->insert_id;
+                    /*
+                    #12 Coordination, #13 Events, #14 Fundraising, #16 Mentoring, #17 Newsletter, #18 Other
+                     */
+                    switch($interestArray[$i]){
+                        case 'coordination':
+                            $interestVolResult = insertVolInterest($cnxn, $volunteerID, '12');
+                            if($interestVolResult === false){
+                                return false;
+                            }
+                            break;
 
-                    $interestVolResult = insertVolInterest($cnxn, $volunteerID, $interestID);
-                    if($interestVolResult === false){
-                        return false;
+                        case 'events':
+                            $interestVolResult = insertVolInterest($cnxn, $volunteerID, '13');
+                            if($interestVolResult === false){
+                                return false;
+                            }
+                            break;
+
+                        case 'fundraising':
+                            $interestVolResult = insertVolInterest($cnxn, $volunteerID, '14');
+                            if($interestVolResult === false){
+                                return false;
+                            }
+                            break;
+
+                        case 'mentoring':
+                            $interestVolResult = insertVolInterest($cnxn, $volunteerID, '16');
+                            if($interestVolResult === false){
+                                return false;
+                            }
+                            break;
+
+                        case 'newsletter':
+                            $interestVolResult = insertVolInterest($cnxn, $volunteerID, '17');
+                            if($interestVolResult === false){
+                                return false;
+                            }
+                            break;
+
+                        case 'other':
+                            $interestVolResult = insertVolInterest($cnxn, $volunteerID, '18');
+                            if($interestVolResult === false){
+                                return false;
+                            }
+                            break;
+
+                        default:
+                            $interestResult = insertInterests($cnxn, $interestArray[$i]);
+                            if($interestResult === false){
+                                return false;
+                            }
+
+                            $interestID = $cnxn->insert_id;
+
+                            $interestVolResult = insertVolInterest($cnxn, $volunteerID, $interestID);
+                            if($interestVolResult === false){
+                                return false;
+                            }
+                            break;
                     }
                 }
                 return true;

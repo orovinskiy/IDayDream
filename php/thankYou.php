@@ -331,12 +331,12 @@ $mailAvailable = "";
                         foreach ($_POST["interests"] as $interests) {
                             if ($interests === "other" && validText($_POST["interestsText"]) && trim($_POST["interestsText"]) === "" ) {
                                 echo "<li>Other</li>";
-                                $interestArray[] = 'Other';
+                                $interestArray[] = $interests;
                                 $mailInterests .= ", $interests";
                             }
                             else if ($interests === "other" && validText($_POST["interestsText"])) {
                                 echo "<li>Other Interest: " . $_POST["interestsText"] . "</li>";
-                                $interestArray[] = $_POST["interestsText"];
+                                $interestArray[] = mysqli_real_escape_string($cnxn, $_POST["interestsText"]);
                                 $mailInterests .= ", {$_POST["interestsText"]}";
                             }
                             else {
@@ -366,7 +366,7 @@ $mailAvailable = "";
                                 $mailAvailable .= "Available One week for Summer Camp";
                             } else if ($available === "weekends" && validText($_POST["weekendTimes"])) {
                                 echo "<p> Available: " . $_POST["weekendTimes"] . "</p>";
-                                $weekend = trim($_POST["weekendTimes"]);
+                                $weekend = mysqli_real_escape_string($cnxn, trim($_POST["weekendTimes"]));
                                 $mailAvailable .= " Available: $available";
                             }
                         }
@@ -406,7 +406,7 @@ if($isValid) {
     $email_body .= "Name: $firstName $lastName \r\n";
     $email_body .= "Address: $street $city" . ", " . "$state $zip \r\n";
     $email_body .= "Interests: $mailInterests \r\n \r\n";
-    $email_body .= "How they heard about us: $howDidHear $otherHeardAbout \r\n";
+    $email_body .= "How they heard about us: $howDidHear \r\n";
     $email_body .= "Their Motivation: $motivation \r\n";
     $email_body .= "Their Experience: $volExperience \r\n";
     $email_body .= "Their Skills: $skills \r\n \r\n";
