@@ -58,17 +58,15 @@ require('/home/notfound/connect.php');
 
 <div class="container">
 
-    <!-- Dreamers Table -->
+    <!-- Volunteers Table -->
     <table id="dreamerTable" class="display">
         <thead>
         <tr>
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>Birthday</th>
-            <th>Gender</th>
-            <th>Ethnicity</th>
-            <th>Graduating Class</th>
+            <th>Address</th>
+            <th>Availability</th>
             <th>Join Date</th>
         </tr>
         </thead>

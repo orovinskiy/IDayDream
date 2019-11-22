@@ -176,6 +176,20 @@ function getAllDreamers($cnxn) {
     return mysqli_query($cnxn, $sql);
 }
 
+function getAllVolunteers($cnxn) {
+    $sql = 'SELECT *
+            FROM person 
+            INNER JOIN volunteer 
+                ON person.personId = volunteer.personId
+            INNER JOIN availability
+                ON volunteer.volunteerId = availability.volunteerId
+            INNER JOIN reference
+                ON volunteer.volunteerId = reference.volunteerId
+            INNER JOIN volunteerInterest
+                ON volunteer.volunteerId = volunteerInterest.volunteerId
+            ORDER BY volunteerId DESC';
+}
+
 /**
  * Inserts given values into the table person
  * @param $cnxn: connection to the database.
