@@ -27,13 +27,13 @@ span.error {
     font-weight: normal;
 }
 
-#submit {
+#submit, a[role=button] {
     display: block;
     margin: 30px auto 50px auto;
     border-radius: 0;
 }
 
-#submit:hover {
+#submit:hover, a[role=button]:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
