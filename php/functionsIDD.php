@@ -187,7 +187,7 @@ function getAllVolunteers($cnxn) {
                 ON volunteer.volunteerId = reference.volunteerId
             INNER JOIN volunteerInterest
                 ON volunteer.volunteerId = volunteerInterest.volunteerId
-            ORDER BY volunteerId DESC';
+            ORDER BY volunteer.volunteerId DESC';
 }
 
 /**
