@@ -11,22 +11,22 @@ require('/home/notfound/connect.php');
 /**
  * Fields for summary
  */
-$firstName = $_POST["firstName"];
-$lastName = $_POST["lastName"];
-$birthday = $_POST["birthday"];
-$gender = $_POST["gender"];
-$ethnicity = $_POST["ethnicity"];
-$gradClass = $_POST["gradClass"];
-$favFood = $_POST["food"];
-$collegeIntr = $_POST["college"];
-$jobGoal = $_POST["jobGoal"];
-$otherEthic = $_POST['otherEthic'];
+$firstName = trim($_POST["firstName"]);
+$lastName = trim($_POST["lastName"]);
+$birthday = trim($_POST["birthday"]);
+$gender = trim($_POST["gender"]);
+$ethnicity = trim($_POST["ethnicity"]);
+$gradClass = trim($_POST["gradClass"]);
+$favFood = trim($_POST["food"]);
+$collegeIntr = trim($_POST["college"]);
+$jobGoal = trim($_POST["jobGoal"]);
+$otherEthnic = trim($_POST['otherEthic']);
 
 /**
  * Fields for contact summary
  */
-$email = $_POST["email"];
-$phoneNum = $_POST["phone"];
+$email = trim($_POST["email"]);
+$phoneNum = trim($_POST["phone"]);
 
 /**
  * Fields for validation
@@ -88,9 +88,10 @@ $isValid = true;
          */
         if(validDate($birthday) === false){
             $isValid = false;
-            echo "<p>Date: Invalid must follow YYYY-MM-DD</p>";
+            echo "<p>Date: Invalid must follow MM/DD/YYYY</p>";
         }else{
             echo "<p>Birthday: $birthday </p>";
+            $birthday = date('Y-m-d', strtotime($birthday));
             $birthday = mysqli_real_escape_string($cnxn, $birthday);
         }
         /**
@@ -123,13 +124,15 @@ $isValid = true;
             echo "<p>Ethnicity: Invalid, please choose from the options provided </p>";
         }
         else if($ethnicity === "other"){
-            if($otherEthic !== htmlspecialchars($otherEthic) || trim($otherEthic) === ""){
+            // If filled in but not valid
+            if ($otherEthnic !== htmlspecialchars($otherEthnic)) {
                 $isValid = false;
                 echo "<p>Ethnicity: Please provide a valid answer";
             }
-            else {
-                echo "<p>Ethnicity: $otherEthic</p>";
-                $otherEthic = mysqli_real_escape_string($cnxn, $otherEthic);
+            // If filled in and valid. If not filled in keep "other" text
+            else if (!empty($otherEthnic)) {
+                $ethnicity = mysqli_real_escape_string($cnxn, $otherEthnic);
+                echo "<p>Ethnicity: $ethnicity</p>";
             }
         }
         else{

@@ -1,5 +1,5 @@
 // Validate form
-document.getElementById("volunteerForm").onsubmit = validateForm;
+//document.getElementById("volunteerForm").onsubmit = validateForm;
 
 // Toggle "Other Interest" text box display
 document.getElementById("other-interest").addEventListener("change", function() {
