@@ -275,7 +275,7 @@ $mailAvailable = "";
      * Validates background and agree
      */
     if(isset($_POST['question']) && $_POST['question'] === 'agreed'){
-        $isValid = true;
+
     }
     else{
         $isValid = false;
@@ -283,7 +283,7 @@ $mailAvailable = "";
     }
 
     if(isset($_POST['policyCheckBox']) || $_POST['policyCheckBox'] === 'checked'){
-        $isValid = true;
+
     }
     else{
         $isValid = false;
