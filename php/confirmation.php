@@ -29,6 +29,15 @@ $email = trim($_POST["email"]);
 $phoneNum = trim($_POST["phone"]);
 
 /**
+ * Fields for Parent/Guardian information
+ */
+
+$guardianFName = trim($_POST["guardianFName"]);
+$guardianLName = trim($_POST["guardianLName"]);
+$guardianEmail = trim($_POST["guardianEmail"]);
+$guardianPhoneNum = trim($_POST["guardianPhone"]);
+
+/**
  * Fields for validation
  */
 $gradArray = array('2020','2021','2022','2023','2024','2025','2026');
@@ -182,6 +191,41 @@ $isValid = true;
             echo "<p>Phone Number: $phoneNum</p>";
             $phoneNum = mysqli_real_escape_string($cnxn, $phoneNum);
         }
+        ?>
+
+        <h2 class="mt-3">Contact Information</h2>
+        <?php
+
+        /**
+         * Displays the parent/guardian information entered and validates it
+         */
+
+        if(validName($guardianFName) === false|| validName($guardianLName)===false){
+            $isValid = false;
+            echo "<p>Name: Invalid last and first name must contain only letters</p>";
+        } else{
+            echo "<p>Name: $guardianFName $guardianLName </p>";
+            $guardianFName = mysqli_real_escape_string($cnxn, $guardianFName);
+            $guardianLName = mysqli_real_escape_string($cnxn, $guardianLName);
+        }
+
+        if(validMail($guardianEmail) === false){
+            $isValid = false;
+            echo "<p>E-Mail: Invalid email format</p>";
+        }
+        else{
+            echo "<p>E-Mail: $guardianEmail</p>";
+            $guardianEmail = mysqli_real_escape_string($cnxn, $guardianEmail);
+        }
+
+        if(validNumber($guardianPhoneNum) === false){
+            $isValid = false;
+            echo "<p>Phone Number: Invalid phone number format</p>";
+        }
+        else{
+            echo "<p>Phone Number: $guardianPhoneNum</p>";
+            $guardianPhoneNum = mysqli_real_escape_string($cnxn, $guardianPhoneNum);
+        }
 
         /**
          * Code to send a email of the users entered information
@@ -189,7 +233,7 @@ $isValid = true;
         if($isValid === true) {
 
             $isSaved = saveParticipant($cnxn, $firstName, $lastName, $email, $phoneNum, $birthday, $gender, $ethnicity,
-                $gradClass, $favFood, $collegeIntr, $jobGoal);
+                $gradClass, $favFood, $collegeIntr, $jobGoal, $guardianFName, $guardianLName, $guardianEmail, $guardianPhoneNum);
 
             // if all data was saved successfully
             if ($isSaved) {

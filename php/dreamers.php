@@ -43,10 +43,13 @@ require('/home/notfound/connect.php');
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>Birthday</th>
+            <!--<th>Birthday</th>
             <th>Gender</th>
-            <th>Ethnicity</th>
+            <th>Ethnicity</th>-->
             <th>Graduating Class</th>
+            <th>Guardian Name</th>
+            <th>Guardian Email</th>
+            <th>Guardian Phone</th>
             <th>Join Date</th>
         </tr>
         </thead>
@@ -63,9 +66,17 @@ require('/home/notfound/connect.php');
             $lName = ucwords(strtolower($row['lastName']));
             $email = strtolower($row['email']);
             $phone = $row['phone'];
-            $birthday = $row['birthday'];
+            /*$birthday = $row['birthday'];
             $gender = ucwords(strtolower($row['gender']));
-            $ethnicity = ucwords(strtolower($row['ethnicity']));
+            $ethnicity = ucwords(strtolower($row['ethnicity']));*/
+
+            $guardResult = getGuardian($cnxn, $row['guardianId']);
+            $guardData = mysqli_fetch_assoc($guardResult);
+
+            $guardFName = ucwords(strtolower($guardData['firstName']));
+            $guardLName = ucwords(strtolower($guardData['lastName']));
+            $guardEmail = ucwords(strtolower($guardData['email']));
+            $guardPhoneNum = ucwords(strtolower($guardData['phone']));
             $gradClass = $row['graduatingClass'];
             $joinDate = $row['joinDate'];
 
@@ -73,10 +84,13 @@ require('/home/notfound/connect.php');
                     <td>$fName $lName</td>
                     <td>$email</td>
                     <td>$phone</td>
-                    <td data-sort='$birthday'>".formatDate($birthday)."</td>
+                    <!--<td data-sort='$birthday'>".formatDate($birthday)."</td>
                     <td>$gender</td>
-                    <td>$ethnicity</td>
+                    <td>$ethnicity</td>-->
                     <td>$gradClass</td>
+                    <td>$guardFName $guardLName</td>
+                    <td>$guardEmail</td>
+                    <td>$guardPhoneNum</td>
                     <td data-sort='$dreamerId'>".formatDate($joinDate)."</td>
                 </tr>";
         }

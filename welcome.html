@@ -135,7 +135,7 @@
             </div>
         </fieldset>
 
-        <fieldset class="form-group rounded bg-light bg-light">
+        <fieldset class="form-group rounded bg-light">
             <legend>Contact Info</legend>
 
             <!-- Email -->
@@ -154,6 +154,41 @@
                 <input class="form-control required" type="text" id="phone" maxlength="25" name="phone">
             </div>
         </fieldset>
+
+        <fieldset class="form-group rounded bg-light">
+            <legend>Parent/Guardian Info</legend>
+
+            <!-- Guardian First Name -->
+            <div class="form-group">
+                <label class="h5 font-weight-light" id="lblguardianFName" for="guardianFName">First Name *</label>
+                <span id="guardianFNameErr" class="error">Required</span>
+                <input class="form-control required" type="text" id="guardianFName" maxlength="30" name="guardianFName">
+            </div>
+
+            <!-- Guardian Last Name -->
+            <div class="form-group">
+                <label class="h5 font-weight-light" id="lblguardianLName" for="guardianLName">Last Name *</label>
+                <span id="guardianLNameErr" class="error">Required</span>
+                <input class="form-control required" type="text" id="guardianLName" maxlength="30" name="guardianLName">
+            </div>
+
+            <!-- Guardian Email -->
+            <div class="form-group">
+                <label class="h5 font-weight-light" id="lblguardianEmail" for="guardianEmail">Email *</label>
+                <span id="guardianEmailErr" class="error">Required</span>
+                <span id="guardianEmailErrFormat" class="error">Please enter a valid email format</span>
+                <input class="form-control required" type="text" id="guardianEmail" maxlength="30" name="guardianEmail">
+            </div>
+
+            <!-- Guardian Phone Number -->
+            <div class="form-group">
+                <label class="h5 font-weight-light" id="lblguardianPhone" for="guardianPhone">Phone Number *</label>
+                <span id="guardianPhoneErr" class="error">Required</span>
+                <span id="guardianPhoneErrFormat" class="error">Please enter a valid phone number format</span>
+                <input class="form-control required" type="text" id="guardianPhone" maxlength="30" name="guardianPhone">
+            </div>
+        </fieldset>
+
         <button type="submit" id="submit" class="btn btn-dark p-2">Submit</button>
     </form>
 </div>
