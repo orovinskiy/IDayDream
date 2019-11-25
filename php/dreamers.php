@@ -18,6 +18,7 @@ require('/home/notfound/connect.php');
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
 
     <!-- Styles -->
     <link rel="stylesheet" href="../styles/style.css">
@@ -43,13 +44,13 @@ require('/home/notfound/connect.php');
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
-            <!--<th>Birthday</th>
-            <th>Gender</th>
-            <th>Ethnicity</th>-->
-            <th>Graduating Class</th>
             <th>Guardian Name</th>
             <th>Guardian Email</th>
             <th>Guardian Phone</th>
+            <th>Gender</th>
+            <th>Ethnicity</th>
+            <th>Graduating Class</th>
+            <th>Birthday</th>
             <th>Join Date</th>
         </tr>
         </thead>
@@ -66,9 +67,9 @@ require('/home/notfound/connect.php');
             $lName = ucwords(strtolower($row['lastName']));
             $email = strtolower($row['email']);
             $phone = $row['phone'];
-            /*$birthday = $row['birthday'];
+            $birthday = $row['birthday'];
             $gender = ucwords(strtolower($row['gender']));
-            $ethnicity = ucwords(strtolower($row['ethnicity']));*/
+            $ethnicity = ucwords(strtolower($row['ethnicity']));
 
             $guardResult = getGuardian($cnxn, $row['guardianId']);
             $guardData = mysqli_fetch_assoc($guardResult);
@@ -84,13 +85,13 @@ require('/home/notfound/connect.php');
                     <td>$fName $lName</td>
                     <td>$email</td>
                     <td>$phone</td>
-                    <!--<td data-sort='$birthday'>".formatDate($birthday)."</td>
-                    <td>$gender</td>
-                    <td>$ethnicity</td>-->
-                    <td>$gradClass</td>
                     <td>$guardFName $guardLName</td>
                     <td>$guardEmail</td>
                     <td>$guardPhoneNum</td>
+                    <td>$gender</td>
+                    <td>$ethnicity</td>
+                    <td>$gradClass</td>
+                    <td data-sort='$birthday'>".formatDate($birthday)."</td>
                     <td data-sort='$dreamerId'>".formatDate($joinDate)."</td>
                 </tr>";
         }
@@ -103,11 +104,25 @@ require('/home/notfound/connect.php');
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" ></script>
+<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script>
     $('#dreamerTable').DataTable({
         // Order table by join date descending
-        "order": [[ 7, "desc" ]]
+        order: [[ 7, "desc" ]]
+        responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.modal( {
+                    header: function ( row ) {
+                        var data = row.data();
+                        return 'Details for '+data[0];
+                    }
+                } ),
+                renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                    tableClass: 'table'
+                } )
+            }
+        }
     });
 </script>
 </body>
