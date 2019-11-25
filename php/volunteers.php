@@ -24,7 +24,7 @@ require('/home/notfound/connect.php');
     <!-- Favicon -->
     <link rel="shortcut icon" href="../images/favicon.png" />
 
-    <title>Dreamers | ID.A.Y.DREAM</title>
+    <title>Volunteers | ID.A.Y.DREAM</title>
 </head>
 <body>
 
@@ -53,51 +53,50 @@ require('/home/notfound/connect.php');
 
 <!-- Header -->
 <div class="jumbotron banner">
-    <h1 class="display-4 text-light font-weight-bold">ID.A.Y.DREAM DREAMERS</h1>
+    <h1 class="display-4 text-light font-weight-bold">ID.A.Y.DREAM VOLUNTEERS</h1>
 </div>
 
 <div class="container">
 
     <!-- Volunteers Table -->
-    <table id="dreamerTable" class="display">
+    <table id="volunteerTable" class="display">
         <thead>
         <tr>
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
-            <th>Availability</th>
+            <th>Summer Camp</th>
+            <th>Weekends</th>
             <th>Join Date</th>
         </tr>
         </thead>
 
-        <!-- Dreamers information -->
+        <!-- Volunteers information -->
         <tbody>
         <?php
-        $result = getAllDreamers($cnxn);
+        $result = getAllVolunteers($cnxn);
 
         while ($row = mysqli_fetch_assoc($result)) {
             $personId = $row['personId'];
-            $dreamerId = $row['participantId'];
+            $volunteerId = $row['volunteerId'];
             $fName = ucwords(strtolower($row['firstName']));
             $lName = ucwords(strtolower($row['lastName']));
             $email = strtolower($row['email']);
             $phone = $row['phone'];
-            $birthday = $row['birthday'];
-            $gender = ucwords(strtolower($row['gender']));
-            $ethnicity = ucwords(strtolower($row['ethnicity']));
-            $gradClass = $row['graduatingClass'];
+            $address = $row['street'] . ' ' . $row['city'] . ', ' . $row['state'] . ' ' . $row['zip'];
+            $summerCamp = $row['oneWeekSummerCamp'] === 1 ? 'Yes' : 'No';
+            $weekend = $row['weekend'];
             $joinDate = $row['joinDate'];
 
             echo "<tr>
                     <td>$fName $lName</td>
                     <td>$email</td>
                     <td>$phone</td>
-                    <td data-sort='$birthday'>".formatDate($birthday)."</td>
-                    <td>$gender</td>
-                    <td>$ethnicity</td>
+                    <td>$address</td>
+                    <td>$summerCamp</td>
                     <td>$gradClass</td>
-                    <td data-sort='$dreamerId'>".formatDate($joinDate)."</td>
+                    <td data-sort='$volunteerId'>".formatDate($joinDate)."</td>
                 </tr>";
         }
         ?>
@@ -111,7 +110,7 @@ require('/home/notfound/connect.php');
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" ></script>
 <script>
-    $('#dreamerTable').DataTable({
+    $('#volunteerTable').DataTable({
         // Order table by join date descending
         "order": [[ 7, "desc" ]]
     });
