@@ -237,10 +237,10 @@ function insertVolunteer($cnxn, $personID, $onMailList, $tShirtSize, $street, $c
 }
 
 function saveVolunteer($cnxn, $firstName, $lastName, $email, $phone
-                            , $onMailList, $tShirtSize, $street, $city, $state, $zip, $heardAbout, $motivation, $experience, $skills,
-                            $refFirstArray, $refLastArray, $refPhoneArray, $refMailArray, $refRelationArray,
-                            $oneWeek, $weekends,
-                            $interestArray){
+    , $onMailList, $tShirtSize, $street, $city, $state, $zip, $heardAbout, $motivation, $experience, $skills,
+                       $refFirstArray, $refLastArray, $refPhoneArray, $refMailArray, $refRelationArray,
+                       $oneWeek, $weekends,
+                       $interestArray){
 
 
     $personResult = insertPerson($cnxn, $firstName, $lastName, $email, $phone);
@@ -359,12 +359,12 @@ function saveVolunteer($cnxn, $firstName, $lastName, $email, $phone
  * $personId, $personId, $jobGoal: input from the user.
  * @return true or false if successfully added to the database
  */
-function insertDreamer($cnxn, $personId, $birthday, $gender, $ethnicity, $gradClass,
+function insertDreamer($cnxn, $personId, $guardianId, $birthday, $gender, $ethnicity, $gradClass,
                        $favFood, $collegeIntr, $jobGoal, $currDate) {
     $dreamerInsert =
-        "INSERT INTO participant (personId, birthday, gender, ethnicity, graduatingClass, 
+        "INSERT INTO participant (personId, guardianId, birthday, gender, ethnicity, graduatingClass, 
                                       favoriteFood, collegeOfInterest, careerGoals, joinDate)
-            VALUES ('$personId', '$birthday', '$gender', '$ethnicity', '$gradClass', 
+            VALUES ('$personId', '$guardianId', '$birthday', '$gender', '$ethnicity', '$gradClass', 
                     '$favFood', '$collegeIntr', '$jobGoal', '$currDate')";
 
     return mysqli_query($cnxn, $dreamerInsert);
@@ -379,7 +379,15 @@ function insertDreamer($cnxn, $personId, $birthday, $gender, $ethnicity, $gradCl
  * @return true or false if successfully added to the database
  */
 function saveParticipant($cnxn, $firstName, $lastName, $email, $phoneNum, $birthday, $gender, $ethnicity, $gradClass,
-            $favFood, $collegeIntr, $jobGoal) {
+                         $favFood, $collegeIntr, $jobGoal, $guardianFName, $guardianLName, $guardianEmail, $guardianPhoneNum) {
+    $guardianQResult = insertPerson($cnxn, $guardianFName, $guardianLName, $guardianEmail, $guardianPhoneNum);
+    if ($guardianQResult) {
+        $guardianId = $cnxn->insert_id;
+    }
+    else {
+        return false;
+    }
+
     $personQResult = insertPerson($cnxn, $firstName, $lastName, $email, $phoneNum);
     $dreamerQResult = false;
 
@@ -388,8 +396,15 @@ function saveParticipant($cnxn, $firstName, $lastName, $email, $phoneNum, $birth
         $personId = $cnxn->insert_id;
         $currDate = date("Y-m-d");
 
-        $dreamerQResult = insertDreamer($cnxn, $personId, $birthday, $gender, $ethnicity, $gradClass,
+        $dreamerQResult = insertDreamer($cnxn, $personId, $guardianId, $birthday, $gender, $ethnicity, $gradClass,
             $favFood, $collegeIntr, $jobGoal, $currDate);
     }
     return $personQResult && $dreamerQResult;
+}
+
+function getGuardian($cnxn, $guardianId) {
+    $sql =
+        "SELECT * FROM person WHERE $guardianId = personId";
+
+    return mysqli_query($cnxn, $sql);
 }
