@@ -47,11 +47,11 @@ require('/home/notfound/connect.php');
             <th>Guardian Name</th>
             <th>Guardian Email</th>
             <th>Guardian Phone</th>
+            <th>Join Date</th>
+            <th>Birthday</th>
             <th>Gender</th>
             <th>Ethnicity</th>
             <th>Graduating Class</th>
-            <th>Birthday</th>
-            <th>Join Date</th>
         </tr>
         </thead>
 
@@ -88,11 +88,11 @@ require('/home/notfound/connect.php');
                     <td>$guardFName $guardLName</td>
                     <td>$guardEmail</td>
                     <td>$guardPhoneNum</td>
+                    <td data-sort='$dreamerId'>".formatDate($joinDate)."</td>
+                    <td data-sort='$birthday'>".formatDate($birthday)."</td>
                     <td>$gender</td>
                     <td>$ethnicity</td>
-                    <td>$gradClass</td>
-                    <td data-sort='$birthday'>".formatDate($birthday)."</td>
-                    <td data-sort='$dreamerId'>".formatDate($joinDate)."</td>
+                    <td>$gradClass</td>                    
                 </tr>";
         }
         ?>
@@ -119,10 +119,10 @@ require('/home/notfound/connect.php');
                 renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
                     tableClass: 'table'
                 } )
+                // Order table by join date descending
+                //order: [[ 7, "desc" ]]
             }
         }
-        // Order table by join date descending
-        'order': [[ 7, "desc" ]]
     });
 </script>
 </body>
