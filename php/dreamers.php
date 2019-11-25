@@ -109,7 +109,7 @@ require('/home/notfound/connect.php');
 <script>
     $('#dreamerTable').DataTable({
         // Order table by join date descending
-        order: [[ 7, "desc" ]]
+        'order': [[ 7, "desc" ]]
         responsive: {
             details: {
                 display: $.fn.dataTable.Responsive.display.modal( {
