@@ -4,10 +4,12 @@ const EMAIL_REGEX = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-
 // Regex found at https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript
 const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 
-//Regex found at https://stackoverflow.com/questions/13194322/php-regex-to-check-date-is-in-yyyy-mm-dd-format
-const BIRTHDAY_REGEX =/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+// Regex found at https://stackoverflow.com/questions/13194322/php-regex-to-check-date-is-in-yyyy-mm-dd-format
+// const BIRTHDAY_REGEX =/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+// Regex found at https://forum.codeigniter.com/thread-68064.html
+const BIRTHDAY_REGEX = /^(\d{2})\/(\d{2})\/(\d{4})$/;
 
-//document.getElementById("welcomeForm").onsubmit = validateForm;
+document.getElementById("welcomeForm").onsubmit = validateForm;
 
 /**
  * gets ethnicity select and sees if other is selected. if selected then shows
@@ -51,7 +53,7 @@ function validateForm() {
 }
 
 /**
- * Validates all formats including phone number and email
+ * Validates all formats including email, phone number and birthday
  * @returns {boolean}
  */
 function validateAllFormats() {
@@ -72,6 +74,18 @@ function validateAllFormats() {
     //checks for a valid date format
     let birthdayInput = document.getElementById("birthday");
     if (!validateFormat(birthdayInput, BIRTHDAY_REGEX)){
+        isValid = false;
+    }
+
+    // Check if the guardian email format is valid and how error msgs if not
+    let guardianEmailInput = document.getElementById("guardianEmail");
+    if (!validateFormat(guardianEmailInput, EMAIL_REGEX)) {
+        isValid = false;
+    }
+
+    // Check if the guardian phone format is valid and how error msgs if not
+    let guardianPhoneInput = document.getElementById("guardianPhone");
+    if (!validateFormat(guardianPhoneInput, PHONE_REGEX)) {
         isValid = false;
     }
 
@@ -178,5 +192,3 @@ function clearAllErrors() {
     }
 
 }
-
-
