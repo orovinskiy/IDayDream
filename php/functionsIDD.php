@@ -184,6 +184,8 @@ function getAllVolunteers($cnxn) {
             INNER JOIN availability
                 ON volunteer.volunteerId = availability.volunteerId
             ORDER BY volunteer.volunteerId DESC';
+
+    return mysqli_query($cnxn, $sql);
 }
 
 /**
