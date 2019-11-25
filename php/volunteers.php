@@ -86,8 +86,8 @@ require('/home/notfound/connect.php');
             $lName = ucwords(strtolower($row['lastName']));
             $email = strtolower($row['email']);
             $phone = $row['phone'];
-            $address = $row['street'] . ' ' . $row['city'] . ', ' . $row['state'] . ' ' . $row['zip'];
-            $summerCamp = $row['oneWeekSummerCamp'] === 1 ? 'Yes' : 'No';
+            $address = $row['street'] . '<br>' . $row['city'] . ', ' . strtoupper($row['state']) . ' ' . $row['zip'];
+            $summerCamp = $row['oneWeekSummerCamp'] === '1' ? 'Yes' : 'No';
             $weekend = $row['weekend'];
             $joinDate = $row['joinDate'];
 
@@ -120,7 +120,7 @@ require('/home/notfound/connect.php');
                 display: $.fn.dataTable.Responsive.display.modal( {
                     header: function ( row ) {
                         var data = row.data();
-                        return 'Details for '+data[0]+' '+data[1];
+                        return 'Details for '+data[0];
                     }
                 } ),
                 renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
@@ -130,12 +130,6 @@ require('/home/notfound/connect.php');
         },
         order: [[ 6, "desc" ]]
     } );
-</script>
-<script>
-    // $('#volunteerTable').DataTable({
-    //     // Order table by join date descending
-    //     "order": [[ 6, "desc" ]]
-    // });
 </script>
 </body>
 </html>
