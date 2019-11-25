@@ -16,6 +16,10 @@ $interstArray = array('newsletter','events','fundraising','coordination','mentor
 $availableArray = array('oneWeek','weekends');
 $youHeardArray = array('none','word','web','print','corporate','other');
 
+//database variables
+$oneWeek = 0;
+$weekend = '';
+$interestArray = array();
 
 //personal Info and validation
 /**
@@ -235,29 +239,6 @@ $mailAvailable = "";
 </head>
 <body>
 
-<nav class="navbar navbar-expand-md sticky-top navbar-dark bg-dark info-color">
-    <a class="navbar-brand font-weight-bold" href="dreamers.php">Menu |</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="../volunteerFrm.html">Volunteer</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Volunteer Confirmation<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../welcome.html">Welcome</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="confirmation.php">Welcome Confirmation</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
 <div class="container">
     <div class="jumbotron ">
         <h1 class="display-4">Thank You for Volunteering!</h1>
@@ -271,7 +252,7 @@ $mailAvailable = "";
      * Validates background and agree
      */
     if(isset($_POST['question']) && $_POST['question'] === 'agreed'){
-        $isValid = true;
+
     }
     else{
         $isValid = false;
@@ -279,7 +260,7 @@ $mailAvailable = "";
     }
 
     if(isset($_POST['policyCheckBox']) || $_POST['policyCheckBox'] === 'checked'){
-        $isValid = true;
+
     }
     else{
         $isValid = false;
@@ -298,9 +279,11 @@ $mailAvailable = "";
                 echo "<p>E-Mail: $email</p>";
                 if($mailList === "checked"){
                     echo "<p>Mailing List: agreed to receive mail</p>";
+                    $mailList = 1;
                 }
                 else{
                     echo "<p>Mailing List: didn't agree to receive mail</p>";
+                    $mailList = 0;
                 }
                 echo "<p>T-shirt Size: $tShirt</p>";
 
@@ -325,14 +308,17 @@ $mailAvailable = "";
                         foreach ($_POST["interests"] as $interests) {
                             if ($interests === "other" && validText($_POST["interestsText"]) && trim($_POST["interestsText"]) === "" ) {
                                 echo "<li>Other</li>";
+                                $interestArray[] = $interests;
                                 $mailInterests .= ", $interests";
                             }
                             else if ($interests === "other" && validText($_POST["interestsText"])) {
                                 echo "<li>Other Interest: " . $_POST["interestsText"] . "</li>";
+                                $interestArray[] = mysqli_real_escape_string($cnxn, $_POST["interestsText"]);
                                 $mailInterests .= ", {$_POST["interestsText"]}";
                             }
                             else {
                                 echo "<li>" . $interests . "</li>";
+                                $interestArray[] = $interests;
                                 $mailInterests .= ", $interests";
                             }
                         }
@@ -353,9 +339,11 @@ $mailAvailable = "";
                         foreach ($_POST["availability"] as $available) {
                             if ($available === "oneWeek") {
                                 echo "<p>Available for one week of Summer Camp</p>";
+                                $oneWeek = 1;
                                 $mailAvailable .= "Available One week for Summer Camp";
                             } else if ($available === "weekends" && validText($_POST["weekendTimes"])) {
                                 echo "<p> Available: " . $_POST["weekendTimes"] . "</p>";
+                                $weekend = mysqli_real_escape_string($cnxn, trim($_POST["weekendTimes"]));
                                 $mailAvailable .= " Available: $available";
                             }
                         }
@@ -363,8 +351,8 @@ $mailAvailable = "";
 
                 //About you
 
-                $otherHeardAbout = (!empty($otherHowDidHear)) ? '('.$otherHowDidHear.')' : '';
-                echo "<p>How you heard about us: $howDidHear $otherHeardAbout </p>";
+                $otherHeardAbout = (!empty($otherHowDidHear)) ? $howDidHear = $otherHowDidHear : '';
+                echo "<p>How you heard about us: $howDidHear</p>";
                 echo "<p>Your Motivation: $motivation</p>";
                 echo "<p>Your Experience: $volExperience</p>";
                 echo "<p>Your Skills: ".$skills."</p>";
@@ -395,7 +383,7 @@ if($isValid) {
     $email_body .= "Name: $firstName $lastName \r\n";
     $email_body .= "Address: $street $city" . ", " . "$state $zip \r\n";
     $email_body .= "Interests: $mailInterests \r\n \r\n";
-    $email_body .= "How they heard about us: $howDidHear $otherHeardAbout \r\n";
+    $email_body .= "How they heard about us: $howDidHear \r\n";
     $email_body .= "Their Motivation: $motivation \r\n";
     $email_body .= "Their Experience: $volExperience \r\n";
     $email_body .= "Their Skills: $skills \r\n \r\n";
@@ -425,7 +413,6 @@ if($isValid) {
     $state = mysqli_real_escape_string($cnxn, $_POST["state"]);
     $zip = mysqli_real_escape_string($cnxn, $_POST["zip"]);
     $howDidHear = mysqli_real_escape_string($cnxn, $_POST["howDidHear"]);
-    $otherHowDidHear = mysqli_real_escape_string($cnxn, $_POST["otherHowDidHear"]);
     $motivation = mysqli_real_escape_string($cnxn, $_POST["motivation"]);
     $volExperience = mysqli_real_escape_string($cnxn, $_POST["volExperience"]);
     $skills = mysqli_real_escape_string($cnxn, $_POST["skills"]);
@@ -437,6 +424,17 @@ if($isValid) {
         $pNumberArray[$i] = mysqli_real_escape_string($cnxn, $_POST["refPhone".$i]);
         $mailArray[$i] = mysqli_real_escape_string($cnxn, $_POST["refEmail".$i]);
 
+    }
+
+    $submited = saveVolunteer($cnxn, $firstName, $lastName, $email, $phoneNumber, $mailList, $tShirt, $street,
+                              $city, $state, $zip, $howDidHear, $motivation, $volExperience, $skills, $firstArray, $lastArray, $pNumberArray, $mailArray,
+                               $relationArray, $oneWeek, $weekend, $interestArray);
+
+    if($submited){
+        echo "<h4>Your Form was Successfully Submitted</h4>";
+    }
+    else{
+        echo "<h4>ERROR: Form Was Not Submitted</h4>";
     }
 }
 else{
