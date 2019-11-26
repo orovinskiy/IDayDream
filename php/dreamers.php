@@ -98,6 +98,8 @@ require('/home/notfound/connect.php');
         ?>
         </tbody>
     </table>
+    <br>
+    <p><a href="../sendMail.php?source=dream">Send Email</a></p>
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -7,6 +7,7 @@ require("functionsIDD.php");
 $from = trim($_POST['from']);
 $subject = trim($_POST['subject']);
 $compose = trim($_POST['compose']);
+$pageType = $_POST['select'];
 $isValid = true;
 
 ?>
@@ -44,7 +45,7 @@ $isValid = true;
             $isValid = false;
         }
         else{
-            echo "<p>From: $subject</p>";
+            echo "<p>Subject: $subject</p>";
         }
 
         if(!validReqText($compose)){
@@ -52,25 +53,49 @@ $isValid = true;
             $isValid = false;
         }
         else{
-            echo "<p>From: $compose</p>";
+            echo "<p>Message: $compose</p>";
+        }
+
+        //looks to see witch connection to use
+        if($pageType === 'dream'){
+            $sql = "SELECT email FROM `person` INNER JOIN participant ON participant.personId = person.personId";
+
+            $result = mysqli_query($cnxn, $sql);
+        }
+        else{
+            $sql = "SELECT email FROM `person` INNER JOIN volunteer ON volunteer.personId = person.personId";
+
+            $result = mysqli_query($cnxn, $sql);
         }
 
         //this will be in a loop
         if($isValid){
-            $emailSend = $from;
+            $count = 0;
+            while($row = mysqli_fetch_assoc($result)){
 
-            $email_body = "I Day Dream --\r\n";
-            $email_body .= "$compose \r\n";
+                $email = $row['email'];
+
+                $emailSend = $from;
+
+                $email_body = "I Day Dream --\r\n";
+                $email_body .= "$compose \r\n";
 
 
 
-            $email_subject = $subject;
-            $to = "olegrovin@gmail.com";//The active user goes here
+                $email_subject = $subject;
+                $to = $email;//The active user goes here
 
-            $headers = "from: $email\r\n";
-            $headers.= "Reply-to: $email \r\n";
+                $headers = "from: $from\r\n";
+                $headers.= "Reply-to: $from \r\n";
+                $count++;
 
-            $success = mail($to, $email_subject, $email_body, $headers);
+                $success = mail($to, $email_subject, $email_body, $headers);
+
+                $msg = $success ? "Your form was successfully submitted."
+                    : "We're sorry. There was a problem with your form.";
+                echo "<p>$msg</p>";
+            }
+            echo "<h6>$count emails were sent</h6>";
         }
     ?>
 

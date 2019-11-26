@@ -43,6 +43,16 @@
             <textarea id="compose" maxlength="200000" class="required form-control" name="compose"></textarea>
         </div>
 
+        <?php
+            $page = $_GET['source'];
+            if($page === 'dream'){
+                echo "<input type='checkbox' name='select' value='dream' checked class='halfHidden'>";
+            }
+            else{
+                echo "<input type='checkbox' name='select' value='vol' checked class='halfHidden'>";
+            }
+        ?>
+
         <button type="submit" id="submit" class="btn btn-dark p-2">Submit</button>
     </form>
 </div>
