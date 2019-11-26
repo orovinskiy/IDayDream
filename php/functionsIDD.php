@@ -190,6 +190,8 @@ function formatHeardAbout($value) {
             return 'Corporate Sponsor';
         case 'other':
             return 'Other';
+        case '':
+            return 'Unspecified';
         default:
             return $value;
     }
@@ -206,7 +208,7 @@ function formatInterests($qResult) {
         // remove comma at the end
         return rtrim($interests, ', ');
     }
-    return '';
+    return 'Unspecified';
 }
 
 function formatReferences($qResult) {

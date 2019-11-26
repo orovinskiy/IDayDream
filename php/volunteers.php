@@ -101,20 +101,20 @@ require('/home/notfound/connect.php');
             $tShirtSize = formatShirtSize($row['tShirtSize']);
             $heardAbout = formatHeardAbout($row['heardAbout']);
             $motivation = $row['motivation'];
-            $experience = $row['experience'];
-            $skills = $row['skills'];
+            $experience = empty($row['experience']) ? 'Unspecified' : $row['experience'];
+            $skills = empty($row['experience']) ? 'Unspecified' : $row['experience'];
             $interests = formatInterests(getInterestsById($cnxn, $volunteerId));
             $references = formatReferences(getReferencesById($cnxn, $volunteerId));
 
             echo "<tr>
                     <td>$fName $lName</td>
                     <td>$email</td>
+                    <td>$onMailList</td>
                     <td>$phone</td>
                     <td>$address</td>
                     <td>$summerCamp</td>
                     <td>$weekend</td>
                     <td data-sort='$volunteerId'>$joinDate</td>
-                    <td>$onMailList</td>
                     <td>$tShirtSize</td>
                     <td>$heardAbout</td>
                     <td>$motivation</td>
@@ -150,6 +150,14 @@ require('/home/notfound/connect.php');
                 } )
             }
         },
+        columnDefs: [
+            { responsivePriority: 1, targets: 0 },
+            { responsivePriority: 2, targets: 1 },
+            { responsivePriority: 3, targets: 2 },
+            { responsivePriority: 4, targets: 3 },
+            { responsivePriority: 5, targets: 6 }
+        ],
+
         // Order table by join date descending
         order: [[ 6, "desc" ]]
     } );
