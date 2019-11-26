@@ -104,6 +104,7 @@ require('/home/notfound/connect.php');
         ?>
         </tbody>
     </table>
+    <p><a class="btn btn-dark p-2" href="../sendMail.php?source=vol">Send Email</a></p>
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

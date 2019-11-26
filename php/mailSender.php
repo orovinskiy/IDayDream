@@ -56,14 +56,14 @@ $isValid = true;
             echo "<p>Message: $compose</p>";
         }
 
-        //looks to see witch connection to use
+        //looks to see witch connection to use. 1 is described as active
         if($pageType === 'dream'){
-            $sql = "SELECT email FROM `person` INNER JOIN participant ON participant.personId = person.personId";
+            $sql = "SELECT email FROM `person` INNER JOIN participant ON participant.personId = person.personId WHERE activity = 1";
 
             $result = mysqli_query($cnxn, $sql);
         }
         else{
-            $sql = "SELECT email FROM `person` INNER JOIN volunteer ON volunteer.personId = person.personId";
+            $sql = "SELECT email FROM `person` INNER JOIN volunteer ON volunteer.personId = person.personId WHERE activity = 1";
 
             $result = mysqli_query($cnxn, $sql);
         }
