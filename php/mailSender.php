@@ -91,9 +91,10 @@ $isValid = true;
 
                 $success = mail($to, $email_subject, $email_body, $headers);
 
+                /*
                 $msg = $success ? "Your form was successfully submitted."
                     : "We're sorry. There was a problem with your form.";
-                echo "<p>$msg</p>";
+                echo "<p>$msg</p>";*/
             }
             echo "<h6>$count emails were sent</h6>";
         }
