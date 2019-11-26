@@ -173,6 +173,119 @@ function formatDate($date) {
 }
 
 /**
+ * Converts db value to readable words
+ * @param $value of db tShirtSize value
+ * @return string readable words
+ */
+function formatShirtSize($value) {
+    switch ($value) {
+        case 'extraSmall':
+            return 'Extra Small';
+        case 'extraLarge':
+            return 'Extra Large';
+        default:
+            return ucwords($value);
+    }
+}
+
+/**
+ * Converts database value to more specific readable form. Returns "Unspecified" if none.
+ * @param $value value of heardAbout from db
+ * @return string Specific "Heard about" message
+ */
+function formatHeardAbout($value) {
+    switch ($value) {
+        case 'word':
+            return 'Word of Mouth/Friend/Colleague';
+        case 'web':
+            return 'Web/Social Media';
+        case 'print':
+            return 'Print (Flyer/Poster/Brochure)';
+        case 'corporate':
+            return 'Corporate Sponsor';
+        case 'other':
+            return 'Other';
+        case '':
+            return 'Unspecified';
+        default:
+            return $value;
+    }
+}
+
+/**
+ * Displays volunteer's interests as a string of a list. Returns "unspecified"
+ * if no interests
+ * @param $qResult query result for interests
+ * @return string list of interests
+ */
+function formatInterests($qResult) {
+    if ($qResult) {
+        $interests = '';
+
+        while ($row = mysqli_fetch_assoc($qResult)) {
+            $interests .= $row['interestOption'] . ', ';
+        }
+
+        // remove comma at the end
+        return empty($interests) ? 'Unspecified' : rtrim($interests, ', ');
+    }
+    return 'Unspecified';
+}
+
+/**
+ * Formats all references vertically with a blank line inbetween references
+ * @param $qResult Select query result
+ * @return string formatted references
+ */
+function formatReferences($qResult) {
+    if ($qResult) {
+        $references = '';
+
+        while ($row = mysqli_fetch_assoc($qResult)) {
+            $references .= ucwords(strtolower($row['firstName'] . ' ' . $row['lastName'])) . '<br>'
+                            . strtolower($row['email']) . '<br>'
+                            . $row['phone'] . '<br>' . '<br>';
+        }
+
+        // remove extra newline at the end
+        return rtrim($references, '<br>');
+    }
+    return '';
+}
+
+/**
+ * Selects a volunteers interests from the db by their id
+ * @param $cnxn db connection
+ * @param $id id of volunteer
+ * @return bool|mysqli_result db result if successful. false if not successful
+ */
+function getInterestsById($cnxn, $id) {
+    $sql = "SELECT interestOption
+            FROM volunteerInterest 
+            INNER JOIN interest 
+                ON volunteerInterest.interestId = interest.interestId
+            WHERE volunteerInterest.volunteerId = $id";
+
+    return mysqli_query($cnxn, $sql);
+}
+
+/**
+ * Gets all references for a volunteer by Id
+ * @param $cnxn db connection
+ * @param $id volunteer Id
+ * @return bool|mysqli_result db result if successful. false if not successful
+ */
+function getReferencesById ($cnxn, $id) {
+    $sql = "SELECT firstName, lastName, phone, email, relationship
+            FROM person 
+            INNER JOIN reference
+                ON person.personId = reference.personId
+            WHERE reference.volunteerId = $id";
+
+    return mysqli_query($cnxn, $sql);
+}
+
+/**
  * selects all the information about dreamers by joining person table
  * with the participant table. Also orders it by the most recent entry
  * @param $cnxn connection to the database
@@ -184,6 +297,23 @@ function getAllDreamers($cnxn) {
             INNER JOIN participant 
                 ON person.personId = participant.personId
             ORDER BY participantId DESC';
+
+    return mysqli_query($cnxn, $sql);
+}
+
+/**
+ * Selects all volunteers and columns from the volunteers table
+ * @param $cnxn db connection
+ * @return bool|mysqli_result result if successful. false if not
+ */
+function getAllVolunteers($cnxn) {
+    $sql = 'SELECT *
+            FROM person 
+            INNER JOIN volunteer 
+                ON person.personId = volunteer.personId
+            INNER JOIN availability
+                ON volunteer.volunteerId = availability.volunteerId
+            ORDER BY volunteer.volunteerId DESC';
 
     return mysqli_query($cnxn, $sql);
 }
@@ -402,6 +532,12 @@ function saveParticipant($cnxn, $firstName, $lastName, $email, $phoneNum, $birth
     return $personQResult && $dreamerQResult;
 }
 
+/**
+ * Gets the guardian/parent of a participant
+ * @param $cnxn db connection
+ * @param $guardianId
+ * @return bool|mysqli_result
+ */
 function getGuardian($cnxn, $guardianId) {
     $sql =
         "SELECT * FROM person WHERE $guardianId = personId";

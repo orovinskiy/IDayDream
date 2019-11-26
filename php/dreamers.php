@@ -5,7 +5,6 @@ include("debugging.php");
 require("functionsIDD.php");
 require('/home/notfound/connect.php');
 
-
 ?>
 
 <!doctype html>
@@ -38,20 +37,23 @@ require('/home/notfound/connect.php');
 <div class="container">
 
     <!-- Dreamers Table -->
-    <table id="dreamerTable" class="display">
+    <table id="dreamerTable" class="display nowrap w-100">
         <thead>
         <tr>
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
+            <th>Graduating Class</th>
+            <th>Birthday</th>
+            <th>Gender</th>
+            <th>Ethnicity</th>
+            <th>Career Goals</th>
+            <th>College of Interest</th>
+            <th>Favorite Food</th>
             <th>Guardian Name</th>
             <th>Guardian Email</th>
             <th>Guardian Phone</th>
             <th>Join Date</th>
-            <th>Birthday</th>
-            <th>Gender</th>
-            <th>Ethnicity</th>
-            <th>Graduating Class</th>
         </tr>
         </thead>
 
@@ -70,29 +72,36 @@ require('/home/notfound/connect.php');
             $birthday = $row['birthday'];
             $gender = ucwords(strtolower($row['gender']));
             $ethnicity = ucwords(strtolower($row['ethnicity']));
+            $food = empty($row['favoriteFood']) ? 'Unspecified' : $row['favoriteFood'];
+            $college = empty($row['collegeOfInterest']) ? 'Unspecified' : $row['collegeOfInterest'];
+            $goals = empty($row['careerGoals']) ? 'Unspecified' : $row['careerGoals'];
 
             $guardResult = getGuardian($cnxn, $row['guardianId']);
             $guardData = mysqli_fetch_assoc($guardResult);
 
             $guardFName = ucwords(strtolower($guardData['firstName']));
             $guardLName = ucwords(strtolower($guardData['lastName']));
-            $guardEmail = ucwords(strtolower($guardData['email']));
+            $guardEmail = strtolower($guardData['email']);
             $guardPhoneNum = ucwords(strtolower($guardData['phone']));
+
             $gradClass = $row['graduatingClass'];
-            $joinDate = $row['joinDate'];
+            $joinDate = formatDate($row['joinDate']);
 
             echo "<tr>
                     <td>$fName $lName</td>
                     <td>$email</td>
                     <td>$phone</td>
-                    <td>$guardFName $guardLName</td>
-                    <td>$guardEmail</td>
-                    <td>$guardPhoneNum</td>
-                    <td data-sort='$dreamerId'>".formatDate($joinDate)."</td>
+                    <td>$gradClass</td>
                     <td data-sort='$birthday'>".formatDate($birthday)."</td>
                     <td>$gender</td>
                     <td>$ethnicity</td>
-                    <td>$gradClass</td>                    
+                    <td>$goals</td>
+                    <td>$college</td>
+                    <td>$food</td>
+                    <td>$guardFName $guardLName</td>
+                    <td>$guardEmail</td>
+                    <td>$guardPhoneNum</td>
+                    <td data-sort='$dreamerId'>$joinDate</td>        
                 </tr>";
         }
         ?>
@@ -115,16 +124,28 @@ require('/home/notfound/connect.php');
                 display: $.fn.dataTable.Responsive.display.modal( {
                     header: function ( row ) {
                         var data = row.data();
-                        return 'Details for '+data[0];
+                        return 'Details for ' + data[0];
                     }
                 } ),
                 renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
                     tableClass: 'table'
                 } )
-                // Order table by join date descending
-                //order: [[ 7, "desc" ]]
             }
-        }
+        },
+
+        // Priority of which columns are shown in the table
+        columnDefs: [
+            { responsivePriority: 1, targets: 0 },
+            { responsivePriority: 2, targets: 1 },
+            { responsivePriority: 3, targets: 2 },
+            { responsivePriority: 5, targets: 10 },
+            { responsivePriority: 6, targets: 11 },
+            { responsivePriority: 7, targets: 12 },
+            { responsivePriority: 4, targets: 13 }
+        ],
+
+        // Order table by join date descending
+        order: [[ 13, "desc" ]]
     });
 </script>
 </body>

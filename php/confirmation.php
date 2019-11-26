@@ -193,7 +193,7 @@ $isValid = true;
         }
         ?>
 
-        <h2 class="mt-3">Contact Information</h2>
+        <h2 class="mt-3">Parent/Guardian Information</h2>
         <?php
 
         /**
@@ -260,11 +260,16 @@ $isValid = true;
 
             $email_body .= "Contact Information --\r\n";
             $email_body .= "E-Mail: $email\r\n";
-            $email_body .= "Phone Number: $phoneNum\r\n";
+            $email_body .= "Phone Number: $phoneNum\r\n\r\n";
+
+            $email_body .= "Parent Guardian Information --\r\n";
+            $email_body .= "Name: $guardianFName $guardianLName\r\n";
+            $email_body .= "Email: $guardianEmail\r\n";
+            $email_body .= "Phone Number: $guardianPhoneNum\r\n";
 
 
             $email_subject = "New Member Applicant";
-            $to = "olegrovin@gmail.com";
+            $to = "cdrennan@mail.greenriver.edu";
 
             $headers = "from: $email\r\n";
             $headers.= "Reply-to: $email \r\n";
