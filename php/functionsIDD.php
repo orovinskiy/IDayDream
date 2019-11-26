@@ -160,6 +160,11 @@ function formatDate($date) {
     }
 }
 
+/**
+ * Converts db value to readable words
+ * @param $value of db tShirtSize value
+ * @return string readable words
+ */
 function formatShirtSize($value) {
     switch ($value) {
         case 'extraSmall':
@@ -171,13 +176,11 @@ function formatShirtSize($value) {
     }
 }
 
-function formatWeekend($value) {
-    if (empty($value)) {
-        return 'Unspecified';
-    }
-    return $value;
-}
-
+/**
+ * Converts database value to more specific readable form. Returns "Unspecified" if none.
+ * @param $value value of heardAbout from db
+ * @return string Specific "Heard about" message
+ */
 function formatHeardAbout($value) {
     switch ($value) {
         case 'word':
@@ -197,6 +200,12 @@ function formatHeardAbout($value) {
     }
 }
 
+/**
+ * Displays volunteer's interests as a string of a list. Returns "unspecified"
+ * if no interests
+ * @param $qResult query result for interests
+ * @return string list of interests
+ */
 function formatInterests($qResult) {
     if ($qResult) {
         $interests = '';
@@ -206,7 +215,7 @@ function formatInterests($qResult) {
         }
 
         // remove comma at the end
-        return rtrim($interests, ', ');
+        return empty($interests) ? 'Unspecified' : rtrim($interests, ', ');
     }
     return 'Unspecified';
 }
@@ -237,6 +246,12 @@ function getInterestsById($cnxn, $id) {
     return mysqli_query($cnxn, $sql);
 }
 
+/**
+ * Gets all references for a volunteer by Id
+ * @param $cnxn db connection
+ * @param $id volunteer Id
+ * @return bool|mysqli_result db result if successful. false if not successful
+ */
 function getReferencesById ($cnxn, $id) {
     $sql = "SELECT firstName, lastName, phone, email, relationship
             FROM person 
@@ -489,6 +504,12 @@ function saveParticipant($cnxn, $firstName, $lastName, $email, $phoneNum, $birth
     return $personQResult && $dreamerQResult;
 }
 
+/**
+ * Gets the guardian/parent of a participant
+ * @param $cnxn db connection
+ * @param $guardianId
+ * @return bool|mysqli_result
+ */
 function getGuardian($cnxn, $guardianId) {
     $sql =
         "SELECT * FROM person WHERE $guardianId = personId";

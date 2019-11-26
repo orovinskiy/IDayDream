@@ -65,12 +65,11 @@ require('/home/notfound/connect.php');
         <tr>
             <th>Name</th>
             <th>Email</th>
+            <th>On Mail List</th>
             <th>Phone</th>
             <th>Address</th>
-            <th>Summer Camp</th>
             <th>Weekends</th>
-            <th>Join Date</th>
-            <th>On Mail List</th>
+            <th>Summer Camp</th>
             <th>Shirt Size</th>
             <th>Heard About By</th>
             <th>Motivation</th>
@@ -78,6 +77,7 @@ require('/home/notfound/connect.php');
             <th>Skills</th>
             <th>Interests</th>
             <th>References</th>
+            <th>Join Date</th>
         </tr>
         </thead>
 
@@ -93,9 +93,9 @@ require('/home/notfound/connect.php');
             $lName = ucwords(strtolower($row['lastName']));
             $email = strtolower($row['email']);
             $phone = $row['phone'];
-            $address = $row['street'] . '<br>' . $row['city'] . ', ' . strtoupper($row['state']) . ' ' . $row['zip'];
+            $address = $row['street'] . ' ' . $row['city'] . ', ' . strtoupper($row['state']) . ' ' . $row['zip'];
             $summerCamp = $row['oneWeekSummerCamp'] === '1' ? 'Yes' : 'No';
-            $weekend = formatWeekend($row['weekend']);
+            $weekend = empty($row['weekend']) ? 'Unspecified' : $row['weekend'];
             $joinDate = formatDate($row['joinDate']);
             $onMailList = $row['onMailList'] === '1' ? 'Yes' : 'No';
             $tShirtSize = formatShirtSize($row['tShirtSize']);
@@ -112,9 +112,8 @@ require('/home/notfound/connect.php');
                     <td>$onMailList</td>
                     <td>$phone</td>
                     <td>$address</td>
-                    <td>$summerCamp</td>
                     <td>$weekend</td>
-                    <td data-sort='$volunteerId'>$joinDate</td>
+                    <td>$summerCamp</td>
                     <td>$tShirtSize</td>
                     <td>$heardAbout</td>
                     <td>$motivation</td>
@@ -122,6 +121,7 @@ require('/home/notfound/connect.php');
                     <td>$skills</td>
                     <td>$interests</td>
                     <td>$references</td>
+                    <td data-sort='$volunteerId'>$joinDate</td>
                 </tr>";
         }
         ?>
@@ -150,16 +150,20 @@ require('/home/notfound/connect.php');
                 } )
             }
         },
+
+        // Priority of which columns are shown in the table
         columnDefs: [
             { responsivePriority: 1, targets: 0 },
             { responsivePriority: 2, targets: 1 },
-            { responsivePriority: 3, targets: 2 },
-            { responsivePriority: 4, targets: 3 },
-            { responsivePriority: 5, targets: 6 }
+            { responsivePriority: 3, targets: 3 },
+            { responsivePriority: 4, targets: 4 },
+            { responsivePriority: 5, targets: 5 },
+            { responsivePriority: 6, targets: 6 },
+            { responsivePriority: 5, targets: 14 }
         ],
 
         // Order table by join date descending
-        order: [[ 6, "desc" ]]
+        order: [[ 14, "desc" ]]
     } );
 </script>
 </body>

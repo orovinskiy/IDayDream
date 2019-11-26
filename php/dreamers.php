@@ -130,6 +130,8 @@ require('/home/notfound/connect.php');
                 } )
             }
         },
+
+        // Priority of which columns are shown in the table
         columnDefs: [
             { responsivePriority: 1, targets: 0 },
             { responsivePriority: 2, targets: 1 },
@@ -141,7 +143,7 @@ require('/home/notfound/connect.php');
         ],
 
         // Order table by join date descending
-        order: [[ 7, "desc" ]]
+        order: [[ 13, "desc" ]]
     });
 </script>
 </body>
