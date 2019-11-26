@@ -350,13 +350,6 @@ $mailAvailable = "";
                     }
 
                 //About you
-                //if ($howDidHear === 'other') {
-                if (!empty($otherHowDidHear)) {
-                    echo "<h1>TEST 1 $howDidHear $otherHowDidHear</h1>";
-                }
-                else {
-                    echo "<h1>FAIL</h1>";
-                }
                 if ($howDidHear === 'other' && !empty($otherHowDidHear)) {
                     $howDidHear = $otherHowDidHear;
                 }

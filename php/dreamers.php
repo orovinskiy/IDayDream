@@ -37,7 +37,7 @@ require('/home/notfound/connect.php');
 <div class="container">
 
     <!-- Dreamers Table -->
-    <table id="dreamerTable" class="display nowrap" style="width:100%">
+    <table id="dreamerTable" class="display nowrap w-100">
         <thead>
         <tr>
             <th>Name</th>
@@ -81,7 +81,7 @@ require('/home/notfound/connect.php');
 
             $guardFName = ucwords(strtolower($guardData['firstName']));
             $guardLName = ucwords(strtolower($guardData['lastName']));
-            $guardEmail = ucwords(strtolower($guardData['email']));
+            $guardEmail = strtolower($guardData['email']);
             $guardPhoneNum = ucwords(strtolower($guardData['phone']));
 
             $gradClass = $row['graduatingClass'];
