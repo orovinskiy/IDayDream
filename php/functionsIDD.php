@@ -145,6 +145,18 @@ function validText($input){
 }
 
 /**
+ * checks text fields for inserted scripts and if it is empty
+ * @param $input input from the user
+ * @return true or false
+ */
+function validReqText($input){
+    if($input !== htmlspecialchars($input) || trim($input) === ""){
+        return false;
+    }
+    return true;
+}
+
+/**
  * Takes a date in the YYYY-MM-DD  format and converts it to
  * MM/DD/YYYY. Returns a string with error message if fails
  * @param $date the date to format
