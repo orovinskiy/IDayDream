@@ -160,6 +160,80 @@ function formatDate($date) {
     }
 }
 
+function formatShirtSize($value) {
+    switch ($value) {
+        case 'extraSmall':
+            return 'Extra Small';
+        case 'extraLarge':
+            return 'Extra Large';
+        default:
+            return ucwords($value);
+    }
+}
+
+function formatHeardAbout($value) {
+    switch ($value) {
+        case 'word':
+            return 'Word of Mouth/Friend/Colleague';
+        case 'web':
+            return 'Web/Social Media';
+        case 'print':
+            return 'Print (Flyer/Poster/Brochure)';
+        case 'corporate':
+            return 'Corporate Sponsor';
+        case 'other':
+            return 'Other';
+        default:
+            return $value;
+    }
+}
+
+function formatInterests($qResult) {
+    if ($qResult) {
+        $interests = '';
+        while ($row = mysqli_fetch_assoc($qResult)) {
+            $interests .= $row['interestOption'] . ', ';
+        }
+        // remove comma at the end
+        return rtrim($interests, ', ');
+    }
+    return '';
+}
+
+function formatReferences($qResult) {
+    if ($qResult) {
+        $references = '';
+        while ($row = mysqli_fetch_assoc($qResult)) {
+            $references .= ucwords(strtolower($row['firstName'] . ' ' . $row['lastName'])) . '<br>'
+                            . strtolower($row['email']) . '<br>'
+                            . $row['phone'] . '<br>' . '<br>';
+        }
+        // remove extra newline at the end
+        return rtrim($references, '<br>');
+    }
+    return '';
+}
+
+function getInterestsById($cnxn, $id) {
+    $sql = "SELECT interestOption
+            FROM volunteerInterest 
+            INNER JOIN interest 
+                ON volunteerInterest.interestId = interest.interestId
+            WHERE volunteerInterest.volunteerId = $id";
+
+    return mysqli_query($cnxn, $sql);
+}
+
+function getReferencesById ($cnxn, $id) {
+    $sql = "SELECT firstName, lastName, phone, email, relationship
+            FROM person 
+            INNER JOIN reference
+                ON person.personId = reference.personId
+            WHERE reference.volunteerId = $id";
+
+    return mysqli_query($cnxn, $sql);
+}
+
 /**
  * selects all the information about dreamers by joining person table
  * with the participant table. Also orders it by the most recent entry

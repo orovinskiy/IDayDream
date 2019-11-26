@@ -10,7 +10,7 @@ require('/home/notfound/connect.php');
  */
 // validation variables
 $isValid = true;
-$shirtArray = array('extra_small','small','medium','large','extra_large');
+$shirtArray = array('extraSmall','small','medium','large','extraLarge');
 $stateArray = array('al', 'ak', 'as', 'az', 'ar', 'ca', 'co', 'ct', 'de', 'dc', 'fm', 'fl', 'ga', 'gu', 'hi', 'id', 'il', 'in', 'ia', 'ks', 'ky', 'la', 'me', 'mh', 'md', 'ma', 'mi', 'mn', 'ms', 'mo', 'mt', 'ne', 'nv', 'nh', 'nj', 'nm', 'ny', 'nc', 'nd', 'mp', 'oh', 'ok', 'or', 'pw', 'pa', 'pr', 'ri', 'sc', 'sd', 'tn', 'tx', 'ut', 'vt', 'vi', 'va', 'wa', 'wv', 'wi', 'wy');
 $interstArray = array('newsletter','events','fundraising','coordination','mentoring','other');
 $availableArray = array('oneWeek','weekends');

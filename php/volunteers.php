@@ -17,7 +17,6 @@ require('/home/notfound/connect.php');
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
 
     <!-- Styles -->
@@ -71,6 +70,14 @@ require('/home/notfound/connect.php');
             <th>Summer Camp</th>
             <th>Weekends</th>
             <th>Join Date</th>
+            <th>On Mail List</th>
+            <th>Shirt Size</th>
+            <th>Heard About IDD</th>
+            <th>Motivation</th>
+            <th>Experience</th>
+            <th>Skills</th>
+            <th>Interests</th>
+            <th>References</th>
         </tr>
         </thead>
 
@@ -89,7 +96,15 @@ require('/home/notfound/connect.php');
             $address = $row['street'] . '<br>' . $row['city'] . ', ' . strtoupper($row['state']) . ' ' . $row['zip'];
             $summerCamp = $row['oneWeekSummerCamp'] === '1' ? 'Yes' : 'No';
             $weekend = $row['weekend'];
-            $joinDate = $row['joinDate'];
+            $joinDate = formatDate($row['joinDate']);
+            $onMailList = $row['onMailList'] === '1' ? 'Yes' : 'No';
+            $tShirtSize = formatShirtSize($row['tShirtSize']);
+            $heardAbout = formatHeardAbout($row['heardAbout']);
+            $motivation = $row['motivation'];
+            $experience = $row['experience'];
+            $skills = $row['skills'];
+            $interests = formatInterests(getInterestsById($cnxn, $volunteerId));
+            $references = formatReferences(getReferencesById($cnxn, $volunteerId));
 
             echo "<tr>
                     <td>$fName $lName</td>
@@ -98,7 +113,15 @@ require('/home/notfound/connect.php');
                     <td>$address</td>
                     <td>$summerCamp</td>
                     <td>$weekend</td>
-                    <td data-sort='$volunteerId'>".formatDate($joinDate)."</td>
+                    <td data-sort='$volunteerId'>$joinDate</td>
+                    <td>$onMailList</td>
+                    <td>$tShirtSize</td>
+                    <td>$heardAbout</td>
+                    <td>$motivation</td>
+                    <td>$experience</td>
+                    <td>$skills</td>
+                    <td>$interests</td>
+                    <td>$references</td>
                 </tr>";
         }
         ?>
@@ -110,9 +133,8 @@ require('/home/notfound/connect.php');
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" ></script>
+<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-<script src="//cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 <script>
     $('#volunteerTable').DataTable( {
         responsive: {
@@ -120,7 +142,7 @@ require('/home/notfound/connect.php');
                 display: $.fn.dataTable.Responsive.display.modal( {
                     header: function ( row ) {
                         var data = row.data();
-                        return 'Details for '+data[0];
+                        return 'Details for '+ data[0];
                     }
                 } ),
                 renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
@@ -128,6 +150,7 @@ require('/home/notfound/connect.php');
                 } )
             }
         },
+        // Order table by join date descending
         order: [[ 6, "desc" ]]
     } );
 </script>

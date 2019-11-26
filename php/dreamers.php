@@ -78,7 +78,7 @@ require('/home/notfound/connect.php');
             $guardEmail = ucwords(strtolower($guardData['email']));
             $guardPhoneNum = ucwords(strtolower($guardData['phone']));
             $gradClass = $row['graduatingClass'];
-            $joinDate = $row['joinDate'];
+            $joinDate = formatDate($row['joinDate']);
 
             echo "<tr>
                     <td>$fName $lName</td>
@@ -87,7 +87,7 @@ require('/home/notfound/connect.php');
                     <td>$guardFName $guardLName</td>
                     <td>$guardEmail</td>
                     <td>$guardPhoneNum</td>
-                    <td data-sort='$dreamerId'>".formatDate($joinDate)."</td>
+                    <td data-sort='$dreamerId'>$joinDate</td>
                     <td data-sort='$birthday'>".formatDate($birthday)."</td>
                     <td>$gender</td>
                     <td>$ethnicity</td>
@@ -112,16 +112,16 @@ require('/home/notfound/connect.php');
                 display: $.fn.dataTable.Responsive.display.modal( {
                     header: function ( row ) {
                         var data = row.data();
-                        return 'Details for '+data[0];
+                        return 'Details for ' + data[0];
                     }
                 } ),
                 renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
                     tableClass: 'table'
                 } )
-                // Order table by join date descending
-                //order: [[ 7, "desc" ]]
             }
-        }
+        },
+        // Order table by join date descending
+        order: [[ 7, "desc" ]]
     });
 </script>
 </body>
