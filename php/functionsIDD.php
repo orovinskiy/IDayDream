@@ -220,6 +220,11 @@ function formatInterests($qResult) {
     return 'Unspecified';
 }
 
+/**
+ * Formats all references vertically with a blank line inbetween references
+ * @param $qResult Select query result
+ * @return string formatted references
+ */
 function formatReferences($qResult) {
     if ($qResult) {
         $references = '';
@@ -236,6 +241,12 @@ function formatReferences($qResult) {
     return '';
 }
 
+/**
+ * Selects a volunteers interests from the db by their id
+ * @param $cnxn db connection
+ * @param $id id of volunteer
+ * @return bool|mysqli_result db result if successful. false if not successful
+ */
 function getInterestsById($cnxn, $id) {
     $sql = "SELECT interestOption
             FROM volunteerInterest 
@@ -278,6 +289,11 @@ function getAllDreamers($cnxn) {
     return mysqli_query($cnxn, $sql);
 }
 
+/**
+ * Selects all volunteers and columns from the volunteers table
+ * @param $cnxn db connection
+ * @return bool|mysqli_result result if successful. false if not
+ */
 function getAllVolunteers($cnxn) {
     $sql = 'SELECT *
             FROM person 
