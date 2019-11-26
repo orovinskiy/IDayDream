@@ -171,6 +171,13 @@ function formatShirtSize($value) {
     }
 }
 
+function formatWeekend($value) {
+    if (empty($value)) {
+        return 'Unspecified';
+    }
+    return $value;
+}
+
 function formatHeardAbout($value) {
     switch ($value) {
         case 'word':
@@ -191,9 +198,11 @@ function formatHeardAbout($value) {
 function formatInterests($qResult) {
     if ($qResult) {
         $interests = '';
+
         while ($row = mysqli_fetch_assoc($qResult)) {
             $interests .= $row['interestOption'] . ', ';
         }
+
         // remove comma at the end
         return rtrim($interests, ', ');
     }
@@ -203,11 +212,13 @@ function formatInterests($qResult) {
 function formatReferences($qResult) {
     if ($qResult) {
         $references = '';
+
         while ($row = mysqli_fetch_assoc($qResult)) {
             $references .= ucwords(strtolower($row['firstName'] . ' ' . $row['lastName'])) . '<br>'
                             . strtolower($row['email']) . '<br>'
                             . $row['phone'] . '<br>' . '<br>';
         }
+
         // remove extra newline at the end
         return rtrim($references, '<br>');
     }

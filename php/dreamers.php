@@ -37,7 +37,7 @@ require('/home/notfound/connect.php');
 <div class="container">
 
     <!-- Dreamers Table -->
-    <table id="dreamerTable" class="display">
+    <table id="dreamerTable" class="display nowrap" style="width:100%">
         <thead>
         <tr>
             <th>Name</th>

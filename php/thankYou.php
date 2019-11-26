@@ -350,8 +350,16 @@ $mailAvailable = "";
                     }
 
                 //About you
-
-                $otherHeardAbout = (!empty($otherHowDidHear)) ? $howDidHear = $otherHowDidHear : '';
+                //if ($howDidHear === 'other') {
+                if (!empty($otherHowDidHear)) {
+                    echo "<h1>TEST 1 $howDidHear $otherHowDidHear</h1>";
+                }
+                else {
+                    echo "<h1>FAIL</h1>";
+                }
+                if ($howDidHear === 'other' && !empty($otherHowDidHear)) {
+                    $howDidHear = $otherHowDidHear;
+                }
                 echo "<p>How you heard about us: $howDidHear</p>";
                 echo "<p>Your Motivation: $motivation</p>";
                 echo "<p>Your Experience: $volExperience</p>";
@@ -412,7 +420,7 @@ if($isValid) {
     $city = mysqli_real_escape_string($cnxn, $_POST["city"]);
     $state = mysqli_real_escape_string($cnxn, $_POST["state"]);
     $zip = mysqli_real_escape_string($cnxn, $_POST["zip"]);
-    $howDidHear = mysqli_real_escape_string($cnxn, $_POST["howDidHear"]);
+    $howDidHear = mysqli_real_escape_string($cnxn, $howDidHear);
     $motivation = mysqli_real_escape_string($cnxn, $_POST["motivation"]);
     $volExperience = mysqli_real_escape_string($cnxn, $_POST["volExperience"]);
     $skills = mysqli_real_escape_string($cnxn, $_POST["skills"]);

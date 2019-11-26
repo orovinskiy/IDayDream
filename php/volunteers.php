@@ -60,7 +60,7 @@ require('/home/notfound/connect.php');
 <div class="container">
 
     <!-- Volunteers Table -->
-    <table id="volunteerTable" class="display">
+    <table id="volunteerTable" class="display nowrap" style="width:100%">
         <thead>
         <tr>
             <th>Name</th>
@@ -72,7 +72,7 @@ require('/home/notfound/connect.php');
             <th>Join Date</th>
             <th>On Mail List</th>
             <th>Shirt Size</th>
-            <th>Heard About IDD</th>
+            <th>Heard About By</th>
             <th>Motivation</th>
             <th>Experience</th>
             <th>Skills</th>
@@ -95,7 +95,7 @@ require('/home/notfound/connect.php');
             $phone = $row['phone'];
             $address = $row['street'] . '<br>' . $row['city'] . ', ' . strtoupper($row['state']) . ' ' . $row['zip'];
             $summerCamp = $row['oneWeekSummerCamp'] === '1' ? 'Yes' : 'No';
-            $weekend = $row['weekend'];
+            $weekend = formatWeekend($row['weekend']);
             $joinDate = formatDate($row['joinDate']);
             $onMailList = $row['onMailList'] === '1' ? 'Yes' : 'No';
             $tShirtSize = formatShirtSize($row['tShirtSize']);
