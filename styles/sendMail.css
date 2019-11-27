@@ -1,0 +1,16 @@
+#submit {
+    display: block;
+    margin: 30px auto 50px auto;
+}
+
+.error{
+    color: red;
+}
+
+.hidden{
+    display: none;
+}
+
+.halfHidden{
+    visibility: hidden;
+}
