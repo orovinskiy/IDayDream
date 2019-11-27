@@ -43,6 +43,7 @@
             <textarea id="compose" maxlength="200000" class="required form-control" name="compose"></textarea>
         </div>
 
+        <!-- saves input from which page the user came from -->
         <?php
             $page = $_GET['source'];
             if($page === 'dream'){
