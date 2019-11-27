@@ -75,8 +75,6 @@ $isValid = true;
 
                 $email = $row['email'];
 
-                $emailSend = $from;
-
                 $email_body = "I Day Dream --\r\n";
                 $email_body .= "$compose \r\n";
 
