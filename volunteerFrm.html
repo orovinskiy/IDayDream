@@ -79,8 +79,140 @@
             <div class="form-group">
                 <label class="h5 font-weight-light" for="pNumber" id="phoneNumLabel">Phone Number * </label>
                 <span id="numError" class="error">can't be empty or have letters</span>
-                <input class="form-control" type="text" maxlength="20" id="pNumber" name="pNumber">
+                <input class="form-control" type="text" maxlength="20" id="pNumber" name="pNumber" placeholder="(XXX) XXX-XXXX">
             </div>
+            <script>
+                const PHONE_FORMAT = '(___) ___-____';
+                const PHONE_MAX_NUM_LENGTH = 10;
+                document.getElementById("pNumber").value = PHONE_FORMAT;
+                document.getElementById("pNumber").addEventListener("click", setCaretPos);
+                document.getElementById("pNumber").addEventListener("keypress", formatPhone);
+                document.getElementById("pNumber").addEventListener("keydown", formatPhoneDelete);
+
+                document.getElementById("pNumber").addEventListener("input", formatPhone2);
+
+                function setCaretPos() {
+                    this.selectionStart = this.value.indexOf('_');
+                    this.selectionEnd = this.value.indexOf('_');
+                }
+
+                function formatPhone2(e) {
+
+                    let phone = '(';
+                    let numbers = this.value.replace(/\D/g,'');
+
+                    let currDigitIndex;
+
+                    // format (XXX)
+                    for (currDigitIndex = 0; currDigitIndex < numbers.length && currDigitIndex < 3; currDigitIndex++) {
+                        phone += numbers.charAt(currDigitIndex);
+                    }
+
+                    if (3 <= numbers.length) {
+                        phone += ') ';
+                    }
+                    else {
+                        phone += PHONE_FORMAT.substr(phone.length);
+                        this.value = phone;
+                        return;
+                    }
+
+                    // format to (XXX) XXX-
+                    for (; currDigitIndex < numbers.length && currDigitIndex < 6; currDigitIndex++) {
+                        phone += numbers.charAt(currDigitIndex);
+                    }
+
+                    if ( 6 <= numbers.length) {
+                        phone += '-';
+                    }
+                    else {
+                        phone += PHONE_FORMAT.substr(phone.length);
+                        this.value = phone;
+                        return;
+                    }
+
+                    // format to (XXX) XXX-XXXX
+                    for (; currDigitIndex < numbers.length && currDigitIndex < PHONE_MAX_NUM_LENGTH; currDigitIndex++) {
+                        phone += numbers.charAt(currDigitIndex);
+                    }
+
+                    // if at least 10 digits
+                    if (PHONE_MAX_NUM_LENGTH === currDigitIndex) {
+                        this.value = phone;
+                    }
+                    else { // less than 10 numbers
+                        phone += PHONE_FORMAT.substr(phone.length);
+                        this.value = phone;
+                    }
+                }
+
+                function formatPhone(e) {
+
+                    let key = String.fromCharCode(e.which);
+
+                    if (/[0-9]/.test(key)) {
+
+                        let caretPos = this.selectionStart;
+                        let nextChar = this.value.substring(caretPos, caretPos + 1);
+
+                        if (nextChar === ')') {
+                            caretPos += 2;
+                        } else if (nextChar === '-') {
+                            caretPos++;
+                        }
+
+                        //formatPhone2(this);
+
+                        nextChar = this.value.substring(caretPos, caretPos + 1);
+
+                        if (nextChar === '_') {
+                            let preCaret = this.value.substring(0, caretPos);
+                            let postCaret = this.value.substring(caretPos + 1);
+
+                            this.value = preCaret + key + postCaret;
+
+                            this.selectionStart = caretPos + 1;
+                            this.selectionEnd = caretPos + 1;
+                        }
+
+
+                        // this.selectionStart = caretPos + 1;
+                        // this.selectionEnd = caretPos + 1;
+                    }
+                    e.preventDefault();
+                }
+
+                function formatPhoneDelete(e) {
+                    let caretPos = this.selectionStart;
+
+                    // if backspace
+                    if (e.which === 8) {
+                        let prevChar = this.value.substring(caretPos - 1, caretPos);
+                        if (prevChar === ' ') {
+                            caretPos -= 2;
+                        }
+                        else if (prevChar === '-') {
+                            caretPos--;
+                        }
+                        else if (prevChar === '(') {
+                            e.preventDefault();
+                            return;
+                        }
+
+                        let preCaret = this.value.substring(0, caretPos - 1);
+                        let postCaret = this.value.substring(caretPos);
+
+                        this.value = preCaret + '_' + postCaret;
+
+                        this.selectionStart = caretPos - 1;
+                        this.selectionEnd = caretPos - 1;
+
+                        e.preventDefault();
+                    }
+
+                }
+
+            </script>
 
             <!-- Email -->
             <div class="form-group">
