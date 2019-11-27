@@ -35,6 +35,9 @@ function spanErrorRemove(error){
     $('#'+error+'Error').addClass('hidden');
 }
 
+/**
+ * Makes sure all input values pass validation
+ */
 function validateAllFields(){
     let valid = true;
     let reqFields = document.getElementsByClassName("required");
@@ -50,7 +53,7 @@ function validateAllFields(){
 }
 
 /**
- * Hides error message element
+ * Hides error message element or shows them
  * @param input to check if not empty
  */
 function validateRequired(input){

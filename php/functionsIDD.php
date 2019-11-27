@@ -331,6 +331,12 @@ function insertPerson($cnxn, $firstName, $lastName, $email, $phone) {
     return mysqli_query($cnxn, $personInsert);
 }
 
+/**
+ * Inserts given values into the table Interest
+ * @param $cnxn: connection to the database.
+ * $interest: input from the user
+ * @return true or false if successfully added to the database
+ */
 function insertInterests($cnxn, $interest){
     $interestsInsert = "INSERT INTO interest (interestOption)
                   VALUES ('$interest')";
@@ -338,6 +344,12 @@ function insertInterests($cnxn, $interest){
     return mysqli_query($cnxn, $interestsInsert);
 }
 
+/**
+ * Inserts given values into the table volunteerInterest
+ * @param $cnxn: connection to the database.
+ * $volunteerID, $interestID: input from the user
+ * @return true or false if successfully added to the database
+ */
 function insertVolInterest($cnxn, $volunteerID, $interestID ){
     $volInterstInsert = "INSERT INTO  volunteerInterest (volunteerId, interestId)
                          VALUES ('$volunteerID', '$interestID')";
@@ -345,6 +357,12 @@ function insertVolInterest($cnxn, $volunteerID, $interestID ){
     return mysqli_query($cnxn, $volInterstInsert);
 }
 
+/**
+ * Inserts given values into the table availability
+ * @param $cnxn: connection to the database.
+ * $volunteerID, $oneWeek, $weekend: input from the user
+ * @return true or false if successfully added to the database
+ */
 function insertAvailability($cnxn, $volunteerID, $oneWeek, $weekend){
     $availabilityInsert = "INSERT INTO availability (volunteerId, oneWeekSummerCamp, weekend)
                            VALUES ('$volunteerID', '$oneWeek', '$weekend')";
@@ -352,6 +370,12 @@ function insertAvailability($cnxn, $volunteerID, $oneWeek, $weekend){
     return mysqli_query($cnxn, $availabilityInsert);
 }
 
+/**
+ * Inserts given values into the table person
+ * @param $cnxn: connection to the database.
+ * $personID, $volunteerID, $relationship: input from the user
+ * @return true or false if successfully added to the database
+ */
 function insertReference($cnxn, $personID, $volunteerID, $relationship){
     $referenceInsert = "INSERT INTO reference (personId, volunteerId, relationship)
                         VALUES ('$personID', '$volunteerID', '$relationship')";
@@ -359,6 +383,13 @@ function insertReference($cnxn, $personID, $volunteerID, $relationship){
     return mysqli_query($cnxn, $referenceInsert);
 }
 
+/**
+ * Inserts given values into the table volunteer
+ * @param $cnxn: connection to the database.
+ * $personID, $onMailList, $tShirtSize, $street, $city, $state,
+ * $zip, $heardAbout, $motivation, $experience, $skills, $joinDate: input from the user
+ * @return true or false if successfully added to the database
+ */
 function insertVolunteer($cnxn, $personID, $onMailList, $tShirtSize, $street, $city, $state, $zip, $heardAbout, $motivation, $experience, $skills, $joinDate){
     $volunteerInsert = "INSERT INTO volunteer (personId, onMailList, tShirtSize, street, city, state, zip, heardAbout, motivation, experience, skills, joinDate)                                  
                         VALUES ('$personID', '$onMailList', '$tShirtSize', '$street', '$city', '$state', '$zip', '$heardAbout', '$motivation', '$experience', '$skills', '$joinDate')";
@@ -366,6 +397,14 @@ function insertVolunteer($cnxn, $personID, $onMailList, $tShirtSize, $street, $c
     return mysqli_query($cnxn, $volunteerInsert);
 }
 
+/**
+ * Calls all the related insert functions to capture all the data a volunteer will enter
+ * @param $cnxn: connection to the database.
+ * $firstName, $lastName, $email, $phone, $onMailList, $tShirtSize, $street, $city, $state, $zip, $heardAbout, $motivation, $experience, $skills,
+ * $refFirstArray, $refLastArray, $refPhoneArray, $refMailArray, $refRelationArray,
+ * $oneWeek, $weekends, $interestArray: input from the user
+ * @return true or false if the called functions successfully add to the database
+ */
 function saveVolunteer($cnxn, $firstName, $lastName, $email, $phone
     , $onMailList, $tShirtSize, $street, $city, $state, $zip, $heardAbout, $motivation, $experience, $skills,
                        $refFirstArray, $refLastArray, $refPhoneArray, $refMailArray, $refRelationArray,

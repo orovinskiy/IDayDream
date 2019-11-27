@@ -1,9 +1,11 @@
 <?php
 
+//files to help the page run
 include 'debugging.php';
 require('/home/notfound/connect.php');
 require("functionsIDD.php");
 
+//captured variables from input
 $from = trim($_POST['from']);
 $subject = trim($_POST['subject']);
 $compose = trim($_POST['compose']);
@@ -68,7 +70,7 @@ $isValid = true;
             $result = mysqli_query($cnxn, $sql);
         }
 
-        //this will be in a loop
+        //as long there is a new row then a new email will be sent to the user
         if($isValid){
             $count = 0;
             while($row = mysqli_fetch_assoc($result)){
