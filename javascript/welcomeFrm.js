@@ -137,9 +137,13 @@ function validateAllRequired() {
  * @param input the input to check the value of
  * @returns {boolean} true if not empty excluding whitespace
  */
+function validateRequiredFirst() {
+    console.log(this.value);
+    validateRequired(this);
+}
+
 function validateRequired(input) {
     let val = input.value.trim();
-
     if (val === "") {
 
         // Error message id is the id of the input it belongs to + "Err"
@@ -151,6 +155,8 @@ function validateRequired(input) {
     }
     return true;
 }
+
+//document.getElementById("firstName").addEventListener("blur", validateRequired);
 
 /**
  * Displays hidden error message and puts red border around input field changes label text to red

@@ -16,12 +16,32 @@
     box-shadow: 0 0 100px -53px rgba(0,0,0,1);
 }
 
+/* Background for header option 2 */
+.banner2 {
+    text-align: center;
+    background: url("../images/background2.jpg") no-repeat 50% 35%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    text-shadow: 1px 1px #818181;
+
+    -webkit-box-shadow: 0 0 100px -53px rgba(0,0,0,1);
+    -moz-box-shadow: 0 0 100px -53px rgba(0,0,0,1);
+    box-shadow: 0 0 100px -53px rgba(0,0,0,1);
+}
+
 body {
     font-family: 'Questrial', sans-serif;
 }
 
 h1 {
     text-align: center;
+}
+
+.titleColor {
+    background-color: #36a0b9;
 }
 
 .hidden{
