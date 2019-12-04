@@ -41,7 +41,7 @@ require('/home/notfound/connect.php');
         <thead>
         <tr>
             <th>Name</th>
-            <th>Activity</th>
+            <th>Status</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Graduating Class</th>
@@ -55,6 +55,7 @@ require('/home/notfound/connect.php');
             <th>Guardian Email</th>
             <th>Guardian Phone</th>
             <th>Join Date</th>
+            <th class="hidden">search activity</th>
         </tr>
         </thead>
 
@@ -117,8 +118,13 @@ require('/home/notfound/connect.php');
                     <td>$guardFName $guardLName</td>
                     <td>$guardEmail</td>
                     <td>$guardPhoneNum</td>
-                    <td data-sort='$dreamerId'>$joinDate</td>        
-                </tr>";
+                    <td data-sort='$dreamerId'>$joinDate</td>";
+                    foreach($activityArray as $active => $id){
+                        if($activity == $id){
+                            echo "<td class='hidden'>$active</td>";
+                        }
+                    }
+            echo "</tr>";
         }
         ?>
         </tbody>
@@ -163,7 +169,9 @@ require('/home/notfound/connect.php');
             { responsivePriority: 5, targets: 10 },
             { responsivePriority: 6, targets: 11 },
             { responsivePriority: 7, targets: 12 },
-            { responsivePriority: 4, targets: 13 }
+            { responsivePriority: 4, targets: 13 },
+            //Turns off search for the select element
+            { searchable: false, targets: 1 }
         ],
 
         // Order table by join date descending
