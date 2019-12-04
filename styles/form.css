@@ -13,6 +13,10 @@ fieldset {
     margin-bottom: 1.8em;
 }
 
+.custom-bg {
+    background-color: #fafafa;
+}
+
 legend {
     width:30%;
     text-align: center;

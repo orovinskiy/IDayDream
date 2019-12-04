@@ -5,9 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles/style.css">
@@ -19,10 +22,10 @@
 
     <title>Volunteer Form | ID.A.Y.DREAM</title>
 </head>
-<body>
+<body class="custom-bg">
 
 <div class="jumbotron banner">
-    <h1 class="display-4 text-light font-weight-bold" >ID.A.Y.DREAM VOLUNTEER</h1>
+    <h1 class="display-4 text-white font-weight-bold" >ID.A.Y.DREAM VOLUNTEER</h1>
 </div>
 
 <div class="container">
@@ -31,7 +34,7 @@
         <small class="form-text">* Indicates required fields</small>
 
         <!-- Background check consent (required) -->
-        <fieldset class="form-group rounded bg-light">
+        <fieldset class="form-group rounded bg-white">
             <legend>Background Check</legend>
 
             <p class="backCheck h5 font-weight-light text-center">
@@ -58,7 +61,7 @@
         </fieldset>
 
         <!-- Personal Information  -->
-        <fieldset class="form-group rounded bg-light bg-light">
+        <fieldset class="form-group rounded bg-white bg-white">
             <legend>Personal Information</legend>
 
             <!-- First Name -->
@@ -116,7 +119,7 @@
         </fieldset>
 
         <!-- Contact information -->
-        <fieldset class="form-group rounded bg-light">
+        <fieldset class="form-group rounded bg-white">
             <legend>Address</legend>
 
             <!-- Street -->
@@ -198,7 +201,7 @@
         </fieldset>
 
         <!-- Availability -->
-        <fieldset class="form-group rounded bg-light">
+        <fieldset class="form-group rounded bg-white">
             <legend>Availability</legend>
 
             <p class="form-group h5 font-weight-light text-center">Please select all availability options that apply</p>
@@ -230,7 +233,7 @@
         </fieldset>
 
         <!-- Interests -->
-        <fieldset id="interests" class="form-group rounded bg-light">
+        <fieldset id="interests" class="form-group rounded bg-white">
             <legend>Interests</legend>
 
             <p class="form-text h5 font-weight-light text-center">
@@ -282,7 +285,7 @@
         </fieldset>
 
         <!-- About You -->
-        <fieldset class="form-group rounded bg-light">
+        <fieldset class="form-group rounded bg-white">
             <legend>About You</legend>
 
             <!-- How Did You Hear About Us -->
@@ -331,7 +334,7 @@
         </fieldset>
 
         <!-- Character References -->
-        <fieldset class="form-group rounded bg-light bg-light">
+        <fieldset class="form-group rounded bg-white bg-white">
             <legend>Character References</legend>
 
             <!-- References 1 -->
@@ -476,7 +479,7 @@
         </fieldset>
 
         <!-- Agreement -->
-        <fieldset class="form-group rounded bg-light bg-light">
+        <fieldset class="form-group rounded bg-white bg-white">
             <legend>Agreement</legend>
 
             <p class="pb-3">
@@ -509,15 +512,19 @@
             </div>
         </fieldset>
 
-        <button type="submit" id="submit" class="btn btn-dark p-2">Submit</button>
+        <button type="submit" id="submit" class="btn btn-dark">Submit</button>
     </form>
 </div>
 
 
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
 
 <!-- JavaScript -->
 <script src="javascript/volunteer.js"></script>
