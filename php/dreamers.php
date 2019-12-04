@@ -41,6 +41,7 @@ require('/home/notfound/connect.php');
         <thead>
         <tr>
             <th>Name</th>
+            <th>Activity</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Graduating Class</th>
@@ -62,7 +63,11 @@ require('/home/notfound/connect.php');
         <?php
         $result = getAllDreamers($cnxn);
 
+        // -1 == inactive, 0 == pending, 1 == active
+        $activityArray = array("Inactive"=>'-1',"Pending"=>'0',"Active"=>'1');
+
         while ($row = mysqli_fetch_assoc($result)) {
+            $activity = $row['activity'];
             $personId = $row['personId'];
             $dreamerId = $row['participantId'];
             $fName = ucwords(strtolower($row['firstName']));
@@ -88,7 +93,18 @@ require('/home/notfound/connect.php');
             $joinDate = formatDate($row['joinDate']);
 
             echo "<tr>
-                    <td>$fName $lName</td>
+                    <td>$fName $lName</td>  
+                    <td>
+                       <select class='activity' data-id='$dreamerId'>";
+                    foreach($activityArray as $active => $id){
+                        if($activity == $id){
+                            echo "<option value='$id' selected>$active</option>";
+                        }
+                        else{
+                            echo "<option value='$id'>$active</option>";
+                        }
+                    }
+            echo   "</select></td>
                     <td>$email</td>
                     <td>$phone</td>
                     <td>$gradClass</td>
@@ -112,12 +128,18 @@ require('/home/notfound/connect.php');
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="//code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="//code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script>
+    $('.activity').on('change',function(){
+        let activity = $(this).val();
+        let dreamerId = $(this).attr('data-id');
+
+        $.post('activity.php', {id:dreamerId, activity:activity});
+    });
     $('#dreamerTable').DataTable({
         responsive: {
             details: {
