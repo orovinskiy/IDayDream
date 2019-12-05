@@ -4,9 +4,14 @@ const PREFIX_LEN = 3; // amount of digits in (   ) XXX- part of phone number
 const AREA_CODE_LEN = 3; // amount if digits in area code
 
 document.getElementById("pNumber").value = PHONE_FORMAT;
+
 document.getElementById("pNumber").addEventListener("click", setCaretPos);
 document.getElementById("pNumber").addEventListener("keypress", formatPhone);
 document.getElementById("pNumber").addEventListener("keydown", formatPhoneDelete);
+document.getElementById("pNumber").addEventListener("paste", function () {
+    // Clear so pasted number can inserted with max attribute at 14
+    this.value = "";
+});
 
 document.getElementById("pNumber").addEventListener("input", function () {
     refreshPhoneFormat(this, this.value.replace(/\D/g,''));
@@ -14,6 +19,7 @@ document.getElementById("pNumber").addEventListener("input", function () {
 
 
 function setCaretPos() {
+
     // only set caret position if not highlighting with cursor
     if (this.selectionStart === this.selectionEnd) {
         let caretPos = getCaretPos(this.value, this.selectionStart);
@@ -24,9 +30,10 @@ function setCaretPos() {
 }
 
 function getCaretPos(value, start) {
+
     // Set caret after preceding number and to next section if necessary
     let caretPos = getPrevNumIndex(value, start) + 1;
-    return skipSectionSeparator(caretPos, value.substring(caretPos, caretPos + 1));
+    return skipForward(caretPos, value.substring(caretPos, caretPos + 1));
 }
 
 
@@ -75,25 +82,23 @@ function formatPhone(e) {
     // Remove non-digits
     let numbers = this.value.replace(/\D/g,'');
 
-    if (/\d/.test(num) && numbers.length < PHONE_MAX_LEN) {
+    // if a number is pressed and is less than 10 or at least a number is selected for replacement
+    if (/\d/.test(num) && (numbers.length < PHONE_MAX_LEN || this.selectionStart !== this.selectionEnd)) {
+
+        // Concat numbers minus removed digits + added digit;
+        numbers = updateNumbers(numbers, this.selectionStart, this.selectionEnd, num, 0, 0);
 
         // Set caret after preceding number and to next section if necessary
-        let caretPos = getCaretPos(this.value, this.selectionStart)
+        let caretPos = getCaretPos(this.value, this.selectionStart);
 
-        // Insert num in numbers at corresponding location of caret
-        let numbersIndex = getPhoneNumbersCurrIndex(caretPos);
+        // For inserted character
+        caretPos++;
 
-        // Concat num with numbers
-        let preNums = numbers.substring(0, numbersIndex);
-        let postNums = numbers.substring(numbersIndex);
-        numbers = preNums + num + postNums;
+        // Skip non-digits after insertion
+        caretPos = skipForward(caretPos, this.value.substring(caretPos, caretPos + 1));
 
         // Refresh formatted numbers into input
         refreshPhoneFormat(this, numbers);
-
-        // Advance caret
-        caretPos++;
-        caretPos = skipSectionSeparator(caretPos, this.value.substring(caretPos, caretPos + 1));;
 
         // Set new caret position
         this.selectionStart = caretPos;
@@ -102,7 +107,31 @@ function formatPhone(e) {
     e.preventDefault();
 }
 
-function skipSectionSeparator(caretPos, nextChar) {
+function updateNumbers(numbers, start, end, insertedNum, minusPrevQty, minusNextQty) {
+
+    // Insert num in numbers at corresponding location of caret
+    let startNumIndex = getPhoneNumberCurrIndex(start);
+
+    let preNums = "";
+    let postNums = "";
+
+    // If user did not highlight for deletion
+    if (start === end) {
+
+        // To concat numbers minus previous or minus next digit
+        preNums = numbers.substring(0, startNumIndex - minusPrevQty);
+        postNums = numbers.substring(startNumIndex + minusNextQty);
+    }
+    else { // To concat numbers minus highlighted selection
+        preNums = numbers.substring(0, startNumIndex);
+        postNums = numbers.substring(getPhoneNumberCurrIndex(end));
+    }
+
+    // Concat numbers minus removed digits + added digit;
+    return preNums + insertedNum + postNums;
+}
+
+function skipForward(caretPos, nextChar) {
     if (nextChar === ')') {
         caretPos += 2;
     } else if (nextChar === '-') {
@@ -121,7 +150,7 @@ function getPrevNumIndex(str, currIndex) {
 }
 
 
-function getPhoneNumbersCurrIndex(numIndex) {
+function getPhoneNumberCurrIndex(numIndex) {
 
     // For '('
     if (numIndex <= 4) {
@@ -146,46 +175,17 @@ function formatPhoneDelete(e) {
     // if backspace and has at least a number to delete
     if (e.which === 8) {
 
+        // Concat numbers minus removed digits
+        numbers = updateNumbers(numbers, this.selectionStart, this.selectionEnd,
+                        "", 1, 0);
+
         // Set caret after preceding number and section
         let caretPos = getCaretPos(this.value, this.selectionStart);
 
-        // Delete num in numbers at location of caret
-        let numbersIndex = getPhoneNumbersCurrIndex(caretPos);
-
-        let preNums = "";
-        let postNums = "";
-
-        // If user did not highlight for deletion
+        // If user did not highlight for deletion skip over section separators
         if (this.selectionStart === this.selectionEnd) {
-
-            // To concat numbers minus previous number
-            preNums = numbers.substring(0, numbersIndex - 1);
-            postNums = numbers.substring(numbersIndex);
-
-            // Move caret back if previous character not number
-            let prevChar = this.value.substr(caretPos - 1, 1);
-
-            // For ') '
-            if (prevChar === ' ') {
-                caretPos -= 2;
-            }
-            else if (prevChar === '-') {
-                caretPos--;
-            }
-
-            // If not at beginning
-            if (prevChar !== '(') {
-                // For removed character
-                caretPos--;
-            }
+            caretPos = skipBack(caretPos, this.value.substr(caretPos - 1, 1));
         }
-        else { // To concat numbers minus highlighted selection
-            preNums = numbers.substring(0, numbersIndex);
-            postNums = numbers.substring(getPhoneNumbersCurrIndex(this.selectionEnd));
-        }
-
-        // Concat numbers minus removed digits
-        numbers = preNums + postNums;
 
         refreshPhoneFormat(this, numbers);
 
@@ -196,29 +196,13 @@ function formatPhoneDelete(e) {
         e.preventDefault();
     }
     else if (e.which === 46) {
-        // Set caret after preceding number and section
-        let caretPos = getCaretPos(this.value, this.selectionStart);
-
-        // Delete num in numbers at location of caret
-        let numbersIndex = getPhoneNumbersCurrIndex(caretPos);
-
-        let preNums = "";
-        let postNums = "";
-
-        // If user did not highlight for deletion
-        if (this.selectionStart === this.selectionEnd) {
-
-            // To concat numbers minus next number
-            preNums = numbers.substring(0, numbersIndex);
-            postNums = numbers.substring(numbersIndex + 1);
-        }
-        else { // To concat numbers minus highlighted selection
-            preNums = numbers.substring(0, numbersIndex);
-            postNums = numbers.substring(getPhoneNumbersCurrIndex(this.selectionEnd));
-        }
 
         // Concat numbers minus removed digits
-        numbers = preNums + postNums;
+        numbers = updateNumbers(numbers, this.selectionStart, this.selectionEnd,
+                        "", 0, 1);
+
+        // Set caret after preceding number and section
+        let caretPos = getCaretPos(this.value, this.selectionStart);
 
         refreshPhoneFormat(this, numbers);
 
@@ -228,5 +212,22 @@ function formatPhoneDelete(e) {
 
         e.preventDefault();
     }
+}
+
+function skipBack(caretPos, prevChar) {
+
+    // For ') '
+    if (prevChar === ' ') {
+        caretPos -= 2;
+    } else if (prevChar === '-') {
+        caretPos--;
+    }
+
+    // If not at beginning
+    if (prevChar !== '(') {
+        // For removed character
+        caretPos--;
+    }
+    return caretPos;
 }
 
