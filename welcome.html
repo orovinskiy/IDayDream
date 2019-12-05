@@ -151,7 +151,8 @@
                 <label class="h5 font-weight-light" id="lblPhone" for="phone">Phone Number *</label>
                 <span id="phoneErr" class="error">Required</span>
                 <span id="phoneErrFormat" class="error">Please enter a valid phone number format</span>
-                <input class="form-control required" type="text" id="phone" maxlength="25" name="phone">
+                <input class="form-control required phoneFormat" type="text" id="phone" maxlength="14" name="phone"
+                       placeholder="(XXX) XXX-XXXX">
             </div>
         </fieldset>
 
@@ -185,7 +186,8 @@
                 <label class="h5 font-weight-light" id="lblguardianPhone" for="guardianPhone">Phone Number *</label>
                 <span id="guardianPhoneErr" class="error">Required</span>
                 <span id="guardianPhoneErrFormat" class="error">Please enter a valid phone number format</span>
-                <input class="form-control required" type="text" id="guardianPhone" maxlength="30" name="guardianPhone">
+                <input class="form-control required phoneFormat" type="text" id="guardianPhone" maxlength="14"
+                       placeholder="(XXX) XXX-XXXX" name="guardianPhone">
             </div>
         </fieldset>
 
@@ -200,5 +202,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="javascript/welcomeFrm.js"></script>
+<script src="javascript/formatter.js"></script>
 </body>
 </html>

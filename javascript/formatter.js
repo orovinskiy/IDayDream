@@ -3,29 +3,31 @@ const PHONE_MAX_LEN = 10;
 const PREFIX_LEN = 3; // amount of digits in (   ) XXX- part of phone number
 const AREA_CODE_LEN = 3; // amount if digits in area code
 
-document.getElementById("pNumber").value = PHONE_FORMAT;
+let phoneNumInputs = document.getElementsByClassName("phoneFormat");
 
-document.getElementById("pNumber").addEventListener("click", setCaretPos);
-document.getElementById("pNumber").addEventListener("keypress", formatPhone);
-document.getElementById("pNumber").addEventListener("keydown", formatPhoneDelete);
-document.getElementById("pNumber").addEventListener("paste", function () {
-    // Clear so pasted number can inserted with max attribute at 14
-    this.value = "";
-});
+for (let i = 0; i < phoneNumInputs.length; i++) {
+    phoneNumInputs[i].value = PHONE_FORMAT;
 
-document.getElementById("pNumber").addEventListener("input", function () {
-    refreshPhoneFormat(this, this.value.replace(/\D/g,''));
-});
+    phoneNumInputs[i].addEventListener("click", putCaret);
+    phoneNumInputs[i].addEventListener("keypress", formatPhone);
+    phoneNumInputs[i].addEventListener("keydown", formatPhoneDelete);
+    phoneNumInputs[i].addEventListener("paste", function () {
+        // Clear so pasted number can inserted with max attribute at 14
+        this.value = "";
+    });
 
+    phoneNumInputs[i].addEventListener("input", function () {
+        refreshPhoneFormat(this, this.value.replace(/\D/g,''));
+    });
+}
 
-function setCaretPos() {
+function putCaret(e) {
 
     // only set caret position if not highlighting with cursor
     if (this.selectionStart === this.selectionEnd) {
         let caretPos = getCaretPos(this.value, this.selectionStart);
 
-        this.selectionStart = caretPos;
-        this.selectionEnd = caretPos;
+        setCaretPos(this, caretPos);
     }
 }
 
@@ -100,9 +102,7 @@ function formatPhone(e) {
         // Refresh formatted numbers into input
         refreshPhoneFormat(this, numbers);
 
-        // Set new caret position
-        this.selectionStart = caretPos;
-        this.selectionEnd = caretPos;
+        setCaretPos(this, caretPos);
     }
     e.preventDefault();
 }
@@ -110,7 +110,7 @@ function formatPhone(e) {
 function updateNumbers(numbers, start, end, insertedNum, minusPrevQty, minusNextQty) {
 
     // Insert num in numbers at corresponding location of caret
-    let startNumIndex = getPhoneNumberCurrIndex(start);
+    let startNumIndex = getNumbersIndex(start);
 
     let preNums = "";
     let postNums = "";
@@ -124,7 +124,7 @@ function updateNumbers(numbers, start, end, insertedNum, minusPrevQty, minusNext
     }
     else { // To concat numbers minus highlighted selection
         preNums = numbers.substring(0, startNumIndex);
-        postNums = numbers.substring(getPhoneNumberCurrIndex(end));
+        postNums = numbers.substring(getNumbersIndex(end));
     }
 
     // Concat numbers minus removed digits + added digit;
@@ -132,9 +132,9 @@ function updateNumbers(numbers, start, end, insertedNum, minusPrevQty, minusNext
 }
 
 function skipForward(caretPos, nextChar) {
-    if (nextChar === ')') {
+    if (caretPos === 4) {
         caretPos += 2;
-    } else if (nextChar === '-') {
+    } else if (caretPos === 9) {
         caretPos++;
     }
     return caretPos;
@@ -150,7 +150,7 @@ function getPrevNumIndex(str, currIndex) {
 }
 
 
-function getPhoneNumberCurrIndex(numIndex) {
+function getNumbersIndex(numIndex) {
 
     // For '('
     if (numIndex <= 4) {
@@ -184,17 +184,21 @@ function formatPhoneDelete(e) {
 
         // If user did not highlight for deletion skip over section separators
         if (this.selectionStart === this.selectionEnd) {
-            caretPos = skipBack(caretPos, this.value.substr(caretPos - 1, 1));
-        }
+            caretPos = skipBack(caretPos);
 
+            // If not at beginning
+            if (caretPos !== 1) {
+                // For removed character
+                caretPos--;
+            }
+        }
         refreshPhoneFormat(this, numbers);
 
-        // Set caret position
-        this.selectionStart = caretPos;
-        this.selectionEnd = caretPos;
+        setCaretPos(this, caretPos);
 
         e.preventDefault();
     }
+    // If delete
     else if (e.which === 46) {
 
         // Concat numbers minus removed digits
@@ -206,26 +210,62 @@ function formatPhoneDelete(e) {
 
         refreshPhoneFormat(this, numbers);
 
-        // Set caret position
-        this.selectionStart = caretPos;
-        this.selectionEnd = caretPos;
+        setCaretPos(this, caretPos);
+
+        e.preventDefault();
+    }
+    // If left arrow
+    else if (e.which === 37) {
+        let caretPos = this.selectionStart;
+
+        // If right after ') '
+        if (caretPos === 6) {
+            caretPos -= 2;
+        }
+        // If right after '('
+        else if (caretPos !== 1) {
+            caretPos--;
+        }
+        setCaretPos(this, caretPos);
+
+        e.preventDefault();
+    }
+    // If right arrow
+    else if (e.which === 39) {
+        let caretPos = this.selectionStart;
+
+        let numIndex = getNumbersIndex(caretPos);
+
+        // Do not go right if no number on the right side
+        if (numbers.charAt(numIndex) === "") {
+            e.preventDefault();
+            return;
+        }
+
+        // If right before ') '
+        if (caretPos === 4) {
+            caretPos += 2;
+        }
+        else {
+            caretPos++;
+        }
+        setCaretPos(this, caretPos);
 
         e.preventDefault();
     }
 }
 
-function skipBack(caretPos, prevChar) {
+function setCaretPos(input, caretPos) {
+    input.selectionStart = caretPos;
+    input.selectionEnd = caretPos;
+}
+
+function skipBack(caretPos) {
 
     // For ') '
-    if (prevChar === ' ') {
+    if (caretPos === 6) {
         caretPos -= 2;
-    } else if (prevChar === '-') {
-        caretPos--;
-    }
-
-    // If not at beginning
-    if (prevChar !== '(') {
-        // For removed character
+    } else if (caretPos === 10) {
         caretPos--;
     }
     return caretPos;
