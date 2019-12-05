@@ -12,7 +12,7 @@ for (let i = 0; i < phoneNumInputs.length; i++) {
 
     phoneNumInputs[i].addEventListener("click", putCaret);
     phoneNumInputs[i].addEventListener("keypress", formatPhone);
-    phoneNumInputs[i].addEventListener("keydown", formatPhoneDelete);
+    phoneNumInputs[i].addEventListener("keydown", formatPhoneDeleteAndMoveCaret);
     phoneNumInputs[i].addEventListener("paste", function () {
         // Clear so pasted number can inserted with max attribute at 14
         this.value = "";
@@ -159,20 +159,28 @@ function updateNumbers(numbers, start, end, insertedNum, minusPrevQty, minusNext
 }
 
 /**
- * Skip caret after section separators
- * @param caretPos
- * @param nextChar
- * @returns {*}
+ * Skip caret after non-digits
+ * @param caretPos current position of caret
+ * @returns {*} caret position after skipping non digits
  */
 function skipForward(caretPos) {
+    // if before ') '
     if (caretPos === 4) {
         caretPos += 2;
+
+    // if before '-'
     } else if (caretPos === 9) {
         caretPos++;
     }
     return caretPos;
 }
 
+/**
+ * Gets index of previous number from current index
+ * @param str string to search for previous number
+ * @param currIndex current index
+ * @returns {number} index of previous number
+ */
 function getPrevNumIndex(str, currIndex) {
     for (let i = currIndex - 1; 0 <= i; i--) {
         if (/\d/.test(str.charAt(i))) {
@@ -182,7 +190,12 @@ function getPrevNumIndex(str, currIndex) {
     return 0;
 }
 
-
+/**
+ * Finds corresponding location in a string of only
+ * numbers from the formatted phone number
+ * @param numIndex index of number in formatted phone number
+ * @returns {number} index of number if string of only numbers
+ */
 function getNumbersIndex(numIndex) {
 
     // For '('
@@ -201,7 +214,12 @@ function getNumbersIndex(numIndex) {
     return numIndex - 4;
 }
 
-function formatPhoneDelete(e) {
+/**
+ * Removes number(s) from input by backspace and delete.
+ * Moves caret left and right with arrows while skipping non-digits
+ * @param e event
+ */
+function formatPhoneDeleteAndMoveCaret(e) {
 
     let numbers = this.value.replace(/\D/g,'');
 
@@ -288,11 +306,21 @@ function formatPhoneDelete(e) {
     }
 }
 
+/**
+ * Sets the position of the caret in the input
+ * @param input input to set position in
+ * @param caretPos position to set of caret
+ */
 function setCaretPos(input, caretPos) {
     input.selectionStart = caretPos;
     input.selectionEnd = caretPos;
 }
 
+/**
+ * Caret skips back over non-digits
+ * @param caretPos current caret position
+ * @returns {*} new position of caret after skipping non digits
+ */
 function skipBack(caretPos) {
 
     // For ') '
