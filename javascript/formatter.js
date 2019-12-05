@@ -1,10 +1,12 @@
+// Phone format placeholder
 const PHONE_FORMAT = '(___) ___-____';
-const PHONE_MAX_LEN = 10;
+const PHONE_MAX_LEN = 10; // max amount of digits in phone number
 const PREFIX_LEN = 3; // amount of digits in (   ) XXX- part of phone number
 const AREA_CODE_LEN = 3; // amount if digits in area code
 
 let phoneNumInputs = document.getElementsByClassName("phoneFormat");
 
+// Set event handlers
 for (let i = 0; i < phoneNumInputs.length; i++) {
     phoneNumInputs[i].value = PHONE_FORMAT;
 
@@ -21,6 +23,10 @@ for (let i = 0; i < phoneNumInputs.length; i++) {
     });
 }
 
+/**
+ * Sets cursor to in between number if clicked there or after last digit and section
+ * @param e event object
+ */
 function putCaret(e) {
 
     // only set caret position if not highlighting with cursor
@@ -31,14 +37,22 @@ function putCaret(e) {
     }
 }
 
+/**
+ * Gets location after preceding number and section
+ * @param value phone input value
+ * @param start current position of caret
+ * @returns {number} position of where caret should be
+ */
 function getCaretPos(value, start) {
-
-    // Set caret after preceding number and to next section if necessary
     let caretPos = getPrevNumIndex(value, start) + 1;
-    return skipForward(caretPos, value.substring(caretPos, caretPos + 1));
+    return skipForward(caretPos);
 }
 
-
+/**
+ * Updates the phone input's value with formatted numbers
+ * @param input the input to set formatted numbers
+ * @param numbers the numbers to format
+ */
 function refreshPhoneFormat(input, numbers) {
     let phone = "";
 
@@ -75,7 +89,10 @@ function refreshPhoneFormat(input, numbers) {
     input.value = phone;
 }
 
-
+/**
+ * Formats numbers from input and sets the caret to usable position
+ * @param e event
+ */
 function formatPhone(e) {
 
     // Get typed in character
@@ -97,7 +114,7 @@ function formatPhone(e) {
         caretPos++;
 
         // Skip non-digits after insertion
-        caretPos = skipForward(caretPos, this.value.substring(caretPos, caretPos + 1));
+        caretPos = skipForward(caretPos);
 
         // Refresh formatted numbers into input
         refreshPhoneFormat(this, numbers);
@@ -107,6 +124,16 @@ function formatPhone(e) {
     e.preventDefault();
 }
 
+/**
+ * Updates numbers with inserted or removed values
+ * @param numbers numbers to update
+ * @param start location before number insertion or after removal of previous number
+ * @param end location after number insertion or before removal of next number
+ * @param insertedNum the number to insert between start and end
+ * @param minusPrevQty Amount of digits to remove before start
+ * @param minusNextQty Amount of digits to remove after end
+ * @returns {string} numbers with inserted or removed values
+ */
 function updateNumbers(numbers, start, end, insertedNum, minusPrevQty, minusNextQty) {
 
     // Insert num in numbers at corresponding location of caret
@@ -118,7 +145,7 @@ function updateNumbers(numbers, start, end, insertedNum, minusPrevQty, minusNext
     // If user did not highlight for deletion
     if (start === end) {
 
-        // To concat numbers minus previous or minus next digit
+        // To concat numbers minus previous or minus next digit(s)
         preNums = numbers.substring(0, startNumIndex - minusPrevQty);
         postNums = numbers.substring(startNumIndex + minusNextQty);
     }
@@ -131,7 +158,13 @@ function updateNumbers(numbers, start, end, insertedNum, minusPrevQty, minusNext
     return preNums + insertedNum + postNums;
 }
 
-function skipForward(caretPos, nextChar) {
+/**
+ * Skip caret after section separators
+ * @param caretPos
+ * @param nextChar
+ * @returns {*}
+ */
+function skipForward(caretPos) {
     if (caretPos === 4) {
         caretPos += 2;
     } else if (caretPos === 9) {
