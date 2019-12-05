@@ -140,7 +140,7 @@ require('/home/notfound/connect.php');
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script>
-    $('.activity').on('change',function(){
+    $(document).on('change', '.activity', function(){
         let activity = $(this).val();
         let dreamerId = $(this).attr('data-id');
 
