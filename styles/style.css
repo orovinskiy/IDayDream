@@ -24,6 +24,10 @@ h1 {
     text-align: center;
 }
 
+.titleColor {
+    background-color: #36a0b9;
+}
+
 .hidden{
     display: none;
 }
