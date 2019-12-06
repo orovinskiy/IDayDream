@@ -15,7 +15,8 @@ require('/home/notfound/connect.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
 
@@ -23,7 +24,7 @@ require('/home/notfound/connect.php');
     <link rel="stylesheet" href="../styles/style.css">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../images/favicon.png" />
+    <link rel="shortcut icon" href="../images/favicon.png"/>
 
     <title>Dreamers | ID.A.Y.DREAM</title>
 </head>
@@ -92,7 +93,7 @@ require('/home/notfound/connect.php');
                     <td>$email</td>
                     <td>$phone</td>
                     <td>$gradClass</td>
-                    <td data-sort='$birthday'>".formatDate($birthday)."</td>
+                    <td data-sort='$birthday'>" . formatDate($birthday) . "</td>
                     <td>$gender</td>
                     <td>$ethnicity</td>
                     <td>$goals</td>
@@ -112,40 +113,46 @@ require('/home/notfound/connect.php');
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="//code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="//code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script>
     $('#dreamerTable').DataTable({
         responsive: {
             details: {
-                display: $.fn.dataTable.Responsive.display.modal( {
-                    header: function ( row ) {
+                display: $.fn.dataTable.Responsive.display.modal({
+                    header: function (row) {
                         var data = row.data();
                         return 'Details for ' + data[0];
                     }
-                } ),
-                renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                }),
+                renderer: $.fn.dataTable.Responsive.renderer.tableAll({
                     tableClass: 'table'
-                } )
+                })
             }
         },
 
         // Priority of which columns are shown in the table
         columnDefs: [
-            { responsivePriority: 1, targets: 0 },
-            { responsivePriority: 2, targets: 1 },
-            { responsivePriority: 3, targets: 2 },
-            { responsivePriority: 5, targets: 10 },
-            { responsivePriority: 6, targets: 11 },
-            { responsivePriority: 7, targets: 12 },
-            { responsivePriority: 4, targets: 13 }
+            {responsivePriority: 1, targets: 0},
+            {responsivePriority: 2, targets: 1},
+            {responsivePriority: 3, targets: 2},
+            {responsivePriority: 5, targets: 10},
+            {responsivePriority: 6, targets: 11},
+            {responsivePriority: 7, targets: 12},
+            {responsivePriority: 4, targets: 13}
         ],
 
         // Order table by join date descending
-        order: [[ 13, "desc" ]]
+        order: [[13, "desc"]]
     });
 </script>
 </body>

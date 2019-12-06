@@ -28,579 +28,577 @@
     <h1 class="display-4 text-white font-weight-bold">ID.A.Y.DREAM VOLUNTEER</h1>
 </div>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <form id="volunteerForm" action="php/thankYou.php" method="POST">
-            <div class="col-md-12">
-                <small class="form-text">* Indicates required fields</small>
-                <section class="card shadow mb-5">
+<div class="container" style="width: 65%;">
+    <form id="volunteerForm" action="php/thankYou.php" method="POST">
+        <div class="col-md-12">
+            <small class="form-text">* Indicates required fields</small>
+            <section class="card shadow mb-5">
 
-                    <h3 class="card-title titleColor text-white text-center mb-4 py-2">Background Check</h3>
+                <h3 class="card-title titleColor text-white text-center mb-4 py-2">Background Check</h3>
 
-                    <!-- Background check consent (required) -->
-                    <fieldset class="form-group m-0 p-4">
+                <!-- Background check consent (required) -->
+                <fieldset class="form-group m-0 p-4">
 
-                        <p class="backCheck h5 font-weight-light text-center">
-                            You must have a background check to volunteer.
-                            Do you agree to one? *
-                        </p>
-                        <span id="backGround" class="error">Required</span>
+                    <p class="backCheck h5 font-weight-light text-center">
+                        You must have a background check to volunteer.
+                        Do you agree to one? *
+                    </p>
+                    <span id="backGround" class="error">Required</span>
 
-                        <div id="backCheckAgree">
+                    <div id="backCheckAgree">
 
-                            <!-- Yes -->
-                            <div class="form-group form-check radio">
-                                <input class="form-check-input" type="radio" id="yes" name="question" value="agreed">
-                                <label class="form-check-label h5 font-weight-light" for="yes">Yes</label>
-                            </div>
-
-                            <!-- No -->
-                            <div class="form-group form-check radio">
-                                <input class="form-check-input" type="radio" id="no" name="question" value="disagree">
-                                <label class="form-check-label h5 font-weight-light" for="no">No</label>
-                            </div>
-
+                        <!-- Yes -->
+                        <div class="form-group form-check radio">
+                            <input class="form-check-input" type="radio" id="yes" name="question" value="agreed">
+                            <label class="form-check-label h5 font-weight-light" for="yes">Yes</label>
                         </div>
-                    </fieldset>
-                </section>
-            </div>
 
-            <!-- Personal Information  -->
-            <div class="col-md-12">
-                <section class="card shadow mb-5">
+                        <!-- No -->
+                        <div class="form-group form-check radio">
+                            <input class="form-check-input" type="radio" id="no" name="question" value="disagree">
+                            <label class="form-check-label h5 font-weight-light" for="no">No</label>
+                        </div>
 
-                    <h3 class="card-title titleColor text-white text-center mb-4 py-2">Personal Information</h3>
+                    </div>
+                </fieldset>
+            </section>
+        </div>
 
-                    <fieldset class="form-group m-0 p-4">
+        <!-- Personal Information  -->
+        <div class="col-md-12">
+            <section class="card shadow mb-5">
+
+                <h3 class="card-title titleColor text-white text-center mb-4 py-2">Personal Information</h3>
+
+                <fieldset class="form-group m-0 p-4">
+
+                    <!-- First Name -->
+                    <div class="form-group">
+                        <label class=" h6 font-weight-light " id="firstNameLabel" for="firstName">First Name
+                            * </label>
+                        <span id="fNameError" class="error">can't be empty or have numbers</span>
+                        <input class="form-control shadow-sm" type="text" id="firstName" maxlength="30"
+                               name="firstName">
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light" id="lastNameLabel" for="lastName">Last Name * </label>
+                        <span id="lNameError" class="error">can't be empty or have numbers</span>
+                        <input class="form-control shadow-sm" type="text" id="lastName" maxlength="50"
+                               name="lastName">
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light" for="pNumber" id="phoneNumLabel">Phone Number * </label>
+                        <span id="numError" class="error">can't be empty or have letters</span>
+                        <input class="form-control shadow-sm" type="text" maxlength="20" id="pNumber"
+                               name="pNumber">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light" id="mailLabel" for="eMail">Email * </label>
+                        <span id="emailError" class="error">must have '@' followed by '.'</span>
+                        <input class="form-control shadow-sm" type="email" id="eMail" name="eMail">
+                    </div>
+
+                    <div class="row">
+
+                        <!-- Add to Mailing List -->
+                        <div class="form-group col-sm-6">
+                            <input type="checkbox" id="onMailList" name="onMailList" value="checked" checked>
+                            <label for="onMailList" class="h6 font-weight-light form-check-label">Add to mailing
+                                list</label>
+                        </div>
+
+                        <!-- T-Shirt Size -->
+                        <div class="form-group form-sm-inline col-sm-6">
+                            <label class="h6 font-weight-light mr-md-2 mr-sm-1 form-label" id="labelShirt"
+                                   for="shirtSize">
+                                T-Shirt size *
+                            </label>
+                            <span id="tShirtError" class="error">choose a valid option</span>
+                            <select class="form-control shadow-sm px-lg-5" id="shirtSize" name="shirtSize">
+                                <option value="none">Select a Size</option>
+                                <option value="extraSmall">Extra Small</option>
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                                <option value="extraLarge">Extra Large</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+            </section>
+        </div>
+
+        <!-- Contact information -->
+        <div class="col-md-12">
+            <section class="card shadow mb-5">
+
+                <h3 class="card-title titleColor text-white text-center mb-4 py-2">Address</h3>
+
+                <fieldset class="form-group m-0 p-4">
+
+                    <!-- Street -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light mr-sm-1" id="labelStreet" for="street">Street *</label>
+                        <span id="streetError" class="error">required</span>
+                        <input class="form-control shadow-sm mr-sm-4" maxlength="60" type="text" id="street"
+                               name="street">
+                    </div>
+
+                    <!-- City -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light mr-sm-1" id="labelCity" for="city">City *</label>
+                        <span id="cityError" class="error">required</span>
+                        <input class="form-control shadow-sm" maxlength="20" type="text" id="city" name="city">
+                    </div>
+
+                    <!-- State -->
+                    <div class="form-inline">
+                        <label class="h6 font-weight-light ml-md-5 mr-sm-1" for="state">State *</label>
+                        <select class="form-control shadow-sm input-style px-lg-5 mr-sm-4 mr-md-5" id="state"
+                                name="state">
+                            <option value="wa">WA</option>
+                            <option value="ca">CA</option>
+                            <option value="al">AL</option>
+                            <option value="ak">AK</option>
+                            <option value="az">AZ</option>
+                            <option value="ar">AR</option>
+                            <option value="co">CO</option>
+                            <option value="ct">CT</option>
+                            <option value="de">DE</option>
+                            <option value="fl">FL</option>
+                            <option value="ga">GA</option>
+                            <option value="hi">HI</option>
+                            <option value="id">ID</option>
+                            <option value="il">IL</option>
+                            <option value="in">IN</option>
+                            <option value="ia">IA</option>
+                            <option value="ks">KS</option>
+                            <option value="ky">KY</option>
+                            <option value="la">LA</option>
+                            <option value="me">ME</option>
+                            <option value="md">MD</option>
+                            <option value="ma">MA</option>
+                            <option value="mi">MI</option>
+                            <option value="mn">MN</option>
+                            <option value="MS">MS</option>
+                            <option value="mo">MO</option>
+                            <option value="mt">MT</option>
+                            <option value="ne">NE</option>
+                            <option value="nv">NV</option>
+                            <option value="nh">NH</option>
+                            <option value="nj">NJ</option>
+                            <option value="nm">NM</option>
+                            <option value="ny">NY</option>
+                            <option value="nc">NC</option>
+                            <option value="nd">ND</option>
+                            <option value="oh">OH</option>
+                            <option value="ok">OK</option>
+                            <option value="or">OR</option>
+                            <option value="pa">PA</option>
+                            <option value="ri">RI</option>
+                            <option value="sc">SC</option>
+                            <option value="sd">SD</option>
+                            <option value="tn">TN</option>
+                            <option value="tx">TX</option>
+                            <option value="ut">UT</option>
+                            <option value="vt">VT</option>
+                            <option value="va">VA</option>
+                            <option value="wv">WV</option>
+                            <option value="wi">WI</option>
+                            <option value="wy">WY</option>
+                            <option value="dc">DC</option>
+                        </select>
+
+                        <!-- Zip -->
+                        <label class="h6 font-weight-light mr-sm-1 ml-md-5" id="labelZip" for="zip">Zip *</label>
+                        <span id="zipError" class="error">required</span>
+                        <input class="form-control shadow-sm input-style" maxlength="5" type="text" id="zip"
+                               name="zip">
+                    </div>
+                </fieldset>
+            </section>
+        </div>
+
+        <!-- Availability -->
+        <div class="col-md-12">
+            <section class="card shadow mb-5">
+
+                <h3 class="card-title titleColor text-white text-center mb-4 py-2">Availability</h3>
+
+                <fieldset class="form-group m-0 p-4">
+                    <p class="form-group h6 font-weight-light text-center">Please select all availability options
+                        that
+                        apply</p>
+
+                    <!-- Summer Camp -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="availability[]" id="oneWeek"
+                               value="oneWeek">
+                        <label class="form-check-label h6 font-weight-light text-center" for="oneWeek">
+                            One Week Summer Camp
+                        </label>
+                    </div>
+
+                    <!-- Weekends -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="availability[]" id="weekends"
+                               value="weekends">
+                        <label class="form-check-label h6 font-weight-light text-center" for="weekends">
+                            Weekends
+                        </label>
+                    </div>
+                    <br>
+
+                    <!-- Weekend Availability Time -->
+                    <div id="weekendTimesSection" class="form-group">
+                        <label for="weekendTimes" class="h6 font-weight-light mr-2">
+                            Please specify your weekend availability time
+                        </label>
+                        <input type="text" id="weekendTimes" name="weekendTimes"
+                               class="mr-3 mb-2 form-control shadow-sm">
+                    </div>
+                </fieldset>
+
+                <!-- Interests -->
+                <fieldset id="interests" class="form-group rounded m-0 p-4">
+                    <legend>Interests</legend>
+
+                    <p class="form-text h6 font-weight-light text-center">
+                        Tell us in which areas you are interested in volunteering<br><br>
+                    </p>
+                    <ul>
+                        <!-- Events -->
+                        <li class="form-check">
+                            <input id="events" type="checkbox" name="interests[]" value="events">
+                            <label class="form-check-label h6 font-weight-light" for="events">Events</label>
+                        </li>
+
+                        <!-- Fundraising -->
+                        <li class="form-check">
+                            <input id="fundraising" type="checkbox" name="interests[]" value="fundraising">
+                            <label class="form-check-label h6 font-weight-light"
+                                   for="fundraising">Fundraising</label>
+                        </li>
+
+                        <!-- Newsletter -->
+                        <li class="form-check">
+                            <input id="newsletter" type="checkbox" name="interests[]" value="newsletter">
+                            <label class="form-check-label h6 font-weight-light" for="newsletter">Newsletter</label>
+                        </li>
+
+                        <!-- Coordination -->
+                        <li class="form-check">
+                            <input id="coordination" type="checkbox" name="interests[]" value="coordination">
+                            <label class="form-check-label h6 font-weight-light"
+                                   for="coordination">Coordination</label>
+                        </li>
+
+                        <!-- Mentoring -->
+                        <li class="form-check">
+                            <input id="mentoring" type="checkbox" name="interests[]" value="mentoring">
+                            <label class="form-check-label h6 font-weight-light" for="mentoring">Mentoring</label>
+                        </li>
+
+                        <!-- Other -->
+                        <li class="form-check">
+                            <input id="other-interest" value="other" class="" name="interests[]" type="checkbox">
+                            <label class="form-check-label h6 font-weight-light" for="other-interest">Other</label>
+                        </li>
+                    </ul>
+
+                    <!-- Other Interests -->
+                    <div id="other-section" class="form-group">
+                        <label for="other" class="h6 font-weight-light mr-sm-1">Other (please specify)</label>
+                        <input type="text" class="mr-3 mb-2 form-control shadow-sm" id="other" name="interestsText">
+                    </div>
+                </fieldset>
+            </section>
+        </div>
+
+        <!-- About You -->
+        <div class="col-md-12">
+            <section class="card shadow mb-5">
+
+                <h3 class="card-title titleColor text-white text-center mb-4 py-2">About You</h3>
+
+                <fieldset class="form-group m-0 p-4">
+                    <!-- How Did You Hear About Us -->
+                    <div class="form-group">
+                        <label for="howDidHear" id="labelHowDidHear" class="h6 font-weight-light mr-sm-1">
+                            How did you hear about us?
+                        </label>
+                        <select class="form-control shadow-sm" id="howDidHear" name="howDidHear">
+                            <option value="none">Please Select</option>
+                            <option value="word">Word of Mouth/Friend/Colleague</option>
+                            <option value="web">Web/Social Media</option>
+                            <option value="print">Print (Flyer/Poster/Brochure)</option>
+                            <option value="corporate">Corporate Sponsor</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Other - How Did You About Us -->
+                    <div id="otherHowDidHearSection" class="form-group">
+                        <label for="otherHowDidHear" class="h6 font-weight-light mr-sm-1">Other (please
+                            specify)</label>
+                        <input type="text" class="form-control shadow-sm" id="otherHowDidHear"
+                               name="otherHowDidHear">
+                    </div>
+
+                    <!-- Motivation -->
+                    <div class="form-group">
+                        <label for="getToKnow" id="labelGetToKnow" class="h6 font-weight-light mr-sm-1">
+                            What motivated you to volunteer with us? *
+                        </label>
+                        <span id="getToKnowError" class="error">required</span>
+                        <textarea id="getToKnow" maxlength="2000" class="form-control shadow-sm"
+                                  name="motivation"></textarea>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="form-group">
+                        <label for="volExperience" class="h6 font-weight-light mr-sm-1">
+                            Have you had any volunteer experience? If so explain.
+                        </label>
+                        <textarea id="volExperience" name="volExperience" maxlength="2000"
+                                  class="form-control shadow-sm"></textarea>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="form-group">
+                        <label for="skills" class="h6 font-weight-light mr-sm-1">Any skills that you may
+                            have?</label>
+                        <textarea id="skills" name="skills" class="form-control shadow-sm"></textarea>
+                    </div>
+                </fieldset>
+            </section>
+        </div>
+
+        <!-- Character References -->
+        <div class="col-md-12">
+            <section class="card shadow mb-5">
+
+                <h3 class="card-title titleColor text-white text-center mb-4 py-2">Character References</h3>
+
+                <fieldset class="form-group m-0 p-4">
+                    <!-- References 1 -->
+                    <div class="form-group">
+                        <p class="h4">Reference One *</p>
+                        <span id="errReferences" class="error h6">Requires 3 References</span>
 
                         <!-- First Name -->
                         <div class="form-group">
-                            <label class=" h6 font-weight-light " id="firstNameLabel" for="firstName">First Name
-                                * </label>
-                            <span id="fNameError" class="error">can't be empty or have numbers</span>
-                            <input class="form-control shadow-sm" type="text" id="firstName" maxlength="30"
-                                   name="firstName">
+                            <label for="refFirstName1" id="labelRefFirstName1" class="h6 font-weight-light mr-sm-1">
+                                First Name *
+                            </label>
+                            <input type="text" class="form-control shadow-sm" id="refFirstName1"
+                                   name="refFirstName1">
                         </div>
 
                         <!-- Last Name -->
                         <div class="form-group">
-                            <label class="h6 font-weight-light" id="lastNameLabel" for="lastName">Last Name * </label>
-                            <span id="lNameError" class="error">can't be empty or have numbers</span>
-                            <input class="form-control shadow-sm" type="text" id="lastName" maxlength="50"
-                                   name="lastName">
+                            <label for="refLastName1" id="labelRefLastName1" class="h6 font-weight-light mr-sm-1">
+                                Last Name *
+                            </label>
+                            <input type="text" class="form-control shadow-sm" id="refLastName1" name="refLastName1">
                         </div>
 
-                        <!-- Phone Number -->
+                        <!-- Relationship -->
                         <div class="form-group">
-                            <label class="h6 font-weight-light" for="pNumber" id="phoneNumLabel">Phone Number * </label>
-                            <span id="numError" class="error">can't be empty or have letters</span>
-                            <input class="form-control shadow-sm" type="text" maxlength="20" id="pNumber"
-                                   name="pNumber">
+                            <label for="refRelationship1" id="labelRefRelationship1"
+                                   class="h6 font-weight-light mr-sm-1">
+                                Relationship *
+                            </label>
+                            <input type="text" class="form-control shadow-sm" id="refRelationship1"
+                                   name="refRelationship1">
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="form-group">
+                            <label for="refPhone1" id="labelRefPhone1" class="h6 font-weight-light mr-sm-1">
+                                Phone Number *
+                            </label>
+                            <input type="tel" class="form-control shadow-sm" id="refPhone1" name="refPhone1"
+                                   placeholder="253-123-4567">
                         </div>
 
                         <!-- Email -->
                         <div class="form-group">
-                            <label class="h6 font-weight-light" id="mailLabel" for="eMail">Email * </label>
-                            <span id="emailError" class="error">must have '@' followed by '.'</span>
-                            <input class="form-control shadow-sm" type="email" id="eMail" name="eMail">
+                            <label for="refEmail1" id="labelRefEmail1" class="h6 font-weight-light mr-sm-1">
+                                Email *
+                            </label>
+                            <input type="email" class="form-control shadow-sm mb-2" id="refEmail1" name="refEmail1"
+                                   placeholder="JohnDoe@mail.com">
                         </div>
+                    </div>
 
-                        <div class="row">
+                    <!-- References 2 -->
+                    <div class="form-group">
+                        <h4>Reference Two *</h4>
 
-                            <!-- Add to Mailing List -->
-                            <div class="form-group col-sm-6">
-                                <input type="checkbox" id="onMailList" name="onMailList" value="checked" checked>
-                                <label for="onMailList" class="h6 font-weight-light form-check-label">Add to mailing
-                                    list</label>
-                            </div>
-
-                            <!-- T-Shirt Size -->
-                            <div class="form-group form-sm-inline col-sm-6">
-                                <label class="h6 font-weight-light mr-md-2 mr-sm-1 form-label" id="labelShirt"
-                                       for="shirtSize">
-                                    T-Shirt size *
-                                </label>
-                                <span id="tShirtError" class="error">choose a valid option</span>
-                                <select class="form-control shadow-sm px-lg-5" id="shirtSize" name="shirtSize">
-                                    <option value="none">Select a Size</option>
-                                    <option value="extraSmall">Extra Small</option>
-                                    <option value="small">Small</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="large">Large</option>
-                                    <option value="extraLarge">Extra Large</option>
-                                </select>
-                            </div>
-                        </div>
-                    </fieldset>
-                </section>
-            </div>
-
-            <!-- Contact information -->
-            <div class="col-md-12">
-                <section class="card shadow mb-5">
-
-                    <h3 class="card-title titleColor text-white text-center mb-4 py-2">Address</h3>
-
-                    <fieldset class="form-group m-0 p-4">
-
-                        <!-- Street -->
+                        <!-- First Name -->
                         <div class="form-group">
-                            <label class="h6 font-weight-light mr-sm-1" id="labelStreet" for="street">Street *</label>
-                            <span id="streetError" class="error">required</span>
-                            <input class="form-control shadow-sm mr-sm-4" maxlength="60" type="text" id="street"
-                                   name="street">
+                            <label for="refFirstName2" id="labelRefFirstName2" class="h6 font-weight-light mr-sm-1">
+                                First Name *
+                            </label>
+                            <input type="text" class="form-control shadow-sm" id="refFirstName2"
+                                   name="refFirstName2">
                         </div>
 
-                        <!-- City -->
+                        <!-- Last Name -->
                         <div class="form-group">
-                            <label class="h6 font-weight-light mr-sm-1" id="labelCity" for="city">City *</label>
-                            <span id="cityError" class="error">required</span>
-                            <input class="form-control shadow-sm" maxlength="20" type="text" id="city" name="city">
-                        </div>
-
-                        <!-- State -->
-                        <div class="form-inline">
-                            <label class="h6 font-weight-light ml-md-5 mr-sm-1" for="state">State *</label>
-                            <select class="form-control shadow-sm input-style px-lg-5 mr-sm-4 mr-md-5" id="state"
-                                    name="state">
-                                <option value="wa">WA</option>
-                                <option value="ca">CA</option>
-                                <option value="al">AL</option>
-                                <option value="ak">AK</option>
-                                <option value="az">AZ</option>
-                                <option value="ar">AR</option>
-                                <option value="co">CO</option>
-                                <option value="ct">CT</option>
-                                <option value="de">DE</option>
-                                <option value="fl">FL</option>
-                                <option value="ga">GA</option>
-                                <option value="hi">HI</option>
-                                <option value="id">ID</option>
-                                <option value="il">IL</option>
-                                <option value="in">IN</option>
-                                <option value="ia">IA</option>
-                                <option value="ks">KS</option>
-                                <option value="ky">KY</option>
-                                <option value="la">LA</option>
-                                <option value="me">ME</option>
-                                <option value="md">MD</option>
-                                <option value="ma">MA</option>
-                                <option value="mi">MI</option>
-                                <option value="mn">MN</option>
-                                <option value="MS">MS</option>
-                                <option value="mo">MO</option>
-                                <option value="mt">MT</option>
-                                <option value="ne">NE</option>
-                                <option value="nv">NV</option>
-                                <option value="nh">NH</option>
-                                <option value="nj">NJ</option>
-                                <option value="nm">NM</option>
-                                <option value="ny">NY</option>
-                                <option value="nc">NC</option>
-                                <option value="nd">ND</option>
-                                <option value="oh">OH</option>
-                                <option value="ok">OK</option>
-                                <option value="or">OR</option>
-                                <option value="pa">PA</option>
-                                <option value="ri">RI</option>
-                                <option value="sc">SC</option>
-                                <option value="sd">SD</option>
-                                <option value="tn">TN</option>
-                                <option value="tx">TX</option>
-                                <option value="ut">UT</option>
-                                <option value="vt">VT</option>
-                                <option value="va">VA</option>
-                                <option value="wv">WV</option>
-                                <option value="wi">WI</option>
-                                <option value="wy">WY</option>
-                                <option value="dc">DC</option>
-                            </select>
-
-                            <!-- Zip -->
-                            <label class="h6 font-weight-light mr-sm-1 ml-md-5" id="labelZip" for="zip">Zip *</label>
-                            <span id="zipError" class="error">required</span>
-                            <input class="form-control shadow-sm input-style" maxlength="5" type="text" id="zip"
-                                   name="zip">
-                        </div>
-                    </fieldset>
-                </section>
-            </div>
-
-            <!-- Availability -->
-            <div class="col-md-12">
-                <section class="card shadow mb-5">
-
-                    <h3 class="card-title titleColor text-white text-center mb-4 py-2">Availability</h3>
-
-                    <fieldset class="form-group m-0 p-4">
-                        <p class="form-group h6 font-weight-light text-center">Please select all availability options
-                            that
-                            apply</p>
-
-                        <!-- Summer Camp -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="availability[]" id="oneWeek"
-                                   value="oneWeek">
-                            <label class="form-check-label h6 font-weight-light text-center" for="oneWeek">
-                                One Week Summer Camp
+                            <label for="refLastName2" id="labelRefLastName2" class="h6 font-weight-light mr-sm-1">
+                                Last Name *
                             </label>
+                            <input type="text" class="form-control shadow-sm" id="refLastName2" name="refLastName2">
                         </div>
 
-                        <!-- Weekends -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="availability[]" id="weekends"
-                                   value="weekends">
-                            <label class="form-check-label h6 font-weight-light text-center" for="weekends">
-                                Weekends
+                        <!-- Relationship -->
+                        <div class="form-group">
+                            <label for="refRelationship2" id="labelRefRelationship2"
+                                   class="h6 font-weight-light mr-sm-1">
+                                Relationship *
                             </label>
+                            <input type="text" class="form-control shadow-sm" id="refRelationship2"
+                                   name="refRelationship2">
                         </div>
-                        <br>
 
-                        <!-- Weekend Availability Time -->
-                        <div id="weekendTimesSection" class="form-group">
-                            <label for="weekendTimes" class="h6 font-weight-light mr-2">
-                                Please specify your weekend availability time
+                        <!-- Phone -->
+                        <div class="form-group">
+                            <label for="refPhone2" id="labelRefPhone2" class="h6 font-weight-light mr-sm-1">
+                                Phone Number *
                             </label>
-                            <input type="text" id="weekendTimes" name="weekendTimes"
-                                   class="mr-3 mb-2 form-control shadow-sm">
+                            <input type="tel" class="form-control shadow-sm" id="refPhone2" name="refPhone2"
+                                   placeholder="253-123-4567">
                         </div>
-                    </fieldset>
 
-                    <!-- Interests -->
-                    <fieldset id="interests" class="form-group rounded m-0 p-4">
-                        <legend>Interests</legend>
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="refEmail2" id="labelRefEmail2" class="h6 font-weight-light mr-sm-1">
+                                Email *
+                            </label>
+                            <input type="email" class="form-control shadow-sm mb-2" id="refEmail2" name="refEmail2"
+                                   placeholder="JohnDoe@mail.com">
+                        </div>
+                    </div>
 
-                        <p class="form-text h6 font-weight-light text-center">
-                            Tell us in which areas you are interested in volunteering<br><br>
+                    <!-- References 3 -->
+                    <div class="form-group">
+                        <h4>Reference Three *</h4>
+
+                        <!-- First Name -->
+                        <div class="form-group">
+                            <label for="refFirstName3" id="labelRefFirstName3" class="h6 font-weight-light mr-sm-1">
+                                First Name *
+                            </label>
+                            <input type="text" class="form-control shadow-sm" id="refFirstName3"
+                                   name="refFirstName3">
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="form-group">
+                            <label for="refLastName3" id="labelRefLastName3" class="h6 font-weight-light mr-sm-1">
+                                Last Name *
+                            </label>
+                            <input type="text" class="form-control shadow-sm" id="refLastName3" name="refLastName3">
+                        </div>
+
+                        <!-- Relationship -->
+                        <div class="form-group">
+                            <label for="refRelationship3" id="labelRefRelationship3"
+                                   class="h6 font-weight-light mr-sm-1">
+                                Relationship *
+                            </label>
+                            <input type="text" class="form-control shadow-sm" id="refRelationship3"
+                                   name="refRelationship3">
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="form-group">
+                            <label for="refPhone3" id="labelRefPhone3" class="h6 font-weight-light mr-sm-1">
+                                Phone Number *
+                            </label>
+                            <input type="tel" class="form-control shadow-sm" id="refPhone3" name="refPhone3"
+                                   placeholder="253-123-4567">
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="refEmail3" id="labelRefEmail3" class="h6 font-weight-light mr-sm-1">
+                                Email *
+                            </label>
+                            <input type="email" class="form-control shadow-sm mb-2" id="refEmail3" name="refEmail3"
+                                   placeholder="JohnDoe@mail.com">
+                        </div>
+                    </div>
+
+                </fieldset>
+            </section>
+        </div>
+
+        <!-- Agreement -->
+        <div class="col-md-12">
+            <section class="card shadow mb-3">
+
+                <h3 class="card-title titleColor text-white text-center mb-4 py-2">Agreement</h3>
+
+                <fieldset class="form-group m-0 p-4">
+
+                    <p class="pb-3">
+                        By submitting this application, I certify that my statements in this application are true,
+                        complete
+                        and correct to the best of my knowledge. I further understand that as a part of the
+                        volunteer
+                        verification and matching process, additional personal information will be required of me. I
+                        hereby
+                        authorize iD.A.Y.dream to contact the references listed and to conduct a background check to
+                        determine
+                        if I will be a good fit as a volunteer for the organization. I understand that submitting
+                        this
+                        application does not guarantee my participation. I also hereby authorize iD.A.Y.dream
+                        without
+                        limitation, to copy, publish, exhibit or distribute photographs or video tapes of my
+                        volunteer
+                        activities for the purpose of promoting volunteerism and support. I release and hold
+                        harmless
+                        from
+                        liability any person or organization that provides information. I also agree to hold
+                        harmless
+                        iD.A.Y.dream and the officers and volunteers thereof.
+                    </p>
+
+                    <!-- Agree -->
+                    <div class="form-group">
+                        <input type="checkbox" id="agreeCheckbox" name="policyCheckBox" value="checked" required>
+                        <label for="agreeCheckbox" class="h6 font-weight-light">I have read and agree to the
+                            statement
+                            above *</label>
+                    </div>
+
+                    <!-- Policy -->
+                    <h4 class="text-center">Our Policy</h4>
+                    <div class="form-group">
+                        <p>
+                            It is the policy of this organization to provide equal opportunities without regard to
+                            race,
+                            color,
+                            religion, national origin, gender, sexual preference, age, or disability.<br><br>Thank
+                            you
+                            for
+                            completing this application form and for your interest in volunteering with us.
                         </p>
-                        <ul>
-                            <!-- Events -->
-                            <li class="form-check">
-                                <input id="events" type="checkbox" name="interests[]" value="events">
-                                <label class="form-check-label h6 font-weight-light" for="events">Events</label>
-                            </li>
-
-                            <!-- Fundraising -->
-                            <li class="form-check">
-                                <input id="fundraising" type="checkbox" name="interests[]" value="fundraising">
-                                <label class="form-check-label h6 font-weight-light"
-                                       for="fundraising">Fundraising</label>
-                            </li>
-
-                            <!-- Newsletter -->
-                            <li class="form-check">
-                                <input id="newsletter" type="checkbox" name="interests[]" value="newsletter">
-                                <label class="form-check-label h6 font-weight-light" for="newsletter">Newsletter</label>
-                            </li>
-
-                            <!-- Coordination -->
-                            <li class="form-check">
-                                <input id="coordination" type="checkbox" name="interests[]" value="coordination">
-                                <label class="form-check-label h6 font-weight-light"
-                                       for="coordination">Coordination</label>
-                            </li>
-
-                            <!-- Mentoring -->
-                            <li class="form-check">
-                                <input id="mentoring" type="checkbox" name="interests[]" value="mentoring">
-                                <label class="form-check-label h6 font-weight-light" for="mentoring">Mentoring</label>
-                            </li>
-
-                            <!-- Other -->
-                            <li class="form-check">
-                                <input id="other-interest" value="other" class="" name="interests[]" type="checkbox">
-                                <label class="form-check-label h6 font-weight-light" for="other-interest">Other</label>
-                            </li>
-                        </ul>
-
-                        <!-- Other Interests -->
-                        <div id="other-section" class="form-group">
-                            <label for="other" class="h6 font-weight-light mr-sm-1">Other (please specify)</label>
-                            <input type="text" class="mr-3 mb-2 form-control shadow-sm" id="other" name="interestsText">
-                        </div>
-                    </fieldset>
-                </section>
-            </div>
-
-            <!-- About You -->
-            <div class="col-md-12">
-                <section class="card shadow mb-5">
-
-                    <h3 class="card-title titleColor text-white text-center mb-4 py-2">About You</h3>
-
-                    <fieldset class="form-group m-0 p-4">
-                        <!-- How Did You Hear About Us -->
-                        <div class="form-group">
-                            <label for="howDidHear" id="labelHowDidHear" class="h6 font-weight-light mr-sm-1">
-                                How did you hear about us?
-                            </label>
-                            <select class="form-control shadow-sm" id="howDidHear" name="howDidHear">
-                                <option value="none">Please Select</option>
-                                <option value="word">Word of Mouth/Friend/Colleague</option>
-                                <option value="web">Web/Social Media</option>
-                                <option value="print">Print (Flyer/Poster/Brochure)</option>
-                                <option value="corporate">Corporate Sponsor</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-
-                        <!-- Other - How Did You About Us -->
-                        <div id="otherHowDidHearSection" class="form-group">
-                            <label for="otherHowDidHear" class="h6 font-weight-light mr-sm-1">Other (please
-                                specify)</label>
-                            <input type="text" class="form-control shadow-sm" id="otherHowDidHear"
-                                   name="otherHowDidHear">
-                        </div>
-
-                        <!-- Motivation -->
-                        <div class="form-group">
-                            <label for="getToKnow" id="labelGetToKnow" class="h6 font-weight-light mr-sm-1">
-                                What motivated you to volunteer with us? *
-                            </label>
-                            <span id="getToKnowError" class="error">required</span>
-                            <textarea id="getToKnow" maxlength="2000" class="form-control shadow-sm"
-                                      name="motivation"></textarea>
-                        </div>
-
-                        <!-- Experience -->
-                        <div class="form-group">
-                            <label for="volExperience" class="h6 font-weight-light mr-sm-1">
-                                Have you had any volunteer experience? If so explain.
-                            </label>
-                            <textarea id="volExperience" name="volExperience" maxlength="2000"
-                                      class="form-control shadow-sm"></textarea>
-                        </div>
-
-                        <!-- Skills -->
-                        <div class="form-group">
-                            <label for="skills" class="h6 font-weight-light mr-sm-1">Any skills that you may
-                                have?</label>
-                            <textarea id="skills" name="skills" class="form-control shadow-sm"></textarea>
-                        </div>
-                    </fieldset>
-                </section>
-            </div>
-
-            <!-- Character References -->
-            <div class="col-md-12">
-                <section class="card shadow mb-5">
-
-                    <h3 class="card-title titleColor text-white text-center mb-4 py-2">Character References</h3>
-
-                    <fieldset class="form-group m-0 p-4">
-                        <!-- References 1 -->
-                        <div class="form-group">
-                            <p class="h4">Reference One *</p>
-                            <span id="errReferences" class="error h6">Requires 3 References</span>
-
-                            <!-- First Name -->
-                            <div class="form-group">
-                                <label for="refFirstName1" id="labelRefFirstName1" class="h6 font-weight-light mr-sm-1">
-                                    First Name *
-                                </label>
-                                <input type="text" class="form-control shadow-sm" id="refFirstName1"
-                                       name="refFirstName1">
-                            </div>
-
-                            <!-- Last Name -->
-                            <div class="form-group">
-                                <label for="refLastName1" id="labelRefLastName1" class="h6 font-weight-light mr-sm-1">
-                                    Last Name *
-                                </label>
-                                <input type="text" class="form-control shadow-sm" id="refLastName1" name="refLastName1">
-                            </div>
-
-                            <!-- Relationship -->
-                            <div class="form-group">
-                                <label for="refRelationship1" id="labelRefRelationship1"
-                                       class="h6 font-weight-light mr-sm-1">
-                                    Relationship *
-                                </label>
-                                <input type="text" class="form-control shadow-sm" id="refRelationship1"
-                                       name="refRelationship1">
-                            </div>
-
-                            <!-- Phone -->
-                            <div class="form-group">
-                                <label for="refPhone1" id="labelRefPhone1" class="h6 font-weight-light mr-sm-1">
-                                    Phone Number *
-                                </label>
-                                <input type="tel" class="form-control shadow-sm" id="refPhone1" name="refPhone1"
-                                       placeholder="253-123-4567">
-                            </div>
-
-                            <!-- Email -->
-                            <div class="form-group">
-                                <label for="refEmail1" id="labelRefEmail1" class="h6 font-weight-light mr-sm-1">
-                                    Email *
-                                </label>
-                                <input type="email" class="form-control shadow-sm mb-2" id="refEmail1" name="refEmail1"
-                                       placeholder="JohnDoe@mail.com">
-                            </div>
-                        </div>
-
-                        <!-- References 2 -->
-                        <div class="form-group">
-                            <h4>Reference Two *</h4>
-
-                            <!-- First Name -->
-                            <div class="form-group">
-                                <label for="refFirstName2" id="labelRefFirstName2" class="h6 font-weight-light mr-sm-1">
-                                    First Name *
-                                </label>
-                                <input type="text" class="form-control shadow-sm" id="refFirstName2"
-                                       name="refFirstName2">
-                            </div>
-
-                            <!-- Last Name -->
-                            <div class="form-group">
-                                <label for="refLastName2" id="labelRefLastName2" class="h6 font-weight-light mr-sm-1">
-                                    Last Name *
-                                </label>
-                                <input type="text" class="form-control shadow-sm" id="refLastName2" name="refLastName2">
-                            </div>
-
-                            <!-- Relationship -->
-                            <div class="form-group">
-                                <label for="refRelationship2" id="labelRefRelationship2"
-                                       class="h6 font-weight-light mr-sm-1">
-                                    Relationship *
-                                </label>
-                                <input type="text" class="form-control shadow-sm" id="refRelationship2"
-                                       name="refRelationship2">
-                            </div>
-
-                            <!-- Phone -->
-                            <div class="form-group">
-                                <label for="refPhone2" id="labelRefPhone2" class="h6 font-weight-light mr-sm-1">
-                                    Phone Number *
-                                </label>
-                                <input type="tel" class="form-control shadow-sm" id="refPhone2" name="refPhone2"
-                                       placeholder="253-123-4567">
-                            </div>
-
-                            <!-- Email -->
-                            <div class="form-group">
-                                <label for="refEmail2" id="labelRefEmail2" class="h6 font-weight-light mr-sm-1">
-                                    Email *
-                                </label>
-                                <input type="email" class="form-control shadow-sm mb-2" id="refEmail2" name="refEmail2"
-                                       placeholder="JohnDoe@mail.com">
-                            </div>
-                        </div>
-
-                        <!-- References 3 -->
-                        <div class="form-group">
-                            <h4>Reference Three *</h4>
-
-                            <!-- First Name -->
-                            <div class="form-group">
-                                <label for="refFirstName3" id="labelRefFirstName3" class="h6 font-weight-light mr-sm-1">
-                                    First Name *
-                                </label>
-                                <input type="text" class="form-control shadow-sm" id="refFirstName3"
-                                       name="refFirstName3">
-                            </div>
-
-                            <!-- Last Name -->
-                            <div class="form-group">
-                                <label for="refLastName3" id="labelRefLastName3" class="h6 font-weight-light mr-sm-1">
-                                    Last Name *
-                                </label>
-                                <input type="text" class="form-control shadow-sm" id="refLastName3" name="refLastName3">
-                            </div>
-
-                            <!-- Relationship -->
-                            <div class="form-group">
-                                <label for="refRelationship3" id="labelRefRelationship3"
-                                       class="h6 font-weight-light mr-sm-1">
-                                    Relationship *
-                                </label>
-                                <input type="text" class="form-control shadow-sm" id="refRelationship3"
-                                       name="refRelationship3">
-                            </div>
-
-                            <!-- Phone -->
-                            <div class="form-group">
-                                <label for="refPhone3" id="labelRefPhone3" class="h6 font-weight-light mr-sm-1">
-                                    Phone Number *
-                                </label>
-                                <input type="tel" class="form-control shadow-sm" id="refPhone3" name="refPhone3"
-                                       placeholder="253-123-4567">
-                            </div>
-
-                            <!-- Email -->
-                            <div class="form-group">
-                                <label for="refEmail3" id="labelRefEmail3" class="h6 font-weight-light mr-sm-1">
-                                    Email *
-                                </label>
-                                <input type="email" class="form-control shadow-sm mb-2" id="refEmail3" name="refEmail3"
-                                       placeholder="JohnDoe@mail.com">
-                            </div>
-                        </div>
-
-                    </fieldset>
-                </section>
-            </div>
-
-            <!-- Agreement -->
-            <div class="col-md-12">
-                <section class="card shadow mb-3">
-
-                    <h3 class="card-title titleColor text-white text-center mb-4 py-2">Agreement</h3>
-
-                    <fieldset class="form-group m-0 p-4">
-
-                        <p class="pb-3">
-                            By submitting this application, I certify that my statements in this application are true,
-                            complete
-                            and correct to the best of my knowledge. I further understand that as a part of the
-                            volunteer
-                            verification and matching process, additional personal information will be required of me. I
-                            hereby
-                            authorize iD.A.Y.dream to contact the references listed and to conduct a background check to
-                            determine
-                            if I will be a good fit as a volunteer for the organization. I understand that submitting
-                            this
-                            application does not guarantee my participation. I also hereby authorize iD.A.Y.dream
-                            without
-                            limitation, to copy, publish, exhibit or distribute photographs or video tapes of my
-                            volunteer
-                            activities for the purpose of promoting volunteerism and support. I release and hold
-                            harmless
-                            from
-                            liability any person or organization that provides information. I also agree to hold
-                            harmless
-                            iD.A.Y.dream and the officers and volunteers thereof.
-                        </p>
-
-                        <!-- Agree -->
-                        <div class="form-group">
-                            <input type="checkbox" id="agreeCheckbox" name="policyCheckBox" value="checked" required>
-                            <label for="agreeCheckbox" class="h6 font-weight-light">I have read and agree to the
-                                statement
-                                above *</label>
-                        </div>
-
-                        <!-- Policy -->
-                        <h4 class="text-center">Our Policy</h4>
-                        <div class="form-group">
-                            <p>
-                                It is the policy of this organization to provide equal opportunities without regard to
-                                race,
-                                color,
-                                religion, national origin, gender, sexual preference, age, or disability.<br><br>Thank
-                                you
-                                for
-                                completing this application form and for your interest in volunteering with us.
-                            </p>
-                        </div>
-                    </fieldset>
-                </section>
-            </div>
-            <button type="submit" id="submit" class="btn btn-dark shadow-sm">Submit</button>
-        </form>
-    </div>
+                    </div>
+                </fieldset>
+            </section>
+        </div>
+        <button type="submit" id="submit" class="btn btn-dark shadow-sm">Submit</button>
+    </form>
 </div>
 
 
@@ -609,7 +607,8 @@
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
