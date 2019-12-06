@@ -326,7 +326,9 @@ function skipBack(caretPos) {
     // For ') '
     if (caretPos === 6) {
         caretPos -= 2;
-    } else if (caretPos === 10) {
+
+    } // For '-'
+    else if (caretPos === 10) {
         caretPos--;
     }
     return caretPos;
