@@ -223,7 +223,7 @@ function formatPhoneDeleteAndMoveCaret(e) {
 
     let numbers = this.value.replace(/\D/g,'');
 
-    // if backspace and has at least a number to delete
+    // if backspace
     if (e.which === 8) {
 
         // Concat numbers minus removed digits
