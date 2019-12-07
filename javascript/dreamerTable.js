@@ -1,9 +1,6 @@
-
 $(document).on('change', '.activity', function(){
     let activity = $(this).val();
     let dreamerId = $(this).attr('data-id');
-
-    $(this).parent().attr('data-search', $(this).children("option:selected").innerHTML());
 
     $.post('activity.php', {id:dreamerId, activity:activity});
 });
@@ -35,3 +32,7 @@ $('#dreamerTable').DataTable({
     // Order table by join date descending
     order: [[ 13, "desc" ]]
 });
+
+//reloads the page
+function reload() {window.location.reload()}
+document.getElementById('reload').onclick = reload;

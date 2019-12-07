@@ -94,7 +94,7 @@ require('/home/notfound/connect.php');
 
             echo "<tr>
                     <td>$fName $lName</td>  
-                    <td data-search='" . array_search($activity, $activityArray) . "'>
+                    <td class data-search='" . array_search($activity, $activityArray) . "'>
                        <select class='activity' data-id='$dreamerId'>";
                     foreach($activityArray as $active => $id){
                         if($activity == $id){
@@ -124,7 +124,8 @@ require('/home/notfound/connect.php');
         </tbody>
     </table>
     <br>
-    <p><a class="btn btn-dark p-2" href="sendMail.php?source=dream">Send Email</a></p>
+    <a class="btn btn-dark p-2" href="sendMail.php?source=dream">Send Email</a>
+    <button id="reload" class="btn btn-dark p-2">Update Changes</button>
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
