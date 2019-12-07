@@ -55,7 +55,6 @@ require('/home/notfound/connect.php');
             <th>Guardian Email</th>
             <th>Guardian Phone</th>
             <th>Join Date</th>
-            <th class="hidden">search activity</th>
         </tr>
         </thead>
 
@@ -118,13 +117,8 @@ require('/home/notfound/connect.php');
                     <td>$guardFName $guardLName</td>
                     <td>$guardEmail</td>
                     <td>$guardPhoneNum</td>
-                    <td data-sort='$dreamerId'>$joinDate</td>";
-                    foreach($activityArray as $active => $id){
-                        if($activity == $id){
-                            echo "<td class='hidden'>$active</td>";
-                        }
-                    }
-            echo "</tr>";
+                    <td data-sort='$dreamerId'>$joinDate</td>
+                 </tr>";
         }
         ?>
         </tbody>
@@ -134,51 +128,13 @@ require('/home/notfound/connect.php');
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="//code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-<script>
-    //catches the select outside and inside the modal
-    $(document).on('change', '.activity', function(){
-        let activity = $(this).val();
-        let dreamerId = $(this).attr('data-id');
-
-        $.post('activity.php', {id:dreamerId, activity:activity});
-    });
-
-    $('#dreamerTable').DataTable({
-        responsive: {
-            details: {
-                display: $.fn.dataTable.Responsive.display.modal( {
-                    header: function ( row ) {
-                        var data = row.data();
-                        return 'Details for ' + data[0];
-                    }
-                } ),
-                renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
-                    tableClass: 'table'
-                } )
-            }
-        },
-
-        // Priority of which columns are shown in the table
-        columnDefs: [
-            { responsivePriority: 1, targets: 0 },
-            { responsivePriority: 2, targets: 1 },
-            { responsivePriority: 3, targets: 2 },
-            { responsivePriority: 5, targets: 10 },
-            { responsivePriority: 6, targets: 11 },
-            { responsivePriority: 7, targets: 12 },
-            { responsivePriority: 4, targets: 13 },
-            //Turns off search for the select element
-            { searchable: false, targets: 1 }
-        ],
-
-        // Order table by join date descending
-        order: [[ 13, "desc" ]]
-    });
-</script>
+<script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script><script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="../javascript/dreamerTable.js"></script>
 </body>
 </html>
