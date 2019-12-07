@@ -41,6 +41,7 @@ require('/home/notfound/connect.php');
         <thead>
         <tr>
             <th>Name</th>
+            <th>Status</th>
             <th>Email</th>
             <th>On Mail List</th>
             <th>Phone</th>
@@ -68,6 +69,7 @@ require('/home/notfound/connect.php');
             $volunteerId = $row['volunteerId'];
             $fName = ucwords(strtolower($row['firstName']));
             $lName = ucwords(strtolower($row['lastName']));
+            $status = $row['activity'];
             $email = strtolower($row['email']);
             $phone = $row['phone'];
             $address = $row['street'] . ' ' . $row['city'] . ', ' . strtoupper($row['state']) . ' ' . $row['zip'];
@@ -82,9 +84,20 @@ require('/home/notfound/connect.php');
             $skills = empty($row['experience']) ? 'Unspecified' : $row['experience'];
             $interests = formatInterests(getInterestsById($cnxn, $volunteerId));
             $references = formatReferences(getReferencesById($cnxn, $volunteerId));
+            $statusOptions = array('Inactive'=>'-1', 'Pending'=>'0', 'Active'=>'1');
 
             echo "<tr>
                     <td>$fName $lName</td>
+                    <td data-search='" . array_search($status, $statusOptions) . "'>
+                      <select class='status' data-volId='$volunteerId' >";
+
+                        foreach ($statusOptions as $statusName => $statusValue) {
+                            $sel = ($status === $statusValue) ? "selected" : "";
+                            echo "<option value='$statusValue' $sel>$statusName</option>";
+                        }
+
+                echo "</select>
+                    </td>
                     <td>$email</td>
                     <td>$onMailList</td>
                     <td>$phone</td>
@@ -108,41 +121,11 @@ require('/home/notfound/connect.php');
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-<script>
-    $('#volunteerTable').DataTable( {
-        responsive: {
-            details: {
-                display: $.fn.dataTable.Responsive.display.modal( {
-                    header: function ( row ) {
-                        var data = row.data();
-                        return 'Details for '+ data[0];
-                    }
-                } ),
-                renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
-                    tableClass: 'table'
-                } )
-            }
-        },
-
-        // Priority of which columns are shown in the table
-        columnDefs: [
-            { responsivePriority: 1, targets: 0 },
-            { responsivePriority: 2, targets: 1 },
-            { responsivePriority: 3, targets: 3 },
-            { responsivePriority: 4, targets: 4 },
-            { responsivePriority: 5, targets: 5 },
-            { responsivePriority: 6, targets: 6 },
-            { responsivePriority: 5, targets: 14 }
-        ],
-
-        // Order table by join date descending
-        order: [[ 14, "desc" ]]
-    } );
-</script>
+<script src="../javascript/volunteerTable.js"></script>
 </body>
 </html>
