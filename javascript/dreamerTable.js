@@ -3,7 +3,7 @@ $(document).on('change', '.activity', function(){
     let activity = $(this).val();
     let dreamerId = $(this).attr('data-id');
 
-    $(this).parent().attr('data-search', $(this).children("option:selected").text());
+    $(this).parent().attr('data-search', $(this).children("option:selected").innerHTML());
 
     $.post('activity.php', {id:dreamerId, activity:activity});
 });

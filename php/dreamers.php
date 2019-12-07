@@ -94,7 +94,7 @@ require('/home/notfound/connect.php');
 
             echo "<tr>
                     <td>$fName $lName</td>  
-                    <td>
+                    <td data-search='" . array_search($activity, $activityArray) . "'>
                        <select class='activity' data-id='$dreamerId'>";
                     foreach($activityArray as $active => $id){
                         if($activity == $id){
