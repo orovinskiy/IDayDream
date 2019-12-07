@@ -82,7 +82,7 @@ function validMail($email){
  */
 function validNumber($number){
     if(trim($number) === "" || $number !== htmlspecialchars($number) ||
-        preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i",$number) !== 1){
+        preg_match("/^\(\d{3}\)\s\d{3}-\d{4}/",$number) !== 1){
 
         return false;
 
