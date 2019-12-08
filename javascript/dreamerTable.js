@@ -1,3 +1,4 @@
+//captures the changed data and updates the database
 $(document).on('change', '.activity', function(){
     let activity = $(this).val();
     let dreamerId = $(this).attr('data-id');
