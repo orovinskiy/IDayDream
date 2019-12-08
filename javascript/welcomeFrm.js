@@ -1,8 +1,7 @@
 // Regex found at https://regexr.com/
 const EMAIL_REGEX = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
-// Regex found at https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript
-const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+const PHONE_REGEX = /^\(\d{3}\)\s\d{3}-\d{4}/;
 
 // Regex found at https://forum.codeigniter.com/thread-68064.html
 const BIRTHDAY_REGEX = /^(\d{2})\/(\d{2})\/(\d{4})$/;

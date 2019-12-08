@@ -184,8 +184,8 @@
                         <label class="h6 font-weight-light" id="lblPhone" for="phone">Phone Number *</label>
                         <span id="phoneErr" class="error">Required</span>
                         <span id="phoneErrFormat" class="error">Please enter a valid phone number format</span>
-                        <input class="form-control shadow-sm required check-fill" type="text" id="phone" maxlength="25"
-                               name="phone">
+                        <input class="form-control shadow-sm required check-fill phoneFormat" type="text" id="phone" maxlength="14"
+                               name="phone" placeholder="(XXX) XXX-XXXX">
                     </div>
                 </fieldset>
             </section>
@@ -231,15 +231,12 @@
 
                     <!-- Guardian Phone Number -->
                     <div class="form-group">
-                        <label class="h6 font-weight-light" id="lblguardianPhone" for="guardianPhone">Phone
-                            Number
-                            *</label>
+                        <label class="h6 font-weight-light" id="lblguardianPhone" for="guardianPhone">Phone Number *</label>
                         <span id="guardianPhoneErr" class="error">Required</span>
                         <span id="guardianPhoneErrFormat"
                               class="error">Please enter a valid phone number format</span>
-                        <input class="form-control shadow-sm required check-fill" type="text" id="guardianPhone"
-                               maxlength="30"
-                               name="guardianPhone">
+                        <input class="form-control shadow-sm required check-fill phoneFormat" type="text" id="guardianPhone"
+                               maxlength="14" placeholder="(XXX) XXX-XXXX" name="guardianPhone">
                     </div>
                 </fieldset>
             </section>
@@ -262,6 +259,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script src="javascript/welcomeFrm.js"></script>
+<script src="javascript/formatter.js"></script>
 
 <script>
     $(function(){ //When document is ready
