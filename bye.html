@@ -4,31 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/form.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.png" />
 
     <title>Thank you!</title>
 </head>
-<body>
+<body class="bg-color">
 
-<div class="container">
-    <div class="jumbotron rounded bg-light shadow">
-        <h1 class="display-4 text-center">Thank You for Your Time!</h1>
-        <p class="lead">Because of our values as on organization and out of the safety of the youth we serve it is a requirement that a background check must be submitted.
-            You have chosen to decline. Thank you for your consideration in volunteering with iD.A.Y.dream, at this time we are unable to move forward with your submission.
-            Please do visit us again!</p>
-
-        <div class="text-center">
-            <input type="button" class="btn btn-dark p-2 btnEdit" onclick="window.location.href = 'https://www.idaydream.org/';" value="Home"/>
-        </div>
-    </div>
+<div class="jumbotron banner rounded-0 shadow">
+    <h1 class="display-4 text-white font-weight-bold">ID.A.Y.DREAM VOLUNTEER</h1>
 </div>
 
+<div class="container width">
+    <section class="card shadow mb-5">
+
+        <h3 class="card-title titleColor text-white text-center mb-4 py-2">Thank You for Your Time!</h3>
+
+        <!-- Background check consent (required) -->
+        <fieldset class="form-group m-0 p-4">
+            <p class="backCheck h5 pb-3 font-weight-light text-center">
+                Because of our values as on organization and out of the safety of the youth we serve it is a requirement that a background check must be submitted.
+                You have chosen to decline. Thank you for your consideration in volunteering with iD.A.Y.dream, at this time we are unable to move forward with your submission.
+                Please do visit us again!
+            </p>
+
+            <div class="text-center">
+                <input type="button" class="btn btn-dark shadow-sm mx-0 rounded-0" onclick="window.location.href = 'https://www.idaydream.org/';" value="Home"/>
+            </div>
+        </fieldset>
+    </section>
+</div>
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

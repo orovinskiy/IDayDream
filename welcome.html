@@ -27,7 +27,13 @@
     <h1 class="display-4 text-white font-weight-bold">WELCOME TO ID.A.Y.DREAM</h1>
 </div>
 
-<div class="container" style="width: 65%;">
+<div class="rounded-0 progress fixed-bottom">
+    <div class="progress-bar titleColor" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+        <span class="sr-only">0% Complete</span>
+    </div>
+</div>
+
+<div class="container width">
 
     <form id="welcomeForm" action="php/confirmation.php" method="POST">
         <div class="col-md-12">
@@ -47,7 +53,7 @@
                     <div class="form-group">
                         <label class="h6 font-weight-light" id="lblFirstName" for="firstName">First Name *</label>
                         <span id="firstNameErr" class="error">Required</span>
-                        <input class="form-control shadow-sm required" type="text" id="firstName" maxlength="30"
+                        <input class="form-control shadow-sm required check-fill" type="text" id="firstName" maxlength="30"
                                name="firstName" onblur="validateRequiredFirst()">
                     </div>
 
@@ -55,7 +61,7 @@
                     <div class="form-group">
                         <label class="h6 font-weight-light" id="lblLastName" for="lastName">Last Name *</label>
                         <span id="lastNameErr" class="error">Required</span>
-                        <input class="form-control shadow-sm required" type="text" id="lastName" maxlength="50"
+                        <input class="form-control shadow-sm required check-fill" type="text" id="lastName" maxlength="50"
                                name="lastName">
                     </div>
 
@@ -66,7 +72,7 @@
                             <span id="birthdayErrFormat"
                                   class="error">Please enter the following date format MM/DD/YYYY</span>
                             <span id="birthdayErr" class="error">required</span>
-                            <input class="form-control shadow-sm required" placeholder="MM/DD/YYYY" type="text"
+                            <input class="form-control shadow-sm required check-fill" placeholder="MM/DD/YYYY" type="text"
                                    id="birthday" maxlength="20" name="birthday">
                         </div>
 
@@ -75,7 +81,7 @@
                             <label class="h6 font-weight-light form-label" id="lblGender" for="gender">Gender
                                 *</label>
                             <span id="genderErr" class="error">Required</span>
-                            <select class="form-control shadow-sm required" id="gender" name="gender">
+                            <select class="form-control shadow-sm required check-fill" id="gender" name="gender">
                                 <option value="">Select a Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -90,7 +96,7 @@
                         <label class="h6 font-weight-light form-label" id="lblEthnicity" for="ethnicity">Ethnicity
                             *</label>
                         <span id="ethnicityErr" class="error">Required</span>
-                        <select class="form-control shadow-sm mb-4 required" id="ethnicity" name="ethnicity">
+                        <select class="form-control shadow-sm mb-4 required check-fill" id="ethnicity" name="ethnicity">
                             <option value="">Select an Ethnicity</option>
                             <option value="Native American">American Indian or Alaska Native</option>
                             <option value="Asian">Asian or Asian American</option>
@@ -119,7 +125,7 @@
                             <label class="h6 font-weight-light form-label" id="lblGradClass" for="gradClass">Graduating
                                 Class *</label>
                             <span id="gradClassErr" class="error">Required</span>
-                            <select class="form-control shadow-sm required" id="gradClass" name="gradClass">
+                            <select class="form-control shadow-sm required check-fill" id="gradClass" name="gradClass">
                                 <option value="">Select a Year</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -169,7 +175,7 @@
                         <label class="h6 font-weight-light" id="lblEmail" for="email">Email *</label>
                         <span id="emailErr" class="error">Required</span>
                         <span id="emailErrFormat" class="error">Please enter a valid email format</span>
-                        <input class="form-control shadow-sm required" type="text" id="email" maxlength="50"
+                        <input class="form-control shadow-sm required check-fill" type="text" id="email" maxlength="50"
                                name="email">
                     </div>
 
@@ -178,7 +184,7 @@
                         <label class="h6 font-weight-light" id="lblPhone" for="phone">Phone Number *</label>
                         <span id="phoneErr" class="error">Required</span>
                         <span id="phoneErrFormat" class="error">Please enter a valid phone number format</span>
-                        <input class="form-control shadow-sm required" type="text" id="phone" maxlength="25"
+                        <input class="form-control shadow-sm required check-fill" type="text" id="phone" maxlength="25"
                                name="phone">
                     </div>
                 </fieldset>
@@ -197,7 +203,7 @@
                         <label class="h6 font-weight-light" id="lblguardianFName" for="guardianFName">First Name
                             *</label>
                         <span id="guardianFNameErr" class="error">Required</span>
-                        <input class="form-control shadow-sm required" type="text" id="guardianFName"
+                        <input class="form-control shadow-sm required check-fill" type="text" id="guardianFName"
                                maxlength="30"
                                name="guardianFName">
                     </div>
@@ -207,7 +213,7 @@
                         <label class="h6 font-weight-light" id="lblguardianLName" for="guardianLName">Last Name
                             *</label>
                         <span id="guardianLNameErr" class="error">Required</span>
-                        <input class="form-control shadow-sm required" type="text" id="guardianLName"
+                        <input class="form-control shadow-sm required check-fill" type="text" id="guardianLName"
                                maxlength="30"
                                name="guardianLName">
                     </div>
@@ -218,7 +224,7 @@
                             *</label>
                         <span id="guardianEmailErr" class="error">Required</span>
                         <span id="guardianEmailErrFormat" class="error">Please enter a valid email format</span>
-                        <input class="form-control shadow-sm required" type="text" id="guardianEmail"
+                        <input class="form-control shadow-sm required check-fill" type="text" id="guardianEmail"
                                maxlength="30"
                                name="guardianEmail">
                     </div>
@@ -231,7 +237,7 @@
                         <span id="guardianPhoneErr" class="error">Required</span>
                         <span id="guardianPhoneErrFormat"
                               class="error">Please enter a valid phone number format</span>
-                        <input class="form-control shadow-sm required" type="text" id="guardianPhone"
+                        <input class="form-control shadow-sm required check-fill" type="text" id="guardianPhone"
                                maxlength="30"
                                name="guardianPhone">
                     </div>
@@ -256,5 +262,29 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script src="javascript/welcomeFrm.js"></script>
+
+<script>
+    $(function(){ //When document is ready
+        $(".check-fill").focusout(function() { //Prefer keyup so you check after, in case the user delete his entry.
+            progressBar();
+        });
+    })
+
+    // Got this progress bar auto-fill function from:
+    // https://stackoverflow.com/questions/37141647/how-to-make-a-progress-bar-that-fills-every-time-a-textbox-is-filled
+    function progressBar() {
+        var $fields = $(".check-fill");
+        var count = 0;
+        $fields.each(function () {
+            if ($(this).val().length > 0)
+                count++;
+        });
+
+        var percentage = Math.floor(count * 100 / $fields.length);
+        //Here you have your percentage;
+        $(".progress-bar").css("width", percentage + "%");
+        //$(".count").text(percentage + "%");
+    };
+</script>
 </body>
 </html>
