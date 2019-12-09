@@ -6,7 +6,6 @@ require('/home/notfound/connect.php');
 require("functionsIDD.php");
 
 //captured variables from input
-$from = trim($_POST['from']);
 $subject = trim($_POST['subject']);
 $compose = trim($_POST['compose']);
 $pageType = $_POST['select'];
@@ -34,13 +33,6 @@ $isValid = true;
 
     <?php
     //Makes sure all the fields are not empty
-        if(!validReqText($from)){
-            echo "<p>Error: The From field was left empty</p>";
-            $isValid = false;
-        }
-        else{
-            echo "<p>From: $from</p>";
-        }
 
         if(!validReqText($subject)){
             echo "<p>Error: The Subject field was left empty</p>";
@@ -85,8 +77,8 @@ $isValid = true;
                 $email_subject = $subject;
                 $to = $email;//The active user goes here
 
-                $headers = "from: $from\r\n";
-                $headers.= "Reply-to: $from \r\n";
+                $headers = "from: IDayDream@gmail.com\r\n";
+                $headers.= "Reply-to: IDayDream@gmail.com \r\n";
                 $count++;
 
                 $success = mail($to, $email_subject, $email_body, $headers);

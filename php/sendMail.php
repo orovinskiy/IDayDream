@@ -20,12 +20,6 @@
         <h1>Compose Your Email</h1>
     </div>
     <form id="emailComposer" action="mailSender.php" method="post">
-        <!-- From -->
-        <div class="form-group">
-            <label class=" h5 font-weight-light " id="fromLabel"  for="from">From</label>
-            <span id="fromError" class="hidden error">*Required</span>
-            <input class="required form-control" type="text" id="from" maxlength="50" name="from">
-        </div>
 
         <!-- Subject -->
         <div class="form-group" >
