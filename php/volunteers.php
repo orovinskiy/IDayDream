@@ -21,6 +21,7 @@ require('/home/notfound/connect.php');
 
     <!-- Styles -->
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/sendMail.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../images/favicon.png" />
@@ -158,6 +159,7 @@ require('/home/notfound/connect.php');
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="../javascript/sendMail.js"></script>
 <script>
     $('#volunteerTable').DataTable( {
         responsive: {
