@@ -34,6 +34,6 @@ $('#dreamerTable').DataTable({
     order: [[ 13, "desc" ]]
 });
 
-//reloads the page
+/*//reloads the page
 function reload() {window.location.reload()}
-document.getElementById('reload').onclick = reload;
+document.getElementById('reload').onclick = reload;*/

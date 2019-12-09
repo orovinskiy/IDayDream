@@ -183,7 +183,7 @@ require('/home/notfound/connect.php');
             </div><!-- modal-content -->
         </div><!-- modal-dialog -->
     </div><!-- modal -->
-    <button id="reload" class="btn btn-dark p-2">Update Changes</button>
+    <!--<button id="reload" class="btn btn-dark p-2">Update Changes</button>-->
 </div>
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
