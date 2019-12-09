@@ -145,10 +145,6 @@ function validatePhoneNum(label, input, error){
     spanErrorRemove(error);
     removeRed($input,$label);
 
-    text = text.replace("(","");
-    text = text.replace(")","");
-    text = text.replace(/-/g,"");
-
     if(isNaN(text) || text.trim() === "" ){
         turnFieldRed($input,$label);
         spanErrorDisplay(error);

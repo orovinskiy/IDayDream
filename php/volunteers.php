@@ -46,7 +46,7 @@ require('/home/notfound/connect.php');
             <th>On Mail List</th>
             <th>Phone</th>
             <th>Address</th>
-            <th>Weekends</th>
+            <th>Availability</th>
             <th>Summer Camp</th>
             <th>Shirt Size</th>
             <th>Heard About By</th>

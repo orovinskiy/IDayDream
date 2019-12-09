@@ -3,14 +3,33 @@ $(document).on('change', '.status', function(){
     let volId = $(this).attr('data-volId');
     $.post('', {volId:volId, status:status});
 
-    $(this).parent().attr('data-search', $(this).children("option:selected").text());
+    let thisCell = $(this).parent();
+    let thisRow = thisCell.parent();
+    let selectedOptionText  = $(this).children("option:selected").text();
+
+    thisCell.attr('data-search', selectedOptionText);
+
+    table.row(thisRow).invalidate().draw();
 });
-/*
-$('.status').on('change', function() {
-    $(this).attr('data-search', $(this).text());
+
+$(document).on('input', 'input[type="search"]', function() {
+    let filterText = $(this).val().toLowerCase();
+
+    switch (filterText) {
+        case 'active':
+        case 'pending':
+        case 'inactive':
+            table.column(1).search('^' + filterText + '$', true, false).draw();
+            break;
+        default:
+            table.column(1).search('');
+            table.search(filterText).draw();
+    }
 });
-*/
-$('#volunteerTable').DataTable( {
+
+
+
+let table = $('#volunteerTable').DataTable( {
     responsive: {
         details: {
             display: $.fn.dataTable.Responsive.display.modal( {
@@ -27,15 +46,24 @@ $('#volunteerTable').DataTable( {
 
     // Priority of which columns are shown in the table
     columnDefs: [
+        // Name
         { responsivePriority: 1, targets: 0 },
-        { responsivePriority: 2, targets: 1 },
-        { responsivePriority: 3, targets: 3 },
-        { responsivePriority: 4, targets: 4 },
-        { responsivePriority: 5, targets: 5 },
+        // Status
+        { responsivePriority: 4, targets: 1 },
+        // Email
+        { responsivePriority: 2, targets: 2 },
+        // Phone
+        { responsivePriority: 3, targets: 4 },
+        // Address
+        { responsivePriority: 7, targets: 5 },
+        // Weekends
         { responsivePriority: 6, targets: 6 },
-        { responsivePriority: 5, targets: 14 }
+        // SummerCamp
+        { responsivePriority: 8, targets: 7 },
+        // Join Date
+        { responsivePriority: 5, targets: 15 }
     ],
 
     // Order table by join date descending
-    order: [[ 14, "desc" ]]
+    order: [[ 15, "desc" ]]
 } );
