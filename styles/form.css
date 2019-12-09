@@ -1,14 +1,5 @@
 /*This CSS is the common theme to all forms*/
 
-fieldset {
-    border: thin solid grey;
-    padding: 1.5em;
-
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1)  ;
-    -webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1)  ;
-    -moz-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1)  ;
-}
-
 .form-group {
     margin-bottom: 1.8em;
 }
@@ -16,6 +7,21 @@ fieldset {
 legend {
     width:30%;
     text-align: center;
+}
+
+.bg-color {
+    background-color: #f9f9f9
+}
+
+.form-control:focus {
+    box-shadow:  0px 0px 8px #b0b0b0 !important;
+    outline: none !important;
+    border: 0;
+}
+
+.form-control {
+    border: 1px solid #dbdbdb !important;
+    outline: none !important;
 }
 
 /* Error messages */

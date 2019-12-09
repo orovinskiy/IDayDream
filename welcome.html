@@ -5,203 +5,284 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles/style.css">
-    <link href="styles/form.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/form.css">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="shortcut icon" href="images/favicon.png"/>
 
     <title>Welcome | ID.A.Y.DREAM</title>
 </head>
-<body>
+<body class="bg-color">
 
-<div class="jumbotron banner">
-    <h1 class="display-4 text-light font-weight-bold">WELCOME TO ID.A.Y.DREAM</h1>
+<div class="jumbotron banner rounded-0 shadow">
+    <h1 class="display-4 text-white font-weight-bold">WELCOME TO ID.A.Y.DREAM</h1>
 </div>
 
-<div class="container">
+<div class="rounded-0 progress fixed-bottom">
+    <div class="progress-bar titleColor" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+        <span class="sr-only">0% Complete</span>
+    </div>
+</div>
 
-    <p class="h4 font-weight-light">Thanks for visiting. We want to get to know you. Please tell us about you.</p>
-    <br>
+<div class="container width">
 
     <form id="welcomeForm" action="php/confirmation.php" method="POST">
-        <small class="form-text">* Indicates required fields</small>
+        <div class="col-md-12">
+            <p class="h4 font-weight-light">Thanks for visiting. We want to get to know you. Please tell us about
+                yourself.</p>
+            <br>
 
-        <!-- About You -->
-        <fieldset class="form-group rounded bg-light">
-            <legend>About You</legend>
+            <small class="form-text">* Indicates required fields</small>
+            <section class="card shadow mb-5">
 
-            <!-- First Name -->
-            <div class="form-group">
-                <label class="h5 font-weight-light" id="lblFirstName"  for="firstName">First Name *</label>
-                <span id="firstNameErr" class="error">Required</span>
-                <input class="form-control required" type="text" id="firstName" maxlength="30" name="firstName">
-            </div>
+                <h3 class="card-title titleColor text-white text-center mb-4 py-2">About you</h3>
 
-            <!-- Last Name -->
-            <div class="form-group">
-                <label class="h5 font-weight-light" id="lblLastName" for="lastName">Last Name *</label>
-                <span id="lastNameErr" class="error">Required</span>
-                <input class="form-control required" type="text" id="lastName" maxlength="50" name="lastName">
-            </div>
+                <!-- About You -->
+                <fieldset class="form-group m-0 p-4">
 
-            <div class="row">
-                <!-- BirthDate -->
-                <div class="form-group col-sm-6">
-                    <label class="h5 font-weight-light" id="lblBirthday" for="birthday">Birthday *</label>
-                    <span id="birthdayErrFormat" class="error">Please enter the following date format MM/DD/YYYY</span>
-                    <span id="birthdayErr" class="error">required</span>
-                    <input class="form-control required" placeholder="MM/DD/YYYY" type="text" id="birthday" maxlength="20" name="birthday">
-                </div>
+                    <!-- First Name -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light" id="lblFirstName" for="firstName">First Name *</label>
+                        <span id="firstNameErr" class="error">Required</span>
+                        <input class="form-control shadow-sm required check-fill" type="text" id="firstName" maxlength="30"
+                               name="firstName" onblur="validateRequiredFirst()">
+                    </div>
 
-                <!-- Gender -->
-                <div class="form-group form-sm-inline col-sm-6">
-                    <label class="h5 font-weight-light form-label" id="lblGender" for="gender">Gender *</label>
-                    <span id="genderErr" class="error">Required</span>
-                    <select class="form-control required" id="gender" name="gender">
-                        <option value="">Select a Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                        <option value="noAnswer">Prefer not to say</option>
-                    </select>
-                </div>
-            </div>
+                    <!-- Last Name -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light" id="lblLastName" for="lastName">Last Name *</label>
+                        <span id="lastNameErr" class="error">Required</span>
+                        <input class="form-control shadow-sm required check-fill" type="text" id="lastName" maxlength="50"
+                               name="lastName">
+                    </div>
 
-            <!-- Ethnicity -->
-            <div class="form-group form-sm-inline">
-                <label class="h5 font-weight-light form-label" id="lblEthnicity" for="ethnicity">Ethnicity *</label>
-                <span id="ethnicityErr" class="error">Required</span>
-                <select class="form-control mb-4 required" id="ethnicity" name="ethnicity">
-                    <option value="">Select an Ethnicity</option>
-                    <option value="Native American">American Indian or Alaska Native</option>
-                    <option value="Asian">Asian or Asian American</option>
-                    <option value="Black">Black or African American</option>
-                    <option value="Hispanic">Hispanic or Latino/a</option>
-                    <option value="Middle Eastern">Middle Eastern or MENA</option>
-                    <option value="Pacific Islander">Native Hawaiian or Other Pacific Islander</option>
-                    <option value="Southeast Asian">Southeast Asian</option>
-                    <option value="White">White non-Hispanic</option>
-                    <option value="Multiracial">Bi/Multiracial</option>
-                    <option value="other">Other</option>
-                    <option value="No Answer">Declined to State</option>
-                </select>
+                    <div class="row">
+                        <!-- BirthDate -->
+                        <div class="form-group col-sm-6">
+                            <label class="h6 font-weight-light" id="lblBirthday" for="birthday">Birthday *</label>
+                            <span id="birthdayErrFormat"
+                                  class="error">Please enter the following date format MM/DD/YYYY</span>
+                            <span id="birthdayErr" class="error">required</span>
+                            <input class="form-control shadow-sm required check-fill" placeholder="MM/DD/YYYY" type="text"
+                                   id="birthday" maxlength="20" name="birthday">
+                        </div>
 
-                <div class="hidden form-group form-sm-inline" id="otherGroup">
-                    <label for="otherEthic" id="lblOtherEthic" class=" h5 font-weight-light form-label">Other</label>
-                    <input class="mb-2 form-control" type="text" id="otherEthic" name="otherEthic">
-                </div>
-            </div>
+                        <!-- Gender -->
+                        <div class="form-group form-sm-inline col-sm-6">
+                            <label class="h6 font-weight-light form-label" id="lblGender" for="gender">Gender
+                                *</label>
+                            <span id="genderErr" class="error">Required</span>
+                            <select class="form-control shadow-sm required check-fill" id="gender" name="gender">
+                                <option value="">Select a Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                                <option value="noAnswer">Prefer not to say</option>
+                            </select>
+                        </div>
+                    </div>
 
-            <div class="row">
-                <!-- Graduating class dropdown -->
-                <div class="form-group form-sm-inline col-sm-6">
-                    <label class="h5 font-weight-light form-label" id="lblGradClass" for="gradClass">Graduating Class *</label>
-                    <span id="gradClassErr" class="error">Required</span>
-                    <select class="form-control required" id="gradClass" name="gradClass">
-                        <option value="">Select a Year</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
-                    </select>
-                </div>
+                    <!-- Ethnicity -->
+                    <div class="form-group form-sm-inline">
+                        <label class="h6 font-weight-light form-label" id="lblEthnicity" for="ethnicity">Ethnicity
+                            *</label>
+                        <span id="ethnicityErr" class="error">Required</span>
+                        <select class="form-control shadow-sm mb-4 required check-fill" id="ethnicity" name="ethnicity">
+                            <option value="">Select an Ethnicity</option>
+                            <option value="Native American">American Indian or Alaska Native</option>
+                            <option value="Asian">Asian or Asian American</option>
+                            <option value="Black">Black or African American</option>
+                            <option value="Hispanic">Hispanic or Latino/a</option>
+                            <option value="Middle Eastern">Middle Eastern or MENA</option>
+                            <option value="Pacific Islander">Native Hawaiian or Other Pacific Islander</option>
+                            <option value="Southeast Asian">Southeast Asian</option>
+                            <option value="White">White non-Hispanic</option>
+                            <option value="Multiracial">Bi/Multiracial</option>
+                            <option value="other">Other</option>
+                            <option value="No Answer">Declined to State</option>
+                        </select>
 
-                <!-- Favourite Food -->
-                <div class="form-group col-sm-6">
-                    <label class="h5 font-weight-light" id="lblFood" for="food">Favourite Food/Snacks</label>
-                    <input class="form-control" type="text" id="food" maxlength="100" name="food">
-                </div>
-            </div>
+                        <div class="hidden form-group form-sm-inline" id="otherGroup">
+                            <label for="otherEthic" id="lblOtherEthic"
+                                   class=" h6 font-weight-light form-label">Other</label>
+                            <input class="mb-2 form-control shadow-sm" type="text" id="otherEthic"
+                                   name="otherEthic">
+                        </div>
+                    </div>
 
-            <!-- College of Interest -->
-            <div class="form-group">
-                <label class="h5 font-weight-light" id="lblCollege" for="college">College of Interest</label>
-                <input class="form-control" type="text" id="college" maxlength="50" name="college">
-            </div>
+                    <div class="row">
+                        <!-- Graduating class dropdown -->
+                        <div class="form-group form-sm-inline col-sm-6">
+                            <label class="h6 font-weight-light form-label" id="lblGradClass" for="gradClass">Graduating
+                                Class *</label>
+                            <span id="gradClassErr" class="error">Required</span>
+                            <select class="form-control shadow-sm required check-fill" id="gradClass" name="gradClass">
+                                <option value="">Select a Year</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                            </select>
+                        </div>
 
-            <!-- Career Aspirations -->
-            <div class="form-group">
-                <label class="h5 font-weight-light" id="lblJobGoal" for="jobGoal">Career Aspirations</label>
-                <textarea class="form-control" name="jobGoal" id="jobGoal" maxlength="2000"></textarea>
-            </div>
-        </fieldset>
+                        <!-- Favourite Food -->
+                        <div class="form-group col-sm-6">
+                            <label class="h6 font-weight-light" id="lblFood" for="food">Favourite
+                                Food/Snacks</label>
+                            <input class="form-control shadow-sm" type="text" id="food" maxlength="100" name="food">
+                        </div>
+                    </div>
 
-        <fieldset class="form-group rounded bg-light">
-            <legend>Contact Info</legend>
+                    <!-- College of Interest -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light" id="lblCollege" for="college">College of
+                            Interest</label>
+                        <input class="form-control shadow-sm" type="text" id="college" maxlength="50"
+                               name="college">
+                    </div>
 
-            <!-- Email -->
-            <div class="form-group">
-                <label class="h5 font-weight-light" id="lblEmail" for="email">Email *</label>
-                <span id="emailErr" class="error">Required</span>
-                <span id="emailErrFormat" class="error">Please enter a valid email format</span>
-                <input class="form-control required" type="text" id="email" maxlength="50" name="email">
-            </div>
+                    <!-- Career Aspirations -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light" id="lblJobGoal" for="jobGoal">Career Aspirations</label>
+                        <textarea class="form-control shadow-sm" name="jobGoal" id="jobGoal"
+                                  maxlength="2000"></textarea>
+                    </div>
+                </fieldset>
+            </section>
+        </div>
 
-            <!-- Phone -->
-            <div class="form-group">
-                <label class="h5 font-weight-light" id="lblPhone" for="phone">Phone Number *</label>
-                <span id="phoneErr" class="error">Required</span>
-                <span id="phoneErrFormat" class="error">Please enter a valid phone number format</span>
-                <input class="form-control required phoneFormat" type="text" id="phone" maxlength="14" name="phone"
-                       placeholder="(XXX) XXX-XXXX">
-            </div>
-        </fieldset>
+        <div class="col-md-12">
+            <section class="card shadow mb-5">
 
-        <fieldset class="form-group rounded bg-light">
-            <legend>Parent/Guardian Info</legend>
+                <h3 class="card-title titleColor text-white text-center mb-4 py-2">Contact Info</h3>
 
-            <!-- Guardian First Name -->
-            <div class="form-group">
-                <label class="h5 font-weight-light" id="lblguardianFName" for="guardianFName">First Name *</label>
-                <span id="guardianFNameErr" class="error">Required</span>
-                <input class="form-control required" type="text" id="guardianFName" maxlength="30" name="guardianFName">
-            </div>
+                <fieldset class="form-group m-0 p-4">
 
-            <!-- Guardian Last Name -->
-            <div class="form-group">
-                <label class="h5 font-weight-light" id="lblguardianLName" for="guardianLName">Last Name *</label>
-                <span id="guardianLNameErr" class="error">Required</span>
-                <input class="form-control required" type="text" id="guardianLName" maxlength="30" name="guardianLName">
-            </div>
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light" id="lblEmail" for="email">Email *</label>
+                        <span id="emailErr" class="error">Required</span>
+                        <span id="emailErrFormat" class="error">Please enter a valid email format</span>
+                        <input class="form-control shadow-sm required check-fill" type="text" id="email" maxlength="50"
+                               name="email">
+                    </div>
 
-            <!-- Guardian Email -->
-            <div class="form-group">
-                <label class="h5 font-weight-light" id="lblguardianEmail" for="guardianEmail">Email *</label>
-                <span id="guardianEmailErr" class="error">Required</span>
-                <span id="guardianEmailErrFormat" class="error">Please enter a valid email format</span>
-                <input class="form-control required" type="text" id="guardianEmail" maxlength="30" name="guardianEmail">
-            </div>
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light" id="lblPhone" for="phone">Phone Number *</label>
+                        <span id="phoneErr" class="error">Required</span>
+                        <span id="phoneErrFormat" class="error">Please enter a valid phone number format</span>
+                        <input class="form-control shadow-sm required check-fill phoneFormat" type="text" id="phone" maxlength="14"
+                               name="phone" placeholder="(XXX) XXX-XXXX">
+                    </div>
+                </fieldset>
+            </section>
+        </div>
 
-            <!-- Guardian Phone Number -->
-            <div class="form-group">
-                <label class="h5 font-weight-light" id="lblguardianPhone" for="guardianPhone">Phone Number *</label>
-                <span id="guardianPhoneErr" class="error">Required</span>
-                <span id="guardianPhoneErrFormat" class="error">Please enter a valid phone number format</span>
-                <input class="form-control required phoneFormat" type="text" id="guardianPhone" maxlength="14"
-                       placeholder="(XXX) XXX-XXXX" name="guardianPhone">
-            </div>
-        </fieldset>
+        <div class="col-md-12">
+            <section class="card shadow mb-3">
 
-        <button type="submit" id="submit" class="btn btn-dark p-2">Submit</button>
+                <h3 class="card-title titleColor text-white text-center mb-4 py-2">Parent/Guardian Info</h3>
+
+                <fieldset class="form-group m-0 p-4">
+
+                    <!-- Guardian First Name -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light" id="lblguardianFName" for="guardianFName">First Name
+                            *</label>
+                        <span id="guardianFNameErr" class="error">Required</span>
+                        <input class="form-control shadow-sm required check-fill" type="text" id="guardianFName"
+                               maxlength="30"
+                               name="guardianFName">
+                    </div>
+
+                    <!-- Guardian Last Name -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light" id="lblguardianLName" for="guardianLName">Last Name
+                            *</label>
+                        <span id="guardianLNameErr" class="error">Required</span>
+                        <input class="form-control shadow-sm required check-fill" type="text" id="guardianLName"
+                               maxlength="30"
+                               name="guardianLName">
+                    </div>
+
+                    <!-- Guardian Email -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light" id="lblguardianEmail" for="guardianEmail">Email
+                            *</label>
+                        <span id="guardianEmailErr" class="error">Required</span>
+                        <span id="guardianEmailErrFormat" class="error">Please enter a valid email format</span>
+                        <input class="form-control shadow-sm required check-fill" type="text" id="guardianEmail"
+                               maxlength="30"
+                               name="guardianEmail">
+                    </div>
+
+                    <!-- Guardian Phone Number -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light" id="lblguardianPhone" for="guardianPhone">Phone Number *</label>
+                        <span id="guardianPhoneErr" class="error">Required</span>
+                        <span id="guardianPhoneErrFormat"
+                              class="error">Please enter a valid phone number format</span>
+                        <input class="form-control shadow-sm required check-fill phoneFormat" type="text" id="guardianPhone"
+                               maxlength="14" placeholder="(XXX) XXX-XXXX" name="guardianPhone">
+                    </div>
+                </fieldset>
+            </section>
+        </div>
+        <button type="submit" id="submit" class="btn btn-dark shadow-sm">Submit</button>
     </form>
 </div>
 
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 <script src="javascript/welcomeFrm.js"></script>
 <script src="javascript/formatter.js"></script>
+
+<script>
+    $(function(){ //When document is ready
+        $(".check-fill").focusout(function() { //Prefer keyup so you check after, in case the user delete his entry.
+            progressBar();
+        });
+    })
+
+    // Got this progress bar auto-fill function from:
+    // https://stackoverflow.com/questions/37141647/how-to-make-a-progress-bar-that-fills-every-time-a-textbox-is-filled
+    function progressBar() {
+        var $fields = $(".check-fill");
+        var count = 0;
+        $fields.each(function () {
+            if ($(this).val().length > 0)
+                count++;
+        });
+
+        var percentage = Math.floor(count * 100 / $fields.length);
+        //Here you have your percentage;
+        $(".progress-bar").css("width", percentage + "%");
+        //$(".count").text(percentage + "%");
+    };
+</script>
 </body>
 </html>
