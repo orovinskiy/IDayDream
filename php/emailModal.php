@@ -39,7 +39,7 @@ function emailModal($modalId,$pageLocation)
                         </div>
 
                         <!-- saves input from which page the user came from -->";
-                        echo "'<input type='checkbox' name='select' value='$pageLocation' checked class='halfHidden'>
+                        echo "<input type='checkbox' name='select' value='$pageLocation' checked class='halfHidden'>
 
                         <div class='text-center pb-2'>
                             <button type='submit' id='submit' class='btn btn-dark shadow-sm mx-0 rounded-0'>Submit</button>
