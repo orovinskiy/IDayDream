@@ -52,7 +52,7 @@ if (!isset($_SESSION['username'])) {
 require('nav.php');
 ?>
 
-<div class="container width">
+<div class="container tableWidth">
     <div class="col-md-12">
 
         <p><a class="btn btn-dark shadow-sm mx-0 rounded-0" href="#emailSend"
@@ -180,7 +180,9 @@ require('nav.php');
         crossorigin="anonymous"></script>
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script><script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="../javascript/updateCellsInTable.js"></script>
 <script src="../javascript/dreamerTable.js"></script>
+<script src="../javascript/tableSearch.js"></script>
 <script src="../javascript/sendMail.js"></script>
 </body>
 </html>
