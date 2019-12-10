@@ -4,6 +4,7 @@
 include("debugging.php");
 require("functionsIDD.php");
 require('/home/notfound/connect.php');
+require("emailModal.php");
 
 ?>
 
@@ -41,6 +42,7 @@ require('/home/notfound/connect.php');
 
 <div class="container width">
     <div class="col-md-12">
+
         <p><a class="btn btn-dark shadow-sm mx-0 rounded-0" href="#emailSend"
               data-toggle="modal" >Send Email</a></p>
 
@@ -140,49 +142,6 @@ require('/home/notfound/connect.php');
         </section>
     </div>
 
-    <!-- modal for the email -->
-    <div class="modal fade" id="emailSend">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-tittle">Compose Your Email</h4>
-                    <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div><!-- modal-header -->
-                <form id="emailComposer" action="mailSender.php" method="post">
-                <div class="modal-body">
-
-                        <!-- Subject -->
-                        <div class="form-group" >
-                            <label class=" h5 font-weight-light " id="subjectLabel"  for="subject">Subject </label>
-                            <span id="subjectError" class="hidden error">*Required</span>
-                            <input class="required form-control" type="text" id="subject" maxlength="150" name="subject">
-                        </div>
-
-                        <!-- Text Area -->
-                        <div class="form-group">
-                            <label for="compose" id="composeLabel" class="h5 font-weight-light mr-sm-1">
-                                Compose your message
-                            </label>
-                            <span id="composeError" class="hidden error">*Required</span>
-                            <textarea id="compose" maxlength="200000" class="required form-control" name="compose"></textarea>
-                        </div>
-
-                        <!-- saves input from which page the user came from -->
-                        <?php
-                            echo "<input type='checkbox' name='select' value='dream' checked class='halfHidden'>";
-                        ?>
-
-                </div><!-- modal-body -->
-                <div class="modal-footer">
-                    <button type="submit" id="submit" class="btn btn-dark p-2">Submit</button>
-                </div><!-- modal-footer -->
-                </form>
-            </div><!-- modal-content -->
-        </div><!-- modal-dialog -->
-    </div><!-- modal -->
     <!--<button id="reload" class="btn btn-dark p-2">Update Changes</button>-->
 </div>
 <!-- JQuery -->
