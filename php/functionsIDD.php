@@ -447,7 +447,10 @@ function saveVolunteer($cnxn, $firstName, $lastName, $email, $phone
                 for($i = 0; $i < count($interestArray); $i++){
 
                     /*
-                    #12 Coordination, #13 Events, #14 Fundraising, #16 Mentoring, #17 Newsletter, #18 Other
+                     * The following are the Interst that never change. They are marked with a specific id from
+                     * the sql table.
+                     *
+                     * #12 Coordination, #13 Events, #14 Fundraising, #16 Mentoring, #17 Newsletter, #18 Other
                      */
                     switch($interestArray[$i]){
                         case 'coordination':

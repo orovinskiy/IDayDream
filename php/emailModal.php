@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * This file is for getting input from the user
+ * to send an email to all the active members
+ */
 // Included files
 include('debugging.php');
 

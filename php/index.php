@@ -62,9 +62,9 @@ require('nav.php');
 
                     <!-- Welcome Form -->
                     <a class="btn btn-dark mt-0 mb-1" href="../welcome.html" role="button">Dreamer</a>
-                </div>
-            </section>
-        </div>
+                </div><!-- Card Body -->
+            </section><!-- Card -->
+        </div><!-- Column -->
 
         <div class="col-10 offset-1 col-sm-5 offset-sm-0 pb-5">
             <section class="card shadow">
@@ -77,11 +77,11 @@ require('nav.php');
 
                     <!-- Dreamers -->
                     <a class="btn btn-dark mt-0 mb-1" href="dreamers.php" role="button">Dreamer</a>
-                </div>
-            </section>
-        </div>
-    </div>
-</div>
+                </div><!-- Card Body -->
+            </section><!-- Card -->
+        </div><!-- Column -->
+    </div><!-- Row -->
+</div><!-- Container -->
 
 
 <!-- JQuery -->

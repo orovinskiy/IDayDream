@@ -26,13 +26,13 @@
 
 <div class="jumbotron banner rounded-0 shadow">
     <h1 class="display-4 text-white font-weight-bold">ID.A.Y.DREAM VOLUNTEER</h1>
-</div>
+</div><!-- Jumbotron -->
 
 <div class="rounded-0 progress fixed-bottom">
     <div class="progress-bar titleColor" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
         <span class="sr-only">0% Complete</span>
     </div>
-</div>
+</div><!-- Progress Bar -->
 
 <div class="container width">
     <form id="volunteerForm" action="php/thankYou.php" method="POST">
@@ -66,9 +66,9 @@
                         </div>
 
                     </div>
-                </fieldset>
-            </section>
-        </div>
+                </fieldset><!-- Form Group -->
+            </section><!-- Card -->
+        </div><!-- Column -->
 
         <!-- Personal Information  -->
         <div class="col-md-12">
@@ -95,13 +95,13 @@
                                name="lastName">
                     </div>
 
-            <!-- Phone Number -->
-            <div class="form-group">
-                <label class="h6 font-weight-light" for="pNumber" id="phoneNumLabel">Phone Number * </label>
-                <span id="phoneError" class="error">Invalid phone number</span>
-                <input class="form-control shadow-sm check-fill phoneFormat" type="text" maxlength="14" id="pNumber" name="pNumber"
-                       placeholder="(XXX) XXX-XXXX">
-            </div>
+                    <!-- Phone Number -->
+                    <div class="form-group">
+                        <label class="h6 font-weight-light" for="pNumber" id="phoneNumLabel">Phone Number * </label>
+                        <span id="phoneError" class="error">Invalid phone number</span>
+                        <input class="form-control shadow-sm check-fill phoneFormat" type="text" maxlength="14" id="pNumber" name="pNumber"
+                               placeholder="(XXX) XXX-XXXX">
+                    </div>
 
                     <!-- Email -->
                     <div class="form-group">
@@ -117,7 +117,7 @@
                             <input type="checkbox" id="onMailList" name="onMailList" value="checked" checked>
                             <label for="onMailList" class="h6 font-weight-light form-check-label">Add to mailing
                                 list</label>
-                        </div>
+                        </div><!-- Column -->
 
                         <!-- T-Shirt Size -->
                         <div class="form-group form-sm-inline col-sm-6">
@@ -134,11 +134,11 @@
                                 <option value="large">Large</option>
                                 <option value="extraLarge">Extra Large</option>
                             </select>
-                        </div>
-                    </div>
-                </fieldset>
-            </section>
-        </div>
+                        </div><!-- Column -->
+                    </div><!-- Row -->
+                </fieldset><!-- Form Group -->
+            </section><!-- Card -->
+        </div><!-- Column -->
 
         <!-- Contact information -->
         <div class="col-md-12">
@@ -227,9 +227,9 @@
                         <input class="form-control shadow-sm input-style check-fill" maxlength="5" type="text" id="zip"
                                name="zip">
                     </div>
-                </fieldset>
-            </section>
-        </div>
+                </fieldset><!-- Form Group -->
+            </section><!-- Card -->
+        </div><!-- Column -->
 
         <!-- Availability -->
         <div class="col-md-12">
@@ -271,7 +271,7 @@
                         <input type="text" id="weekendTimes" name="weekendTimes"
                                class="mr-3 mb-2 form-control shadow-sm">
                     </div>
-                </fieldset>
+                </fieldset><!-- Form Group -->
 
                 <!-- Interests -->
                 <fieldset id="interests" class="form-group rounded m-0 p-4">
@@ -325,9 +325,9 @@
                         <label for="other" class="h6 font-weight-light mr-sm-1">Other (please specify)</label>
                         <input type="text" class="mr-3 mb-2 form-control shadow-sm" id="other" name="interestsText">
                     </div>
-                </fieldset>
-            </section>
-        </div>
+                </fieldset><!-- Form Group -->
+            </section><!-- Card -->
+        </div><!-- Column -->
 
         <!-- About You -->
         <div class="col-md-12">
@@ -384,9 +384,9 @@
                             have?</label>
                         <textarea id="skills" name="skills" class="form-control shadow-sm"></textarea>
                     </div>
-                </fieldset>
-            </section>
-        </div>
+                </fieldset><!-- Form Group -->
+            </section><!-- Card -->
+        </div><!-- Column -->
 
         <!-- Character References -->
         <div class="col-md-12">
@@ -444,7 +444,7 @@
                             <input type="email" class="form-control shadow-sm mb-2 check-fill" id="refEmail1" name="refEmail1"
                                    placeholder="JohnDoe@mail.com">
                         </div>
-                    </div>
+                    </div><!-- Form Group -->
 
                     <!-- References 2 -->
                     <div class="form-group">
@@ -494,7 +494,7 @@
                             <input type="email" class="form-control shadow-sm mb-2 check-fill" id="refEmail2" name="refEmail2"
                                    placeholder="JohnDoe@mail.com">
                         </div>
-                    </div>
+                    </div><!-- Form Group -->
 
                     <!-- References 3 -->
                     <div class="form-group">
@@ -544,11 +544,11 @@
                             <input type="email" class="form-control shadow-sm mb-2 check-fill" id="refEmail3" name="refEmail3"
                                    placeholder="JohnDoe@mail.com">
                         </div>
-                    </div>
+                    </div><!-- Form Group -->
 
-                </fieldset>
-            </section>
-        </div>
+                </fieldset><!-- Form Group -->
+            </section><!-- Card -->
+        </div><!-- Column -->
 
         <!-- Agreement -->
         <div class="col-md-12">
@@ -604,10 +604,10 @@
                     </div>
                 </fieldset>
             </section>
-        </div>
+        </div><!-- Column -->
         <button type="submit" id="submit" class="btn btn-dark shadow-sm">Submit</button>
     </form>
-</div>
+</div><!-- Container -->
 
 
 <!-- JQuery -->
@@ -624,29 +624,6 @@
         crossorigin="anonymous"></script>
 <script src="javascript/volunteer.js"></script>
 <script src="javascript/formatter.js"></script>
-
-<script>
-    $(function(){ //When document is ready
-        $(".check-fill").focusout(function() { //Prefer keyup so you check after, in case the user delete his entry.
-            progressBar();
-        });
-    })
-
-    // Got this progress bar auto-fill function from:
-    // https://stackoverflow.com/questions/37141647/how-to-make-a-progress-bar-that-fills-every-time-a-textbox-is-filled
-    function progressBar() {
-        var $fields = $(".check-fill");
-        var count = 0;
-        $fields.each(function () {
-            if ($(this).val().length > 0)
-                count++;
-        });
-
-        var percentage = Math.floor(count * 100 / $fields.length);
-        //Here you have your percentage;
-        $(".progress-bar").css("width", percentage + "%");
-        //$(".count").text(percentage + "%");
-    };
-</script>
+<script src="javascript/progressBar.js"></script>
 </body>
 </html>

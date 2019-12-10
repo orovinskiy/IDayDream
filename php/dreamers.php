@@ -89,7 +89,9 @@ require('nav.php');
                     <?php
                     $result = getAllDreamers($cnxn);
 
-                    // -1 == inactive, 0 == pending, 1 == active
+                    /** This is the code we use to determine who is active,pending,inactive
+                     *  (-1 == inactive, 0 == pending, 1 == active)
+                     */
                     $activityArray = array("Inactive"=>'-1',"Pending"=>'0',"Active"=>'1');
 
                     $rowIndex = 0;
@@ -119,6 +121,7 @@ require('nav.php');
                         $gradClass = $row['graduatingClass'];
                         $joinDate = formatDate($row['joinDate']);
 
+                        //See manual on jquery table.
             echo "<tr>
                     <td>$fName $lName</td>  
                     <td data-search='" . array_search($activity, $activityArray) . "' data-sort='" . array_search($activity, $activityArray) . "'
@@ -155,13 +158,14 @@ require('nav.php');
                 </table>
             </div>
             <br>
-        </section>
+        </section><!-- Card -->
     </div>
     <?php
         emailModal("emailSend","dream");
     ?>
-    <!--<button id="reload" class="btn btn-dark p-2">Update Changes</button>-->
-</div>
+
+</div><!-- Container -->
+
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->

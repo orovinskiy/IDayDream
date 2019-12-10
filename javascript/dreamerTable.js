@@ -1,4 +1,4 @@
-
+//uses jquery tables
 let table = $('#dreamerTable').DataTable({
     responsive: {
         details: {
@@ -15,13 +15,20 @@ let table = $('#dreamerTable').DataTable({
     },
     // Priority of which columns are shown in the table
     columnDefs: [
+        // Name
         { responsivePriority: 1, targets: 0 },
+        // Status
         { responsivePriority: 2, targets: 1 },
+        // Email
         { responsivePriority: 3, targets: 2 },
-        { responsivePriority: 5, targets: 10 },
-        { responsivePriority: 6, targets: 11 },
-        { responsivePriority: 7, targets: 12 },
-        { responsivePriority: 4, targets: 13 }
+        // Guardian Name
+        { responsivePriority: 5, targets: 11 },
+        // Guardian Email
+        { responsivePriority: 6, targets: 12 },
+        // Guardian Phone
+        { responsivePriority: 7, targets: 13 },
+        // Join Date
+        { responsivePriority: 4, targets: 14 }
     ],
     // Order table by join date descending
     order: [[ 13, "desc" ]]

@@ -99,10 +99,10 @@ if (isset($_POST['submit'])) {
                     Password: iD@yDr3@m<br>
                     (This will be removed)
                 </p>
-            </div>
+            </div><!-- Card Body -->
         </form>
-    </section>
-</div>
+    </section><!-- Card -->
+</div><!-- Container -->
 
 
 <!-- JQuery -->

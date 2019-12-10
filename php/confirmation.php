@@ -93,7 +93,7 @@ $isValid = true;
         }
 
         /**
-         * Validates the date in a YYYY-MM-DD format
+         * Validates the date in a MM/DD/YYYY format
          */
         if(validDate($birthday) === false){
             $isValid = false;
@@ -198,6 +198,7 @@ $isValid = true;
 
         /**
          * Displays the parent/guardian information entered and validates it
+         *
          */
 
         if(validName($guardianFName) === false|| validName($guardianLName)===false){
@@ -228,7 +229,8 @@ $isValid = true;
         }
 
         /**
-         * Code to send a email of the users entered information
+         * Code to send a email of the users entered information.
+         * If Error occurs an appropriate message will display
          */
         if($isValid === true) {
 
@@ -289,7 +291,8 @@ $isValid = true;
 
         ?>
     </div>
-</div>
+</div><!-- Container -->
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
