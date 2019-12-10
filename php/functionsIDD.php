@@ -243,6 +243,7 @@ function formatReferences($qResult) {
 
         while ($row = mysqli_fetch_assoc($qResult)) {
             $references .= ucwords(strtolower($row['firstName'] . ' ' . $row['lastName'])) . '<br>'
+                            . strtoLower($row['relationship']) . '<br>'
                             . strtolower($row['email']) . '<br>'
                             . $row['phone'] . '<br>' . '<br>';
         }
@@ -582,4 +583,12 @@ function getGuardian($cnxn, $guardianId) {
         "SELECT * FROM person WHERE $guardianId = personId";
 
     return mysqli_query($cnxn, $sql);
+}
+
+function updateVolunteerStatus($cnxn, $volId, $status) {
+    $sql = "UPDATE volunteer 
+            SET activity= '$status' 
+            WHERE volunteerId = '$volId'";
+
+    mysqli_query($cnxn, $sql);
 }
