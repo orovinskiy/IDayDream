@@ -52,7 +52,7 @@ if (!isset($_SESSION['username'])) {
     require('nav.php');
 ?>
 
-<div class="container width">
+<div class="container tableWidth">
     <div class="col-md-12">
 
         <p><a class="btn btn-dark shadow-sm mx-0 rounded-0" href="#emailSendVol"
