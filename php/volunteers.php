@@ -1,10 +1,18 @@
 <?php
 
+// Start a session
+session_start();
+
 // Included files
 include("debugging.php");
 require("functionsIDD.php");
 require('/home/notfound/connect.php');
 require("emailModal.php");
+
+// If user is not logged in, reroute them to the login page
+if (!isset($_SESSION['username'])) {
+    header('location: login.php');
+}
 
 ?>
 
@@ -36,9 +44,13 @@ require("emailModal.php");
 <body class="bg-color">
 
 <!-- Header -->
-<div class="jumbotron banner">
+<div class="jumbotron banner mb-0 rounded-0 shadow">
     <h1 class="display-4 text-white font-weight-bold">ID.A.Y.DREAM VOLUNTEERS</h1>
 </div>
+
+<?php
+    require('nav.php');
+?>
 
 <div class="container width">
     <div class="col-md-12">

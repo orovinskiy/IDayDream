@@ -1,4 +1,8 @@
 <?php
+
+// Included files
+include('debugging.php');
+
 function emailModal($modalId,$pageLocation)
 {
     echo "<!-- modal for the email -->
