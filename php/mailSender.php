@@ -1,5 +1,18 @@
 <?php
 
+// Turn on error reporting -- this is critical!
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+
+// Start a session
+session_start();
+
+// If user is not logged in, reroute them to the login page
+if (!isset($_SESSION['username'])) {
+    header('location: login.php');
+}
+
 //files to help the page run
 include 'debugging.php';
 require('/home/notfound/connect.php');
