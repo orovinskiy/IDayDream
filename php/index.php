@@ -1,10 +1,5 @@
 <?php
 
-// Turn on error reporting -- this is critical!
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
-
 // Start a session
 session_start();
 
@@ -12,6 +7,9 @@ session_start();
 if (!isset($_SESSION['username'])) {
     header('location: login.php');
 }
+
+// Included files
+include('debugging.php');
 
 ?>
 

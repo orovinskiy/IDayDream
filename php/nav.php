@@ -1,5 +1,8 @@
 <?php
 
+// Included files
+include('debugging.php');
+
 $thisPage = basename($_SERVER['PHP_SELF']); // nav.php
 $navIndex = "";
 

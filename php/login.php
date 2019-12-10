@@ -1,9 +1,5 @@
 <?php
 
-// Turn on error reporting
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 // Start a session
 session_start();
 
@@ -13,6 +9,9 @@ $invalidLogin = "<p class='text-center mb-4 py-2'>&nbsp</p>";
 if (isset($_SESSION['username'])) {
     header('location: index.php');
 }
+
+// Included files
+include('debugging.php');
 
 // Once the login form has been submitted
 if (isset($_POST['submit'])) {
