@@ -107,7 +107,3 @@ function makeNewSelect(selectedOption, dreamId, currRowNum) {
     }
     return newSelect;
 }
-
-/*//reloads the page
-function reload() {window.location.reload()}
-document.getElementById('reload').onclick = reload;*/
