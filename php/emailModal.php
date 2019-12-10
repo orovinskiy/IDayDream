@@ -1,7 +1,12 @@
 <?php
 
+// Included files
+include('debugging.php');
+
+function emailModal($modalId,$pageLocation)
+{
     echo "<!-- modal for the email -->
-    <div class='modal fade' id='emailSendVol'>
+    <div class='modal fade' id='$modalId'>
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <h3 class='modal-title titleColor text-white text-center mb-4 py-2'>Compose your email
@@ -30,9 +35,8 @@
                             <textarea id='compose' maxlength='200000' class='required form-control shadow-sm' name='compose'></textarea>
                         </div>
 
-                        <!-- saves input from which page the user came from -->
-                        <?php
-                        echo '<input type='checkbox' name='select' value='vol' checked class='halfHidden'>
+                        <!-- saves input from which page the user came from -->";
+                        echo "'<input type='checkbox' name='select' value='$pageLocation' checked class='halfHidden'>
 
                         <div class='text-center pb-2'>
                             <button type='submit' id='submit' class='btn btn-dark shadow-sm mx-0 rounded-0'>Submit</button>
@@ -43,3 +47,4 @@
             </div><!-- modal-content -->
         </div><!-- modal-dialog -->
     </div><!-- modal -->";
+}
