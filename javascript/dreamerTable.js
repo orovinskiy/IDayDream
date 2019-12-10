@@ -31,7 +31,7 @@ let table = $('#dreamerTable').DataTable({
         { responsivePriority: 4, targets: 14 }
     ],
     // Order table by join date descending
-    order: [[ 13, "desc" ]]
+    order: [[ 14, "desc" ]]
 });
 
 //captures the changed data and updates the database
