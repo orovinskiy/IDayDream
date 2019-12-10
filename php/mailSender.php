@@ -123,8 +123,8 @@ $isValid = true;
 
             ?>
         </fieldset>
-    </section>
-</div>
+    </section><!-- Card -->
+</div><!-- Container -->
 
 </body>
 <!-- JQuery -->

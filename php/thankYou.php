@@ -246,8 +246,6 @@ $mailAvailable = "";
     </div>
 
     <?php
-
-    //Validates agree button and background check
     /**
      * Validates background and agree
      */
@@ -360,7 +358,7 @@ $mailAvailable = "";
 
 
                 ?>
-        </div>
+        </div><!-- Column -->
         <div class="col-6">
             <?php
             //All three references
@@ -373,10 +371,12 @@ $mailAvailable = "";
                 echo "<p>Phone Number: $pNumberArray[$i]</p><br>";
             }
             ?>
-        </div>
-    </div>
-</div>
+        </div><!-- Column -->
+    </div><!-- Row -->
+</div><!-- Container -->
 <?php
+//If passes validation then a email will be sent
+// to the organization
 if($isValid) {
     $emailSend = "olegrovin@gmail.com";
 
@@ -427,6 +427,8 @@ if($isValid) {
 
     }
 
+    //if the information entered into the database is succesful
+    //will return true
     $submited = saveVolunteer($cnxn, $firstName, $lastName, $email, $phoneNumber, $mailList, $tShirt, $street,
                               $city, $state, $zip, $howDidHear, $motivation, $volExperience, $skills, $firstArray, $lastArray, $pNumberArray, $mailArray,
                                $relationArray, $oneWeek, $weekend, $interestArray);

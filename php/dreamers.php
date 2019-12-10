@@ -89,9 +89,12 @@ require('nav.php');
                     <?php
                     $result = getAllDreamers($cnxn);
 
-                    // -1 == inactive, 0 == pending, 1 == active
+                    /** This is the code we use to determine who is active,pending,inactive
+                     *  (-1 == inactive, 0 == pending, 1 == active)
+                     */
                     $activityArray = array("Inactive"=>'-1',"Pending"=>'0',"Active"=>'1');
 
+                    $rowIndex = 0;
                     while ($row = mysqli_fetch_assoc($result)) {
                         $activity = $row['activity'];
                         $personId = $row['personId'];
@@ -118,10 +121,12 @@ require('nav.php');
                         $gradClass = $row['graduatingClass'];
                         $joinDate = formatDate($row['joinDate']);
 
+                        //See manual on jquery table.
             echo "<tr>
                     <td>$fName $lName</td>  
-                    <td class data-search='" . array_search($activity, $activityArray) . "'>
-                       <select class='activity' data-id='$dreamerId'>";
+                    <td data-search='" . array_search($activity, $activityArray) . "' data-sort='" . array_search($activity, $activityArray) . "'
+                        data-dt-column='1' data-dt-row='$rowIndex'>
+                       <select class='activity' data-id='$dreamerId' data-row-index='$rowIndex'>";
                     foreach($activityArray as $active => $id){
                         if($activity == $id){
                             echo "<option value='$id' selected>$active</option>";
@@ -145,19 +150,22 @@ require('nav.php');
                     <td>$guardPhoneNum</td>
                     <td data-sort='$dreamerId'>$joinDate</td>
                  </tr>";
+
+                    $rowIndex++;
                     }
                     ?>
                     </tbody>
                 </table>
             </div>
             <br>
-        </section>
+        </section><!-- Card -->
     </div>
     <?php
         emailModal("emailSend","dream");
     ?>
-    <!--<button id="reload" class="btn btn-dark p-2">Update Changes</button>-->
-</div>
+
+</div><!-- Container -->
+
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->

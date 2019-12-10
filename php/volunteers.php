@@ -113,6 +113,7 @@ if (!isset($_SESSION['username'])) {
                         $statusOptions = array('Active'=>'1', 'Pending'=>'0', 'Inactive'=>'-1');
                         $selectedStatusName = array_search($status, $statusOptions);
 
+                        //see manual for Jquery Tables
                         echo "<tr>
                     <td>$fName $lName</td>
                     <td data-search='$selectedStatusName' data-sort='$selectedStatusName'

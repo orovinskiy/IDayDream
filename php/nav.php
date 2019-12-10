@@ -6,6 +6,8 @@ include('debugging.php');
 $thisPage = basename($_SERVER['PHP_SELF']); // nav.php
 $navIndex = "";
 
+// If user is on any of the tables then a navbar will appear
+// to go back to the links
 if ($thisPage == "dreamers.php" || $thisPage == "volunteers.php") {
     $navIndex = "<li class='nav-item'>
                         <a class='nav-link nav' href=''>|</a>
