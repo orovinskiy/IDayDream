@@ -64,6 +64,7 @@ require('/home/notfound/connect.php');
         <?php
         $result = getAllVolunteers($cnxn);
 
+        $rowIndex = 0;
         while ($row = mysqli_fetch_assoc($result)) {
             $personId = $row['personId'];
             $volunteerId = $row['volunteerId'];
@@ -84,12 +85,12 @@ require('/home/notfound/connect.php');
             $skills = empty($row['experience']) ? 'Unspecified' : $row['experience'];
             $interests = formatInterests(getInterestsById($cnxn, $volunteerId));
             $references = formatReferences(getReferencesById($cnxn, $volunteerId));
-            $statusOptions = array('Inactive'=>'-1', 'Pending'=>'0', 'Active'=>'1');
+            $statusOptions = array('Active'=>'1', 'Pending'=>'0', 'Inactive'=>'-1');
 
             echo "<tr>
                     <td>$fName $lName</td>
-                    <td data-search='" . array_search($status, $statusOptions) . "'>
-                      <select class='status' data-volId='$volunteerId' >";
+                    <td data-search='" . array_search($status, $statusOptions) . "' data-dt-column='1' data-dt-row='$rowIndex'>
+                      <select class='status' data-vol-id='$volunteerId'  data-row-index='$rowIndex'>";
 
                         foreach ($statusOptions as $statusName => $statusValue) {
                             $sel = ($status === $statusValue) ? "selected" : "";
@@ -113,6 +114,8 @@ require('/home/notfound/connect.php');
                     <td>$references</td>
                     <td data-sort='$volunteerId'>$joinDate</td>
                 </tr>";
+
+            $rowIndex++;
         }
         ?>
         </tbody>

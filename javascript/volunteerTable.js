@@ -1,15 +1,46 @@
 $(document).on('change', '.status', function(){
     let status = $(this).val();
-    let volId = $(this).attr('data-volId');
+    let volId = $(this).data('vol-id');
     $.post('', {volId:volId, status:status});
 
-    let thisCell = $(this).parent();
-    let thisRow = thisCell.parent();
-    let selectedOptionText  = $(this).children("option:selected").text();
+    let selectedOption = $(this).children("option:selected").text();
 
-    thisCell.attr('data-search', selectedOptionText);
+    let rowIndex = $(this).data("row-index");
 
-    table.row(thisRow).invalidate().draw();
+    // DataTable reads selected attribute from html instead of DOM so must re-create select
+    // with the selected option
+    let newSelect = '';
+    switch (selectedOption) {
+        case 'Active':
+            newSelect = "<select class='status' data-vol-id='" + volId + "' data-row-index='" + rowIndex + "'>"
+                        +  "<option value='1' selected=''>Active</option>"
+                        +  "<option value='0'>Pending</option>"
+                        +  "<option value='-1'>Inactive</option>"
+                      + "</select>";
+            break;
+        case 'Pending':
+            newSelect = "<select class='status' data-vol-id='" + volId + "' data-row-index='" + rowIndex + "'>"
+                        +  "<option value='1'>Active</option>"
+                        +  "<option value='0' selected=''>Pending</option>"
+                        +  "<option value='-1'>Inactive</option>"
+                      + "</select>";
+            break;
+        case 'Inactive':
+            newSelect = "<select class='status' data-vol-id='" + volId + "' data-row-index='" + rowIndex + "'>"
+                       +  "<option value='1'>Active</option>"
+                       +  "<option value='0'>Pending</option>"
+                       +  "<option value='-1' selected=''>Inactive</option>"
+                      + "</select>";
+
+    }
+
+    let thisCell = table.cell({row: rowIndex, column: 1});
+
+    $("[data-dt-row='" + rowIndex + "'][data-dt-column='1']").attr("data-search", selectedOption);
+
+    thisCell.invalidate();
+
+    thisCell.data(newSelect);
 });
 
 $(document).on('input', 'input[type="search"]', function() {

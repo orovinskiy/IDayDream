@@ -243,6 +243,7 @@ function formatReferences($qResult) {
 
         while ($row = mysqli_fetch_assoc($qResult)) {
             $references .= ucwords(strtolower($row['firstName'] . ' ' . $row['lastName'])) . '<br>'
+                            . strtoLower($row['relationship']) . '<br>'
                             . strtolower($row['email']) . '<br>'
                             . $row['phone'] . '<br>' . '<br>';
         }
