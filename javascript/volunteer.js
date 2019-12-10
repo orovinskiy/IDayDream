@@ -1,5 +1,7 @@
 // Validate form
-//document.getElementById("volunteerForm").onsubmit = validateForm;
+document.getElementById("volunteerForm").onsubmit = validateForm;
+
+const PHONE_REGEX = /^\(\d{3}\)\s\d{3}-\d{4}/;
 
 // Toggle "Other Interest" text box display
 document.getElementById("other-interest").addEventListener("change", function() {
@@ -44,14 +46,14 @@ function validateForm(){
     //validates Personal Information
     validText("firstNameLabel","firstName","fNameError");
     validText("lastNameLabel","lastName","lNameError");
-    validatePhoneNum("phoneNumLabel", "pNumber","numError");
+    validatePhoneNum("phoneNumLabel", "pNumber","phoneError");
     validMail("mailLabel", "eMail","emailError");
     validSelect("labelShirt","shirtSize","tShirtError");
 
     //Validates Address fields
     validText("labelStreet","street","streetError");
     validText("labelCity","city","cityError");
-    validatePhoneNum("labelZip","zip","zipError");
+    validateZip("labelZip","zip","zipError");
 
     //Validates How did you hear
     //validSelect("labelHowDidHear","howDidHear")
@@ -145,6 +147,22 @@ function validatePhoneNum(label, input, error){
     spanErrorRemove(error);
     removeRed($input,$label);
 
+    if(!PHONE_REGEX.test(text) || text.trim() === "" ){
+        turnFieldRed($input,$label);
+        spanErrorDisplay(error);
+        validate = false;
+        return false;
+    }
+}
+
+function validateZip(label, input, error) {
+    let $label = $("#"+label);
+    let $input = $("#"+input);
+    let text = $input.val();
+
+    spanErrorRemove(error);
+    removeRed($input,$label);
+
     text = text.replace("(","");
     text = text.replace(")","");
     text = text.replace(/-/g,"");
@@ -156,6 +174,7 @@ function validatePhoneNum(label, input, error){
         return false;
     }
 }
+
 
 /**
  * Checks required for required email and it's format. Shows warnings if invalid
