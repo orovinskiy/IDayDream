@@ -49,59 +49,59 @@ require("emailModal.php");
             <h3 class="card-title titleColor text-white text-center mb-4 py-2">Volunteer Database</h3>
 
             <div class="p-3">
-                        <!-- Volunteers Table -->
-                        <table id="volunteerTable" class="display nowrap w-100">
-                            <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Status</th>
-                                <th>Email</th>
-                                <th>On Mail List</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Availability</th>
-                                <th>Summer Camp</th>
-                                <th>Shirt Size</th>
-                                <th>Heard About By</th>
-                                <th>Motivation</th>
-                                <th>Experience</th>
-                                <th>Skills</th>
-                                <th>Interests</th>
-                                <th>References</th>
-                                <th>Join Date</th>
-                            </tr>
-                            </thead>
+                <!-- Volunteers Table -->
+                <table id="volunteerTable" class="display nowrap w-100">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Email</th>
+                        <th>On Mail List</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Availability</th>
+                        <th>Summer Camp</th>
+                        <th>Shirt Size</th>
+                        <th>Heard About By</th>
+                        <th>Motivation</th>
+                        <th>Experience</th>
+                        <th>Skills</th>
+                        <th>Interests</th>
+                        <th>References</th>
+                        <th>Join Date</th>
+                    </tr>
+                    </thead>
 
-                            <!-- Volunteers information -->
-                            <tbody>
-                            <?php
-                            $result = getAllVolunteers($cnxn);
+                    <!-- Volunteers information -->
+                    <tbody>
+                    <?php
+                    $result = getAllVolunteers($cnxn);
 
-        $rowIndex = 0;
-        while ($row = mysqli_fetch_assoc($result)) {
-            $personId = $row['personId'];
-            $volunteerId = $row['volunteerId'];
-            $fName = ucwords(strtolower($row['firstName']));
-            $lName = ucwords(strtolower($row['lastName']));
-            $status = $row['activity'];
-            $email = strtolower($row['email']);
-            $phone = $row['phone'];
-            $address = $row['street'] . ' ' . $row['city'] . ', ' . strtoupper($row['state']) . ' ' . $row['zip'];
-            $summerCamp = $row['oneWeekSummerCamp'] === '1' ? 'Yes' : 'No';
-            $weekend = empty($row['weekend']) ? 'Unspecified' : $row['weekend'];
-            $joinDate = formatDate($row['joinDate']);
-            $onMailList = $row['onMailList'] === '1' ? 'Yes' : 'No';
-            $tShirtSize = formatShirtSize($row['tShirtSize']);
-            $heardAbout = formatHeardAbout($row['heardAbout']);
-            $motivation = $row['motivation'];
-            $experience = empty($row['experience']) ? 'Unspecified' : $row['experience'];
-            $skills = empty($row['experience']) ? 'Unspecified' : $row['experience'];
-            $interests = formatInterests(getInterestsById($cnxn, $volunteerId));
-            $references = formatReferences(getReferencesById($cnxn, $volunteerId));
-            $statusOptions = array('Active'=>'1', 'Pending'=>'0', 'Inactive'=>'-1');
-            $selectedStatusName = array_search($status, $statusOptions);
+                    $rowIndex = 0;
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $personId = $row['personId'];
+                        $volunteerId = $row['volunteerId'];
+                        $fName = ucwords(strtolower($row['firstName']));
+                        $lName = ucwords(strtolower($row['lastName']));
+                        $status = $row['activity'];
+                        $email = strtolower($row['email']);
+                        $phone = $row['phone'];
+                        $address = $row['street'] . ' ' . $row['city'] . ', ' . strtoupper($row['state']) . ' ' . $row['zip'];
+                        $summerCamp = $row['oneWeekSummerCamp'] === '1' ? 'Yes' : 'No';
+                        $weekend = empty($row['weekend']) ? 'Unspecified' : $row['weekend'];
+                        $joinDate = formatDate($row['joinDate']);
+                        $onMailList = $row['onMailList'] === '1' ? 'Yes' : 'No';
+                        $tShirtSize = formatShirtSize($row['tShirtSize']);
+                        $heardAbout = formatHeardAbout($row['heardAbout']);
+                        $motivation = $row['motivation'];
+                        $experience = empty($row['experience']) ? 'Unspecified' : $row['experience'];
+                        $skills = empty($row['experience']) ? 'Unspecified' : $row['experience'];
+                        $interests = formatInterests(getInterestsById($cnxn, $volunteerId));
+                        $references = formatReferences(getReferencesById($cnxn, $volunteerId));
+                        $statusOptions = array('Active'=>'1', 'Pending'=>'0', 'Inactive'=>'-1');
+                        $selectedStatusName = array_search($status, $statusOptions);
 
-            echo "<tr>
+                        echo "<tr>
                     <td>$fName $lName</td>
                     <td data-search='$selectedStatusName' data-sort='$selectedStatusName'
                             data-dt-column='1' data-dt-row='$rowIndex'>
@@ -112,7 +112,7 @@ require("emailModal.php");
                             echo "<option value='$statusValue' $sel>$statusName</option>";
                         }
 
-                echo "</select>
+                        echo "</select>
                     </td>
                     <td>$email</td>
                     <td>$onMailList</td>
@@ -130,12 +130,12 @@ require("emailModal.php");
                     <td data-sort='$volunteerId'>$joinDate</td>
                 </tr>";
 
-            $rowIndex++;
-        }
-        ?>
-        </tbody>
-    </table>
-    </div>
+                        $rowIndex++;
+                    }
+                    ?>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </div>
 </div>

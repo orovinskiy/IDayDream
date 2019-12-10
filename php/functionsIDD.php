@@ -584,3 +584,11 @@ function getGuardian($cnxn, $guardianId) {
 
     return mysqli_query($cnxn, $sql);
 }
+
+function updateVolunteerStatus($cnxn, $volId, $status) {
+    $sql = "UPDATE volunteer 
+            SET activity= '$status' 
+            WHERE volunteerId = '$volId'";
+
+    mysqli_query($cnxn, $sql);
+}

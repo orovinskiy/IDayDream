@@ -47,7 +47,7 @@ $(document).on('change', '.status', function(){
     let volId = $(this).data('vol-id');
 
     // Update status for volunteer in db
-    $.post('', {volId:volId, status:status});
+    $.post('updateVolunteerStatus.php', {volId:volId, status:status});
 
     // To reflect changes on table and modal
     updateStatusCell(this, volId);
