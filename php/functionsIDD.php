@@ -447,7 +447,7 @@ function saveVolunteer($cnxn, $firstName, $lastName, $email, $phone
                 for($i = 0; $i < count($interestArray); $i++){
 
                     /*
-                     * The following are the Interst that never change. They are marked with a specific id from
+                     * The following are the Interests that never change. They are marked with a specific id from
                      * the sql table.
                      *
                      * #12 Coordination, #13 Events, #14 Fundraising, #16 Mentoring, #17 Newsletter, #18 Other
