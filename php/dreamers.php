@@ -141,7 +141,9 @@ require("emailModal.php");
             <br>
         </section>
     </div>
-
+    <?php
+        emailModal("emailSend","dream");
+    ?>
     <!--<button id="reload" class="btn btn-dark p-2">Update Changes</button>-->
 </div>
 <!-- JQuery -->
