@@ -92,6 +92,7 @@ require('nav.php');
                     // -1 == inactive, 0 == pending, 1 == active
                     $activityArray = array("Inactive"=>'-1',"Pending"=>'0',"Active"=>'1');
 
+                    $rowIndex = 0;
                     while ($row = mysqli_fetch_assoc($result)) {
                         $activity = $row['activity'];
                         $personId = $row['personId'];
@@ -120,8 +121,9 @@ require('nav.php');
 
             echo "<tr>
                     <td>$fName $lName</td>  
-                    <td class data-search='" . array_search($activity, $activityArray) . "'>
-                       <select class='activity' data-id='$dreamerId'>";
+                    <td data-search='" . array_search($activity, $activityArray) . "' data-sort='" . array_search($activity, $activityArray) . "'
+                        data-dt-column='1' data-dt-row='$rowIndex'>
+                       <select class='activity' data-id='$dreamerId' data-row-index='$rowIndex'>";
                     foreach($activityArray as $active => $id){
                         if($activity == $id){
                             echo "<option value='$id' selected>$active</option>";
@@ -145,6 +147,8 @@ require('nav.php');
                     <td>$guardPhoneNum</td>
                     <td data-sort='$dreamerId'>$joinDate</td>
                  </tr>";
+
+                    $rowIndex++;
                     }
                     ?>
                     </tbody>
