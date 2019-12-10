@@ -1,65 +1,5 @@
-$(document).on('change', '.status', function(){
-    let status = $(this).val();
-    let volId = $(this).data('vol-id');
-    $.post('', {volId:volId, status:status});
 
-    let selectedOption = $(this).children("option:selected").text();
-
-    let rowIndex = $(this).data("row-index");
-
-    // DataTable reads selected attribute from html instead of DOM so must re-create select
-    // with the selected option
-    let newSelect = '';
-    switch (selectedOption) {
-        case 'Active':
-            newSelect = "<select class='status' data-vol-id='" + volId + "' data-row-index='" + rowIndex + "'>"
-                        +  "<option value='1' selected=''>Active</option>"
-                        +  "<option value='0'>Pending</option>"
-                        +  "<option value='-1'>Inactive</option>"
-                      + "</select>";
-            break;
-        case 'Pending':
-            newSelect = "<select class='status' data-vol-id='" + volId + "' data-row-index='" + rowIndex + "'>"
-                        +  "<option value='1'>Active</option>"
-                        +  "<option value='0' selected=''>Pending</option>"
-                        +  "<option value='-1'>Inactive</option>"
-                      + "</select>";
-            break;
-        case 'Inactive':
-            newSelect = "<select class='status' data-vol-id='" + volId + "' data-row-index='" + rowIndex + "'>"
-                       +  "<option value='1'>Active</option>"
-                       +  "<option value='0'>Pending</option>"
-                       +  "<option value='-1' selected=''>Inactive</option>"
-                      + "</select>";
-
-    }
-
-    let thisCell = table.cell({row: rowIndex, column: 1});
-
-    $("[data-dt-row='" + rowIndex + "'][data-dt-column='1']").attr("data-search", selectedOption);
-
-    thisCell.invalidate();
-
-    thisCell.data(newSelect);
-});
-
-$(document).on('input', 'input[type="search"]', function() {
-    let filterText = $(this).val().toLowerCase();
-
-    switch (filterText) {
-        case 'active':
-        case 'pending':
-        case 'inactive':
-            table.column(1).search('^' + filterText + '$', true, false).draw();
-            break;
-        default:
-            table.column(1).search('');
-            table.search(filterText).draw();
-    }
-});
-
-
-
+// data table initialization and options
 let table = $('#volunteerTable').DataTable( {
     responsive: {
         details: {
@@ -98,3 +38,96 @@ let table = $('#volunteerTable').DataTable( {
     // Order table by join date descending
     order: [[ 15, "desc" ]]
 } );
+
+/**
+ * Handler to save status of volunteer and update select element and table data
+ */
+$(document).on('change', '.status', function(){
+    let status = $(this).val();
+    let volId = $(this).data('vol-id');
+
+    // Update status for volunteer in db
+    $.post('', {volId:volId, status:status});
+
+    // To reflect changes on table and modal
+    updateStatusCell(this, volId);
+});
+
+/**
+ * Filters only status column if word matches active, pending, or inactive. These words must
+ * match exactly for appropriate filter
+ */
+$(document).on('input', 'input[type="search"]', function() {
+    let filterText = $(this).val().toLowerCase();
+
+    switch (filterText) {
+        case 'active':
+        case 'pending':
+        case 'inactive':
+            table.column(1).search('^' + filterText + '$', true, false).draw();
+            break;
+        default:
+            table.column(1).search('');
+            table.search(filterText).draw();
+    }
+});
+
+/**
+ * Updates the state of the cell for status in through the API and html table
+ * @param statusSelect select element to update
+ * @param volId the id of the volunteer this cell belongs to
+ */
+function updateStatusCell(statusSelect, volId) {
+
+    let thisRowNum = $(statusSelect).data("row-index");
+    let selectedOption = $(statusSelect).children("option:selected").text();
+
+    // Must update selected option by recreating select since datatable reads from html instead of DOM
+    let newSelect = makeNewSelect(selectedOption, volId, thisRowNum);
+
+    // Update <td> on table for filter and sort
+    let tdCell = $("[data-dt-row='" + thisRowNum + "'][data-dt-column='1']");
+    tdCell.attr("data-search", selectedOption);
+    tdCell.attr("data-sort", selectedOption);
+
+    // Update datatable through API
+    let dataCell = table.cell({row: thisRowNum, column: 1});
+    dataCell.invalidate();
+    dataCell.data(newSelect);
+}
+
+
+/**
+ * Creates a select element with options for a status. Parameter option will be selected
+ * @param selectedOption option to select as default
+ * @param volId id of the volunteer for the status
+ * @param currRowNum Row this select is on datatable
+ * @returns {string} select element with options for status
+ */
+function makeNewSelect(selectedOption, volId, currRowNum) {
+    let newSelect = '';
+
+    switch (selectedOption) {
+        case 'Active':
+            newSelect = "<select class='status' data-vol-id='" + volId + "' data-row-index='" + currRowNum + "'>"
+                +  "<option value='1' selected=''>Active</option>"
+                +  "<option value='0'>Pending</option>"
+                +  "<option value='-1'>Inactive</option>"
+                + "</select>";
+            break;
+        case 'Pending':
+            newSelect = "<select class='status' data-vol-id='" + volId + "' data-row-index='" + currRowNum + "'>"
+                +  "<option value='1'>Active</option>"
+                +  "<option value='0' selected=''>Pending</option>"
+                +  "<option value='-1'>Inactive</option>"
+                + "</select>";
+            break;
+        case 'Inactive':
+            newSelect = "<select class='status' data-vol-id='" + volId + "' data-row-index='" + currRowNum + "'>"
+                +  "<option value='1'>Active</option>"
+                +  "<option value='0'>Pending</option>"
+                +  "<option value='-1' selected=''>Inactive</option>"
+                + "</select>";
+    }
+    return newSelect;
+}

@@ -86,10 +86,12 @@ require('/home/notfound/connect.php');
             $interests = formatInterests(getInterestsById($cnxn, $volunteerId));
             $references = formatReferences(getReferencesById($cnxn, $volunteerId));
             $statusOptions = array('Active'=>'1', 'Pending'=>'0', 'Inactive'=>'-1');
+            $selectedStatusName = array_search($status, $statusOptions);
 
             echo "<tr>
                     <td>$fName $lName</td>
-                    <td data-search='" . array_search($status, $statusOptions) . "' data-dt-column='1' data-dt-row='$rowIndex'>
+                    <td data-search='$selectedStatusName' data-sort='$selectedStatusName'
+                            data-dt-column='1' data-dt-row='$rowIndex'>
                       <select class='status' data-vol-id='$volunteerId'  data-row-index='$rowIndex'>";
 
                         foreach ($statusOptions as $statusName => $statusValue) {
