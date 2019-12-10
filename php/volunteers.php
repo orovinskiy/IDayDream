@@ -4,6 +4,7 @@
 include("debugging.php");
 require("functionsIDD.php");
 require('/home/notfound/connect.php');
+require("emailModal.php");
 
 ?>
 
@@ -25,6 +26,7 @@ require('/home/notfound/connect.php');
 
     <!-- Styles -->
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/sendMail.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../images/favicon.png"/>
@@ -40,79 +42,81 @@ require('/home/notfound/connect.php');
 
 <div class="container width">
     <div class="col-md-12">
-        <p><a class="btn btn-dark shadow-sm mx-0 rounded-0" href="sendMail.php?source=vol">Send Email</a></p>
+
+        <p><a class="btn btn-dark shadow-sm mx-0 rounded-0" href="#emailSendVol"
+              data-toggle="modal" >Send Email</a></p>
         <section class="card shadow mb-5">
             <h3 class="card-title titleColor text-white text-center mb-4 py-2">Volunteer Database</h3>
 
             <div class="p-3">
-                <!-- Volunteers Table -->
-                <table id="volunteerTable" class="display nowrap w-100">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>On Mail List</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>Weekends</th>
-                        <th>Summer Camp</th>
-                        <th>Shirt Size</th>
-                        <th>Heard About By</th>
-                        <th>Motivation</th>
-                        <th>Experience</th>
-                        <th>Skills</th>
-                        <th>Interests</th>
-                        <th>References</th>
-                        <th>Join Date</th>
-                    </tr>
-                    </thead>
+                        <!-- Volunteers Table -->
+                        <table id="volunteerTable" class="display nowrap w-100">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>On Mail List</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Weekends</th>
+                                <th>Summer Camp</th>
+                                <th>Shirt Size</th>
+                                <th>Heard About By</th>
+                                <th>Motivation</th>
+                                <th>Experience</th>
+                                <th>Skills</th>
+                                <th>Interests</th>
+                                <th>References</th>
+                                <th>Join Date</th>
+                            </tr>
+                            </thead>
 
-                    <!-- Volunteers information -->
-                    <tbody>
-                    <?php
-                    $result = getAllVolunteers($cnxn);
+                            <!-- Volunteers information -->
+                            <tbody>
+                            <?php
+                            $result = getAllVolunteers($cnxn);
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $personId = $row['personId'];
-                        $volunteerId = $row['volunteerId'];
-                        $fName = ucwords(strtolower($row['firstName']));
-                        $lName = ucwords(strtolower($row['lastName']));
-                        $email = strtolower($row['email']);
-                        $phone = $row['phone'];
-                        $address = $row['street'] . ' ' . $row['city'] . ', ' . strtoupper($row['state']) . ' ' . $row['zip'];
-                        $summerCamp = $row['oneWeekSummerCamp'] === '1' ? 'Yes' : 'No';
-                        $weekend = empty($row['weekend']) ? 'Unspecified' : $row['weekend'];
-                        $joinDate = formatDate($row['joinDate']);
-                        $onMailList = $row['onMailList'] === '1' ? 'Yes' : 'No';
-                        $tShirtSize = formatShirtSize($row['tShirtSize']);
-                        $heardAbout = formatHeardAbout($row['heardAbout']);
-                        $motivation = $row['motivation'];
-                        $experience = empty($row['experience']) ? 'Unspecified' : $row['experience'];
-                        $skills = empty($row['experience']) ? 'Unspecified' : $row['experience'];
-                        $interests = formatInterests(getInterestsById($cnxn, $volunteerId));
-                        $references = formatReferences(getReferencesById($cnxn, $volunteerId));
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $personId = $row['personId'];
+                                $volunteerId = $row['volunteerId'];
+                                $fName = ucwords(strtolower($row['firstName']));
+                                $lName = ucwords(strtolower($row['lastName']));
+                                $email = strtolower($row['email']);
+                                $phone = $row['phone'];
+                                $address = $row['street'] . ' ' . $row['city'] . ', ' . strtoupper($row['state']) . ' ' . $row['zip'];
+                                $summerCamp = $row['oneWeekSummerCamp'] === '1' ? 'Yes' : 'No';
+                                $weekend = empty($row['weekend']) ? 'Unspecified' : $row['weekend'];
+                                $joinDate = formatDate($row['joinDate']);
+                                $onMailList = $row['onMailList'] === '1' ? 'Yes' : 'No';
+                                $tShirtSize = formatShirtSize($row['tShirtSize']);
+                                $heardAbout = formatHeardAbout($row['heardAbout']);
+                                $motivation = $row['motivation'];
+                                $experience = empty($row['experience']) ? 'Unspecified' : $row['experience'];
+                                $skills = empty($row['experience']) ? 'Unspecified' : $row['experience'];
+                                $interests = formatInterests(getInterestsById($cnxn, $volunteerId));
+                                $references = formatReferences(getReferencesById($cnxn, $volunteerId));
 
-                        echo "<tr>
-                    <td>$fName $lName</td>
-                    <td>$email</td>
-                    <td>$onMailList</td>
-                    <td>$phone</td>
-                    <td>$address</td>
-                    <td>$weekend</td>
-                    <td>$summerCamp</td>
-                    <td>$tShirtSize</td>
-                    <td>$heardAbout</td>
-                    <td>$motivation</td>
-                    <td>$experience</td>
-                    <td>$skills</td>
-                    <td>$interests</td>
-                    <td>$references</td>
-                    <td data-sort='$volunteerId'>$joinDate</td>
-                </tr>";
-                    }
-                    ?>
-                    </tbody>
-                </table>
+                                echo "<tr>
+                            <td>$fName $lName</td>
+                            <td>$email</td>
+                            <td>$onMailList</td>
+                            <td>$phone</td>
+                            <td>$address</td>
+                            <td>$weekend</td>
+                            <td>$summerCamp</td>
+                            <td>$tShirtSize</td>
+                            <td>$heardAbout</td>
+                            <td>$motivation</td>
+                            <td>$experience</td>
+                            <td>$skills</td>
+                            <td>$interests</td>
+                            <td>$references</td>
+                            <td data-sort='$volunteerId'>$joinDate</td>
+                        </tr>";
+                }
+                ?>
+                </tbody>
+            </table>
             </div>
         </section>
     </div>
@@ -131,6 +135,7 @@ require('/home/notfound/connect.php');
         crossorigin="anonymous"></script>
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="../javascript/sendMail.js"></script>
 <script>
     $('#volunteerTable').DataTable({
         responsive: {
