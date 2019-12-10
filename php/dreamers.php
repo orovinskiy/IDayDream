@@ -11,6 +11,7 @@ session_start();
 include("debugging.php");
 require("functionsIDD.php");
 require('/home/notfound/connect.php');
+require("emailModal.php");
 
 // If user is not logged in, reroute them to the login page
 if (!isset($_SESSION['username'])) {
@@ -37,6 +38,7 @@ if (!isset($_SESSION['username'])) {
 
     <!-- Styles -->
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/sendMail.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../images/favicon.png"/>
@@ -56,17 +58,20 @@ require('nav.php');
 
 <div class="container width">
     <div class="col-md-12">
-        <p><a class="btn btn-dark shadow-sm mx-0 rounded-0" href="sendMail.php?source=dream">Send Email</a></p>
+
+        <p><a class="btn btn-dark shadow-sm mx-0 rounded-0" href="#emailSend"
+              data-toggle="modal" >Send Email</a></p>
 
         <section class="card shadow mb-5">
             <h3 class="card-title titleColor text-white text-center mb-4 py-2">Dreamer Database</h3>
-
             <div class="p-3">
-                <!-- Dreamers Table -->
-                <table id="dreamerTable" class="display nowrap w-100">
+
+            <!-- Dreamers Table -->
+            <table id="dreamerTable" class="display nowrap w-100">
                     <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Status</th>
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Graduating Class</th>
@@ -88,7 +93,11 @@ require('nav.php');
                     <?php
                     $result = getAllDreamers($cnxn);
 
+                    // -1 == inactive, 0 == pending, 1 == active
+                    $activityArray = array("Inactive"=>'-1',"Pending"=>'0',"Active"=>'1');
+
                     while ($row = mysqli_fetch_assoc($result)) {
+                        $activity = $row['activity'];
                         $personId = $row['personId'];
                         $dreamerId = $row['participantId'];
                         $fName = ucwords(strtolower($row['firstName']));
@@ -113,8 +122,19 @@ require('nav.php');
                         $gradClass = $row['graduatingClass'];
                         $joinDate = formatDate($row['joinDate']);
 
-                        echo "<tr>
-                    <td>$fName $lName</td>
+            echo "<tr>
+                    <td>$fName $lName</td>  
+                    <td class data-search='" . array_search($activity, $activityArray) . "'>
+                       <select class='activity' data-id='$dreamerId'>";
+                    foreach($activityArray as $active => $id){
+                        if($activity == $id){
+                            echo "<option value='$id' selected>$active</option>";
+                        }
+                        else{
+                            echo "<option value='$id'>$active</option>";
+                        }
+                    }
+            echo   "</select></td>
                     <td>$email</td>
                     <td>$phone</td>
                     <td>$gradClass</td>
@@ -127,8 +147,8 @@ require('nav.php');
                     <td>$guardFName $guardLName</td>
                     <td>$guardEmail</td>
                     <td>$guardPhoneNum</td>
-                    <td data-sort='$dreamerId'>$joinDate</td>        
-                </tr>";
+                    <td data-sort='$dreamerId'>$joinDate</td>
+                 </tr>";
                     }
                     ?>
                     </tbody>
@@ -137,6 +157,8 @@ require('nav.php');
             <br>
         </section>
     </div>
+
+    <!--<button id="reload" class="btn btn-dark p-2">Update Changes</button>-->
 </div>
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -151,37 +173,8 @@ require('nav.php');
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-<script>
-    $('#dreamerTable').DataTable({
-        responsive: {
-            details: {
-                display: $.fn.dataTable.Responsive.display.modal({
-                    header: function (row) {
-                        var data = row.data();
-                        return 'Details for ' + data[0];
-                    }
-                }),
-                renderer: $.fn.dataTable.Responsive.renderer.tableAll({
-                    tableClass: 'table'
-                })
-            }
-        },
-
-        // Priority of which columns are shown in the table
-        columnDefs: [
-            {responsivePriority: 1, targets: 0},
-            {responsivePriority: 2, targets: 1},
-            {responsivePriority: 3, targets: 2},
-            {responsivePriority: 5, targets: 10},
-            {responsivePriority: 6, targets: 11},
-            {responsivePriority: 7, targets: 12},
-            {responsivePriority: 4, targets: 13}
-        ],
-
-        // Order table by join date descending
-        order: [[13, "desc"]]
-    });
-</script>
+<script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script><script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="../javascript/dreamerTable.js"></script>
+<script src="../javascript/sendMail.js"></script>
 </body>
 </html>

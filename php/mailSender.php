@@ -6,7 +6,6 @@ require('/home/notfound/connect.php');
 require("functionsIDD.php");
 
 //captured variables from input
-$from = trim($_POST['from']);
 $subject = trim($_POST['subject']);
 $compose = trim($_POST['compose']);
 $pageType = $_POST['select'];
@@ -48,32 +47,24 @@ $isValid = true;
     <section class="card shadow mb-5">
         <h3 class="card-title titleColor text-white text-center mb-4 py-2">Confirmation</h3>
 
-        <fieldset class="form-group m-0 p-4">
-
+        <fieldset class="m-0 p-4">
             <?php
-            //Makes sure all the fields are not empty
-            if(!validReqText($from)){
-                echo "<p>Error: The From field was left empty</p>";
-                $isValid = false;
-            }
-            else{
-                echo "<p>From: $from</p>";
-            }
 
+            //Makes sure all the fields are not empty
             if(!validReqText($subject)){
-                echo "<p>Error: The Subject field was left empty</p>";
+                $subjectEcho = "<p>Error: The Subject field was left empty</p>";
                 $isValid = false;
             }
             else{
-                echo "<p>Subject: $subject</p>";
+                $subjectEcho = "<p class='h6'><b>Subject:</b> $subject</p>";
             }
 
             if(!validReqText($compose)){
-                echo "<p>Error: The Compose field was left empty</p>";
+                $composeEcho = "<p>Error: The Compose field was left empty</p>";
                 $isValid = false;
             }
             else{
-                echo "<p>Message: $compose</p>";
+                $composeEcho = "<p class='h6'><b>Message:</b> $compose</p>";
             }
 
             //looks to see witch connection to use. 1 is described as active
@@ -103,9 +94,9 @@ $isValid = true;
                     $email_subject = $subject;
                     $to = $email;//The active user goes here
 
-                    $headers = "from: $from\r\n";
-                    $headers.= "Reply-to: $from \r\n";
-                    $count++;
+                $headers = "from: IDayDream@gmail.com\r\n";
+                $headers.= "Reply-to: IDayDream@gmail.com \r\n";
+                $count++;
 
                     $success = mail($to, $email_subject, $email_body, $headers);
 
@@ -114,8 +105,14 @@ $isValid = true;
                         : "We're sorry. There was a problem with your form.";
                     echo "<p>$msg</p>";*/
                 }
-                echo "<h6>$count emails were sent</h6>";
             }
+
+            echo "<p class='h6'><b>$count emails were sent</b></p>
+                    <br>
+                    $subjectEcho
+                    <br>
+                    $composeEcho";
+
             ?>
         </fieldset>
     </section>
